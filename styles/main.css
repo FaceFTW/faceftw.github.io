@@ -1,8 +1,18 @@
-h1{
-    text-align: center;
-    font: 1.5vw "Lucidia Sans";
+header > h1 {
+  text-align: center;
 }
 
-p{
-    text-align: center;
+nav {
+  text-align: center;
 }
+
+/*This selector is temporary*/
+section.intro > img {
+  height: 10vw;
+}
+
+section.intro > span#asset-cred, intro > span#asset-cred > a {
+  font: 9px italic !important;
+}
+
+/*# sourceMappingURL=main.css.map */
