@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@5.0.1/dist/darkly/bootstrap.min.css"
         integrity="sha256-wXSrJQPGca0WuqBL6/G912FEJLNfYHnOATmLHLJZ4iY=" crossorigin="anonymous">
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
-    <link href="styles/main.css" rel="stylesheet">
+    <link href="/styles/main.css" rel="stylesheet">
     <title>Alex Westerman's Portfolio</title>
 </head>
 
@@ -24,7 +24,7 @@
     <header id="header" class="bg-dark">
         <div class="d-flex flex-column bg-dark">
             <div class="profile">
-                <a href="index.html"><img src="assets/funny.jpg" alt="" class="img-fluid rounded-circle"></a>
+                <a href="/index.html"><img src="assets/funny.jpg" alt="" class="img-fluid rounded-circle"></a>
                 <h1 class="navbar-brand"><a href="index.html">Alex Westerman</a></h1>
                 <div class="social-links mt-3 text-center">
                     <a href="https://twitter.com/_FaceFTW" class="twitter"><i class="bx bxl-twitter"></i></a>
@@ -35,11 +35,11 @@
 
             <nav id="navbar" class="nav-menu navbar navbar-dark bg-dark">
                 <ul>
-                    <li><a href="page/about.html" class="nav-link"><i class="bx bx-user"></i> <span>About</span></a>
+                    <li><a href="/page/about.html" class="nav-link"><i class="bx bx-user"></i> <span>About</span></a>
                     </li>
-                    <li><a href="page/resume.html" class="nav-link"><i class="bx bx-file-blank"></i>
+                    <li><a href="/page/resume.html" class="nav-link"><i class="bx bx-file-blank"></i>
                             <span>Resume</span></a></li>
-                    <li><a href="#projects" class="nav-link scrollto"><i class="bx bx-book-content"></i>
+                    <li><a href="/page/projects.html" class="nav-link scrollto"><i class="bx bx-book-content"></i>
                             <span>Projects</span></a></li>
                 </ul>
             </nav>
@@ -49,21 +49,15 @@
     <!--Main Webpage Content-->
     <main id="main">
         <section class="intro">
-            <h1>Hi There!</h1>
-            <p> This webpage is currently a work in progress.<br> However, come back within a few weeks and I should
-                have it
-                ready for you to view!</p>
-            <br>
-            <p>For now, you can enjoy this funny image :)</p>
-            <img src="assets/funny.jpg" alt="funny image"><br>
-            <span id="asset-cred">Shoutout to <a href="https://twitch.tv/Jerma985">Jerma985</a> for being the guy in the
-                image</span>
+            <div class="container">
+                <h1 class="text-center">Software Engineer, Hardware Tinkerer, Power User, Tech Enthusiast</h1>
+                <p> </p>
+                <br>
+            </div>
         </section>
         <section class="projects" id="projects-section">
-            <h1>Projects</h1>
+            <h1>Featured Projects</h1>
             <!--This will eventually be replaced by a card layout or something, but its subject to change-->
-
-
             <div class="row" id="project-cards">
                 <!--CSSE230 Computer Architecture Assembler-->
                 <div class="card mb-3 col-xs-8 col-sm-6 col-md-4 ">
@@ -93,7 +87,8 @@
                 <div class="card mb-3 col-xs-8 col-sm-6 col-md-4 ">
                     <h3 class="card-header">Armanipulator</h3>
                     <div class="card-body">
-                        <h5 class="card-title">Rudimentary Robotic Arm Utilizing Pneumatic Leverage and Extensible Arduino Firmware </h5>
+                        <h5 class="card-title">Rudimentary Robotic Arm Utilizing Pneumatic Leverage and Extensible
+                            Arduino Firmware </h5>
                         <h6 class="card-subtitle text-muted">For PLTW Engineering Design and Development</h6>
                     </div>
                     <svg xmlns="http://www.w3.org/2000/svg" class="d-block user-select-none" width="100%" height="200"
@@ -104,11 +99,14 @@
                         <text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text>
                     </svg>
                     <div class="card-body">
-                        <span class="text-muted"><em>Language: <i class="bx bxl-c-plus-plus"></i> C++ (Arduino)</em></span><br>
-                        <a href="https://github.com/rhit-westeraj/Armanipulator" class="card-link"><i class="bx bxl-github"></i> Github Repo</a>
+                        <span class="text-muted"><em>Language: <i class="bx bxl-c-plus-plus"></i> C++
+                                (Arduino)</em></span><br>
+                        <a href="https://github.com/rhit-westeraj/Armanipulator" class="card-link"><i
+                                class="bx bxl-github"></i> Github Repo</a>
                     </div>
                     <div class="card-footer text-muted"></div>
-                </div><!--END Card-->
+                </div>
+                <!--END Card-->
 
 
 
@@ -131,6 +129,85 @@
                     </div>
                     <div class="card-footer text-muted"></div>
                 </div>
+                <!--END Card-->
+
+                <div class="w-100 d-none d-md-block"></div>
+
+                <!--CSSE230 Computer Architecture Assembler-->
+                <div class="card mb-3 col-xs-8 col-sm-6 col-md-4 ">
+                    <h3 class="card-header">chnasm</h3>
+                    <div class="card-body">
+                        <h5 class="card-title">Regex Assembler for a Custom 16-bit Assembly Architecture</h5>
+                        <h6 class="card-subtitle text-muted"><em>For Rose-Hulman CSSE232: Computer Architecture</em>
+                        </h6>
+                    </div>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="d-block user-select-none" width="100%" height="200"
+                        aria-label="Placeholder: Image cap" focusable="false" role="img"
+                        preserveAspectRatio="xMidYMid slice" viewBox="0 0 318 180"
+                        style="font-size:1.125rem;text-anchor:middle">
+                        <rect width="100%" height="100%" fill="#868e96"></rect>
+                        <text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text>
+                    </svg>
+                    <div class="card-body">
+                        <span class="text-muted"><em>Language: C#</em></span><br>
+                        <a href="#" class="card-link"><i class="bx bxl-github"></i> Github Repo</a>
+                    </div>
+                    <div class="card-footer text-muted"></div>
+                </div>
+                <!--END Card-->
+
+
+                <!--Armanipulator-->
+                <div class="card mb-3 col-xs-8 col-sm-6 col-md-4 ">
+                    <h3 class="card-header">Armanipulator</h3>
+                    <div class="card-body">
+                        <h5 class="card-title">Rudimentary Robotic Arm Utilizing Pneumatic Leverage and Extensible
+                            Arduino Firmware </h5>
+                        <h6 class="card-subtitle text-muted">For PLTW Engineering Design and Development</h6>
+                    </div>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="d-block user-select-none" width="100%" height="200"
+                        aria-label="Placeholder: Image cap" focusable="false" role="img"
+                        preserveAspectRatio="xMidYMid slice" viewBox="0 0 318 180"
+                        style="font-size:1.125rem;text-anchor:middle">
+                        <rect width="100%" height="100%" fill="#868e96"></rect>
+                        <text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text>
+                    </svg>
+                    <div class="card-body">
+                        <span class="text-muted"><em>Language: <i class="bx bxl-c-plus-plus"></i> C++
+                                (Arduino)</em></span><br>
+                        <a href="https://github.com/rhit-westeraj/Armanipulator" class="card-link"><i
+                                class="bx bxl-github"></i> Github Repo</a>
+                    </div>
+                    <div class="card-footer text-muted"></div>
+                </div>
+                <!--END Card-->
+
+
+
+                <div class="card mb-3 col-xs-8 col-sm-6 col-md-4 ">
+                    <h3 class="card-header">Card header</h3>
+                    <div class="card-body">
+                        <h5 class="card-title">Special title treatment</h5>
+                        <h6 class="card-subtitle text-muted">Support card subtitle</h6>
+                    </div>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="d-block user-select-none" width="100%" height="200"
+                        aria-label="Placeholder: Image cap" focusable="false" role="img"
+                        preserveAspectRatio="xMidYMid slice" viewBox="0 0 318 180"
+                        style="font-size:1.125rem;text-anchor:middle">
+                        <rect width="100%" height="100%" fill="#868e96"></rect>
+                        <text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text>
+                    </svg>
+                    <div class="card-body">
+                        <a href="https://github.com/rhit-westeraj/rhitwesteraj.github.io" class="card-link"><i
+                                class="bx bxl-github"></i> Github Repo</a>
+                    </div>
+                    <div class="card-footer text-muted"></div>
+                </div>
+                <!--END Card-->
+
+                <div class="w-100"></div>
+
+                <div class="col-12"><a href="More Projects</div>
 
                 <li>RHIT CSSE280 - This website</li>
                 <li>RHIT CSSE232 - Computer Architecture Final Project</li>
@@ -140,7 +217,6 @@
                 <li>RHIT CSSE220 - Joust Java Remake</li>
                 <li>RHIT ECE230 - Scavlander's Gamepad</li>
                 <li>RHIT ECE160 - Team Thunderbirds Elemental Extravaganza Robot</li>
-                <li>PLTW EDD - Armanipulator</li>
                 <li>OpenCryptoBench</li>
                 <li>3D Printing "Experiments"</li>
                 </ul>
@@ -154,7 +230,7 @@
         <!--I might add a "Check this code out on github" button or something idk-->
     </footer>
     <!--Script Links-->
-    <script src="scripts/main.js"></script>
+    <script src="/scripts/main.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous">
     </script>
