@@ -43,7 +43,8 @@
   font-family: "Poppins", sans-serif;
 }
 
-#header .profile h1 a, #header .profile h1 a:hover {
+#header .profile h1 a,
+#header .profile h1 a:hover {
   color: #fff;
   text-decoration: none;
 }
@@ -72,12 +73,12 @@
 
 
 /*For offsetting the main webpage from the vertical navbar*/
-#main{
-  margin-left: 250px;
-  padding-left: 10px;
+#main {
+  // margin-left: 250px;
+  padding-left: 220px;
 }
 
-#main > *{
+#main>* {
   margin-left: 0px;
 }
 
@@ -85,8 +86,10 @@
   #header {
     left: -220px;
   }
-  #main, #main > *{
-    margin-left: 25px;
+
+  #main,
+  #main>* {
+    padding-left: 0px;
   }
 }
 
@@ -104,12 +107,13 @@
   list-style: none;
 }
 
-.nav-menu > ul > li {
+.nav-menu>ul>li {
   position: relative;
   white-space: nowrap;
 }
 
-.nav-menu a, .nav-menu a:focus {
+.nav-menu a,
+.nav-menu a:focus {
   display: flex;
   align-items: center;
   color: #a8a9b4;
@@ -119,28 +123,36 @@
   font-size: 15px;
 }
 
-.nav-menu a i, .nav-menu a:focus i {
+.nav-menu a i,
+.nav-menu a:focus i {
   font-size: 24px;
   padding-right: 8px;
   color: #6f7180;
 }
 
-.nav-menu a:hover, .nav-menu .active, .nav-menu .active:focus, .nav-menu li:hover > a {
+.nav-menu a:hover,
+.nav-menu .active,
+.nav-menu .active:focus,
+.nav-menu li:hover>a {
   text-decoration: none;
   color: #fff;
 }
 
-.nav-menu a:hover i, .nav-menu .active i, .nav-menu .active:focus i, .nav-menu li:hover > a i {
+.nav-menu a:hover i,
+.nav-menu .active i,
+.nav-menu .active:focus i,
+.nav-menu li:hover>a i {
   color: #149ddd;
 }
 
 /*This selector is temporary*/
-section.intro > img{
+section.intro>img {
   height: 10vw;
 }
 
-section.intro > span#asset-cred, intro > span#asset-cred > a{
-  font: 9px italic!important;
+section.intro>span#asset-cred,
+intro>span#asset-cred>a {
+  font: 9px italic !important;
 }
 
 /* Mobile Navigation */
@@ -197,11 +209,11 @@ section.intro > span#asset-cred, intro > span#asset-cred > a{
   font-size: 15px;
 }
 
-.breadcrumbs ol li + li {
+.breadcrumbs ol li+li {
   padding-left: 10px;
 }
 
-.breadcrumbs ol li + li::before {
+.breadcrumbs ol li+li::before {
   display: inline-block;
   padding-right: 10px;
   color: #0e2442;
@@ -212,10 +224,47 @@ section.intro > span#asset-cred, intro > span#asset-cred > a{
   .breadcrumbs .d-flex {
     display: block !important;
   }
+
   .breadcrumbs ol {
     display: block;
   }
+
   .breadcrumbs ol li {
     display: inline-block;
+  }
+}
+
+/*Section Container Formats*/
+section.intro {
+  width: 100%;
+  height: 100vh;
+  background-image: url("../assets/main_hero.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  //margin: 0px !important;
+}
+
+
+
+// .intro #hero-container *{
+//   position: inherit;
+//   padding: 15% auto;
+// }
+
+// .intro .hero #htext #hero-text {
+//   padding: 2.5em auto !important;
+//   text-align: center;
+// }
+
+/*ABOUT PAGE STUFF*/
+
+#workspaceimg{
+  width:100vh;
+}
+
+@media (max-width: 1024px) {
+  #workspaceimg{
+    width: 50vh;
   }
 }

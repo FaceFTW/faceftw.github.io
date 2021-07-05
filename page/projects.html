@@ -25,8 +25,8 @@
     <header id="header" class="bg-dark">
         <div class="d-flex flex-column bg-dark">
             <div class="profile">
-                <a href="/index.html"><img src="assets/funny.jpg" alt="" class="img-fluid rounded-circle"></a>
-                <h1 class="navbar-brand"><a href="index.html">Alex Westerman</a></h1>
+                <a href="../index.html"><img src="../assets/funny.jpg" alt="" class="img-fluid rounded-circle"></a>
+                <h1 class="navbar-brand"><a href="../index.html">Alex Westerman</a></h1>
                 <div class="social-links mt-3 text-center">
                     <a href="https://twitter.com/_FaceFTW" class="twitter"><i class="bx bxl-twitter"></i></a>
                     <a href="https://github.com/rhit-westeraj" class="github"><i class="bx bxl-github"></i></a>
@@ -36,11 +36,11 @@
 
             <nav id="navbar" class="nav-menu navbar navbar-dark bg-dark">
                 <ul>
-                    <li><a href="/page/about.html" class="nav-link"><i class="bx bx-user"></i> <span>About</span></a>
+                    <li><a href="../page/about.html" class="nav-link"><i class="bx bx-user"></i> <span>About</span></a>
                     </li>
-                    <li><a href="/page/resume.html" class="nav-link"><i class="bx bx-file-blank"></i>
+                    <li><a href="../page/resume.html" class="nav-link"><i class="bx bx-file-blank"></i>
                             <span>Resume</span></a></li>
-                    <li><a href="/page/projects.html" class="nav-link scrollto"><i class="bx bx-book-content"></i>
+                    <li><a href="../page/projects.html" class="nav-link scrollto"><i class="bx bx-book-content"></i>
                             <span>Projects</span></a></li>
                 </ul>
             </nav>
@@ -49,499 +49,407 @@
 
     <!--Main Webpage Content-->
     <main id="main">
-        <section class="intro">
-            <h1 class="d-inline-flex p-2">Projects</h1>
-            <ol class="breadcrumb d-inline-flex float-end">
-                <li class="breadcrumb-item"><a href="/index.html">Home</a></li>
-                <li class="breadcrumb-item active"><a href="/page/projects.html">Projects</a></li>
-            </ol>
-        </section>
-        <section class="projects-status" id="projects-status">
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th scope="col">Project</th>
-                        <th scope="col">Programming Language</th>
-                        <th scope="col">Used Libraries</th>
-                        <th scope="col">Development Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="table-secondary" id="armanipulator">
-                        <th scope="row"><a class="text-body" href="#armanipulator-card">Armanipulator</a></th>
-                        <td><i class="devicon-cplusplus-line"></i> C++</td>
-                        <td>Arduino, Stepper Motor HAL</td>
-                        <td>Archived (No Longer in Development)</td>
-                    </tr>
-                    <tr class="table-info" id="cnhasm">
-                        <th scope="row"><a class="text-body" href="#cnhasm-card">cnhasm</a></th>
-                        <td><i class="devicon-csharp-line"></i> C#</td>
-                        <td><i class="devicon-dotnetcore-plain"></i> .NET Core 3.1</td>
-                        <td>Finished</td>
-                    </tr>
-                    <tr class="table-primary" id="cnh-arch">
-                        <th scope="row"><a class="text-body" href="#cnharch-card">*Creative Name Here*
-                                (Architecture)</a></th>
-                        <td>SystemVerilog</td>
-                        <td>N/A</td>
-                        <td>Finished (Private Repository)</td>
-                    </tr>
-                    <tr class="table-primary" id="joust">
-                        <th scope="row"><a class="text-body" href="#joust-card">Joust Remake</a></th>
-                        <td><i class="devicon-java-plain"></i> Java 8</td>
-                        <td>N/A</td>
-                        <td>Finished (Private Repository)</td>
-                    </tr>
-                    <tr class="table-success" id="portfolio">
-                        <th scope="row"><a class="text-body" href="#portfoliocard">Portfolio Website</a></th>
-                        <td><i class="devicon-html5-plain"></i> HTML5, <i class="devicon-sass-plain"></i> Sass, <i
-                                class="devicon-javascript-plain"></i> JS</td>
-                        <td><i class="devicon-bootstrap-plain"></i> Bootstrap 5 (Bootswatch Darkly Variant), Boxicons
-                        </td>
-                        <td>Active Development</td>
-                    </tr>
-                    <tr class="table-success" id="uberunit">
-                        <th scope="row"><a class="text-body" href="#uberunitcard">UberUnit</a></th>
-                        <td><i class="devicon-html5-plain"></i> HTML5, <i class="devicon-sass-plain"></i> Sass, <i
-                                class="devicon-javascript-plain"></i> JS</td>
-                        <td><i class="devicon-bootstrap-plain"></i> Bootstrap 5 (Bootswatch Darkly Variant), Boxicons,
-                            <i class="devicon-nodejs-plain"></i> NodeJS
-                        </td>
-                        <td>Active Development</td>
-                    </tr>
-                    <tr class="table-warning" id="startmenuutil">
-                        <th scope="row"> <a class="text-body" href="#startmenutilcard">StartMenuUtil</a></th>
-                        <td><i class="devicon-csharp-line"></i> C#</td>
-                        <td><i class="devicon-dot-net-plain"></i> .NET Standard 5, Windows Script Host (via COM)</td>
-                        <td>Suspended (Will Resume Eventually)</td>
-                    </tr>
-                    <tr class="table-danger" id="bhl-resrc">
-                        <th scope="row"><a class="text-body" href="#bhlresrccard">Brutal Half-Life Rewrite</a></th>
-                        <td><i class="devicon-c-line"></i> C, <i class="devicon-cplusplus-line"></i> C++</td>
-                        <td>Valve GoldSrc Engine</td>
-                        <td>Suspended Indefinitely (Until Further Notice)</td>
-                    </tr>
-                    <tr class="table-secondary" id="opencryptobench">
-                        <th scope="row"><a class="text-body" href="#ocbcard">OpenCryptoBench</a></th>
-                        <td><i class="devicon-java-plain"></i> Java 8</td>
-                        <td>Bouncy Castle (Java)</td>
-                        <td>Archived (No Longer in Development)</td>
-                    </tr>
-                    <tr class="table-info" id="ece160">
-                        <th scope="row"><a class="text-body" href="#ece160card">Team ThunderBirds Robot</a></th>
-                        <td><i class="devicon-c-line"></i> C, <i class="devicon-cplusplus-line"></i> C++</td>
-                        <td>Arduino, Stepper Motor HAL, PS2 Controller HAL</td>
-                        <td>Finished</td>
-                    </tr>
-                    <tr class="table-secondary" id="ece230">
-                        <th scope="row"><a class="text-body" href="#ece230card">Scavlander's Gamepad</a></th>
-                        <td><i class="devicon-c-line"></i> C, <i class="devicon-cplusplus-line"></i> C++</td>
-                        <td>TI-RTOS (MSP432, CC2650)</td>
-                        <td>Archived (No Longer In Development)</td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
+        <div class="container">
+            <section class="projintro">
+                <h1 class="d-inline-flex p-2">Projects</h1>
+                <ol class="breadcrumb d-inline-flex float-end">
+                    <li class="breadcrumb-item"><a href="/index.html">Home</a></li>
+                    <li class="breadcrumb-item active"><a href="/page/projects.html">Projects</a></li>
+                </ol>
+            </section>
+            <section class="projects-status" id="projects-status">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">Project</th>
+                            <th scope="col">Programming Language</th>
+                            <th scope="col">Used Libraries</th>
+                            <th scope="col">Development Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="table-secondary" id="armanipulator">
+                            <th scope="row"><a class="text-body" href="#armanipulator-card">Armanipulator</a></th>
+                            <td><i class="devicon-cplusplus-line"></i> C++</td>
+                            <td>Arduino, Stepper Motor HAL</td>
+                            <td>Archived (No Longer in Development)</td>
+                        </tr>
+                        <tr class="table-info" id="cnhasm">
+                            <th scope="row"><a class="text-body" href="#cnhasm-card">cnhasm</a></th>
+                            <td><i class="devicon-csharp-line"></i> C#</td>
+                            <td><i class="devicon-dotnetcore-plain"></i> .NET Core 3.1</td>
+                            <td>Finished</td>
+                        </tr>
+                        <tr class="table-primary" id="cnh-arch">
+                            <th scope="row"><a class="text-body" href="#cnharch-card">*Creative Name Here*
+                                    (Architecture)</a></th>
+                            <td>SystemVerilog</td>
+                            <td>N/A</td>
+                            <td>Finished (Private Repository)</td>
+                        </tr>
+                        <tr class="table-primary" id="joust">
+                            <th scope="row"><a class="text-body" href="#joust-card">Joust Remake</a></th>
+                            <td><i class="devicon-java-plain"></i> Java 8</td>
+                            <td>N/A</td>
+                            <td>Finished (Private Repository)</td>
+                        </tr>
+                        <tr class="table-success" id="portfolio">
+                            <th scope="row"><a class="text-body" href="#portfoliocard">Portfolio Website</a></th>
+                            <td><i class="devicon-html5-plain"></i> HTML5, <i class="devicon-sass-plain"></i> Sass, <i
+                                    class="devicon-javascript-plain"></i> JS</td>
+                            <td><i class="devicon-bootstrap-plain"></i> Bootstrap 5 (Bootswatch Darkly Variant),
+                                Boxicons
+                            </td>
+                            <td>Active Development</td>
+                        </tr>
+                        <tr class="table-success" id="uberunit">
+                            <th scope="row"><a class="text-body" href="#uberunitcard">UberUnit</a></th>
+                            <td><i class="devicon-html5-plain"></i> HTML5, <i class="devicon-sass-plain"></i> Sass, <i
+                                    class="devicon-javascript-plain"></i> JS</td>
+                            <td><i class="devicon-bootstrap-plain"></i> Bootstrap 5 (Bootswatch Darkly Variant),
+                                Boxicons,
+                                <i class="devicon-nodejs-plain"></i> NodeJS
+                            </td>
+                            <td>Active Development</td>
+                        </tr>
+                        <tr class="table-warning" id="startmenuutil">
+                            <th scope="row"> <a class="text-body" href="#startmenutilcard">StartMenuUtil</a></th>
+                            <td><i class="devicon-csharp-line"></i> C#</td>
+                            <td><i class="devicon-dot-net-plain"></i> .NET Standard 5, Windows Script Host (via COM)
+                            </td>
+                            <td>Suspended (Will Resume Eventually)</td>
+                        </tr>
+                        <tr class="table-danger" id="bhl-resrc">
+                            <th scope="row"><a class="text-body" href="#bhlresrccard">Brutal Half-Life Rewrite</a></th>
+                            <td><i class="devicon-c-line"></i> C, <i class="devicon-cplusplus-line"></i> C++</td>
+                            <td>Valve GoldSrc Engine</td>
+                            <td>Suspended Indefinitely (Until Further Notice)</td>
+                        </tr>
+                        <tr class="table-secondary" id="opencryptobench">
+                            <th scope="row"><a class="text-body" href="#ocbcard">OpenCryptoBench</a></th>
+                            <td><i class="devicon-java-plain"></i> Java 8</td>
+                            <td>Bouncy Castle (Java)</td>
+                            <td>Archived (No Longer in Development)</td>
+                        </tr>
+                        <tr class="table-info" id="ece160">
+                            <th scope="row"><a class="text-body" href="#ece160card">Team ThunderBirds Robot</a></th>
+                            <td><i class="devicon-c-line"></i> C, <i class="devicon-cplusplus-line"></i> C++</td>
+                            <td>Arduino, Stepper Motor HAL, PS2 Controller HAL</td>
+                            <td>Finished</td>
+                        </tr>
+                        <tr class="table-secondary" id="ece230">
+                            <th scope="row"><a class="text-body" href="#ece230card">Scavlander's Gamepad</a></th>
+                            <td><i class="devicon-c-line"></i> C, <i class="devicon-cplusplus-line"></i> C++</td>
+                            <td>TI-RTOS (MSP432, CC2650)</td>
+                            <td>Archived (No Longer In Development)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
 
-        <section class="projects" id="projects-section">
-            <div class="row" id="project-cards">
+            <section class="projects" id="projects-section">
+                <div class="row p-6" id="project-cards">
 
-                <!--CSSE230 Computer Architecture Assembler-->
-                <div class="card mb-3 col-xs-8 col-sm-6 col-md-4" id="cnhasm-card">
-                    <h3 class="card-header">chnasm</h3>
-                    <div class="card-body">
-                        <h5 class="card-title">Regex Assembler for a Custom 16-bit Assembly Architecture</h5>
-                        <h6 class="card-subtitle text-muted"><em>For Rose-Hulman CSSE232: Computer Architecture</em>
-                        </h6>
+                    <!--CSSE230 Computer Architecture Assembler-->
+                    <div class="card mb-3 col-xs-8 col-sm-6 col-md-4" id="cnhasm-card">
+                        <h3 class="card-header">chnasm</h3>
+                        <div class="card-body">
+                            <h5 class="card-title">Regex Assembler for a Custom 16-bit Assembly Architecture</h5>
+                            <h6 class="card-subtitle text-muted"><em>For Rose-Hulman CSSE232: Computer Architecture</em>
+                            </h6>
+                        </div>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="d-block user-select-none" width="100%"
+                            height="200" aria-label="Placeholder: Image cap" focusable="false" role="img"
+                            preserveAspectRatio="xMidYMid slice" viewBox="0 0 318 180"
+                            style="font-size:1.125rem;text-anchor:middle">
+                            <rect width="100%" height="100%" fill="#868e96"></rect>
+                            <text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text>
+                        </svg>
+                        <div class="card-body">
+                            <span class="text-muted"><em>Language: <i class="devicon-csharp-line"></i>
+                                    C#</em></span><br>
+                            <span class="text-muted"><em>Libraries: <i class="devicon-dotnetcore-plain"></i> .NET Core
+                                    3.1</em></span><br>
+                            <a href="#" class="card-link"><i class="bx bxl-github"></i> Github Repo</a>
+                        </div>
+                        <div class="card-footer text-muted"></div>
                     </div>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="d-block user-select-none" width="100%" height="200"
-                        aria-label="Placeholder: Image cap" focusable="false" role="img"
-                        preserveAspectRatio="xMidYMid slice" viewBox="0 0 318 180"
-                        style="font-size:1.125rem;text-anchor:middle">
-                        <rect width="100%" height="100%" fill="#868e96"></rect>
-                        <text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text>
-                    </svg>
-                    <div class="card-body">
-                        <span class="text-muted"><em>Language: <i class="devicon-csharp-line"></i> C#</em></span><br>
-                        <span class="text-muted"><em>Libraries: <i class="devicon-dotnetcore-plain"></i> .NET Core
-                                3.1</em></span><br>
-                        <a href="#" class="card-link"><i class="bx bxl-github"></i> Github Repo</a>
-                    </div>
-                    <div class="card-footer text-muted"></div>
-                </div>
-                <!--END Card-->
+                    <!--END Card-->
 
-                <!--Armanipulator-->
-                <div class="card mb-3 col-xs-8 col-sm-6 col-md-4" id="armanipulator-card">
-                    <h3 class="card-header">Armanipulator</h3>
-                    <div class="card-body">
-                        <h5 class="card-title">Rudimentary Robotic Arm Utilizing Pneumatic Leverage and Extensible
-                            Arduino Firmware </h5>
-                        <h6 class="card-subtitle text-muted">For PLTW Engineering Design and Development</h6>
+                    <!--Armanipulator-->
+                    <div class="card mb-3 col-xs-8 col-sm-6 col-md-4" id="armanipulator-card">
+                        <h3 class="card-header">Armanipulator</h3>
+                        <div class="card-body">
+                            <h5 class="card-title">Rudimentary Robotic Arm Utilizing Pneumatic Leverage and Extensible
+                                Arduino Firmware </h5>
+                            <h6 class="card-subtitle text-muted">For PLTW Engineering Design and Development</h6>
+                        </div>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="d-block user-select-none" width="100%"
+                            height="200" aria-label="Placeholder: Image cap" focusable="false" role="img"
+                            preserveAspectRatio="xMidYMid slice" viewBox="0 0 318 180"
+                            style="font-size:1.125rem;text-anchor:middle">
+                            <rect width="100%" height="100%" fill="#868e96"></rect>
+                            <text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text>
+                        </svg>
+                        <div class="card-body">
+                            <span class="text-muted"><em>Language: <i class="bx bxl-c-plus-plus"></i> C++
+                                    (Arduino)</em></span><br>
+                            <a href="https://github.com/rhit-westeraj/Armanipulator" class="card-link"><i
+                                    class="bx bxl-github"></i> Github Repo</a>
+                        </div>
+                        <div class="card-footer text-muted"></div>
                     </div>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="d-block user-select-none" width="100%" height="200"
-                        aria-label="Placeholder: Image cap" focusable="false" role="img"
-                        preserveAspectRatio="xMidYMid slice" viewBox="0 0 318 180"
-                        style="font-size:1.125rem;text-anchor:middle">
-                        <rect width="100%" height="100%" fill="#868e96"></rect>
-                        <text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text>
-                    </svg>
-                    <div class="card-body">
-                        <span class="text-muted"><em>Language: <i class="bx bxl-c-plus-plus"></i> C++
-                                (Arduino)</em></span><br>
-                        <a href="https://github.com/rhit-westeraj/Armanipulator" class="card-link"><i
-                                class="bx bxl-github"></i> Github Repo</a>
+                    <!--END Card-->
+
+                    <!--Creative Name Here (Architecture)-->
+                    <div class="card mb-3 col-xs-8 col-sm-6 col-md-4" id="cnharch-card">
+                        <h3 class="card-header">*Creative Name Here* Architecture</h3>
+                        <div class="card-body">
+                            <h5 class="card-title">16-bit RISC Architecture With a Flexible Assembly Dialect and
+                                Efficient
+                                Performance</h5>
+                            <h6 class="card-subtitle text-muted">For Rose-Hulman CSSE232 - Computer Architecture</h6>
+                        </div>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="d-block user-select-none" width="100%"
+                            height="200" aria-label="Placeholder: Image cap" focusable="false" role="img"
+                            preserveAspectRatio="xMidYMid slice" viewBox="0 0 318 180"
+                            style="font-size:1.125rem;text-anchor:middle">
+                            <rect width="100%" height="100%" fill="#868e96"></rect>
+                            <text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text>
+                        </svg>
+                        <div class="card-body">
+                            <span class="text-muted"><em>Language: <i class="bx bxl-c-plus-plus"></i> C++
+                                    (Arduino)</em></span><br>
+                        </div>
+                        <div class="card-footer text-muted"></div>
                     </div>
-                    <div class="card-footer text-muted"></div>
-                </div>
-                <!--END Card-->
+                    <!--END Card-->
 
-                <!--Creative Name Here (Architecture)-->
-                <div class="card mb-3 col-xs-8 col-sm-6 col-md-4" id="cnharch-card">
-                    <h3 class="card-header">*Creative Name Here* Architecture</h3>
-                    <div class="card-body">
-                        <h5 class="card-title">16-bit RISC Architecture With a Flexible Assembly Dialect and Efficient
-                            Performance</h5>
-                        <h6 class="card-subtitle text-muted">For Rose-Hulman CSSE232 - Computer Architecture</h6>
+                    <!--NEW ROW-->
+                    <div class="w-100 d-none d-md-block"></div>
+                    <!--END NEW ROW-->
+
+                    <!--CSSE220 Joust Remake-->
+                    <div class="card mb-3 col-xs-8 col-sm-6 col-md-4" id="joust-card">
+                        <h3 class="card-header">Joust (Remake)</h3>
+                        <div class="card-body">
+                            <h5 class="card-title">Remake of the 1982 Arcade Classic <em>Joust</em> by Williams
+                                Electronics
+                                in Java</h5>
+                            <h6 class="card-subtitle text-muted"><em>For Rose-Hulman CSSE220: Introduction to Object
+                                    Oriented Programming</em>
+                            </h6>
+                        </div>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="d-block user-select-none" width="100%"
+                            height="200" aria-label="Placeholder: Image cap" focusable="false" role="img"
+                            preserveAspectRatio="xMidYMid slice" viewBox="0 0 318 180"
+                            style="font-size:1.125rem;text-anchor:middle">
+                            <rect width="100%" height="100%" fill="#868e96"></rect>
+                            <text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text>
+                        </svg>
+                        <div class="card-body">
+                            <span class="text-muted"><em>Language: C#</em></span><br>
+                            <a href="#" class="card-link"><i class="bx bxl-github"></i> Github Repo</a>
+                        </div>
+                        <div class="card-footer text-muted"></div>
                     </div>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="d-block user-select-none" width="100%" height="200"
-                        aria-label="Placeholder: Image cap" focusable="false" role="img"
-                        preserveAspectRatio="xMidYMid slice" viewBox="0 0 318 180"
-                        style="font-size:1.125rem;text-anchor:middle">
-                        <rect width="100%" height="100%" fill="#868e96"></rect>
-                        <text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text>
-                    </svg>
-                    <div class="card-body">
-                        <span class="text-muted"><em>Language: <i class="bx bxl-c-plus-plus"></i> C++
-                                (Arduino)</em></span><br>
+                    <!--END Card-->
+
+                    <!--Portfolio-->
+                    <div class="card mb-3 col-xs-8 col-sm-6 col-md-4 " id="portfoliocard">
+                        <h3 class="card-header">Portfolio Website</h3>
+                        <div class="card-body">
+                            <h5 class="card-title">A Personally Desinged Portfolio Website With a Modern Look and Feel
+                            </h5>
+                            <h6 class="card-subtitle text-muted">Originally for Rose-Hulman CSSE280, Further Worked On
+                                Personally</h6>
+                        </div>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="d-block user-select-none" width="100%"
+                            height="200" aria-label="Placeholder: Image cap" focusable="false" role="img"
+                            preserveAspectRatio="xMidYMid slice" viewBox="0 0 318 180"
+                            style="font-size:1.125rem;text-anchor:middle">
+                            <rect width="100%" height="100%" fill="#868e96"></rect>
+                            <text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text>
+                        </svg>
+                        <div class="card-body">
+                            <span class="text-muted"><em>Language: <i class="devicon-html5-plain"></i> HTML5, <i
+                                        class="devicon-sass-plain"></i> Sass, <i class="devicon-javascript-plain"></i>
+                                    JS</em></span><br>
+                            <span class="text-muted"><em>Libraries: <i class="devicon-bootstrap-plain"></i> Bootstrap 5
+                                    (Bootswatch Darkly Variant), Boxicons </em></span><br>
+                            <a href="https://github.com/rhit-westeraj/rhit-westeraj.github.io" class="card-link"><i
+                                    class="bx bxl-github"></i> Github Repo</a>
+                        </div>
+                        <div class="card-footer text-muted"></div>
                     </div>
-                    <div class="card-footer text-muted"></div>
-                </div>
-                <!--END Card-->
+                    <!--END Card-->
 
-                <!--NEW ROW-->
-                <div class="w-100 d-none d-md-block"></div>
-                <!--END NEW ROW-->
-
-                <!--CSSE220 Joust Remake-->
-                <div class="card mb-3 col-xs-8 col-sm-6 col-md-4" id="joust-card">
-                    <h3 class="card-header">Joust (Remake)</h3>
-                    <div class="card-body">
-                        <h5 class="card-title">Remake of the 1982 Arcade Classic <em>Joust</em> by Williams Electronics
-                            in Java</h5>
-                        <h6 class="card-subtitle text-muted"><em>For Rose-Hulman CSSE220: Introduction to Object
-                                Oriented Programming</em>
-                        </h6>
+                    <!--UberUnit-->
+                    <div class="card mb-3 col-xs-8 col-sm-6 col-md-4" id="uberunitcard">
+                        <h3 class="card-header">UberUnit</h3>
+                        <div class="card-body">
+                            <h5 class="card-title">A Web Application with Unit-Aware Formula Solving</h5>
+                            <h6 class="card-subtitle text-muted">For Rose-Hulman CSSE280</h6>
+                        </div>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="d-block user-select-none" width="100%"
+                            height="200" aria-label="Placeholder: Image cap" focusable="false" role="img"
+                            preserveAspectRatio="xMidYMid slice" viewBox="0 0 318 180"
+                            style="font-size:1.125rem;text-anchor:middle">
+                            <rect width="100%" height="100%" fill="#868e96"></rect>
+                            <text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text>
+                        </svg>
+                        <div class="card-body">
+                            <span class="text-muted"><em>Language: <i class="devicon-html5-plain"></i> HTML5, <i
+                                        class="devicon-sass-plain"></i> Sass, <i class="devicon-javascript-plain"></i>
+                                    JS</em></span><br>
+                            <span class="text-muted"><em>Libraries: <i class="devicon-bootstrap-plain"></i> Bootstrap 5
+                                        (Bootswatch Darkly Variant), Boxicons</em></span><br>
+                            <a href="#" class="card-link"><i class="bx bxl-github"></i> Github Repo</a>
+                        </div>
+                        <div class="card-footer text-muted"></div>
                     </div>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="d-block user-select-none" width="100%" height="200"
-                        aria-label="Placeholder: Image cap" focusable="false" role="img"
-                        preserveAspectRatio="xMidYMid slice" viewBox="0 0 318 180"
-                        style="font-size:1.125rem;text-anchor:middle">
-                        <rect width="100%" height="100%" fill="#868e96"></rect>
-                        <text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text>
-                    </svg>
-                    <div class="card-body">
-                        <span class="text-muted"><em>Language: C#</em></span><br>
-                        <a href="#" class="card-link"><i class="bx bxl-github"></i> Github Repo</a>
+                    <!--END Card-->
+
+                    <!--NEW ROW-->
+                    <div class="w-100 d-none d-md-block"></div>
+                    <!--END NEW ROW-->
+
+                    <!--StartMenuUtil-->
+                    <div class="card mb-3 col-xs-8 col-sm-6 col-md-4 " id="startmenuutilcard">
+                        <h3 class="card-header">StartMenuUtil</h3>
+                        <div class="card-body">
+                            <h5 class="card-title">Windows Utility to Control Start Menu Shortcuts</h5>
+                            <h6 class="card-subtitle text-muted">Personal Project</h6>
+                        </div>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="d-block user-select-none" width="100%"
+                            height="200" aria-label="Placeholder: Image cap" focusable="false" role="img"
+                            preserveAspectRatio="xMidYMid slice" viewBox="0 0 318 180"
+                            style="font-size:1.125rem;text-anchor:middle">
+                            <rect width="100%" height="100%" fill="#868e96"></rect>
+                            <text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text>
+                        </svg>
+                        <div class="card-body">
+                            <span class="text-muted"><em>Language: <i class="devicon-csharp-line"></i>
+                                    C#</em></span><br>
+                            <span class="text-muted"><em>Libraries: <i class="devicon-dot-net-plain"></i> .NET Standard
+                                    5,
+                                    Windows Script Host (via COM)</em></span><br>
+                            <a href="#" class="card-link"><i class="bx bxl-github"></i> Github Repo</a>
+                        </div>
+                        <div class="card-footer text-muted"></div>
                     </div>
-                    <div class="card-footer text-muted"></div>
-                </div>
-                <!--END Card-->
+                    <!--END Card-->
 
-                <!--Portfolio-->
-                <div class="card mb-3 col-xs-8 col-sm-6 col-md-4 " id="portfoliocard">
-                    <h3 class="card-header">Portfolio Website</h3>
-                    <div class="card-body">
-                        <h5 class="card-title">A Personally Desinged Portfolio Website With a Modern Look and Feel </h5>
-                        <h6 class="card-subtitle text-muted">Originally for Rose-Hulman CSSE280, Further Worked On
-                            Personally</h6>
+                    <!--Brutal Half-Life Rewrite -->
+                    <div class="card mb-3 col-xs-8 col-sm-6 col-md-4 " id="bhlresrccard">
+                        <h3 class="card-header">Brutal Half-Life Rewrite</h3>
+                        <div class="card-body">
+                            <h5 class="card-title">Brutal Half-Life (Rewrite) </h5>
+                            <h6 class="card-subtitle text-muted">A rewrite of the Brutal Half-Life game modification to
+                                remove the Xash3D dependency</h6>
+                        </div>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="d-block user-select-none" width="100%"
+                            height="200" aria-label="Placeholder: Image cap" focusable="false" role="img"
+                            preserveAspectRatio="xMidYMid slice" viewBox="0 0 318 180"
+                            style="font-size:1.125rem;text-anchor:middle">
+                            <rect width="100%" height="100%" fill="#868e96"></rect>
+                            <text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text>
+                        </svg>
+                        <div class="card-body">
+                            <span class="text-muted"><em>Language: <i class="devicon-c-line"></i> C, <i
+                                        class="devicon-cplusplus-line"></i> C++</em></span><br>
+                            <span class="text-muted"><em>Libraries: Valve GoldSrc Engine </em></span><br>
+                            <a href="#" class="card-link"><i class="bx bxl-github"></i> Github Repo</a>
+                        </div>
+                        <div class="card-footer text-muted"></div>
                     </div>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="d-block user-select-none" width="100%" height="200"
-                        aria-label="Placeholder: Image cap" focusable="false" role="img"
-                        preserveAspectRatio="xMidYMid slice" viewBox="0 0 318 180"
-                        style="font-size:1.125rem;text-anchor:middle">
-                        <rect width="100%" height="100%" fill="#868e96"></rect>
-                        <text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text>
-                    </svg>
-                    <div class="card-body">
-                        <span class="text-muted"><em>Language: <i class="devicon-html5-plain"></i> HTML5, <i
-                                    class="devicon-sass-plain"></i> Sass, <i class="devicon-javascript-plain"></i>
-                                JS</em></span><br>
-                        <span class="text-muted"><em>Libraries: <i class="devicon-bootstrap-plain"></i> Bootstrap 5
-                                (Bootswatch Darkly Variant), Boxicons </em></span><br>
-                        <a href="https://github.com/rhit-westeraj/rhit-westeraj.github.io" class="card-link"><i
-                                class="bx bxl-github"></i> Github Repo</a>
+                    <!--END Card -->
+
+                    <!--OpenCryptoBench-->
+                    <div class="card mb-3 col-xs-8 col-sm-6 col-md-4 " id="OpenCryptoBenchard">
+                        <h3 class="card-header">OpenCryptoBench</h3>
+                            <div class="card-body">
+                                <h5 class="card-title">Rudimentary Cryptograhy Algorithm Benchmark Written in Java </h5>
+                                <h6 class="card-subtitle text-muted">ARCHIVED: THIS PROGRAM IS NOT VERY GOOD</h6>
+                            </div>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="d-block user-select-none" width="100%"
+                                height="200" aria-label="Placeholder: Image cap" focusable="false" role="img"
+                                preserveAspectRatio="xMidYMid slice" viewBox="0 0 318 180"
+                                style="font-size:1.125rem;text-anchor:middle">
+                                <rect width="100%" height="100%" fill="#868e96"></rect>
+                                <text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text>
+                            </svg>
+                            <div class="card-body">
+                                <span class="text-muted"><em>Language: <i class="devicon-java-plain"></i> Java
+                                        8</em></span><br>
+                                <span class="text-muted"><em>Libraries: Bouncy Castle (Java)</em></span><br>
+                                <a href="https://github.com/rhit-westeraj/OpenCryptoBench" class="card-link"><i
+                                        class="bx bxl-github"></i> Github Repo</a>
+                            </div>
+                            <div class="card-footer text-muted"></div>
                     </div>
-                    <div class="card-footer text-muted"></div>
-                </div>
-                <!--END Card-->
+                    <!--END Card -->
 
-                <!--UberUnit-->
-                <div class="card mb-3 col-xs-8 col-sm-6 col-md-4" id="uberunitcard">
-                    <h3 class="card-header">UberUnit</h3>
-                    <div class="card-body">
-                        <h5 class="card-title">A Web Application with Unit-Aware Formula Solving</h5>
-                        <h6 class="card-subtitle text-muted">For Rose-Hulman CSSE280</h6>
+                    <!--NEW ROW-->
+                    <div class="w-100 d-none d-md-block"></div>
+                    <!--END NEW ROW-->
+
+                    <!--ece160 -->
+                    <div class="card mb-3 col-xs-8 col-sm-6 col-md-4 " id="ece160card">
+                        <h3 class="card-header">Team Thunderbirds ECE160 Robot</h3>
+                        <div class="card-body">
+                            <h5 class="card-title">Specialized Arduino Firmware to Remotely Operate a Robot for Rose-Hulman's Annual ECE160 Competition for Freshman </h5>
+                            <h6 class="card-subtitle text-muted">For Rose-Hulman ECE160 - Engineering Practice</h6>
+                        </div>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="d-block user-select-none" width="100%" height="200"
+                            aria-label="Placeholder: Image cap" focusable="false" role="img" preserveAspectRatio="xMidYMid slice"
+                            viewBox="0 0 318 180" style="font-size:1.125rem;text-anchor:middle">
+                            <rect width="100%" height="100%" fill="#868e96"></rect>
+                            <text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text>
+                        </svg>
+                        <div class="card-body">
+                            <span class="text-muted"><em>Language: <i class="devicon-c-line"></i> C/<i class="devicon-cplusplus-line"></i> C++</em></span><br>
+                            <span class="text-muted"><em>Libraries: <i class="devicon-arduino-plain"></i> Arduino</em></span><br>
+                            <a href="https://github.com/Thunderbirds-ECE160/Final-Robot" class="card-link"><i class="bx bxl-github"></i> Github Repo</a>
+                        </div>
+                        <div class="card-footer text-muted"></div>
                     </div>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="d-block user-select-none" width="100%" height="200"
-                        aria-label="Placeholder: Image cap" focusable="false" role="img"
-                        preserveAspectRatio="xMidYMid slice" viewBox="0 0 318 180"
-                        style="font-size:1.125rem;text-anchor:middle">
-                        <rect width="100%" height="100%" fill="#868e96"></rect>
-                        <text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text>
-                    </svg>
-                    <div class="card-body">
-                        <span class="text-muted"><em>Language: <i class="devicon-html5-plain"></i> HTML5, <i
-                                    class="devicon-sass-plain"></i> Sass, <i class="devicon-javascript-plain"></i>
-                                JS</em></span><br>
-                        <span class="text-muted"><em>Libraries: <<i class="devicon-bootstrap-plain"></i> Bootstrap 5
-                                    (Bootswatch Darkly Variant), Boxicons/em></span><br>
-                        <a href="#" class="card-link"><i class="bx bxl-github"></i> Github Repo</a>
+                    <!--END Card -->
+
+                    <!--ece230 -->
+                    <div class="card mb-3 col-xs-8 col-sm-6 col-md-4 " id="ece230card">
+                        <h3 class="card-header">Scavlander's Gamepad</h3>
+                        <div class="card-body">
+                            <h5 class="card-title">Attempt at a "Apocalypse"-styled Gamepad powered by the TI MSP432 Launchpad with CC2650 Boosterpack  </h5>
+                            <h6 class="card-subtitle text-muted">For Rose-Hulman ECE230 - Embedded Systems</h6>
+                        </div>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="d-block user-select-none" width="100%" height="200"
+                            aria-label="Placeholder: Image cap" focusable="false" role="img" preserveAspectRatio="xMidYMid slice"
+                            viewBox="0 0 318 180" style="font-size:1.125rem;text-anchor:middle">
+                            <rect width="100%" height="100%" fill="#868e96"></rect>
+                            <text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text>
+                        </svg>
+                        <div class="card-body">
+                            <span class="text-muted"><em>Language: <i class="devicon-embeddedc-plain"></i> C (Embedded)</em></span><br>
+                            <span class="text-muted"><em>Libraries: TI-RTOS, TI MSP432/CC2650 Bluetooth Stack</em></span><br>
+                            <a href="#" class="card-link"><i class="bx bxl-github"></i> Github Repo</a>
+                        </div>
+                        <div class="card-footer text-muted"></div>
                     </div>
-                    <div class="card-footer text-muted"></div>
-                </div>
-                <!--END Card-->
+                    <!--END Card -->
 
-                <!--NEW ROW-->
-                <div class="w-100 d-none d-md-block"></div>
-                <!--END NEW ROW-->
-
-                <!--StartMenuUtil-->
-                <div class="card mb-3 col-xs-8 col-sm-6 col-md-4 " id="startmenuutilcard">
-                    <h3 class="card-header">StartMenuUtil</h3>
-                    <div class="card-body">
-                        <h5 class="card-title">Windows Utility to Control Start Menu Shortcuts</h5>
-                        <h6 class="card-subtitle text-muted">Personal Project</h6>
-                    </div>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="d-block user-select-none" width="100%" height="200"
-                        aria-label="Placeholder: Image cap" focusable="false" role="img"
-                        preserveAspectRatio="xMidYMid slice" viewBox="0 0 318 180"
-                        style="font-size:1.125rem;text-anchor:middle">
-                        <rect width="100%" height="100%" fill="#868e96"></rect>
-                        <text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text>
-                    </svg>
-                    <div class="card-body">
-                        <span class="text-muted"><em>Language: <i class="devicon-csharp-line"></i> C#</em></span><br>
-                        <span class="text-muted"><em>Libraries: <i class="devicon-dot-net-plain"></i> .NET Standard 5,
-                                Windows Script Host (via COM)</em></span><br>
-                        <a href="#" class="card-link"><i class="bx bxl-github"></i> Github Repo</a>
-                    </div>
-                    <div class="card-footer text-muted"></div>
-                </div>
-                <!--END Card-->
-
-                <!---->
-                <div class="card mb-3 col-xs-8 col-sm-6 col-md-4 ">
-                    <h3 class="card-header"></h3>
-                    <div class="card-body">
-                        <h5 class="card-title"> </h5>
-                        <h6 class="card-subtitle text-muted"></h6>
-                    </div>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="d-block user-select-none" width="100%" height="200"
-                        aria-label="Placeholder: Image cap" focusable="false" role="img"
-                        preserveAspectRatio="xMidYMid slice" viewBox="0 0 318 180"
-                        style="font-size:1.125rem;text-anchor:middle">
-                        <rect width="100%" height="100%" fill="#868e96"></rect>
-                        <text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text>
-                    </svg>
-                    <div class="card-body">
-                        <span class="text-muted"><em>Language: </em></span><br>
-                        <span class="text-muted"><em>Libraries: </em></span><br>
-                        <a href="" class="card-link"><i class="bx bxl-github"></i> Github Repo</a>
-                    </div>
-                    <div class="card-footer text-muted"></div>
-                </div>
-                <!--END Card-->
-
-                <!---->
-                <div class="card mb-3 col-xs-8 col-sm-6 col-md-4 ">
-                    <h3 class="card-header"></h3>
-                    <div class="card-body">
-                        <h5 class="card-title"> </h5>
-                        <h6 class="card-subtitle text-muted"></h6>
-                    </div>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="d-block user-select-none" width="100%" height="200"
-                        aria-label="Placeholder: Image cap" focusable="false" role="img"
-                        preserveAspectRatio="xMidYMid slice" viewBox="0 0 318 180"
-                        style="font-size:1.125rem;text-anchor:middle">
-                        <rect width="100%" height="100%" fill="#868e96"></rect>
-                        <text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text>
-                    </svg>
-                    <div class="card-body">
-                        <span class="text-muted"><em>Language: </em></span><br>
-                        <span class="text-muted"><em>Libraries: </em></span><br>
-                        <a href="" class="card-link"><i class="bx bxl-github"></i> Github Repo</a>
-                    </div>
-                    <div class="card-footer text-muted"></div>
-                </div>
-                <!--END Card-->
-
-                <!--NEW ROW-->
-                <div class="w-100 d-none d-md-block"></div>
-                <!--END NEW ROW-->
-
-                <!---->
-                <div class="card mb-3 col-xs-8 col-sm-6 col-md-4 ">
-                    <h3 class="card-header"></h3>
-                    <div class="card-body">
-                        <h5 class="card-title"> </h5>
-                        <h6 class="card-subtitle text-muted"></h6>
-                    </div>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="d-block user-select-none" width="100%" height="200"
-                        aria-label="Placeholder: Image cap" focusable="false" role="img"
-                        preserveAspectRatio="xMidYMid slice" viewBox="0 0 318 180"
-                        style="font-size:1.125rem;text-anchor:middle">
-                        <rect width="100%" height="100%" fill="#868e96"></rect>
-                        <text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text>
-                    </svg>
-                    <div class="card-body">
-                        <span class="text-muted"><em>Language: </em></span><br>
-                        <span class="text-muted"><em>Libraries: </em></span><br>
-                        <a href="" class="card-link"><i class="bx bxl-github"></i> Github Repo</a>
-                    </div>
-                    <div class="card-footer text-muted"></div>
-                </div>
-                <!--END Card-->
-
-
-                <!---->
-                <div class="card mb-3 col-xs-8 col-sm-6 col-md-4 ">
-                    <h3 class="card-header"></h3>
-                    <div class="card-body">
-                        <h5 class="card-title"> </h5>
-                        <h6 class="card-subtitle text-muted"></h6>
-                    </div>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="d-block user-select-none" width="100%" height="200"
-                        aria-label="Placeholder: Image cap" focusable="false" role="img"
-                        preserveAspectRatio="xMidYMid slice" viewBox="0 0 318 180"
-                        style="font-size:1.125rem;text-anchor:middle">
-                        <rect width="100%" height="100%" fill="#868e96"></rect>
-                        <text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text>
-                    </svg>
-                    <div class="card-body">
-                        <span class="text-muted"><em>Language: </em></span><br>
-                        <span class="text-muted"><em>Libraries: </em></span><br>
-                        <a href="" class="card-link"><i class="bx bxl-github"></i> Github Repo</a>
-                    </div>
-                    <div class="card-footer text-muted"></div>
-                </div>
-                <!--END Card-->
-
-
-                <!---->
-                <div class="card mb-3 col-xs-8 col-sm-6 col-md-4 ">
-                    <h3 class="card-header"></h3>
-                    <div class="card-body">
-                        <h5 class="card-title"> </h5>
-                        <h6 class="card-subtitle text-muted"></h6>
-                    </div>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="d-block user-select-none" width="100%" height="200"
-                        aria-label="Placeholder: Image cap" focusable="false" role="img"
-                        preserveAspectRatio="xMidYMid slice" viewBox="0 0 318 180"
-                        style="font-size:1.125rem;text-anchor:middle">
-                        <rect width="100%" height="100%" fill="#868e96"></rect>
-                        <text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text>
-                    </svg>
-                    <div class="card-body">
-                        <span class="text-muted"><em>Language: </em></span><br>
-                        <span class="text-muted"><em>Libraries: </em></span><br>
-                        <a href="" class="card-link"><i class="bx bxl-github"></i> Github Repo</a>
-                    </div>
-                    <div class="card-footer text-muted"></div>
-                </div>
-                <!--END Card-->
-
-
-                <!--NEW ROW-->
-                <div class="w-100 d-none d-md-block"></div>
-                <!--END NEW ROW-->
-
-
-                <!---->
-                <div class="card mb-3 col-xs-8 col-sm-6 col-md-4 ">
-                    <h3 class="card-header"></h3>
-                    <div class="card-body">
-                        <h5 class="card-title"> </h5>
-                        <h6 class="card-subtitle text-muted"></h6>
-                    </div>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="d-block user-select-none" width="100%" height="200"
-                        aria-label="Placeholder: Image cap" focusable="false" role="img"
-                        preserveAspectRatio="xMidYMid slice" viewBox="0 0 318 180"
-                        style="font-size:1.125rem;text-anchor:middle">
-                        <rect width="100%" height="100%" fill="#868e96"></rect>
-                        <text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text>
-                    </svg>
-                    <div class="card-body">
-                        <span class="text-muted"><em>Language: </em></span><br>
-                        <span class="text-muted"><em>Libraries: </em></span><br>
-                        <a href="" class="card-link"><i class="bx bxl-github"></i> Github Repo</a>
-                    </div>
-                    <div class="card-footer text-muted"></div>
-                </div>
-                <!--END Card-->
-
-                <!---->
-                <div class="card mb-3 col-xs-8 col-sm-6 col-md-4 ">
-                    <h3 class="card-header"></h3>
-                    <div class="card-body">
-                        <h5 class="card-title"> </h5>
-                        <h6 class="card-subtitle text-muted"></h6>
-                    </div>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="d-block user-select-none" width="100%" height="200"
-                        aria-label="Placeholder: Image cap" focusable="false" role="img"
-                        preserveAspectRatio="xMidYMid slice" viewBox="0 0 318 180"
-                        style="font-size:1.125rem;text-anchor:middle">
-                        <rect width="100%" height="100%" fill="#868e96"></rect>
-                        <text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text>
-                    </svg>
-                    <div class="card-body">
-                        <span class="text-muted"><em>Language: </em></span><br>
-                        <span class="text-muted"><em>Libraries: </em></span><br>
-                        <a href="" class="card-link"><i class="bx bxl-github"></i> Github Repo</a>
-                    </div>
-                    <div class="card-footer text-muted"></div>
-                </div>
-                <!--END Card-->
-
-
-                <!---->
-                <div class="card mb-3 col-xs-8 col-sm-6 col-md-4 ">
-                    <h3 class="card-header"></h3>
-                    <div class="card-body">
-                        <h5 class="card-title"> </h5>
-                        <h6 class="card-subtitle text-muted"></h6>
-                    </div>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="d-block user-select-none" width="100%" height="200"
-                        aria-label="Placeholder: Image cap" focusable="false" role="img"
-                        preserveAspectRatio="xMidYMid slice" viewBox="0 0 318 180"
-                        style="font-size:1.125rem;text-anchor:middle">
-                        <rect width="100%" height="100%" fill="#868e96"></rect>
-                        <text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text>
-                    </svg>
-                    <div class="card-body">
-                        <span class="text-muted"><em>Language: </em></span><br>
-                        <span class="text-muted"><em>Libraries: </em></span><br>
-                        <a href="" class="card-link"><i class="bx bxl-github"></i> Github Repo</a>
-                    </div>
-                    <div class="card-footer text-muted"></div>
-                </div>
-                <!--END Card-->
-
-
-                <!--NEW ROW-->
-                <div class="w-100 d-none d-md-block"></div>
-                <!--END NEW ROW-->
-
-        </section>
-
-
-        <aside>
-
-        </aside>
+            </section>
+        </div>
     </main>
     <footer>
-        <!--legal disclaimers + crediting Bootstrap and the theme I used will go here-->
-        <!--I might add a "Check this code out on github" button or something idk-->
+        <div class="container bg-dark flex-grow-1" style="margin-top: 20px;">
+            <div class="text-muted text-center">Alex "FaceFTW" Westerman <i class="bx bx-copyright"></i>2021 All Rights
+                Reserved.</div>
+            <div class="text-muted text-center">Source code for this website is licensed under the MIT License</div>
+            <div class="text-muted text-center">This website was created by hand with Bootstrap 5.0.1, using the
+                Bootswatch Darkly Variant</div>
+            <div class="text-muted text-center"></div>
+        </div>
     </footer>
     <!--Script Links-->
     <script src="/scripts/main.js"></script>
@@ -551,4 +459,3 @@
 </body>
 
 </html>
-
