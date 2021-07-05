@@ -10,29 +10,82 @@
     <!--The first link tags is for Bootstrap and the Bootswatch Darkly Theme-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@5.0.1/dist/darkly/bootstrap.min.css"
         integrity="sha256-wXSrJQPGca0WuqBL6/G912FEJLNfYHnOATmLHLJZ4iY=" crossorigin="anonymous">
-    <link href="styles/main.css" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <link href="../styles/main.css" rel="stylesheet">
+
     <title>Resume - Alex Westerman's Portfolio</title>
 </head>
 
 <body>
-    <header>
-        <h1>Alex Westerman's Portfolio</h1>
-    </header>
-    <nav>
-        <a href="#projects-section"><span>Projects</span></a>
-        <a href="page/resume.html"><span>Resume</span></a>
-        <a href="page/about.html"><span>About</span></a>
-    </nav>
-    <section class="about-me">
-        <h1>Resume</h1>
-        <p>Coming Soon</p>
-    </section>
-    <aside>
+    <!-- ======= Mobile nav toggle button ======= -->
+    <i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
 
-    </aside>
+
+    <!-- ======= Header ======= -->
+    <header id="header" class="bg-dark">
+        <div class="d-flex flex-column bg-dark">
+            <div class="profile">
+                <a href="../index.html"><img src="../assets/funny.jpg" alt="" class="img-fluid rounded-circle"></a>
+                <h1 class="navbar-brand"><a href="../index.html">Alex Westerman</a></h1>
+                <div class="social-links mt-3 text-center">
+                    <a href="https://twitter.com/_FaceFTW" class="twitter"><i class="bx bxl-twitter"></i></a>
+                    <a href="https://github.com/rhit-westeraj" class="github"><i class="bx bxl-github"></i></a>
+                    <a href="mailto:awesterman16@live.com" class="email"><i class="bx bx-mail-send"></i></a>
+                </div>
+            </div>
+
+            <nav id="navbar" class="nav-menu navbar navbar-dark bg-dark">
+                <ul>
+                    <li><a href="../page/about.html" class="nav-link"><i class="bx bx-user"></i> <span>About</span></a>
+                    </li>
+                    <li><a href="../page/resume.html" class="nav-link"><i class="bx bx-file-blank"></i>
+                            <span>Resume</span></a></li>
+                    <li><a href="../page/projects.html" class="nav-link scrollto"><i class="bx bx-book-content"></i>
+                            <span>Projects</span></a></li>
+                </ul>
+            </nav>
+        </div>
+    </header><!-- End Header -->
+
+    <!-- ======= Breadcrumbs ======= -->
+    <section class="breadcrumbs bg-dark">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center">
+                <h2>Resume</h2>
+                <ol>
+                    <li><a href="../index.html">Home</a></li>
+                    <li>Resume</li>
+                </ol>
+            </div>
+
+        </div>
+    </section><!-- End Breadcrumbs -->
+
+    <section class="inner-page">
+        <div class="container">
+            <section class="about-me">
+                <h1>Resume</h1>
+                <p>Coming Soon</p>
+            </section>
+            <aside>
+
+            </aside>
+        </div>
+    </section>
+
+
+
+
+
     <footer>
-        <!--legal disclaimers + crediting Bootstrap and the theme I used will go here-->
-        <!--I might add a "Check this code out on github" button or something idk-->
+        <div class="container bg-dark flex-grow-1" style="margin-top: 20px;">
+            <div class="text-muted text-center">Alex "FaceFTW" Westerman <i class="bx bx-copyright"></i>2021 All Rights
+                Reserved.</div>
+            <div class="text-muted text-center">Source code for this website is licensed under the MIT License</div>
+            <div class="text-muted text-center">This website was created by hand with Bootstrap 5.0.1, using the
+                Bootswatch Darkly Variant</div>
+            <div class="text-muted text-center"></div>
+        </div>
     </footer>
     <!--Script Links-->
     <script src="scripts/main.js"></script>
