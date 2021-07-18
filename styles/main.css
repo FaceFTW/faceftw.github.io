@@ -7,8 +7,10 @@
   left: 0;
   bottom: 0;
   width: 220px;
+  -webkit-transition: all ease-in-out 0.5s;
   transition: all ease-in-out 0.5s;
   z-index: 9997;
+  -webkit-transition: all 0.5s;
   transition: all 0.5s;
   padding: 0 15px;
   overflow-y: auto;
@@ -26,7 +28,6 @@
   margin: 0;
   padding: 0;
   font-weight: 600;
-  -moz-text-align-last: center;
   text-align-last: center;
   font-family: "Poppins", sans-serif;
 }
@@ -49,6 +50,7 @@
   text-align: center;
   width: 36px;
   height: 36px;
+  -webkit-transition: 0.3s;
   transition: 0.3s;
 }
 
@@ -71,12 +73,12 @@
   #header {
     left: -220px;
   }
-
   #main,
-#main > * {
+  #main > * {
     padding-left: 0px;
   }
 }
+
 /*--------------------------------------------------------------
 # Navigation Menu
 --------------------------------------------------------------*/
@@ -98,11 +100,16 @@
 
 .nav-menu a,
 .nav-menu a:focus {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   color: #a8a9b4;
   padding: 12px 15px;
   margin-bottom: 8px;
+  -webkit-transition: 0.3s;
   transition: 0.3s;
   font-size: 15px;
 }
@@ -147,15 +154,22 @@ intro > span#asset-cred > a {
   z-index: 9998;
   border: 0;
   font-size: 24px;
+  -webkit-transition: all 0.4s;
   transition: all 0.4s;
   outline: none !important;
   background-color: #149ddd;
   color: #fff;
   width: 40px;
   height: 40px;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
   display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   line-height: 0;
   border-radius: 50px;
   cursor: pointer;
@@ -183,8 +197,11 @@ intro > span#asset-cred > a {
 }
 
 .breadcrumbs ol {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   list-style: none;
   padding: 0;
   margin: 0;
@@ -206,15 +223,14 @@ intro > span#asset-cred > a {
   .breadcrumbs .d-flex {
     display: block !important;
   }
-
   .breadcrumbs ol {
     display: block;
   }
-
   .breadcrumbs ol li {
     display: inline-block;
   }
 }
+
 /*Section Container Formats*/
 section.intro {
   width: 100%;
@@ -236,4 +252,45 @@ section.intro {
   }
 }
 
+/*Resume Page Stuff*/
+.resume {
+  padding: 10px 0px;
+}
+
+.resume-skills {
+  padding-bottom: 30px;
+}
+
+.resume-skills .count-box {
+  padding: 15px;
+  width: 100%;
+}
+
+.resume-skills .count-box i {
+  display: block;
+  font-size: 60px;
+  line-height: 40px;
+  float: left;
+}
+
+.resume-skills .count-box span {
+  font-size: 48px;
+  line-height: 40px;
+  display: block;
+  font-weight: 700;
+  margin-left: 70px;
+}
+
+.resume-skills .count-box p {
+  padding: 15px 0 0 0;
+  margin: 0 0 0 70px;
+  font-size: 16px;
+}
+
+.resume-skills .count-box a {
+  font-weight: 600;
+  font-size: 22px;
+  -webkit-transition: ease-in-out 0.3s;
+  transition: ease-in-out 0.3s;
+}
 /*# sourceMappingURL=main.css.map */

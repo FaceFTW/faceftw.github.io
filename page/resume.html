@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@5.0.1/dist/darkly/bootstrap.min.css"
         integrity="sha256-wXSrJQPGca0WuqBL6/G912FEJLNfYHnOATmLHLJZ4iY=" crossorigin="anonymous">
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+
     <link href="../styles/main.css" rel="stylesheet">
 
     <title>Resume - Alex Westerman's Portfolio</title>
@@ -62,15 +64,141 @@
     </section><!-- End Breadcrumbs -->
 
     <section class="inner-page">
-        <div class="container">
-            <section class="about-me">
-                <h1>Resume</h1>
-                <p>Coming Soon</p>
-            </section>
-            <aside>
+        <section class="resume resume-header">
+            <div class="container">
+                <div class="h1"></div>
 
-            </aside>
-        </div>
+            </div>
+
+        </section>
+        <section class="resume-skills" id="resume-skills">
+            <div class="container">
+                <div class="display-4">Skills</div>
+                <div class="row no-gutters">
+                    <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch">
+                        <div class="count-box">
+                            <i class='bx bxs-book-bookmark bx-tada-hover' ></i>
+                            <span>8+ years</span>
+                            <p><strong>Experience</strong> in Computers, Programming, etc</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch">
+                        <div class="count-box">
+                            <i class="bx bxl-github rounded-circles"></i>
+                            <span>10+ Repos</span>
+                            <p><strong>Available on <a href="https://github.com/rhit-westeraj">Github</a></strong></p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch">
+                        <div class="count-box">
+                            <i class="bx bxs-calendar-star"></i>
+                            <span>8+ years</span>
+                            <p><strong>Experience</strong> in Computers, Programming, etc</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch">
+                        <div class="count-box">
+                            <i class="bx bxs-calendar-star"></i>
+                            <span>8+ years</span>
+                            <p><strong>Experience</strong> in Computers, Programming, etc</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="container">
+                <div class="accordion" id="skillsAccordion">
+                    <div class="accordion-item bg-dark">
+                        <h2 class="accordion-header bg-dark" id="progSkills">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#progCollapse" aria-expanded="true" aria-controls="collapseOne">
+                                Computer Programming </button>
+                        </h2>
+                        <div id="progCollapse" class="accordion-collapse collapse show" aria-labelledby="progSkills">
+                            <div class="accordion-body bg-dark">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingTwo">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                Walt-Whitman High School (Class of 2019)
+                            </button>
+                        </h2>
+                        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo">
+                            <div class="accordion-body">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="resume resume-edu">
+            <div class="container">
+                <div class="display-4">Education</div>
+                <div class="accordion" id="eduAccordion">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingOne">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                Rose-Hulman Institute of Technology (Class of 2023)
+                            </button>
+                        </h2>
+                        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne">
+                            <div class="accordion-body bg-dark">
+                                <ul>
+                                    <li><strong class="h5">Field of Study: </strong>Software Engineering (Bachelor of
+                                        Science)
+                                        <ul>
+                                            <li>Originally Studied Computer Engineering until Spring 2021</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                <br>
+                                <div class="h5 text-decoration-underline">Relevant Coursework: </div>
+                                <ul>
+                                    <li>Computer Architecture I (CSSE232)</li>
+                                    <li>Intro to Embedded Systems (ECE230)</li>
+                                    <li>Data Structures and Algorithms (CSSE230)</li>
+                                    <li>Intro to Web Programming (CSSE280)</li>
+                                    <li>Intro to Object-Oriented Programming</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingTwo">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                Walt-Whitman High School (Class of 2019)
+                            </button>
+                        </h2>
+                        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo">
+                            <div class="accordion-body">
+                                <strong>This is the second item's accordion body.</strong> It is hidden by default,
+                                until the collapse plugin adds the appropriate classes that we use to style each
+                                element. These classes control the overall appearance, as well as the showing and hiding
+                                via CSS transitions. You can modify any of this with custom CSS or overriding our
+                                default variables. It's also worth noting that just about any HTML can go within the
+                                <code>.accordion-body</code>, though the transition does limit overflow.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="resume resume-exp">
+            <div class="container">
+
+            </div>
+        </section>
+        <aside>
+
+        </aside>
+
     </section>
 
 
