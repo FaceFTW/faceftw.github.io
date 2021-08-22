@@ -18,14 +18,14 @@
 
 <body>
     <!-- ======= Mobile nav toggle button ======= -->
-    <i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
+    <i class="bx bx-menu mobile-nav-toggle d-xl-none"></i>
 
 
     <!-- ======= Header ======= -->
     <header id="header" class="bg-dark">
         <div class="d-flex flex-column bg-dark">
             <div class="profile">
-                <a href="/index.html"><img src="assets/funny.jpg" alt="" class="img-fluid rounded-circle"></a>
+                <a href="/index.html"><img src="assets/pfp_not_funny.jpg" alt="" class="img-fluid rounded-circle"></a>
                 <h1 class="navbar-brand"><a href="index.html">Alex Westerman</a></h1>
                 <div class="social-links mt-3 text-center">
                     <a href="https://twitter.com/_FaceFTW" class="twitter"><i class="bx bxl-twitter"></i></a>
@@ -50,7 +50,7 @@
     <!--Main Webpage Content-->
     <main id="main">
         <section class="intro">
-            <div class="container justify-content-center" style="padding-top:150px;" id="hero-container">
+            <div class="justify-content-center" style="padding-top:150px; padding-left:100px" id="hero-container">
                 <span class="h1 bg-body" style="padding: 5px 10px" id="hero-text">Software Engineer</span>
                 <div style="padding:50px;"> </div>
                 <span class="h1 bg-body" style="padding: 5px 10px" id="hero-text">Hardware Tinkerer</span>
@@ -61,36 +61,33 @@
             </div>
         </section>
         <section class="projects" id="projects-section">
-            <div class="container" style="padding-top:25px">
+            <div class="container-flud" style="padding-top:25px; margin-left:2rem;">
                 <h1>Featured Projects</h1>
                 <!--This will eventually be replaced by a card layout or something, but its subject to change-->
                 <div class="row" id="project-cards">
-                    <div class="card mb-3 col-xs-8 col-sm-6 col-md-4" id="cnhasm-card">
+                    <div class="card mb-3 col-xs-8 col-sm-6 col-md-4 mx-2" style="width:32rem" id="cnhasm-card">
                         <h3 class="card-header">chnasm</h3>
                         <div class="card-body">
                             <h5 class="card-title">Regex Assembler for a Custom 16-bit Assembly Architecture</h5>
                             <h6 class="card-subtitle text-muted"><em>For Rose-Hulman CSSE232: Computer Architecture</em>
                             </h6>
                         </div>
-                        <svg xmlns="http://www.w3.org/2000/svg" class="d-block user-select-none" width="100%"
-                            height="200" aria-label="Placeholder: Image cap" focusable="false" role="img"
-                            preserveAspectRatio="xMidYMid slice" viewBox="0 0 318 180"
-                            style="font-size:1.125rem;text-anchor:middle">
-                            <rect width="100%" height="100%" fill="#868e96"></rect>
-                            <text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text>
-                        </svg>
+                        <img src="/assets/cnhasm-noarch.png" class="d-block user-select-none" style="height:325px;">
+
                         <div class="card-body">
                             <span class="text-muted"><em>Language: <i class="devicon-csharp-line"></i>
                                     C#</em></span><br>
                             <span class="text-muted"><em>Libraries: <i class="devicon-dotnetcore-plain"></i> .NET Core
-                                    3.1</em></span><br>
-                            <a href="#" class="card-link"><i class="bx bxl-github"></i> Github Repo</a>
+                                    3.1</em></span>
+
                         </div>
-                        <div class="card-footer text-muted"></div>
+                        <div class="card-footer text-muted"> <a href="https://github.com/rhit-westeraj/cnhasm-noarch"
+                                class="card-link"><i class="bx bxl-github"></i>
+                                Github Repo</a></div>
                     </div>
 
                     <!--StartMenuUtil-->
-                    <div class="card mb-3 col-xs-8 col-sm-6 col-md-4 " id="startmenuutilcard">
+                    <div class="card mb-3 col-xs-8 col-sm-6 col-md-4 mx-2" style="width:32rem" id="startmenuutilcard">
                         <h3 class="card-header">StartMenuUtil</h3>
                         <div class="card-body">
                             <h5 class="card-title">Windows Utility to Control Start Menu Shortcuts</h5>
@@ -109,38 +106,47 @@
                             <span class="text-muted"><em>Libraries: <i class="devicon-dot-net-plain"></i> .NET Standard
                                     5,
                                     Windows Script Host (via COM)</em></span><br>
+
+                        </div>
+                        <div class="card-footer text-muted">
                             <a href="#" class="card-link"><i class="bx bxl-github"></i> Github Repo</a>
                         </div>
-                        <div class="card-footer text-muted"></div>
                     </div>
                     <!--END Card-->
 
                     <!--UberUnit-->
-                    <div class="card mb-3 col-xs-8 col-sm-6 col-md-4" id="uberunitcard">
+                    <div class="card mb-3 col-xs-8 col-sm-6 col-md-4 mx-2" style="width:32rem" id="uberunitcard">
                         <h3 class="card-header">UberUnit</h3>
                         <div class="card-body">
-                            <h5 class="card-title">A Web Application with Unit-Aware Formula Solving</h5>
+                            <h5 class="card-title">A consolidated, lightweight unit converter built for user convenience
+                            </h5>
                             <h6 class="card-subtitle text-muted">For Rose-Hulman CSSE280</h6>
                         </div>
-                        <svg xmlns="http://www.w3.org/2000/svg" class="d-block user-select-none" width="100%"
-                            height="200" aria-label="Placeholder: Image cap" focusable="false" role="img"
-                            preserveAspectRatio="xMidYMid slice" viewBox="0 0 318 180"
-                            style="font-size:1.125rem;text-anchor:middle">
-                            <rect width="100%" height="100%" fill="#868e96"></rect>
-                            <text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text>
-                        </svg>
+                        <img src="assets/Picture1.png" alt="" class="d-block user-select-none">
                         <div class="card-body">
+                            <span class="text-muted"></span>
                             <span class="text-muted"><em>Language: <i class="devicon-html5-plain"></i> HTML5, <i
-                                        class="devicon-sass-plain"></i> Sass, <i class="devicon-javascript-plain"></i>
-                                    JS</em></span><br>
-                            <span class="text-muted"><em>Libraries: <i class="devicon-bootstrap-plain"></i> Bootstrap 5
-                                    (Bootswatch Darkly Variant), Boxicons</em></span><br>
-                            <a href="#" class="card-link"><i class="bx bxl-github"></i> Github Repo</a>
+                                        class="devicon-sass-plain"></i> Sass, <i class="devicon-typescript-plain"></i>
+                                    TypeScript</em></span><br>
+                            <span class="text-muted"><em>Libraries: <i class="devicon-angularjs-plain"></i> Angular, <i
+                                        class="devicon-firebase-plain"></i>Firebase (via @angular/fire), <i
+                                        class="devicon-bootstrap-plain"></i>
+                                    Bootstrap</em></span><br>
+
                         </div>
-                        <div class="card-footer text-muted"></div>
+                        <div class="card-footer text-muted"> <a href="#" class="card-link"><i class="bx bxl-github"></i>
+                                Github Repo</a><br>
+                            <a href="https://rosehulmanprojectvault.org/project/-Mcae1Wvtehq-J4saaLz"
+                                class="card-link"><i class="bx bx-link-alt"></i> Rose-Hulman Project
+                                Vault</a><br>
+                            <a href="https://uberunit-7c04b.web.app/" class="card-link"><i
+                                    class="bx bxs-window-alt"></i> Live Demo
+                            </a>
+                        </div>
                     </div>
                     <!--END Card-->
-                    <div class="col-12"><a href="page/projects.html"><button class="btn btn-primary col-12">More
+                    <div class="col-12"><a href="page/projects.html"><button class="btn btn-primary col-12"
+                                style="width:97.5%">More
                                 Projects</button></a>
                     </div>
                     </ul>
@@ -148,7 +154,7 @@
         </section>
     </main>
     <footer>
-        <div class="container bg-dark flex-grow-1" style="margin-top: 20px;">
+        <div class="bg-dark " style="margin-top: 20px;">
             <div class="text-muted text-center">Alex "FaceFTW" Westerman <i class="bx bx-copyright"></i>2021 All Rights
                 Reserved.</div>
             <div class="text-muted text-center">Source code for this website is licensed under the MIT License</div>
@@ -161,7 +167,7 @@
     <script src="scripts/main.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous">
-    </script>
+        </script>
 </body>
 
 </html>
