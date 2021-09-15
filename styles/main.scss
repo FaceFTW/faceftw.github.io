@@ -6,9 +6,24 @@
 //   text-align: center;
 // }
 
+// @import url('https://raw.githubusercontent.com/ryanoasis/nerd-fonts/master/css/nerd-fonts-generated.min.css');
 
+// // The following is to override and fix paths
+// @font-face {
+//   font-family: Armino Regular NF;
+//   font-style: regular;
+//   src: url('https://github.com/ryanoasis/nerd-fonts/blob/2.1.0/patched-fonts/Arimo/Regular/complete/Arimo%20Regular%20Nerd%20Font%20Complete%20Windows%20Compatible.ttf?raw=true');
+// }
 
+// .nf,.nerd-font{
+//   font-family: Armino Regular NF !important;
+// }
 
+@import url('nerd-fonts-generated.min.css');
+
+.nf{
+  font-size: 1.2rem;
+}
 /*--------------------------------------------------------------
 # Header
 --------------------------------------------------------------*/
@@ -63,6 +78,7 @@
   width: 36px;
   height: 36px;
   transition: 0.3s;
+  text-decoration: none;
 }
 
 #header .profile .social-links a:hover {

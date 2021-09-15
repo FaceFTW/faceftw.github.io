@@ -10,15 +10,13 @@
     <!--The first link tags is for Bootstrap and the Bootswatch Darkly Theme-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@5.0.1/dist/darkly/bootstrap.min.css"
         integrity="sha256-wXSrJQPGca0WuqBL6/G912FEJLNfYHnOATmLHLJZ4iY=" crossorigin="anonymous">
-    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
     <link href="styles/main.css" rel="stylesheet">
     <title>Alex Westerman's Portfolio</title>
 </head>
 
 <body>
     <!-- ======= Mobile nav toggle button ======= -->
-    <i class="bx bx-menu mobile-nav-toggle d-xl-none"></i>
+    <i class="nf nf-menu mobile-nav-toggle d-xl-none"></i>
 
 
     <!-- ======= Header ======= -->
@@ -28,20 +26,23 @@
                 <a href="/index.html"><img src="assets/pfp_not_funny.jpg" alt="" class="img-fluid rounded-circle"></a>
                 <h1 class="navbar-brand"><a href="index.html">Alex Westerman</a></h1>
                 <div class="social-links mt-3 text-center">
-                    <a href="https://twitter.com/_FaceFTW" class="twitter"><i class="bx bxl-twitter"></i></a>
-                    <a href="https://github.com/rhit-westeraj" class="github"><i class="bx bxl-github"></i></a>
-                    <a href="mailto:awesterman16@live.com" class="email"><i class="bx bx-mail-send"></i></a>
+                    <a href="https://twitter.com/_FaceFTW" class="twitter"><i class="nf nf-fa-twitter"></i></a>
+                    <a href="https://github.com/rhit-westeraj" class="github"><i class="nf nf-fa-github"></i></a>
+                    <a href="mailto:awesterman16@live.com" class="email"><i class="nf nf-mdi-email"></i></a>
                 </div>
             </div>
 
             <nav id="navbar" class="nav-menu navbar navbar-dark bg-dark">
                 <ul>
-                    <li><a href="page/about.html" class="nav-link"><i class="bx bx-user"></i> <span>About</span></a>
-                    </li>
-                    <li><a href="page/resume.html" class="nav-link"><i class="bx bx-file-blank"></i>
-                            <span>Resume</span></a></li>
-                    <li><a href="page/projects.html" class="nav-link scrollto"><i class="bx bx-book-content"></i>
-                            <span>Projects</span></a></li>
+                    <li><a href="page/about.html" class="nav-link">
+                            <i class="nf nf-fa-user"></i> <span>About</span>
+                        </a></li>
+                    <li><a href="page/resume.html" class="nav-link">
+                            <i class="nf nf-fa-file_text"></i> <span>Resume</span>
+                        </a></li>
+                    <li><a href="page/projects.html" class="nav-link scrollto">
+                            <i class="nf nf-dev-code"></i> <span>Projects</span>
+                        </a></li>
                 </ul>
             </nav>
         </div>
@@ -75,40 +76,44 @@
                         <img src="/assets/cnhasm-noarch.png" class="d-block user-select-none" style="height:325px;">
 
                         <div class="card-body">
-                            <span class="text-muted"><em>Language: <i class="devicon-csharp-line"></i>
-                                    C#</em></span><br>
-                            <span class="text-muted"><em>Libraries: <i class="devicon-dotnetcore-plain"></i> .NET Core
-                                    3.1</em></span>
-
+                            <span class="text-muted"><em>Language:
+                                    <i class="nf nf-mdi-language_csharp"></i> C#
+                                </em></span><br>
+                            <span class="text-muted"><em>Libraries:
+                                    <i class="nf nf-dev-dotnet"></i> .NET Core 3.1
+                                </em></span>
                         </div>
                         <div class="card-footer text-muted"> <a href="https://github.com/rhit-westeraj/cnhasm-noarch"
-                                class="card-link"><i class="bx bxl-github"></i>
+                                class="card-link"><i class="nf nf-fa-github"></i>
                                 Github Repo</a></div>
                     </div>
 
-                <!--Portfolio-->
-                <div class="card mb-3 col-xs-8 col-sm-6 col-md-4 mx-2" style="width:32rem" id="portfoliocard">
-                    <h3 class="card-header">Portfolio Website</h3>
-                    <div class="card-body">
-                        <h5 class="card-title">A Personally Desinged Portfolio Website With a Modern Look and Feel
-                        </h5>
-                        <h6 class="card-subtitle text-muted">Originally for Rose-Hulman CSSE280, Further Worked On
-                            Personally</h6>
+                    <!--Portfolio-->
+                    <div class="card mb-3 col-xs-8 col-sm-6 col-md-4 mx-2" style="width:32rem" id="portfoliocard">
+                        <h3 class="card-header">Portfolio Website</h3>
+                        <div class="card-body">
+                            <h5 class="card-title">A Personally Desinged Portfolio Website With a Modern Look and Feel
+                            </h5>
+                            <h6 class="card-subtitle text-muted">Originally for Rose-Hulman CSSE280, Further Worked On
+                                Personally</h6>
+                        </div>
+                        <img src="/assets/portfolio.png">
+                        <div class="card-body">
+                            <span class="text-muted"><em>Language:
+                                    <i class="nf nf-dev-html5"></i> HTML5,&nbsp;
+                                    <i class="nf nf-dev-sass"></i> Sass,&nbsp;
+                                    <i class="nf nf-mdi-language_javascript"></i>JS
+                                </em></span><br>
+                            <span class="text-muted"><em>Libraries:
+                                    <i class="nf nf-dev-bootstrap"></i> Bootstrap 5 (Bootswatch Darkly
+                                    Variant),&nbsp;
+                                    NerdFonts </em></span><br>
+                        </div>
+                        <div class="card-footer text-muted"> <a
+                                href="https://github.com/rhit-westeraj/rhit-westeraj.github.io" class="card-link"><i
+                                    class="nf nf-fa-github"></i> Github Repo</a></div>
                     </div>
-                    <img src="/assets/portfolio.png">
-                    <div class="card-body">
-                        <span class="text-muted"><em>Language: <i class="devicon-html5-plain"></i> HTML5, <i
-                                    class="devicon-sass-plain"></i> Sass, <i class="devicon-javascript-plain"></i>
-                                JS</em></span><br>
-                        <span class="text-muted"><em>Libraries: <i class="devicon-bootstrap-plain"></i> Bootstrap 5
-                                (Bootswatch Darkly Variant), Boxicons </em></span><br>
-
-                    </div>
-                    <div class="card-footer text-muted"> <a
-                            href="https://github.com/rhit-westeraj/rhit-westeraj.github.io" class="card-link"><i
-                                class="bx bxl-github"></i> Github Repo</a></div>
-                </div>
-                <!--END Card-->
+                    <!--END Card-->
 
                     <!--UberUnit-->
                     <div class="card mb-3 col-xs-8 col-sm-6 col-md-4 mx-2" style="width:32rem" id="uberunitcard">
@@ -121,22 +126,23 @@
                         <img src="assets/Picture1.png" alt="" class="d-block user-select-none">
                         <div class="card-body">
                             <span class="text-muted"></span>
-                            <span class="text-muted"><em>Language: <i class="devicon-html5-plain"></i> HTML5, <i
-                                        class="devicon-sass-plain"></i> Sass, <i class="devicon-typescript-plain"></i>
-                                    TypeScript</em></span><br>
-                            <span class="text-muted"><em>Libraries: <i class="devicon-angularjs-plain"></i> Angular, <i
-                                        class="devicon-firebase-plain"></i>Firebase (via @angular/fire), <i
-                                        class="devicon-bootstrap-plain"></i>
-                                    Bootstrap</em></span><br>
-
+                            <span class="text-muted"><em>Language:
+                                    <i class="nf nf-dev-html5"></i> HTML5,&nbsp;
+                                    <i class="nf nf-dev-sass"></i> Sass,&nbsp;
+                                    <i class="nf nf-mdi-language_typescript"></i> TypeScript
+                                </em></span><br>
+                            <span class="text-muted"><em>Libraries:
+                                    <i class="nf nf-dev-angular"></i> Angular 12,&nbsp;
+                                    <i class="nf nf-dev-firebase"></i>&nbsp;Firebase (via @angular/fire)
+                                </em></span><br>
                         </div>
-                        <div class="card-footer text-muted"> <a href="#" class="card-link"><i class="bx bxl-github"></i>
-                                Github Repo</a><br>
-                            <a href="https://rosehulmanprojectvault.org/project/-Mcae1Wvtehq-J4saaLz"
-                                class="card-link"><i class="bx bx-link-alt"></i> Rose-Hulman Project
-                                Vault</a><br>
-                            <a href="https://uberunit-7c04b.web.app/" class="card-link"><i
-                                    class="bx bxs-window-alt"></i> Live Demo
+                        <div class="card-footer text-muted">
+                            <a href="#" class="card-link"><i class="nf nf-fa-github"></i> Github Repo</a><br>
+                            <a href="https://rosehulmanprojectvault.org/project/-Mcae1Wvtehq-J4saaLz" class="card-link">
+                                <i class="nf nf-fa-link"></i> Rose-Hulman Project Vault
+                            </a><br>
+                            <a href="https://uberunit-7c04b.web.app/" class="card-link">
+                                <i class="nf nf-mdi-application"></i> Live Demo
                             </a>
                         </div>
                     </div>
@@ -151,7 +157,8 @@
     </main>
     <footer>
         <div class="bg-dark " style="margin-top: 20px;">
-            <div class="text-muted text-center">Alex "FaceFTW" Westerman <i class="bx bx-copyright"></i>2021 All Rights
+            <div class="text-muted text-center">Alex "FaceFTW" Westerman <i class="nf nf-fa-copyright"></i>2021 All
+                Rights
                 Reserved.</div>
             <div class="text-muted text-center">Source code for this website is licensed under the MIT License</div>
             <div class="text-muted text-center">This website was created by hand with Bootstrap 5.0.1, using the
