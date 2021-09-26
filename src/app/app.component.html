@@ -1,17 +1,38 @@
-<div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
-    <mat-toolbar color="primary" class="example-toolbar">
-        <button mat-icon-button (click)="snav.toggle()"><i class="nf nf-"></i></button>
-        <h1 class="example-app-name">Responsive App</h1>
+<div class="container" [class.isMobile]="mobileQuery.matches">
+    <mat-toolbar color="primary" class="headerBlock">
+        <button mat-icon-button (click)="snav.toggle()">test</button>
+        <h1 class="headerName">Responsive App</h1>
     </mat-toolbar>
 
-    <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
-        <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches"
-            fixedTopGap="56">
+    <mat-sidenav-container class="snav-container" [style.marginTop.px]="mobileQuery.matches ? 60 : 0">
+        <!--Sidenav-->
+        <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
+            [fixedInViewport]="mobileQuery.matches ? false : true" opened class="snav" fixedTopGap="60">
+            <div class="profile">
+                <a href="/index.html"><img src="assets/pfp_not_funny.jpg" alt="" class="img-fluid rounded-circle"></a>
+                <h1 class="navbar-brand"><a href="index.html">Alex Westerman</a></h1>
+                <div class="social-links mt-3 text-center">
+                    <a href="https://twitter.com/_FaceFTW" class="twitter"><i class="nf nf-fa-twitter"></i></a>
+                    <a href="https://github.com/rhit-westeraj" class="github"><i class="nf nf-fa-github"></i></a>
+                    <a href="mailto:awesterman16@live.com" class="email"><i class="nf nf-mdi-email"></i></a>
+                </div>
+            </div>
             <mat-nav-list>
-                
+                <a routerLink="/main" routerLinkActive="active">
+                    <mat-list-item matListIcon>Home</mat-list-item>
+                </a>
+                <a routerLink="/projects" routerLinkActive="active">
+                    <mat-list-item matListIcon>Projects</mat-list-item>
+                </a>
+                <a routerLink="/resume" routerLinkActive="active">
+                    <mat-list-item matListIcon>Resume</mat-list-item>
+                </a>
+                <a routerLink="/about" routerLinkActive="active">
+                    <mat-list-item matListIcon>About</mat-list-item>
+                </a>
             </mat-nav-list>
         </mat-sidenav>
-
+        <!--Content-->
         <mat-sidenav-content>
             <router-outlet></router-outlet>
         </mat-sidenav-content>
