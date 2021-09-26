@@ -72,26 +72,6 @@ body {
 
 
 
-/*For offsetting the main webpage from the vertical navbar*/
-#main {
-  // margin-left: 250px;
-  padding-left: 220px;
-}
-
-#main > * {
-  margin-left: 0px;
-}
-
-@media (max-width: 1199px) {
-  #header {
-    left: -220px;
-  }
-
-  #main,
-  #main > * {
-    padding-left: 0px;
-  }
-}
 
 /*--------------------------------------------------------------
 # Navigation Menu
@@ -145,15 +125,7 @@ body {
   color: #149ddd;
 }
 
-/*This selector is temporary*/
-section.intro > img {
-  height: 10vw;
-}
 
-section.intro > span#asset-cred,
-intro > span#asset-cred > a {
-  font: 9px italic !important;
-}
 
 /* Mobile Navigation */
 .mobile-nav-toggle {
@@ -233,15 +205,7 @@ intro > span#asset-cred > a {
 }
 
 /*Section Container Formats*/
-section.intro {
-  width: 100%;
-  height: 80vh;
-  background-image: url("/assets/DSC_0011_shrink.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  //margin: 0px !important;
-}
+
 
 // .intro #hero-container *{
 //   position: inherit;
