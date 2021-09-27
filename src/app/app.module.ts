@@ -17,8 +17,9 @@ import { MatSidenavModule } from "@angular/material/sidenav";
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatListModule } from "@angular/material/list";
 import { MatIconModule } from "@angular/material/icon";
+import { FooterComponent } from './footer/footer.component';
 @NgModule({
-    declarations: [AppComponent, AboutComponent, ResumeComponent, HomeComponent, ProjectsComponent, Error404Component],
+    declarations: [AppComponent, AboutComponent, ResumeComponent, HomeComponent, ProjectsComponent, Error404Component, FooterComponent],
     imports: [
         BrowserModule,
         AppRoutingModule,
