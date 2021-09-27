@@ -1,0 +1,46 @@
+{
+	"$schema": "./project.schema.json",
+	"projectList": [
+		{
+			"projectId": 0,
+			"projectName": "Armanipulator",
+			"projectDescription": "Rudimentary Robotic Arm Utilizing Pneumatic Leverage and Extensible Arduino Firmware",
+			"projectSubDesc": "For PLTW Engineering Design and Development",
+			"projectLanguage": ["C++"],
+			"projectLibraries": ["Arduino", "Stepper Motor HAL"],
+			"projectAsset": "/assets/armanipulator.png",
+			"projectLinks": [{ "linkType": "github", "linkURL": "https://github.com/rhit-westeraj/Armanipulator" }],
+			"projectStatus": { "status": "Archived", "reason": "(No Longer in Active Development)" }
+		},
+		{
+			"projectId": 1,
+			"projectName": "cnhasm",
+			"projectDescription": "Regex Assembler for a Custom 16-bit Assembly Architecture",
+			"projectSubDesc": "For Rose-Hulman CSSE232: Computer Architecture",
+			"projectLanguage": ["C#"],
+			"projectLibraries": [".NET Core 3.1"],
+			"projectAsset": "/assets/cnhasm-noarch.png",
+			"projectLinks": [{ "linkType": "github", "linkURL": "https://github.com/rhit-westeraj/cnhasm-noarch" }],
+			"projectStatus": { "status": "Finished" }
+		},
+		{
+			"projectId": 2,
+			"projectName": "UberUnit",
+			"projectDescription": "A consolidated, lightweight unit converter built for user convenience",
+			"projectSubDesc": "For Rose-Hulman CSSE280",
+			"projectLanguage": ["HTML5", "Sass", "TypeScript"],
+			"projectLibraries": ["Angular", "Firebase (via @angular/fire)", "Bootstrap"],
+			"projectAsset": "/assets/Picture1.png",
+			"projectLinks": [
+				{ "linkType": "github", "linkURL": "https://github.com/rhit-westeraj/UberUnit" },
+				{ "linkType": "demo", "linkURL": "https://uberunit-7c04b.web.app/" },
+				{
+					"linkType": "misc",
+					"linkURL": "https://rosehulmanprojectvault.org/project/-Mcae1Wvtehq-J4saaLz",
+					"linkDesc": "Rose-Hulman Project Vault"
+				}
+			],
+			"projectStatus": { "status": "Finished" }
+		}
+	]
+}
