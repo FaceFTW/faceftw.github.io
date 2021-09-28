@@ -1,0 +1,54 @@
+<main id="main">
+	<section class="intro">
+		<div class="justify-content-center" style="padding-top:150px; padding-left:100px" id="hero-container">
+			<span class="h1 bg-body" style="padding: 5px 10px" id="hero-text">Software Engineer</span>
+			<div style="padding:50px;"> </div>
+			<span class="h1 bg-body" style="padding: 5px 10px" id="hero-text">Hardware Tinkerer</span>
+			<div style="padding:50px;"> </div>
+			<span class="h1 bg-body" style="padding: 5px 10px" id="hero-text">Power User</span>
+			<div style="padding:50px;"> </div>
+			<span class="h1 bg-body" style="padding: 5px 10px" id="hero-text">Tech Enthusiast</span>
+		</div>
+	</section>
+	<section class="projects" id="projects-section">
+		<!--This is why I wanted to rewrite the website with Angular-->
+		<mat-grid-list [cols]="breakpoint" class="featured" (window:resize)="onResize($event)">
+			<mat-grid-tile *ngFor="let project of featured" class="card">
+				<mat-card class="card">
+					<mat-card-header>
+						<mat-card-title>{{project.projectName}}</mat-card-title>
+						<mat-card-subtitle>{{project.projectDescription}}</mat-card-subtitle>
+					</mat-card-header>
+					<img mat-card-image src="{{correctAssetPath(project)}}">
+
+					<mat-card-content>
+						<span class="cardSubDesc">{{project.projectSubDesc}}</span><br>
+						<span class="cardSubDesc">Languages: {{project.projectLanguage.join(", ")}}</span><br>
+						<span class="cardSubDesc" *ngIf="project.projectLibraries">Libraries:
+							{{project.projectLibraries.join(", ")}}</span>
+					</mat-card-content>
+					<mat-card-actions class="cardLinks">
+						<ng-container *ngFor="let link of project.projectLinks">
+							<span class="" *ngIf="link.linkType === 'text'">{{link.text}}</span>
+							<a mat-raised-button color="primary" href="{{link.linkURL}}"
+								*ngIf="link.linkType === 'github'">
+								<mat-icon fontIcon="nf-dev-github"></mat-icon> GITHUB REPO
+							</a>
+							<a mat-raised-button color="primary" href="{{link.linkURL}}"
+								*ngIf="link.linkType === 'demo'">
+								<mat-icon fontIcon="nf-dev-github"></mat-icon> LIVE DEMO
+							</a>
+							<a mat-raised-button color="primary" href="{{link.linkURL}}"
+								*ngIf="link.linkType === 'misc'">
+								<mat-icon fontIcon="nf-dev-github"></mat-icon> {{link.linkDesc}}
+							</a>
+						</ng-container>
+					</mat-card-actions>
+				</mat-card>
+			</mat-grid-tile>
+		</mat-grid-list>
+	</section>
+</main>
+<footer>
+	<app-footer></app-footer>
+</footer>

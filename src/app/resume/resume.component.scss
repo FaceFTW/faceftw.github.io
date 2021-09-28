@@ -1,0 +1,39 @@
+.resume {
+	padding: 10px 0px;
+}
+
+.resume-skills {
+	padding-bottom: 30px;
+}
+
+.resume-skills .count-box {
+	padding: 15px;
+	width: 100%;
+}
+
+.resume-skills .count-box i {
+	display: block;
+	font-size: 60px;
+	line-height: 40px;
+	float: left;
+}
+
+.resume-skills .count-box span {
+	font-size: 48px;
+	line-height: 40px;
+	display: block;
+	font-weight: 700;
+	margin-left: 70px;
+}
+
+.resume-skills .count-box p {
+	padding: 15px 0 0 0;
+	margin: 0 0 0 70px;
+	font-size: 16px;
+}
+
+.resume-skills .count-box a {
+	font-weight: 600;
+	font-size: 18px;
+	transition: ease-in-out 0.3s;
+}

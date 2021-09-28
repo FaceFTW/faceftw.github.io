@@ -1,0 +1,143 @@
+{
+	"$schema": "./project.schema.json",
+	"projectList": [
+		{
+			"projectId": 0,
+			"projectName": "Armanipulator",
+			"projectDescription": "Rudimentary Robotic Arm Utilizing Pneumatic Leverage and Extensible Arduino Firmware",
+			"projectSubDesc": "For PLTW Engineering Design and Development",
+			"projectLanguage": ["C++"],
+			"projectLibraries": ["Arduino", "Stepper Motor HAL"],
+			"projectAsset": "armanipulator.png",
+			"projectLinks": [{ "linkType": "github", "linkURL": "https://github.com/rhit-westeraj/Armanipulator" }],
+			"projectStatus": { "status": "Archived", "reason": "(No Longer in Active Development)" }
+		},
+		{
+			"projectId": 1,
+			"projectName": "cnhasm",
+			"projectDescription": "Regex Assembler for a Custom 16-bit Assembly Architecture",
+			"projectSubDesc": "For Rose-Hulman CSSE232: Computer Architecture",
+			"projectLanguage": ["C#"],
+			"projectLibraries": [".NET Core 3.1"],
+			"projectAsset": "cnhasm-noarch.png",
+			"projectLinks": [{ "linkType": "github", "linkURL": "https://github.com/rhit-westeraj/cnhasm-noarch" }],
+			"projectStatus": { "status": "Finished" }
+		},
+		{
+			"projectId": 2,
+			"projectName": "UberUnit",
+			"projectDescription": "A consolidated, lightweight unit converter built for user convenience",
+			"projectSubDesc": "For Rose-Hulman CSSE280",
+			"projectLanguage": ["HTML5", "Sass", "TypeScript"],
+			"projectLibraries": ["Angular", "Firebase (via @angular/fire)", "Bootstrap"],
+			"projectAsset": "Picture1.png",
+			"projectLinks": [
+				{ "linkType": "github", "linkURL": "https://github.com/rhit-westeraj/UberUnit" },
+				{ "linkType": "demo", "linkURL": "https://uberunit-7c04b.web.app/" },
+				{
+					"linkType": "misc",
+					"linkURL": "https://rosehulmanprojectvault.org/project/-Mcae1Wvtehq-J4saaLz",
+					"linkDesc": "ROSE-HULMAN PROJECT VAULT"
+				}
+			],
+			"projectStatus": { "status": "Finished" }
+		},
+		{
+			"projectId": 3,
+			"projectName": "*Creative Name Here* Architecture",
+			"projectDescription": "16-bit RISC Architecture With a Flexible Assembly Dialect and Efficient Performance",
+			"projectSubDesc": "For Rose-Hulman CSSE232 - Computer Architecture",
+			"projectLanguage": ["SystemVerilog"],
+			"projectLinks": [{ "linkType": "text", "text": "Private Repo (Academic Integrity)" }],
+			"projectStatus": { "status": "Finished (Private Work)" }
+		},
+		{
+			"projectId": 4,
+			"projectName": "Joust (Remake)",
+			"projectDescription": "Remake of the 1982 Arcade Classic <em>Joust</em> by Williams Electronics in Java",
+			"projectSubDesc": "For Rose-Hulman CSSE220: Introduction to Object Oriented Programming",
+			"projectLanguage": ["Java 8"],
+			"projectLibraries": ["Java FX Graphics"],
+			"projectAsset": "joust.png",
+			"projectLinks": [{ "linkType": "text", "text": "Private Repo (Academic Integrity)" }],
+			"projectStatus": { "status": "Finished (Private Work)" }
+		},
+		{
+			"projectId": 5,
+			"projectName": "Portfolio Website",
+			"projectDescription": "A Personally Desinged Portfolio Website With a Modern Look and Feel",
+			"projectSubDesc": "Originally for Rose-Hulman CSSE280, Further Worked On Personally",
+			"projectLanguage": ["HTML5", "Sass", "TypeScript"],
+			"projectLibraries": ["Angular 12, Angular Material, NerdFonts"],
+			"projectAsset": "portfolio.png",
+			"projectLinks": [
+				{ "linkType": "github", "linkURL": "https://github.com/rhit-westeraj/rhit-westeraj.github.io" }
+			],
+			"projectStatus": { "status": "Active Development" }
+		},
+		{
+			"projectId": 6,
+			"projectName": "StartMenuUtil",
+			"projectDescription": "Windows Utility to Control Start Menu Shortcuts",
+			"projectSubDesc": "Personal Project",
+			"projectLanguage": ["C#"],
+			"projectLibraries": [".NET Standard 5", "Windows Script Host (via COM)"],
+			"projectLinks": [{ "linkType": "text", "text": "Offline Repo (No Public Commits Yet)" }],
+			"projectStatus": { "status": "Suspended", "reason": "(Time Constraints)" }
+		},
+		{
+			"projectId": 7,
+			"projectName": "Brutal Half-Life Rewrite",
+			"projectDescription": "A rewrite of the Brutal Half-Life game modification to remove the Xash3D dependency",
+			"projectSubDesc": "Personal Project",
+			"projectLanguage": ["C++"],
+			"projectLibraries": ["Valve's GoldSrc Engine"],
+			"projectLinks": [{ "linkType": "text", "text": "Offline Repo (No Public Commits Yet)" }],
+			"projectStatus": { "status": "Suspended", "reason": "(Indefinite, Time Constraint)" }
+		},
+		{
+			"projectId": 8,
+			"projectName": "OpenCryptoBench",
+			"projectDescription": "Rudimentary Cryptograhy Algorithm Benchmark Written in Java",
+			"projectSubDesc": "Personal Project: The First one that is Open-Source",
+			"projectLanguage": ["Java 8"],
+			"projectLibraries": ["Bouncy Castle (Java Variant)"],
+			"projectLinks": [{ "linkType": "github", "linkURL": "https://github.com/rhit-westeraj/OpenCryptoBench" }],
+			"projectStatus": { "status": "Archived", "reason": "No Longer in Development" }
+		},
+		{
+			"projectId": 9,
+			"projectName": "Team Thunderbirds ECE160 Robot",
+			"projectDescription": "Specialized Arduino Firmware to Remotely Operate a Robot for Rose-Hulman's Annual ECE160 Competition for Freshman",
+			"projectSubDesc": "For Rose-Hulman ECE160 - Engineering Practice",
+			"projectLanguage": ["C", "C++"],
+			"projectLibraries": ["Arduino", "Stepper Motor HAL", "PS2 Controller HAL"],
+			"projectAsset": "IMG_3188.JPG",
+			"projectLinks": [{ "linkType": "github", "linkURL": "https://github.com/Thunderbirds-ECE160/Final-Robot" }],
+			"projectStatus": { "status": "Finished" }
+		},
+		{
+			"projectId": 10,
+			"projectName": "Scavlander's Gamepad",
+			"projectDescription": "Attempt at a \"Apocalypse\"-styled Gamepad powered by the TI MSP432 Launchpad with CC2650 Boosterpack",
+			"projectSubDesc": "For Rose-Hulman ECE230 - Embedded Systems",
+			"projectLanguage": ["C"],
+			"projectLibraries": ["TI-RTOS (For MSP432)", "TI MSP432/CC2650 Bluetooth Stack"],
+			"projectAsset": "IMG_8955.JPG",
+			"projectLinks": [
+				{ "linkType": "github", "linkURL": "https://github.com/rhit-westeraj/scavlanders-gamepad" }
+			],
+			"projectStatus": { "status": "Archived", "reason": "No Longer in Active Development" }
+		},
+		{
+			"projectId": 11,
+			"projectName": "Horizon Plus",
+			"projectDescription": "A Fallout 4 Wabbajack Modlist with some custom patches based on Zainwul's Horizon Mod",
+			"projectSubDesc": "Personal Project",
+			"projectLanguage": ["Papyrus", "ESP Records"],
+			"projectLibraries": ["Creation Engine 1.0 (Fallout 4)"],
+			"projectLinks": [{ "linkType": "github", "linkURL": "https://github.com/rhit-westeraj/HorizonPlus" }],
+			"projectStatus": { "status": "Active Development" }
+		}
+	]
+}

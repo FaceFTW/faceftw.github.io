@@ -1,0 +1,122 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema",
+	"$id": "/project.schema.json",
+	"title": "Project",
+	"description": "A Project on my portfolio",
+	"type": "object",
+	"properties": {
+		"projectList": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"properties": {
+					"projectId": {
+						"description": "Unique identifier for a project",
+						"type": "integer"
+					},
+					"projectName": {
+						"description": "Human-readable name of the project. Appears as the title of a project's card",
+						"type": "string"
+					},
+					"projectDescription": {
+						"description": "Huamn-readable description of the project. Appears as the subtitle of a project's card",
+						"type": "string"
+					},
+					"projectSubDesc": {
+						"description": "Sub-description of the project. Appears as a muted subtext under the description",
+						"type": "string"
+					},
+					"projectLanguage": {
+						"description": "Array of strings indicating the languages used in a project",
+						"type": "array",
+						"items": { "type": "string" },
+						"minItems": 1,
+						"uniqueItems": true
+					},
+					"projectLibraries": {
+						"description": "Array of strings indicating the libraries used in a project",
+						"type": "array",
+						"items": { "type": "string" },
+						"minItems": 1,
+						"uniqueItems": true
+					},
+					"projectAsset": {
+						"description": "URL for the image on a project's card. Can be null",
+						"type": "string",
+						"format": ""
+					},
+					"projectLinks": {
+						"description": "Array of objects with various links. Each object has a link type (predefined) and a link",
+						"type": "array",
+						"items": { "type": "object", "$ref": "#/$defs/projectLink" },
+						"minItems": 1,
+						"uniqueItems": true
+					},
+					"projectStatus": {
+						"$ref": "#/$defs/projectStatus"
+					}
+				},
+				"required": [
+					"projectId",
+					"projectName",
+					"projectDescription",
+					"projectSubDesc",
+					"projectLanguage",
+					"projectLinks",
+					"projectStatus"
+				]
+			}
+		}
+	},
+	"$defs": {
+		"projectStatus": {
+			"description": "Object with describing the status of the project. Reason is included for specific project statuses",
+			"type": "object",
+			"properties": {
+				"status": {
+					"description": "Status enum describing project status",
+					"enum": ["Archived", "Finished", "Finished (Private Work)", "Active Development", "Suspended"]
+				},
+				"reason": {
+					"description": "For archived or suspended projects, this often accompanies an additional reasoning to the status of the project",
+					"type": "string"
+				}
+			},
+			"required": ["status"],
+			"if": { "oneOf": [{ "properties": { "status": { "enum": ["Archived", "Suspended"] } } }] },
+			"then": {
+				"required": ["reason"]
+			}
+		},
+		"projectLink": {
+			"description": "Describes the type of link/text and other necessary info",
+			"type": "object",
+			"properties": {
+				"linkType": {
+					"description": "Type of link",
+					"enum": ["text", "github", "demo", "misc"]
+				},
+				"linkURL": {
+					"description": "URL of the link",
+					"type": "string"
+				},
+				"text": {
+					"description": "Text used in lieu of linkURL if linkType = 'text'",
+					"type": "string"
+				},
+				"linkDesc": {
+					"description": "Description for Misc.Links",
+					"type": "string"
+				}
+			},
+			"required": ["linkType"],
+			"if": { "properties": { "linkType": { "enum": ["text"] } } },
+			"then": { "required": ["text"] },
+			"else": {
+				"required": ["linkURL"],
+				"if": { "properties": { "linkType": { "enum": ["misc"] } } },
+				"then": { "required": ["linkDesc"] }
+			}
+		}
+	}
+}
