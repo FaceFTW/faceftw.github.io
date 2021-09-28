@@ -54,9 +54,33 @@ body {
 	font-size: 1.2rem;
 }
 
-.card .projectcard {
-	width: 30%;
+.card {
+	width: 450px;
+	height: 600px;
 }
+
+.card img {
+	height: 300px;
+}
+
+.card .cardSubDesc {
+	font-style: italic;
+}
+
+.card .cardLinks{
+	text-align: center;
+}
+
+.card .cardLinks a{
+	margin: 0.25rem;
+}
+
+
+.card mat-icon{
+	font-size: 1.5rem;
+}
+
+
 
 footer {
 	margin-top: 10px;
