@@ -1,8 +1,7 @@
-name: NodeJS with Webpack
+name: Deploy to Live Branch
 
 on:
   push:
-  pull_request:
     branches: [ deploy ]
 
 jobs:
@@ -37,13 +36,13 @@ jobs:
       run: rm -r dist
       
     - name: Run Production Build
-      run: npm run build:prod
+      run: npm run build-prod
       
     - name: Deploy     
       uses: JamesIves/github-pages-deploy-action@4.1.5
       with:
         branch: live
         folder: dist
-        git-config-name: ${{  "Alex Westerman"  }}
-        git-config-email: ${{  "westeraj@rose-hulman.edu"  }}
+        git-config-name: ${{  'Alex Westerman'  }}
+        git-config-email: ${{  'westeraj@rose-hulman.edu'  }}
         
