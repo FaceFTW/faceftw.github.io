@@ -1,7 +1,6 @@
-name: NodeJS with Webpack
+name: Deploy to Live Branch
 
 on:
-  push:
   pull_request:
     branches: [ deploy ]
 
@@ -44,6 +43,6 @@ jobs:
       with:
         branch: live
         folder: dist
-        git-config-name: ${{  "Alex Westerman"  }}
-        git-config-email: ${{  "westeraj@rose-hulman.edu"  }}
+        git-config-name: ${{  'Alex Westerman'  }}
+        git-config-email: ${{  'westeraj@rose-hulman.edu'  }}
         
