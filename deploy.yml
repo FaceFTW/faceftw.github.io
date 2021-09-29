@@ -1,0 +1,49 @@
+name: NodeJS with Webpack
+
+on:
+  push:
+  pull_request:
+    branches: [ deploy ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v2
+
+
+    - name: Import GPG key
+      uses: crazy-max/ghaction-import-gpg@v4
+      with:
+        gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
+        passphrase: ${{ secrets.PASSPHRASE }}
+        git_user_signingkey: true
+        git_commit_gpgsign: true
+    
+    
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: 14.x
+
+    - name: Load Project Dependencies
+      run: npm install
+    
+    - name: Run Test Build
+      run: npm run build
+      
+    - name: Clean build output
+      run: rm -r dist
+      
+    - name: Run Production Build
+      run: npm run build:prod
+      
+    - name: Deploy     
+      uses: JamesIves/github-pages-deploy-action@4.1.5
+      with:
+        branch: live
+        folder: dist
+        git-config-name: ${{  "Alex Westerman"  }}
+        git-config-email: ${{  "westeraj@rose-hulman.edu"  }}
+        
