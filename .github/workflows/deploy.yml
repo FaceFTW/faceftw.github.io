@@ -1,7 +1,7 @@
 name: Deploy to Live Branch
 
 on:
-  pull_request:
+  push:
     branches: [ deploy ]
 
 jobs:
@@ -36,7 +36,7 @@ jobs:
       run: rm -r dist
       
     - name: Run Production Build
-      run: npm run build:prod
+      run: npm run build-prod
       
     - name: Deploy     
       uses: JamesIves/github-pages-deploy-action@4.1.5
