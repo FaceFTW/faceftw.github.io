@@ -20,6 +20,19 @@ footer {
 // 	// width: 100%;
 // }
 
-mat-grid-list{
-	flex: 0 1 auto;
+div.spacer{
+	width:20px;
+	max-width: 20px;
+	flex: 1 0 auto;
+}
+
+div.card-container {
+	display: flex;
+	justify-items: center;
+	width: 100%;
+}
+
+mat-grid-list {
+	max-width: 100%;
+	flex: 1 1 auto;
 }

@@ -55,33 +55,66 @@ body {
 }
 
 .card {
-	width: 450px;
-	height: 600px;
+	max-width: 500px;
+	// max-height: 650px;
+}
+
+.card mat-card {
+	width: 100%;
+	height: 100%;
+	box-sizing: border-box;
+}
+
+.spacer {
+	flex: 1 1 auto;
+	flex-direction: column;
 }
 
 .card img {
-	height: 300px;
+	max-height: 300px;
 }
 
 .card .cardSubDesc {
 	font-style: italic;
 }
 
-.card .cardLinks{
+.card .cardLinks {
 	text-align: center;
 }
 
-.card .cardLinks a{
+.card .cardLinks a {
 	margin: 0.25rem;
 }
 
-
-.card mat-icon{
+.card mat-icon {
 	font-size: 1.5rem;
 }
 
-
+.vertSpacer {
+	height: auto;
+}
 
 footer {
 	margin-top: 10px;
+}
+
+.card .devStatus {
+	text-align: center;
+	font-size: 1.5rem;
+}
+
+.card .devStatus.active {
+	color: lawngreen;
+}
+
+.card .devStatus.finished {
+	color: aqua;
+}
+
+.card .devStatus.suspended {
+	color: yellow;
+}
+
+.card .devStatus.archived {
+	color: red;
 }
