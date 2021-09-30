@@ -27,8 +27,8 @@
 								<span class="devStatus" [ngClass]="{active: project.projectStatus.status === 'Active Development',
 												finished: project.projectStatus.status ==='Finished' || project.projectStatus.status ==='Finished (Private Work)',
 												suspended: project.projectStatus.status ==='Suspended',
-												archived: project.projectStatus.status ==='archived'}">{{project.projectStatus.status}}</span>
-								<span *ngIf="project.projectStatus.reason">&nbsp;{{project.projectStatus.reason}</span>
+												archived: project.projectStatus.status ==='Archived'}">{{project.projectStatus.status}}</span>
+								<span *ngIf="project.projectStatus.reason"><br>{{project.projectStatus.reason}}</span>
 							</span><br>
 							<span class="cardSubDesc">{{project.projectSubDesc}}</span><br>
 							<span class="cardSubDesc">Languages: {{project.projectLanguage.join(", ")}}</span><br>
