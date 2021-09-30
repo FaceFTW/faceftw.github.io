@@ -26,4 +26,12 @@ export class ProjectsComponent implements OnInit {
 			return assetPath + project.projectAsset;
 		}
 	}
+
+	correctLibrariesList(project: Project): string {
+		if (!project.projectLibraries) {
+			return "N/A";
+		} else {
+			return project.projectLibraries.join(", ");
+		}
+	}
 }

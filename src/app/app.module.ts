@@ -23,6 +23,7 @@ import { MatGridListModule } from "@angular/material/grid-list";
 import { MatButtonModule } from "@angular/material/button";
 import { MatTabsModule } from "@angular/material/tabs";
 import { MatTableModule } from "@angular/material/table";
+import { MatExpansionModule } from "@angular/material/expansion";
 
 @NgModule({
 	declarations: [
@@ -46,7 +47,8 @@ import { MatTableModule } from "@angular/material/table";
 		MatGridListModule,
 		MatButtonModule,
 		MatTabsModule,
-		MatTableModule
+		MatTableModule,
+		MatExpansionModule
 	],
 	providers: [],
 	bootstrap: [AppComponent],
