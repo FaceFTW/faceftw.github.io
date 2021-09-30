@@ -21,6 +21,8 @@ import { MatIconModule } from "@angular/material/icon";
 import { MatCardModule } from "@angular/material/card";
 import { MatGridListModule } from "@angular/material/grid-list";
 import { MatButtonModule } from "@angular/material/button";
+import { MatTabsModule } from "@angular/material/tabs";
+import { MatTableModule } from "@angular/material/table";
 
 @NgModule({
 	declarations: [
@@ -42,7 +44,9 @@ import { MatButtonModule } from "@angular/material/button";
 		MatIconModule,
 		MatCardModule,
 		MatGridListModule,
-		MatButtonModule
+		MatButtonModule,
+		MatTabsModule,
+		MatTableModule
 	],
 	providers: [],
 	bootstrap: [AppComponent],

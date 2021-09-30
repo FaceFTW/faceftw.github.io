@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { Project, ProjectsService, LinkTypeEnum, StatusEnum } from "../projects/projects.service";
+import { Project, ProjectsService, LinkTypeEnum, StatusEnum, ProjectStatus } from "../projects/projects.service";
 
 const featuredProject1Id = 1;
 const featuredProject2Id = 2;
