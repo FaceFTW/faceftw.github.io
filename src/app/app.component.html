@@ -1,64 +1,63 @@
-<div class="container" [class.isMobile]="mobileQuery.matches">
+<div class="container">
 
 
-    <mat-sidenav-container class="snav-container">
-        <!--Sidenav-->
-        <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
-            [fixedInViewport]="mobileQuery.matches ? false : true" opened class="snav">
-            <div class="profile">
-                <a routerLink="/main" routerLinkActive="active">
-                    <img src="/assets/img/pfp_not_funny.jpg" alt="" class="pfp">
-                </a>
-                <h1 class="navbar-brand">
-                    <a routerLink="/main" routerLinkActive="active">Alex Westerman</a>
-                </h1>
-                <div class="social-links">
-                    <a mat-icon-button href="https://twitter.com/_FaceFTW" class="twitter">
-                        <mat-icon fontIcon="nf-fa-twitter"></mat-icon>
-                    </a>
-                    <a href="https://github.com/rhit-westeraj" class="github">
-                        <mat-icon fontIcon="nf-fa-github"></mat-icon>
-                    </a>
-                    <a href="mailto:awesterman16@live.com" class="email">
-                        <mat-icon fontIcon="nf-mdi-email"></mat-icon>
-                    </a>
-                </div>
-            </div>
-            <mat-nav-list>
-                <a routerLink="/main" routerLinkActive="active">
-                    <mat-list-item matListIcon>
-                        <mat-icon fontIcon="nf-mdi-home"></mat-icon>&nbsp;&nbsp; Home
-                    </mat-list-item>
-                </a>
-                <a routerLink="/projects" routerLinkActive="active">
-                    <mat-list-item matListIcon>
-                        <mat-icon fontIcon="nf-dev-code"></mat-icon>&nbsp;&nbsp; Projects
-                    </mat-list-item>
-                </a>
-                <a routerLink="/resume" routerLinkActive="active">
-                    <mat-list-item matListIcon>
-                        <mat-icon fontIcon="nf-fa-file_text_o"></mat-icon>&nbsp;&nbsp; Resume
-                    </mat-list-item>
-                </a>
-                <a routerLink="/about" routerLinkActive="active">
-                    <mat-list-item matListIcon>
-                        <mat-icon fontIcon="nf-fa-user_circle_o"></mat-icon>&nbsp;&nbsp; About
-                    </mat-list-item>
-                </a>
-            </mat-nav-list>
-        </mat-sidenav>
-        <!--Content-->
-        <mat-sidenav-content>
-            <mat-toolbar color="primary" class="headerBlock">
-                <h1 class="headerName">{{toolbarTitle}}</h1>
-                <span class="headerSpacer"></span>
-                <button mat-icon-button (click)="snav.toggle()" class="menuToggle" *ngIf="mobileQuery.matches">
-                    <mat-icon fontIcon="nf-mdi-menu"></mat-icon>
-                </button>
-            </mat-toolbar>
-            <div class="routerContent">
-                <router-outlet></router-outlet>
-            </div>
-        </mat-sidenav-content>
-    </mat-sidenav-container>
+	<mat-sidenav-container class="snav-container">
+		<!--Sidenav-->
+		<mat-sidenav #snav [mode]="'side'" [fixedInViewport]="true" opened class="snav">
+			<div class="profile">
+				<a routerLink="/main" routerLinkActive="active">
+					<img src="/assets/img/pfp_not_funny.jpg" alt="" class="pfp">
+				</a>
+				<h1 class="navbar-brand">
+					<a routerLink="/main" routerLinkActive="active">Alex Westerman</a>
+				</h1>
+				<div class="social-links">
+					<a mat-icon-button href="https://twitter.com/_FaceFTW" class="twitter">
+						<mat-icon fontIcon="nf-fa-twitter"></mat-icon>
+					</a>
+					<a href="https://github.com/rhit-westeraj" class="github">
+						<mat-icon fontIcon="nf-fa-github"></mat-icon>
+					</a>
+					<a href="mailto:awesterman16@live.com" class="email">
+						<mat-icon fontIcon="nf-mdi-email"></mat-icon>
+					</a>
+				</div>
+			</div>
+			<mat-nav-list>
+				<a routerLink="/main" routerLinkActive="active">
+					<mat-list-item matListIcon>
+						<mat-icon fontIcon="nf-mdi-home"></mat-icon>&nbsp;&nbsp; Home
+					</mat-list-item>
+				</a>
+				<a routerLink="/projects" routerLinkActive="active">
+					<mat-list-item matListIcon>
+						<mat-icon fontIcon="nf-dev-code"></mat-icon>&nbsp;&nbsp; Projects
+					</mat-list-item>
+				</a>
+				<a routerLink="/resume" routerLinkActive="active">
+					<mat-list-item matListIcon>
+						<mat-icon fontIcon="nf-fa-file_text_o"></mat-icon>&nbsp;&nbsp; Resume
+					</mat-list-item>
+				</a>
+				<a routerLink="/about" routerLinkActive="active">
+					<mat-list-item matListIcon>
+						<mat-icon fontIcon="nf-fa-user_circle_o"></mat-icon>&nbsp;&nbsp; About
+					</mat-list-item>
+				</a>
+			</mat-nav-list>
+		</mat-sidenav>
+		<!--Content-->
+		<mat-sidenav-content>
+			<mat-toolbar color="primary" class="headerBlock">
+				<h1 class="headerName">{{toolbarTitle}}</h1>
+				<span class="headerSpacer"></span>
+				<!-- <button mat-icon-button (click)="snav.toggle()" class="menuToggle" *ngIf="mobileQuery.matches">
+					<mat-icon fontIcon="nf-mdi-menu"></mat-icon>
+				</button> -->
+			</mat-toolbar>
+			<div class="routerContent">
+				<router-outlet></router-outlet>
+			</div>
+		</mat-sidenav-content>
+	</mat-sidenav-container>
 </div>

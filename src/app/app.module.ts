@@ -12,6 +12,7 @@ import { ResumeComponent } from "./resume/resume.component";
 import { HomeComponent } from "./home/home.component";
 import { ProjectsComponent } from "./projects/projects.component";
 import { FooterComponent } from "./footer/footer.component";
+import { MobileUIWarnComponent } from "./mobile-uiwarn/mobile-uiwarn.component";
 
 //Angular Material Components
 import { MatSidenavModule } from "@angular/material/sidenav";
@@ -24,6 +25,7 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatTabsModule } from "@angular/material/tabs";
 import { MatTableModule } from "@angular/material/table";
 import { MatExpansionModule } from "@angular/material/expansion";
+import { MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS } from "@angular/material/dialog";
 
 @NgModule({
 	declarations: [
@@ -34,6 +36,7 @@ import { MatExpansionModule } from "@angular/material/expansion";
 		ProjectsComponent,
 		Error404Component,
 		FooterComponent,
+		MobileUIWarnComponent,
 	],
 	imports: [
 		BrowserModule,
@@ -48,9 +51,10 @@ import { MatExpansionModule } from "@angular/material/expansion";
 		MatButtonModule,
 		MatTabsModule,
 		MatTableModule,
-		MatExpansionModule
+		MatExpansionModule,
+		MatDialogModule,
 	],
-	providers: [],
+	providers: [{ provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: false } }],
 	bootstrap: [AppComponent],
 })
 export class AppModule {}
