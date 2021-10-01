@@ -63,7 +63,7 @@
 				</ng-container>
 				<ng-container matColumnDef="projectLibraries">
 					<th mat-header-cell *matHeaderCellDef> LIBRARIES </th>
-					<td mat-cell *matCellDef="let project"> {{project.projectLibraries.join(", ")}} </td>
+					<td mat-cell *matCellDef="let project"> {{correctLibrariesList(project)}} </td>
 				</ng-container>
 				<!-- <ng-container matColumnDef="projectLinks">
 					<th mat-header-cell *matHeaderCellDef> GITHUB REPO </th>

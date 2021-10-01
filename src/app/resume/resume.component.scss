@@ -1,7 +1,3 @@
-.resume {
-	padding: 10px 0px;
-}
-
 .resume-skills {
 	padding-bottom: 30px;
 }
@@ -11,7 +7,7 @@
 	width: 100%;
 }
 
-.resume-skills .count-box i {
+.resume-skills .count-box mat-icon {
 	display: block;
 	font-size: 60px;
 	line-height: 40px;
@@ -36,4 +32,8 @@
 	font-weight: 600;
 	font-size: 18px;
 	transition: ease-in-out 0.3s;
+}
+
+.headerSpacer {
+	flex: 1 1 auto;
 }
