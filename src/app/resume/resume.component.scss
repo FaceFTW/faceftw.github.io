@@ -37,3 +37,38 @@
 .headerSpacer {
 	flex: 1 1 auto;
 }
+
+mat-icon.headerIcon {
+	display: block;
+	font-size: 60px;
+}
+
+span.counter {
+	font-size: 48px;
+	margin-left: 70px;
+}
+
+p.counter-desc {
+	font-size: 16px;
+}
+
+div.header-row {
+	// margin-top: 25px;
+	padding-top: 25px;
+	width: 90%;
+	margin: auto;
+}
+
+div.resume-content {
+	width: 90%;
+	margin: auto;
+}
+
+div.resume-spacer {
+	height: 20px;
+	width: 100%;
+}
+
+div.resume-content h1 {
+	margin-top: 25px;
+}

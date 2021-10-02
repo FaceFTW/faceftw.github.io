@@ -1,19 +1,19 @@
 <main id="main">
 	<section class="intro">
 		<div class="justify-content-center" style="padding-top:150px; padding-left:100px" id="hero-container">
-			<span class="h1 bg-body" style="padding: 5px 10px" id="hero-text">Software Engineer</span>
+			<span class="hero-text">Software Engineer</span>
 			<div style="padding:50px;"> </div>
-			<span class="h1 bg-body" style="padding: 5px 10px" id="hero-text">Hardware Tinkerer</span>
+			<span class="hero-text">Hardware Tinkerer</span>
 			<div style="padding:50px;"> </div>
-			<span class="h1 bg-body" style="padding: 5px 10px" id="hero-text">Power User</span>
+			<span class="hero-text">Power User</span>
 			<div style="padding:50px;"> </div>
-			<span class="h1 bg-body" style="padding: 5px 10px" id="hero-text">Tech Enthusiast</span>
+			<span class="hero-text">Tech Enthusiast</span>
 		</div>
 	</section>
 	<section class="projects" id="projects-section">
+		<h1 class="featured-header">Featured Projects</h1>
 		<!--This is why I wanted to rewrite the website with Angular-->
 		<div class="card-container">
-			<div class="spacer"></div>
 			<mat-grid-list [cols]="3" class="featured" rowHeight="650px">
 				<mat-grid-tile *ngFor="let project of featured" class="card">
 					<mat-card>
@@ -55,7 +55,9 @@
 					</mat-card>
 				</mat-grid-tile>
 			</mat-grid-list>
-			<div class="spacer"></div>
+		</div>
+		<div class="more-projects-btn">
+			<button mat-raised-button class="more-projects-btn">More Projects</button>
 		</div>
 	</section>
 </main>

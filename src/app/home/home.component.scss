@@ -8,32 +8,50 @@ section.intro {
 	//margin: 0px !important;
 }
 
+.hero-text {
+	padding: 5px 10px;
+	font-size: 3rem;
+	background-color: #222;
+}
+
 .featured {
 	display: block;
+}
+
+.featured-header {
+	text-align: center;
+	font-size: 3rem;
+	margin-top: 25px;
 }
 
 footer {
 	display: block;
 }
-// .featured {
-// 	// display: flex;
-// 	// width: 100%;
-// }
 
-div.spacer{
-	width:20px;
+div.spacer {
+	width: 20px;
 	max-width: 20px;
 	flex: 1 0 auto;
 }
 
 div.card-container {
-	display: flex;
-	justify-items: center;
+	// display: flex;
+	// justify-items: center;
+	align-content: center;
 	width: 100%;
 }
 
 mat-grid-list {
 	max-width: 100%;
-	flex: 1 1 auto;
-	margin:20px;
+	flex: 1 0 auto;
+	margin: 45px;
+}
+
+div.more-projects-btn{
+	width: 100%;
+	text-align: center;
+}
+
+button.more-projects-btn {
+	width: 92.5%;
 }
