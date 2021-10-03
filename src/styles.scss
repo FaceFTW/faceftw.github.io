@@ -34,95 +34,78 @@ $portfolio-theme: mat.define-dark-theme(
 // that you are using.
 @include mat.all-component-themes($portfolio-theme);
 
-/* You can add global styles to this file, and also import other style files */
-// @import url("../node_modules/bootswatch/dist/darkly/_bootswatch.scss");
-// @import url("../node_modules/bootswatch/dist/darkly/_variables.scss");
-// @import url("../node_modules/bootswatch/dist/darkly/bootstrap.min.css");
-
-html,
-body {
-	height: 100%;
-}
-body {
-	margin: 0;
-	font-family: Roboto, "Helvetica Neue", sans-serif;
-}
-
+// Nerd Fonts Imports (Managed by Material Icon Registry)
 @import url("./assets/nerd-fonts-generated.min.css");
-
 .nf {
 	font-size: 1.2rem;
 }
 
-.card {
-	max-width: 500px;
-	// max-height: 650px;
-}
-
-.card mat-card {
-	width: 100%;
-	height: 100%;
-	box-sizing: border-box;
-}
-
+// Layout Utility Classes
 .spacer {
 	flex: 1 0 auto;
-}
-
-.card img {
-	max-height: 300px;
-}
-
-.card .cardSubDesc {
-	font-style: italic;
-}
-
-.card .cardLinks {
-	text-align: center;
-}
-
-.card .cardLinks a {
-	margin: 0.25rem;
-}
-
-.card mat-icon {
-	font-size: 1.5rem;
-}
-
-.vertSpacer {
-	height: auto;
 }
 
 footer {
 	margin-top: 10px;
 }
 
-.card .devStatus {
-	text-align: center;
-	font-size: 1.5rem;
-}
-
-.card .devStatus.active {
-	color: lawngreen;
-}
-
-.card .devStatus.finished {
-	color: aqua;
-}
-
-.card .devStatus.suspended {
-	color: yellow;
-}
-
-.card .devStatus.archived {
-	color: red;
-}
-
-.mat-raised-button{
+// Material Button Transition CSS
+.mat-raised-button {
 	transition: 0.3s;
+
+	&:hover {
+		background-color: #fff;
+		color: #000;
+	}
 }
 
-.mat-raised-button:hover{
-	background-color: #fff;
-	color: #000;
+// Universal Classes for Project Card Formatting
+.card {
+	max-width: 500px;
+
+	mat-card {
+		width: 100%;
+		height: 100%;
+		box-sizing: border-box;
+	}
+
+	img {
+		max-height: 300px;
+	}
+
+	.cardSubDesc {
+		font-style: italic;
+	}
+
+	.cardLinks {
+		text-align: center;
+		a {
+			margin: 0.25rem;
+		}
+	}
+
+	mat-icon {
+		font-size: 1.5rem;
+	}
+
+	.devStatus {
+		text-align: center;
+		font-size: 1.5rem;
+
+		.active {
+			color: lawngreen;
+		}
+
+		.finished {
+			color: aqua;
+		}
+
+		.suspended {
+			color: yellow;
+		}
+
+		.archived {
+			color: red;
+		}
+	}
 }

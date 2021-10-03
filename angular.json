@@ -52,7 +52,8 @@
 							"src/favicon.ico",
 							{ "glob": "**/*", "input": "src/assets/img", "output": "assets/img" },
 							{ "glob": "**/*", "input": "src/assets/json", "output": "assets/json" },
-							{ "glob": "**/*", "input": "src/assets/fonts", "output": "assets/fonts" }
+							{ "glob": "**/*", "input": "src/assets/fonts", "output": "assets/fonts" },
+							{ "glob": "**/*", "input": "src/assets/misc", "output": "assets/misc" }
 						],
 						"styles": ["src/styles.scss"],
 						"scripts": []
