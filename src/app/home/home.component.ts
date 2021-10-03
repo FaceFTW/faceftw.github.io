@@ -1,9 +1,9 @@
 import {Component, OnInit} from "@angular/core";
 import {Project, ProjectsService} from "../projects/projects.service";
 
-const featuredProject1Id = 1;
-const featuredProject2Id = 2;
-const featuredProject3Id = 3;
+const featuredProject1Id = 5;
+const featuredProject2Id = 1;
+const featuredProject3Id = 2;
 
 const nullAssetPath = "120.jpg";
 const assetPath = "/assets/img/";

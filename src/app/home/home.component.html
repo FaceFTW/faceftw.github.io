@@ -40,15 +40,15 @@
 								<span class="" *ngIf="link.linkType === 'text'">{{link.text}}</span>
 								<a mat-raised-button color="primary" href="{{link.linkURL}}"
 									*ngIf="link.linkType === 'github'">
-									<mat-icon fontIcon="nf-dev-github"></mat-icon> GITHUB REPO
+									<mat-icon fontIcon="nf-fa-github"></mat-icon> GITHUB REPO
 								</a>
 								<a mat-raised-button color="primary" href="{{link.linkURL}}"
 									*ngIf="link.linkType === 'demo'">
-									<mat-icon fontIcon="nf-dev-github"></mat-icon> LIVE DEMO
+									<mat-icon fontIcon="nf-mdi-application"></mat-icon> LIVE DEMO
 								</a>
 								<a mat-raised-button color="primary" href="{{link.linkURL}}"
 									*ngIf="link.linkType === 'misc'">
-									<mat-icon fontIcon="nf-dev-github"></mat-icon> {{link.linkDesc}}
+									<mat-icon fontIcon="nf-mdi-link"></mat-icon> {{link.linkDesc}}
 								</a>
 							</ng-container>
 						</mat-card-actions>
