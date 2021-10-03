@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { ProjectsService, Project } from "./projects.service";
 
-const nullAssetPath = "120.webp";
+const nullAssetPath = "/assets/img/no_asset.webp";
 const assetPath = "/assets/img/";
 
 @Component({
@@ -21,7 +21,7 @@ export class ProjectsComponent implements OnInit {
 
 	correctAssetPath(project: Project): string {
 		if (!project.projectAsset) {
-			return "/assets/img/120.webp";
+			return nullAssetPath;
 		} else {
 			return assetPath + project.projectAsset;
 		}

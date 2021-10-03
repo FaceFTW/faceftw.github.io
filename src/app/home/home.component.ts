@@ -5,7 +5,7 @@ const featuredProject1Id = 5;
 const featuredProject2Id = 1;
 const featuredProject3Id = 2;
 
-const nullAssetPath = "120.webp";
+const nullAssetPath = "/assets/img/no_asset.webp";
 const assetPath = "/assets/img/";
 @Component({
 	selector: "app-home",
@@ -41,7 +41,7 @@ export class HomeComponent implements OnInit {
 
 	correctAssetPath(project: Project): string {
 		if (!project.projectAsset) {
-			return "/assets/img/120.webp";
+			return nullAssetPath;
 		} else {
 			return assetPath + project.projectAsset;
 		}
