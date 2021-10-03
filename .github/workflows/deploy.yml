@@ -43,6 +43,7 @@ jobs:
       with:
         branch: live
         folder: dist
+        target-folder: .
         git-config-name: ${{  'Alex Westerman'  }}
         git-config-email: ${{  'westeraj@rose-hulman.edu'  }}
         
