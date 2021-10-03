@@ -1,11 +1,11 @@
-import {Component, OnInit} from "@angular/core";
-import {Project, ProjectsService} from "../projects/projects.service";
+import { Component, OnInit } from "@angular/core";
+import { Project, ProjectsService } from "../projects/projects.service";
 
 const featuredProject1Id = 5;
 const featuredProject2Id = 1;
 const featuredProject3Id = 2;
 
-const nullAssetPath = "120.jpg";
+const nullAssetPath = "120.webp";
 const assetPath = "/assets/img/";
 @Component({
 	selector: "app-home",
@@ -41,7 +41,7 @@ export class HomeComponent implements OnInit {
 
 	correctAssetPath(project: Project): string {
 		if (!project.projectAsset) {
-			return "/assets/img/120.jpg";
+			return "/assets/img/120.webp";
 		} else {
 			return assetPath + project.projectAsset;
 		}

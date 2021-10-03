@@ -7,7 +7,6 @@ import { Router } from "@angular/router";
 import { MobileUIWarnComponent } from "./mobile-uiwarn/mobile-uiwarn.component";
 import { Clipboard } from "@angular/cdk/clipboard";
 import pub_key from "src/assets/json/gpg_key.json";
-import { TooltipComponent } from "@angular/material/tooltip";
 import { MatSnackBar } from "@angular/material/snack-bar";
 
 const titleFragment = " - Alex Westerman";
