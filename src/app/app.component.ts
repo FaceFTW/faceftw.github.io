@@ -1,10 +1,9 @@
-import { BreakpointObserver, Breakpoints, MediaMatcher } from "@angular/cdk/layout";
-import { ChangeDetectorRef, Component, OnDestroy } from "@angular/core";
-import { MatIconRegistry } from "@angular/material/icon";
-import { ActivatedRoute } from "@angular/router";
-import { Title } from "@angular/platform-browser";
-import { fromEvent } from "rxjs";
+import { BreakpointObserver, Breakpoints } from "@angular/cdk/layout";
+import { Component } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
+import { MatIconRegistry } from "@angular/material/icon";
+import { Title } from "@angular/platform-browser";
+import { Router } from "@angular/router";
 import { MobileUIWarnComponent } from "./mobile-uiwarn/mobile-uiwarn.component";
 
 const titleFragment = " - Alex Westerman";
@@ -31,7 +30,7 @@ export class AppComponent {
 
 	constructor(
 		iconReg: MatIconRegistry,
-		private route: ActivatedRoute,
+		private route: Router,
 		private titleServ: Title,
 		brkpointObs: BreakpointObserver,
 		public dialog: MatDialog
@@ -45,8 +44,8 @@ export class AppComponent {
 			if (state.matches && this.dialog.openDialogs.length === 0) {
 				this.dialog.open(MobileUIWarnComponent, {
 					width: "480px",
-					height:"340px",
-					"hasBackdrop":true,
+					height: "340px",
+					hasBackdrop: true,
 				});
 			}
 		});
@@ -55,22 +54,21 @@ export class AppComponent {
 	ngOnInit() {
 		//Subscribe to route changes to update toolbar header
 		//This is hard coded as there are unlikely to be many more pages
-		this.route.url.subscribe((urlSegs) => {
-			console.log("urlSegs :>> ", urlSegs);
-			switch (urlSegs[0].path) {
-				case "main":
+		this.route.events.subscribe(() => {
+			switch (this.route.url) {
+				case "/main":
 					this.titleServ.setTitle("Home" + titleFragment);
 					this.toolbarTitle = "Home";
 					break;
-				case "projects":
+				case "/projects":
 					this.titleServ.setTitle("Projects" + titleFragment);
 					this.toolbarTitle = "Projects";
 					break;
-				case "resume":
+				case "/resume":
 					this.titleServ.setTitle("Resume" + titleFragment);
 					this.toolbarTitle = "Resume";
 					break;
-				case "about":
+				case "/about":
 					this.titleServ.setTitle("About" + titleFragment);
 					this.toolbarTitle = "About";
 					break;
