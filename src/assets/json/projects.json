@@ -112,7 +112,7 @@
 			"projectSubDesc": "For Rose-Hulman ECE160 - Engineering Practice",
 			"projectLanguage": ["C", "C++"],
 			"projectLibraries": ["Arduino", "Stepper Motor HAL", "PS2 Controller HAL"],
-			"projectAsset": "IMG_3188.webp",
+			"projectAsset": "ece160.webp",
 			"projectLinks": [{ "linkType": "github", "linkURL": "https://github.com/Thunderbirds-ECE160/Final-Robot" }],
 			"projectStatus": { "status": "Finished" }
 		},
@@ -123,7 +123,7 @@
 			"projectSubDesc": "For Rose-Hulman ECE230 - Embedded Systems",
 			"projectLanguage": ["C"],
 			"projectLibraries": ["TI-RTOS (For MSP432)", "TI MSP432/CC2650 Bluetooth Stack"],
-			"projectAsset": "IMG_8955.webp",
+			"projectAsset": "scavlander.webp",
 			"projectLinks": [
 				{ "linkType": "github", "linkURL": "https://github.com/rhit-westeraj/scavlanders-gamepad" }
 			],
@@ -136,6 +136,7 @@
 			"projectSubDesc": "Personal Project",
 			"projectLanguage": ["Papyrus", "ESP Records"],
 			"projectLibraries": ["Creation Engine 1.0 (Fallout 4)"],
+			"projectAsset": "horizonplus.webp",
 			"projectLinks": [{ "linkType": "github", "linkURL": "https://github.com/rhit-westeraj/HorizonPlus" }],
 			"projectStatus": { "status": "Active Development" }
 		}
