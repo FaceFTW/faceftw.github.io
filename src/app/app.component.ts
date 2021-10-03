@@ -5,6 +5,10 @@ import { MatIconRegistry } from "@angular/material/icon";
 import { Title } from "@angular/platform-browser";
 import { Router } from "@angular/router";
 import { MobileUIWarnComponent } from "./mobile-uiwarn/mobile-uiwarn.component";
+import { Clipboard } from "@angular/cdk/clipboard";
+import pub_key from "src/assets/json/gpg_key.json";
+import { TooltipComponent } from "@angular/material/tooltip";
+import { MatSnackBar } from "@angular/material/snack-bar";
 
 const titleFragment = " - Alex Westerman";
 const brokenBrkpts = [
@@ -28,12 +32,16 @@ export class AppComponent {
 	title = "Home - Alex Westerman";
 	toolbarTitle: String = "Home";
 
+	gpgPubKey = pub_key.pub_key;
+
 	constructor(
 		iconReg: MatIconRegistry,
 		private route: Router,
 		private titleServ: Title,
 		brkpointObs: BreakpointObserver,
-		public dialog: MatDialog
+		public dialog: MatDialog,
+		private _snackBar: MatSnackBar,
+		private clipboard: Clipboard
 	) {
 		//Register NerdFonts with Angular Material
 		iconReg.registerFontClassAlias("nf");
@@ -72,9 +80,20 @@ export class AppComponent {
 					this.titleServ.setTitle("About" + titleFragment);
 					this.toolbarTitle = "About";
 					break;
+				case "/error404":
+					this.titleServ.setTitle("404" + titleFragment);
+					this.toolbarTitle = "Error 404 - Not Found";
+					break;
 			}
 		});
 	}
 
 	ngOnDestroy(): void {}
+
+	showCopiedSnackBar() {
+		this._snackBar.open("Copied GPG Key to Clipboard!", "", {
+			verticalPosition: "top",
+			horizontalPosition: "left",
+		});
+	}
 }

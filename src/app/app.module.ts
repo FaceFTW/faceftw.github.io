@@ -26,6 +26,11 @@ import { MatTabsModule } from "@angular/material/tabs";
 import { MatTableModule } from "@angular/material/table";
 import { MatExpansionModule } from "@angular/material/expansion";
 import { MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS } from "@angular/material/dialog";
+import { MatTooltipModule, MAT_TOOLTIP_DEFAULT_OPTIONS } from "@angular/material/tooltip";
+import { MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS } from "@angular/material/snack-bar";
+
+//CDK Modules
+import { ClipboardModule } from "@angular/cdk/clipboard";
 
 @NgModule({
 	declarations: [
@@ -53,8 +58,15 @@ import { MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS } from "@angular/material/d
 		MatTableModule,
 		MatExpansionModule,
 		MatDialogModule,
+		MatTooltipModule,
+		MatSnackBarModule,
+		ClipboardModule,
 	],
-	providers: [{ provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: false } }],
+	providers: [
+		{ provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: false } },
+		{ provide: MAT_TOOLTIP_DEFAULT_OPTIONS, useValue: { position: "below" } },
+		{ provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { duration: 3000 } },
+	],
 	bootstrap: [AppComponent],
 })
 export class AppModule {}

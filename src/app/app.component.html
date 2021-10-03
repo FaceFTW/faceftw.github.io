@@ -10,14 +10,17 @@
 					<a routerLink="/main" routerLinkActive="active">Alex Westerman</a>
 				</h1>
 				<div class="social-links">
-					<a href="https://twitter.com/_FaceFTW">
+					<a href="https://twitter.com/_FaceFTW" matTooltip="Twitter">
 						<mat-icon fontIcon="nf-mdi-twitter"></mat-icon>
 					</a>
-					<a href="https://github.com/rhit-westeraj">
+					<a href="https://github.com/rhit-westeraj" matTooltip="Github">
 						<mat-icon fontIcon="nf-fa-github"></mat-icon>
 					</a>
-					<a href="mailto:awesterman16@live.com">
+					<a href="mailto:awesterman16@live.com" matTooltip="Email">
 						<mat-icon fontIcon="nf-mdi-email"></mat-icon>
+					</a>
+					<a [cdkCopyToClipboard]="gpgPubKey" (click)="showCopiedSnackBar()" matTooltip="GPG Public Key">
+						<mat-icon fontIcon="nf-mdi-key_variant"></mat-icon>
 					</a>
 				</div>
 			</div>
