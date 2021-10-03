@@ -1,39 +1,70 @@
-.resume-skills {
-	padding-bottom: 30px;
-}
-
-.resume-skills .count-box {
+.count-box {
 	padding: 15px;
 	width: 100%;
+	display: flex;
 }
 
-.resume-skills .count-box mat-icon {
+.count-box-right {
+	margin-left: 80px;
+}
+
+.count-box mat-icon {
 	display: block;
-	font-size: 60px;
-	line-height: 40px;
-	float: left;
+	font-size: 80px;
+	line-height: 60px;
 }
 
-.resume-skills .count-box span {
+.count-box span {
 	font-size: 48px;
-	line-height: 40px;
+	line-height: 20px;
 	display: block;
 	font-weight: 700;
-	margin-left: 70px;
 }
 
-.resume-skills .count-box p {
+.count-box p {
 	padding: 15px 0 0 0;
-	margin: 0 0 0 70px;
 	font-size: 16px;
 }
 
-.resume-skills .count-box a {
+.count-box a {
 	font-weight: 600;
 	font-size: 18px;
 	transition: ease-in-out 0.3s;
 }
 
+.counter-desc {
+	// padding-left: 65px;
+	width: 250px;
+}
+
+a:visited {
+	color: #ffffff;
+}
+
 .headerSpacer {
 	flex: 1 1 auto;
+}
+
+div.header-row {
+	padding-top: 25px;
+	width: 90%;
+	margin: auto;
+}
+
+div.resume-content {
+	width: 90%;
+	margin: auto;
+}
+
+div.resume-spacer {
+	height: 20px;
+	width: 100%;
+}
+
+div.resume-content h1 {
+	margin-top: 25px;
+}
+
+mat-grid-tile {
+	display: flex;
 }

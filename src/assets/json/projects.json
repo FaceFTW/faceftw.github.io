@@ -15,7 +15,7 @@
 		{
 			"projectId": 1,
 			"projectName": "cnhasm",
-			"projectDescription": "Regex Assembler for a Custom 16-bit Assembly Architecture",
+			"projectDescription": "CLI Assembler for a Custom 16-bit Assembly Architecture powered by Regular Expression Parsing",
 			"projectSubDesc": "For Rose-Hulman CSSE232: Computer Architecture",
 			"projectLanguage": ["C#"],
 			"projectLibraries": [".NET Core 3.1"],
@@ -26,7 +26,7 @@
 		{
 			"projectId": 2,
 			"projectName": "UberUnit",
-			"projectDescription": "A consolidated, lightweight unit converter built for user convenience",
+			"projectDescription": "A consolidated, lightweight unit converter built for user convenience, with Firebase Integration for History and User Favorites",
 			"projectSubDesc": "For Rose-Hulman CSSE280",
 			"projectLanguage": ["HTML5", "Sass", "TypeScript"],
 			"projectLibraries": ["Angular", "Firebase (via @angular/fire)", "Bootstrap"],
@@ -65,7 +65,7 @@
 		{
 			"projectId": 5,
 			"projectName": "Portfolio Website",
-			"projectDescription": "A Personally Desinged Portfolio Website With a Modern Look and Feel",
+			"projectDescription": "A Personally Desinged Portfolio Website With a Modern Look and Feel, with Automatic Project Info Population from JSON Schemas",
 			"projectSubDesc": "Originally for Rose-Hulman CSSE280, Further Worked On Personally",
 			"projectLanguage": ["HTML5", "Sass", "TypeScript"],
 			"projectLibraries": ["Angular 12, Angular Material, NerdFonts"],
@@ -78,7 +78,7 @@
 		{
 			"projectId": 6,
 			"projectName": "StartMenuUtil",
-			"projectDescription": "Windows Utility to Control Start Menu Shortcuts",
+			"projectDescription": "Windows Utility to Backup and Manipulate Start Menu Shortcuts and Folders,",
 			"projectSubDesc": "Personal Project",
 			"projectLanguage": ["C#"],
 			"projectLibraries": [".NET Standard 5", "Windows Script Host (via COM)"],
@@ -98,7 +98,7 @@
 		{
 			"projectId": 8,
 			"projectName": "OpenCryptoBench",
-			"projectDescription": "Rudimentary Cryptograhy Algorithm Benchmark Written in Java",
+			"projectDescription": "Rudimentary Cryptograhy Algorithm Benchmark Written in Java (Like *really* basic)",
 			"projectSubDesc": "Personal Project: The First one that is Open-Source",
 			"projectLanguage": ["Java 8"],
 			"projectLibraries": ["Bouncy Castle (Java Variant)"],

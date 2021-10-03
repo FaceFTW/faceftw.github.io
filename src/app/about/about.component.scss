@@ -1,9 +1,19 @@
-#workspaceimg {
-	width: 100vh;
+.about {
+	display: flex;
+	margin: 20px;
 }
 
-@media (max-width: 1024px) {
-	#workspaceimg {
-		width: 50vh;
-	}
+.about div {
+	margin: 20px;
+}
+
+h1 {
+	font-size: 3rem;
+	margin: 20px 20px 30px 20px;
+	padding-top: 30px;
+	padding-left: 20px;
+}
+
+p {
+	text-indent: 45px;
 }
