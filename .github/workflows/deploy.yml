@@ -42,8 +42,7 @@ jobs:
       uses: JamesIves/github-pages-deploy-action@4.1.5
       with:
         branch: live
-        folder: dist
-        target-folder: .
+        folder: dist/portfolio
         git-config-name: ${{  'Alex Westerman'  }}
         git-config-email: ${{  'westeraj@rose-hulman.edu'  }}
         
