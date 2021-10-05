@@ -84,6 +84,7 @@ export class AppComponent {
 					this.toolbarTitle = "Error 404 - Not Found";
 					break;
 			}
+			document.querySelector(".mat-sidenav-content")?.scroll(0, 0);
 		});
 	}
 
