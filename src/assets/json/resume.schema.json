@@ -1,0 +1,168 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema",
+	"$id": "/resume.schema.json",
+	"title": "Resume",
+	"description": "Serves as a way to easily edit the resume on the portfolio without editing the HTML content",
+	"type": "object",
+	"properties": {
+		"highlights": {
+			"description": "A list of 3 highlights that are seen at the top of the resume page",
+			"type": "array",
+			"items": { "type": "object", "$ref": "#/$defs/highlightItem" },
+			"uniqueItems": true,
+			"minItems": 3,
+			"maxItems": 3
+		},
+		"skills": {
+			"description": "Represents the skills shown on the resume",
+			"type": "array",
+			"items": { "type": "object", "$ref": "#/$defs/skillCategory" },
+			"minItems": 1,
+			"uniqueItems": true
+		},
+		"education": {
+			"description": "Represents the education on the resume",
+			"type": "array",
+			"items": { "type": "object", "$ref": "#/$defs/eduExperience" },
+			"minItems": 1,
+			"uniqueItems": true
+		},
+		"experience": {
+			"description": "Represents the Job Experience shown on the resume",
+			"type": "array",
+			"items": { "type": "object", "$ref": "#/$defs/profExperience" },
+			"minItems": 1,
+			"uniqueItems": true
+		}
+	},
+	"$defs": {
+		"highlightItem": {
+			"description": "Defines one of the three \"highlights\" on top of the resume page",
+			"type": "object",
+			"properties": {
+				"icon": {
+					"description": "The icon used for this highlight. See https://www.nerdfonts.com/cheat-sheet for a list of available symbols",
+					"type": "string"
+				},
+				"stat": {
+					"description": "The statistic used for the highlight",
+					"type": "string"
+				},
+				"statDescription": {
+					"description": "A description for the statistic in the highlight",
+					"type": "string"
+				}
+			},
+			"required": ["icon", "stat", "statDescription"]
+		},
+		"skillCategory": {
+			"description": "Represents a category for skills",
+			"type": "object",
+			"properties": {
+				"categoryName": {
+					"description": "Name of the skill category",
+					"type": "string"
+				},
+				"highSkill": {
+					"description": "List of skills withing the category with advanced knowledge",
+					"type": "array",
+					"items": { "type": "string" },
+					"minItems": 1,
+					"uniqueItems": true
+				},
+				"medSkill": {
+					"description": "List of skills withing the category with intermediate knowledge",
+					"type": "array",
+					"items": { "type": "string" },
+					"minItems": 1,
+					"uniqueItems": true
+				},
+				"lowSkill": {
+					"description": "List of skills withing the category with beginner knowledge",
+					"type": "array",
+					"items": { "type": "string" },
+					"minItems": 1,
+					"uniqueItems": true
+				}
+			},
+			"required": ["categoryName"]
+		},
+		"eduExperience": {
+			"description": "Represents education section of a resume",
+			"type": "object",
+			"properties": {
+				"name": { "description": "Name of the institution/school", "type": "string" },
+				"graduationDate": {
+					"description": "Graduation date for this institution. Appears as a subtitle to the accordion card",
+					"type": "string"
+				},
+				"degree": {
+					"description": "The degree(s) and graduation class of the insitution/school",
+					"type": "array",
+					"items": { "type": "string", "minItems": 1, "uniqueItems": true }
+				},
+				"degreeAddendum": {
+					"description": "Any other relevant information about your degree (i.e. Major change, adding minors, etc)",
+					"type": "string"
+				},
+				"gpa": {
+					"$ref": "#/$defs/gpa"
+				},
+				"relCoursework": {
+					"description": "The list of completed courses that may be relevant to employers",
+					"type": "array",
+					"items": { "type": "string", "minItems": 1, "uniqueItems": true }
+				},
+				"propCoursework": {
+					"description": "The list of current/future courses that may be relevant to employers",
+					"type": "array",
+					"items": { "type": "string", "minItems": 1, "uniqueItems": true }
+				}
+			},
+			"required": ["name", "graduationDate", "degree", "relCoursework"]
+		},
+		"profExperience": {
+			"description": "This is an entry for profesional experience (e.g. a job/internship)",
+			"type": "object",
+			"properties": {
+				"name": {
+					"description": "Name of the company/employer",
+					"type": "string"
+				},
+				"position": { "description": "Position held at the company/employer", "type": "string" },
+				"timeEmployed": {
+					"description": "String detailing length of time employed. Best formatted as <Month><Year> - (<Month><Year> OR 'Present')",
+					"type": "string"
+				},
+				"location": { "description": "Location of the professional experience, is optional", "type": "string" },
+				"terminationReason": {
+					"description": "If applicable, adds a reason why you are no longer employed. This field is not required",
+					"type": "string"
+				},
+				"responsibilities": {
+					"description": "A list of strings that represent the responsibilities you held at this employer",
+					"type": "array",
+					"items": { "type": "string", "minItems": 1, "uniqueItems": true }
+				}
+			}
+		},
+		"gpa": {
+			"description": "Holds information about GPA. Excluding this field will not show any GPA information under this education section",
+			"type": "object",
+			"properties": {
+				"unweighted": {
+					"description": "Holds an Unweighted GPA value (Validates from 0.0 to 4.0)",
+					"type": "number",
+					"minimum": 0,
+					"maximum": 4
+				},
+				"weighted": {
+					"description": "Holds a weighted GPA value (Validates from 0.0 to 5.0",
+					"type": "number",
+					"minimum": 0,
+					"maximum": 5
+				}
+			}
+		}
+	}
+}

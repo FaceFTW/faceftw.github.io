@@ -1,0 +1,14 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema",
+	"$id": "/globalSite.schema.json",
+	"description": "Dictates site-wide settings such as your name, sidebar social links, and color themeing",
+	"type": "object",
+	"properties": {
+		"name": {
+			"description": "Your name, is displayed on the main sidebar of the portfolio",
+			"type": "string"
+		},
+		"profileImg": {}
+	},
+	"required": ["name"]
+}

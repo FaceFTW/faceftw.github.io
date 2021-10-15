@@ -1,0 +1,94 @@
+{
+	"$schema": "./resume.schema.json",
+	"highlights": [
+		{
+			"icon": "nf-fa-book",
+			"stat": "8+ years",
+			"statDescription": "Experience in Computers, Programming, and Technology"
+		},
+		{ "icon": "nf-fa-github", "stat": "10+ Repos", "statDescription": "Available on Github" },
+		{ "icon": "nf-fa-heart", "stat": "1000+ hours", "statDescription": "Effort, Dedication, and Learning" }
+	],
+	"skills": [
+		{
+			"categoryName": "Computer Programming",
+			"medSkill": [
+				"SQL Database and Queries (mainly PostgreSQL)",
+				"Windows and Linux/UNIX Kernels and Environments",
+				"Low-Level Programming and Processor Architecture"
+			],
+			"highSkill": [
+				"Industry-Level Languages, including C, C++, C#, and Java",
+				"Web Design (HTML5, CSS3, Javascript)",
+				"Web Application Frameworks (Angular/NodeJS)"
+			]
+		},
+		{
+			"categoryName": "Computer Hardware/Repair",
+			"lowSkill": ["Electronic Component Form Factors, Functions, and Use Cases"],
+			"medSkill": [
+				"IoT Devices and Architecture",
+				"Arduino",
+				"Raspberry Pi",
+				"Data Recovery and Old Hardware Refurbishment"
+			],
+			"highSkill": ["Computer Internals and Hardware"]
+		}
+	],
+	"education": [
+		{
+			"name": "Rose-Hulman Institute of Technology",
+			"graduationDate": "Graduating in Spring of 2024",
+			"degree": ["Bachelors of Science - Software Engineering", "(TENTATIVE) Masters - Engineering Management"],
+			"degreeAddendum": "Originally Studied Computer Engineering until Spring 2021",
+			"relCoursework": [
+				"Computer Architecture I (CSSE232)",
+				"Intro to Embedded Systems (ECE230)",
+				"Data Structures and Algorithms (CSSE230)",
+				"Intro to Object Oriented Programming (CSSE220)"
+			],
+			"propCoursework": ["Software Project Management (CSSE372)", "Intro to Computer Systems (CSSE132)", ""]
+		},
+		{
+			"name": "Walt Whitman High School",
+			"degree": ["High School Diploma"],
+			"degreeAddendum": "Maryland Seal of Bi-Literacy (Chinese)",
+			"graduationDate": "Graduated - Class of 2019",
+			"gpa": { "unweighted": 3.31, "weighted": 4.0 },
+			"relCoursework": [
+				"AP Computer Science",
+				"AP Calclus AB",
+				"PLTW Digital Electronics",
+				"PLTW Engineering Design and Development Capstone Course"
+			]
+		}
+	],
+	"experience": [
+		{
+			"name": "Rizkly Inc.",
+			"position": "Software Development Intern",
+			"timeEmployed": "June 2020 - Present",
+			"location": "Bethesda, MD",
+			"responsibilities": [
+				"Helped plan and suggest new algorithms to deploy for client use",
+				"Wrote and optimized new algorithm code for database backends to implement new features",
+				"Communicated with database/server administrators about integration of new feature-sets",
+				"Documented work for company transparency to clients",
+				"Implemented a CRUD-like web service that communicates with a PostgreSQL database",
+				"Created Algorithm Visualizations powered by Angular"
+			]
+		},
+		{
+			"name": "Holton Arms Creative Summer",
+			"position": "Web Desgin Counselor",
+			"timeEmployed": "June 2019 - August 2019",
+			"location": "Bethesda, MD",
+			"responsibilities": [
+				"Taught children ages 8-15 various principles of basic web design including HTML5 and CSS3",
+				"Supervised and engaged children throughout camp day",
+				"Communicated with parents about child's experiences at camp",
+				"Aided with camp-related activities and duties"
+			]
+		}
+	]
+}
