@@ -1,7 +1,8 @@
 <div class="container">
 	<mat-sidenav-container class="snav-container">
 		<!--Sidenav-->
-		<mat-sidenav #snav [mode]="'side'" [fixedInViewport]="true" opened class="snav">
+		<mat-sidenav #snav [mode]=" isMobile? 'over':'side'" [fixedInViewport]="!isMobile" [opened]="!isMobile"
+			class="snav">
 			<div class="profile">
 				<a routerLink="/main" routerLinkActive="active">
 					<img src="/assets/img/pfp_not_funny.webp" alt="" class="pfp">
@@ -52,9 +53,9 @@
 			<mat-toolbar color="primary" class="headerBlock">
 				<h1 class="headerName">{{toolbarTitle}}</h1>
 				<span class="headerSpacer"></span>
-				<!-- <button mat-icon-button (click)="snav.toggle()" class="menuToggle" *ngIf="mobileQuery.matches">
+				<button mat-icon-button (click)="snav.toggle()" class="menuToggle" *ngIf="isMobile">
 					<mat-icon fontIcon="nf-mdi-menu"></mat-icon>
-				</button> -->
+				</button>
 			</mat-toolbar>
 			<div class="routerContent">
 				<router-outlet></router-outlet>

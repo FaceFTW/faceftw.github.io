@@ -1,5 +1,5 @@
 import { BreakpointObserver, Breakpoints } from "@angular/cdk/layout";
-import { Component } from "@angular/core";
+import { Component, ViewChild } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import { MatIconRegistry } from "@angular/material/icon";
 import { Title } from "@angular/platform-browser";
@@ -8,6 +8,7 @@ import { MobileUIWarnComponent } from "./mobile-uiwarn/mobile-uiwarn.component";
 import { Clipboard } from "@angular/cdk/clipboard";
 import pub_key from "src/assets/json/gpg_key.json";
 import { MatSnackBar } from "@angular/material/snack-bar";
+import { MatSidenav } from "@angular/material/sidenav";
 
 const titleFragment = " - Alex Westerman";
 const brokenBrkpts = [
@@ -33,6 +34,8 @@ export class AppComponent {
 
 	gpgPubKey = pub_key.pub_key;
 
+	isMobile: boolean = false;
+
 	constructor(
 		iconReg: MatIconRegistry,
 		private route: Router,
@@ -48,12 +51,17 @@ export class AppComponent {
 
 		//Breakpoint Observation for Warning about broken mobile ui
 		brkpointObs.observe(brokenBrkpts).subscribe((state) => {
-			if (state.matches && this.dialog.openDialogs.length === 0) {
-				this.dialog.open(MobileUIWarnComponent, {
-					width: "480px",
-					height: "340px",
-					hasBackdrop: true,
-				});
+			if (state.matches) {
+				this.isMobile = true;
+				if (this.dialog.openDialogs.length === 0) {
+					this.dialog.open(MobileUIWarnComponent, {
+						width: "320px",
+						height: "480px",
+						hasBackdrop: true,
+					});
+				}
+			} else {
+				this.isMobile = false;
 			}
 		});
 	}

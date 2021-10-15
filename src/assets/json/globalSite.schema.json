@@ -8,7 +8,16 @@
 			"description": "Your name, is displayed on the main sidebar of the portfolio",
 			"type": "string"
 		},
-		"profileImg": {}
+		"profileImg": {
+			"description": "File name of the image in assets/img to use for the profile picture in the sidebar",
+			"type": "string"
+		},
+		"social-links": {}
 	},
-	"required": ["name"]
+	"required": ["name"],
+	"$defs": {
+		"social-link":{
+			"description":"represents a link to a social page or "
+		}
+	}
 }
