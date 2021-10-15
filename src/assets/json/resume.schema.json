@@ -51,9 +51,9 @@
 				"statDescription": {
 					"description": "A description for the statistic in the highlight",
 					"type": "string"
-				},
-				"required": ["icon", "stat", "statDescription"]
-			}
+				}
+			},
+			"required": ["icon", "stat", "statDescription"]
 		},
 		"skillCategory": {
 			"description": "Represents a category for skills",
@@ -85,13 +85,84 @@
 					"uniqueItems": true
 				}
 			},
-			"required": ["categoryName", "lowSkill"]
+			"required": ["categoryName"]
 		},
-		"eduExperience": {},
+		"eduExperience": {
+			"description": "Represents education section of a resume",
+			"type": "object",
+			"properties": {
+				"name": { "description": "Name of the institution/school", "type": "string" },
+				"graduationDate": {
+					"description": "Graduation date for this institution. Appears as a subtitle to the accordion card",
+					"type": "string"
+				},
+				"degree": {
+					"description": "The degree(s) and graduation class of the insitution/school",
+					"type": "array",
+					"items": { "type": "string", "minItems": 1, "uniqueItems": true }
+				},
+				"degreeAddendum": {
+					"description": "Any other relevant information about your degree (i.e. Major change, adding minors, etc)",
+					"type": "string"
+				},
+				"gpa": {
+					"$ref": "#/$defs/gpa"
+				},
+				"relCoursework": {
+					"description": "The list of completed courses that may be relevant to employers",
+					"type": "array",
+					"items": { "type": "string", "minItems": 1, "uniqueItems": true }
+				},
+				"propCoursework": {
+					"description": "The list of current/future courses that may be relevant to employers",
+					"type": "array",
+					"items": { "type": "string", "minItems": 1, "uniqueItems": true }
+				}
+			},
+			"required": ["name", "graduationDate", "degree", "relCoursework"]
+		},
 		"profExperience": {
 			"description": "This is an entry for profesional experience (e.g. a job/internship)",
 			"type": "object",
-			"properties": {}
+			"properties": {
+				"name": {
+					"description": "Name of the company/employer",
+					"type": "string"
+				},
+				"position": { "description": "Position held at the company/employer", "type": "string" },
+				"timeEmployed": {
+					"description": "String detailing length of time employed. Best formatted as <Month><Year> - (<Month><Year> OR 'Present')",
+					"type": "string"
+				},
+				"location": { "description": "Location of the professional experience, is optional", "type": "string" },
+				"terminationReason": {
+					"description": "If applicable, adds a reason why you are no longer employed. This field is not required",
+					"type": "string"
+				},
+				"responsibilities": {
+					"description": "A list of strings that represent the responsibilities you held at this employer",
+					"type": "array",
+					"items": { "type": "string", "minItems": 1, "uniqueItems": true }
+				}
+			}
+		},
+		"gpa": {
+			"description": "Holds information about GPA. Excluding this field will not show any GPA information under this education section",
+			"type": "object",
+			"properties": {
+				"unweighted": {
+					"description": "Holds an Unweighted GPA value (Validates from 0.0 to 4.0)",
+					"type": "number",
+					"minimum": 0,
+					"maximum": 4
+				},
+				"weighted": {
+					"description": "Holds a weighted GPA value (Validates from 0.0 to 5.0",
+					"type": "number",
+					"minimum": 0,
+					"maximum": 5
+				}
+			}
 		}
 	}
 }
