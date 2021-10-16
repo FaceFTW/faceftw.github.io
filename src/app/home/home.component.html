@@ -14,7 +14,7 @@
 		<h1 class="featured-header">Featured Projects</h1>
 		<!--This is why I wanted to rewrite the website with Angular-->
 		<div class="card-container">
-			<mat-grid-list [cols]="3" class="featured" rowHeight="650px">
+			<mat-grid-list [cols]="isMobile? 1 : 3" class="featured" rowHeight="650px">
 				<mat-grid-tile *ngFor="let project of featured" class="card">
 					<mat-card>
 						<mat-card-header>
@@ -57,7 +57,8 @@
 			</mat-grid-list>
 		</div>
 		<div class="more-projects-btn">
-			<a routerLink="/projects" routerLinkActive="active" #outlet><button mat-raised-button class="more-projects-btn">More Projects</button></a>
+			<a routerLink="/projects" routerLinkActive="active" #outlet><button mat-raised-button
+					class="more-projects-btn">More Projects</button></a>
 		</div>
 	</section>
 </main>

@@ -46,7 +46,7 @@ $portfolio-theme: mat.define-dark-theme(
 }
 
 footer {
-	margin-top: 10px;
+	margin-top: 0.625rem;
 }
 
 // Material Button Transition CSS
@@ -61,8 +61,8 @@ footer {
 
 // Universal Classes for Project Card Formatting
 .card {
-	max-width: 500px;
-
+	max-width: 31.25rem;
+	width: 31.25rem;
 	mat-card {
 		width: 100%;
 		height: 100%;

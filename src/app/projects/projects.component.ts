@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
 import { ProjectsService, Project } from "./projects.service";
 
 const nullAssetPath = "/assets/img/no_asset.webp";
@@ -12,6 +12,7 @@ const assetPath = "/assets/img/";
 export class ProjectsComponent implements OnInit {
 	projects: Project[];
 	columnsToDisplay = ["projectName", "projectStatus", "projectLanguage", "projectLibraries"];
+	@Input("isMobile") isMobile: boolean = false;
 
 	constructor(projectServ: ProjectsService) {
 		this.projects = projectServ.projects;

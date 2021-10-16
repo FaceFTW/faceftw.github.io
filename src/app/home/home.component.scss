@@ -8,11 +8,11 @@ section.intro {
 	background-position: center;
 
 	.padding-div {
-		padding: 50px;
+		padding: 3.125rem;
 	}
 
 	.hero-text {
-		padding: 5px 10px;
+		padding: 0.3125rem 0.625rem;
 		font-size: 3rem;
 		background-color: #222;
 	}
@@ -27,19 +27,19 @@ section.intro {
 	.featured-header {
 		text-align: center;
 		font-size: 3rem;
-		margin-top: 25px;
+		margin-top: 1.5rem;
 	}
 
 	mat-grid-list {
 		max-width: 100%;
 		flex: 1 0 auto;
-		margin: 45px;
+		margin: 3.8125rem;
 	}
 
 	div {
 		.spacer {
-			width: 20px;
-			max-width: 20px;
+			width: 1.25rem;
+			max-width: 1.25rem;
 			flex: 1 0 auto;
 		}
 

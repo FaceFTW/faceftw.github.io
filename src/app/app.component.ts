@@ -1,5 +1,5 @@
 import { BreakpointObserver, Breakpoints } from "@angular/cdk/layout";
-import { Component, ViewChild } from "@angular/core";
+import { Component, Output, ViewChild } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import { MatIconRegistry } from "@angular/material/icon";
 import { Title } from "@angular/platform-browser";
@@ -8,21 +8,10 @@ import { MobileUIWarnComponent } from "./mobile-uiwarn/mobile-uiwarn.component";
 import { Clipboard } from "@angular/cdk/clipboard";
 import pub_key from "src/assets/json/gpg_key.json";
 import { MatSnackBar } from "@angular/material/snack-bar";
-import { MatSidenav } from "@angular/material/sidenav";
+import { ResponsiveUIService } from "./responsive-ui.service";
 
 const titleFragment = " - Alex Westerman";
-const brokenBrkpts = [
-	Breakpoints.XSmall,
-	Breakpoints.Small,
-	Breakpoints.Medium,
-	Breakpoints.Handset,
-	Breakpoints.HandsetLandscape,
-	Breakpoints.HandsetPortrait,
-	Breakpoints.Tablet,
-	Breakpoints.TabletLandscape,
-	Breakpoints.TabletPortrait,
-	Breakpoints.WebPortrait,
-];
+
 @Component({
 	selector: "app-root",
 	templateUrl: "./app.component.html",
@@ -40,28 +29,19 @@ export class AppComponent {
 		iconReg: MatIconRegistry,
 		private route: Router,
 		private titleServ: Title,
-		brkpointObs: BreakpointObserver,
 		public dialog: MatDialog,
 		private _snackBar: MatSnackBar,
-		private clipboard: Clipboard
+		private clipboard: Clipboard,
+		private ui: ResponsiveUIService
 	) {
 		//Register NerdFonts with Angular Material
 		iconReg.registerFontClassAlias("nf");
 		iconReg.setDefaultFontSetClass("nf");
 
-		//Breakpoint Observation for Warning about broken mobile ui
-		brkpointObs.observe(brokenBrkpts).subscribe((state) => {
-			if (state.matches) {
-				this.isMobile = true;
-				if (this.dialog.openDialogs.length === 0) {
-					this.dialog.open(MobileUIWarnComponent, {
-						width: "320px",
-						height: "480px",
-						hasBackdrop: true,
-					});
-				}
-			} else {
-				this.isMobile = false;
+		this.ui.isMobile$.subscribe((isMobile) => {
+			this.isMobile = isMobile;
+			if (this.isMobile && this.dialog.openDialogs.length === 0) {
+				this.dialog.open(MobileUIWarnComponent, { width: "320px", height: "480px", hasBackdrop: true });
 			}
 		});
 	}
