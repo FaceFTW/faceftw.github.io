@@ -70,7 +70,7 @@ export class AppComponent {
 					this.titleServ.setTitle("About" + titleFragment);
 					this.toolbarTitle = "About";
 					break;
-				case "/error404":
+				case "/err_404":
 					this.titleServ.setTitle("404" + titleFragment);
 					this.toolbarTitle = "Error 404 - Not Found";
 					break;
