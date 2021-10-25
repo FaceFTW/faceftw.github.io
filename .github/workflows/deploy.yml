@@ -41,7 +41,7 @@ jobs:
     - name: Some SPA Workarounds for Github Pages
       run : |
         touch dist/portfolio/.nojekyll
-        cp dist/portfolio/index.html /dist/portfolio/404.html
+        cp dist/portfolio/index.html dist/portfolio/404.html
 
     - name: Deploy     
       uses: JamesIves/github-pages-deploy-action@4.1.5
