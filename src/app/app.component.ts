@@ -21,6 +21,9 @@ export class AppComponent {
 	title = "Home - Alex Westerman";
 	toolbarTitle: String = "Home";
 
+	//For times when I am busy and need a quick toggle
+	suspendedEnd = new Date(2021, 11, 19);
+
 	gpgPubKey = pub_key.pub_key;
 
 	isMobile: boolean = false;
@@ -74,6 +77,8 @@ export class AppComponent {
 			}
 			document.querySelector(".mat-sidenav-content")?.scroll(0, 0);
 		});
+
+		this.showSuspendedSnackBar();
 	}
 
 	ngOnDestroy(): void {}
@@ -83,5 +88,17 @@ export class AppComponent {
 			verticalPosition: "top",
 			horizontalPosition: "left",
 		});
+	}
+
+	showSuspendedSnackBar() {
+		//Just check if the suspended date is ahead of today's date
+		if (Date.now() < this.suspendedEnd.getTime()) {
+			//Give the people a heads up
+			this._snackBar.open(
+				`Heads Up: I am going to be busy for a while and will be suspending development until ${this.suspendedEnd.toDateString()}`,
+				"GOTCHA",
+				{ verticalPosition: "top" }
+			);
+		}
 	}
 }
