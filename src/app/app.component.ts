@@ -1,5 +1,5 @@
 import { BreakpointObserver, Breakpoints } from "@angular/cdk/layout";
-import { Component } from "@angular/core";
+import { Component, Output, ViewChild } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import { MatIconRegistry } from "@angular/material/icon";
 import { Title } from "@angular/platform-browser";
@@ -8,20 +8,10 @@ import { MobileUIWarnComponent } from "./mobile-uiwarn/mobile-uiwarn.component";
 import { Clipboard } from "@angular/cdk/clipboard";
 import pub_key from "src/assets/json/gpg_key.json";
 import { MatSnackBar } from "@angular/material/snack-bar";
+import { ResponsiveUIService } from "./responsive-ui.service";
 
 const titleFragment = " - Alex Westerman";
-const brokenBrkpts = [
-	Breakpoints.XSmall,
-	Breakpoints.Small,
-	Breakpoints.Medium,
-	Breakpoints.Handset,
-	Breakpoints.HandsetLandscape,
-	Breakpoints.HandsetPortrait,
-	Breakpoints.Tablet,
-	Breakpoints.TabletLandscape,
-	Breakpoints.TabletPortrait,
-	Breakpoints.WebPortrait,
-];
+
 @Component({
 	selector: "app-root",
 	templateUrl: "./app.component.html",
@@ -31,29 +21,30 @@ export class AppComponent {
 	title = "Home - Alex Westerman";
 	toolbarTitle: String = "Home";
 
+	//For times when I am busy and need a quick toggle
+	suspendedEnd = new Date(2021, 11, 19);
+
 	gpgPubKey = pub_key.pub_key;
+
+	isMobile: boolean = false;
 
 	constructor(
 		iconReg: MatIconRegistry,
 		private route: Router,
 		private titleServ: Title,
-		brkpointObs: BreakpointObserver,
 		public dialog: MatDialog,
 		private _snackBar: MatSnackBar,
-		private clipboard: Clipboard
+		private clipboard: Clipboard,
+		private ui: ResponsiveUIService
 	) {
 		//Register NerdFonts with Angular Material
 		iconReg.registerFontClassAlias("nf");
 		iconReg.setDefaultFontSetClass("nf");
 
-		//Breakpoint Observation for Warning about broken mobile ui
-		brkpointObs.observe(brokenBrkpts).subscribe((state) => {
-			if (state.matches && this.dialog.openDialogs.length === 0) {
-				this.dialog.open(MobileUIWarnComponent, {
-					width: "480px",
-					height: "340px",
-					hasBackdrop: true,
-				});
+		this.ui.isMobile$.subscribe((isMobile) => {
+			this.isMobile = isMobile;
+			if (this.isMobile && this.dialog.openDialogs.length === 0) {
+				this.dialog.open(MobileUIWarnComponent, { width: "320px", height: "480px", hasBackdrop: true });
 			}
 		});
 	}
@@ -79,13 +70,15 @@ export class AppComponent {
 					this.titleServ.setTitle("About" + titleFragment);
 					this.toolbarTitle = "About";
 					break;
-				case "/error404":
+				case "/err_404":
 					this.titleServ.setTitle("404" + titleFragment);
 					this.toolbarTitle = "Error 404 - Not Found";
 					break;
 			}
 			document.querySelector(".mat-sidenav-content")?.scroll(0, 0);
 		});
+
+		this.showSuspendedSnackBar();
 	}
 
 	ngOnDestroy(): void {}
@@ -95,5 +88,17 @@ export class AppComponent {
 			verticalPosition: "top",
 			horizontalPosition: "left",
 		});
+	}
+
+	showSuspendedSnackBar() {
+		//Just check if the suspended date is ahead of today's date
+		if (Date.now() < this.suspendedEnd.getTime()) {
+			//Give the people a heads up
+			this._snackBar.open(
+				`Heads Up: I am going to be busy for a while and will be suspending development until ${this.suspendedEnd.toDateString()}`,
+				"GOTCHA",
+				{ verticalPosition: "top" }
+			);
+		}
 	}
 }

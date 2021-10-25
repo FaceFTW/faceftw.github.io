@@ -6,7 +6,10 @@ import { Component, OnInit } from "@angular/core";
 	styleUrls: ["./error404.component.scss"],
 })
 export class Error404Component implements OnInit {
-	constructor() {}
+	img_src: string;
+	constructor() {
+		this.img_src = `assets/img/404/err_${Date.now() % 19}.webp`;
+	}
 
 	ngOnInit(): void {}
 }

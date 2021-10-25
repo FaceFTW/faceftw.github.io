@@ -1,7 +1,7 @@
 <mat-tab-group>
 	<mat-tab label="GRID VIEW">
 		<ng-template matTabContent>
-			<mat-grid-list [cols]="3" class="featured" rowHeight="650px" gutterSize="10px">
+			<mat-grid-list [cols]="isMobile? 1: 3" class="featured" rowHeight="650px" gutterSize="10px">
 				<mat-grid-tile *ngFor="let project of projects" class="card">
 					<mat-card>
 						<mat-card-header>
