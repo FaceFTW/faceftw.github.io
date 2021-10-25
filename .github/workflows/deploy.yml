@@ -38,6 +38,9 @@ jobs:
     - name: Run Production Build
       run: npm run build-prod
       
+    - name: Add .nojekyll
+      run: touch dist/portfolio/.nojekyll
+
     - name: Deploy     
       uses: JamesIves/github-pages-deploy-action@4.1.5
       with:
