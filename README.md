@@ -1,6 +1,9 @@
 # rhit-westeraj.github.io
 
-Repository for my digita portfolio. This is a from-scratch website that will automatically allows me to update/add project information simply in a JSON file.
+![Deploy Status](https://github.com/rhit-westeraj/rhit-westeraj.github.io/actions/workflows/deploy.yml/badge.svg?branch=deploy)
+![Code Quality](https://github.com/rhit-westeraj/rhit-westeraj.github.io/actions/workflows/codeql-analysis.yml/badge.svg)
+
+Repository for my digital portfolio. This is a from-scratch website that will automatically allows me to update/add project information simply in a JSON file.
 
 ## Can I use this as a template?
 
@@ -12,8 +15,8 @@ Of course! I would wait a bit as I am currently making a "template" so that othe
 
 I would be a liar if I claimed all of this work as my own. Here are all of the library dependencies used in the deployed version of the website.
 
-- Angular 12.2.8 (<https://angular.io>)
-- Angular Material 12.2.8 (<https://material.angular.io>)
+- Angular 12.2.11 (<https://angular.io>)
+- Angular Material 12.2.11 (<https://material.angular.io>)
 - NerdFonts (For Icons) (<https://nerdfonts.com>)
 
 I also use the following for CI and Deployment

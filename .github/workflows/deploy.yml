@@ -38,8 +38,10 @@ jobs:
     - name: Run Production Build
       run: npm run build-prod
       
-    - name: Add .nojekyll
-      run: touch dist/portfolio/.nojekyll
+    - name: Some SPA Workarounds for Github Pages
+      run : |
+        touch dist/portfolio/.nojekyll
+        cp dist/portfolio/index.html /dist/portfolio/404.html
 
     - name: Deploy     
       uses: JamesIves/github-pages-deploy-action@4.1.5
