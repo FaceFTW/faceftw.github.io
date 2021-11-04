@@ -15,8 +15,8 @@ Of course! I would wait a bit as I am currently making a "template" so that othe
 
 I would be a liar if I claimed all of this work as my own. Here are all of the library dependencies used in the deployed version of the website.
 
-- Angular 12.2.11 (<https://angular.io>)
-- Angular Material 12.2.11 (<https://material.angular.io>)
+- Angular 13 (<https://angular.io>)
+- Angular Material 13 (<https://material.angular.io>)
 - NerdFonts (For Icons) (<https://nerdfonts.com>)
 
 I also use the following for CI and Deployment
@@ -28,7 +28,7 @@ I also use the following for CI and Deployment
 
 I don't have issues setup on the repository because I don't expect bug reports, but I am aware of certain issues that need to be fixed. Here is the current list of items I am planning to work on other than continuing to maintain based on my current and future projects:
 
-- [ ] Responsive Mobile UI
+- [ ] Responsive Mobile UI (In Progress)
 - [ ] Project Tagging System
 - [ ] Auto-Attachment of Icons for Languages
 - [ ] More ways to show projects (Open to suggestions!)
