@@ -12,6 +12,7 @@ import { ResumeComponent } from "./resume/resume.component";
 import { HomeComponent } from "./home/home.component";
 import { ProjectsComponent } from "./projects/projects.component";
 import { FooterComponent } from "./footer/footer.component";
+import { MobileUIWarnComponent } from "./mobile-uiwarn/mobile-uiwarn.component";
 
 //Angular Material Components
 import { MatSidenavModule } from "@angular/material/sidenav";
@@ -23,6 +24,13 @@ import { MatGridListModule } from "@angular/material/grid-list";
 import { MatButtonModule } from "@angular/material/button";
 import { MatTabsModule } from "@angular/material/tabs";
 import { MatTableModule } from "@angular/material/table";
+import { MatExpansionModule } from "@angular/material/expansion";
+import { MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS } from "@angular/material/dialog";
+import { MatTooltipModule, MAT_TOOLTIP_DEFAULT_OPTIONS } from "@angular/material/tooltip";
+import { MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS } from "@angular/material/snack-bar";
+
+//CDK Modules
+import { ClipboardModule } from "@angular/cdk/clipboard";
 
 @NgModule({
 	declarations: [
@@ -33,6 +41,7 @@ import { MatTableModule } from "@angular/material/table";
 		ProjectsComponent,
 		Error404Component,
 		FooterComponent,
+		MobileUIWarnComponent,
 	],
 	imports: [
 		BrowserModule,
@@ -46,9 +55,18 @@ import { MatTableModule } from "@angular/material/table";
 		MatGridListModule,
 		MatButtonModule,
 		MatTabsModule,
-		MatTableModule
+		MatTableModule,
+		MatExpansionModule,
+		MatDialogModule,
+		MatTooltipModule,
+		MatSnackBarModule,
+		ClipboardModule,
 	],
-	providers: [],
+	providers: [
+		{ provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: false } },
+		{ provide: MAT_TOOLTIP_DEFAULT_OPTIONS, useValue: { position: "below" } },
+		{ provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { duration: 3000 } },
+	],
 	bootstrap: [AppComponent],
 })
 export class AppModule {}

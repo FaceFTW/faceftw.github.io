@@ -1,0 +1,20 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema",
+	"$id": "/about.schema.json",
+	"title": "About Page",
+	"description": "Represents content on the About Page",
+	"type": "object",
+	"properties": {
+		"header": { "description": "The header for the about page", "type": "string" },
+		"paragraphs": {
+			"description": "Contains paragraph content for the about page. I recommend writing out the paragraph in something like Word before pasting because as a result, the entire paragraph will need to be in one line.",
+			"type": "array",
+			"items": { "type": "string", "minItems": 1, "uniqueItems": true }
+		},
+		"image": {
+			"description": "A Path to an image that is shown on the right-hand side of the paragraphs. String is the filename of the image that resides in the assets/img folder",
+			"type": "string"
+		}
+	},
+	"required": ["header", "paragraphs", "image"]
+}

@@ -1,7 +1,7 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
 import { ProjectsService, Project } from "./projects.service";
 
-const nullAssetPath = "120.jpg";
+const nullAssetPath = "/assets/img/no_asset.webp";
 const assetPath = "/assets/img/";
 
 @Component({
@@ -12,6 +12,7 @@ const assetPath = "/assets/img/";
 export class ProjectsComponent implements OnInit {
 	projects: Project[];
 	columnsToDisplay = ["projectName", "projectStatus", "projectLanguage", "projectLibraries"];
+	@Input("isMobile") isMobile: boolean = false;
 
 	constructor(projectServ: ProjectsService) {
 		this.projects = projectServ.projects;
@@ -21,9 +22,17 @@ export class ProjectsComponent implements OnInit {
 
 	correctAssetPath(project: Project): string {
 		if (!project.projectAsset) {
-			return "/assets/img/120.jpg";
+			return nullAssetPath;
 		} else {
 			return assetPath + project.projectAsset;
+		}
+	}
+
+	correctLibrariesList(project: Project): string {
+		if (!project.projectLibraries) {
+			return "N/A";
+		} else {
+			return project.projectLibraries.join(", ");
 		}
 	}
 }

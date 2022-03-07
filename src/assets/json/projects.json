@@ -8,29 +8,29 @@
 			"projectSubDesc": "For PLTW Engineering Design and Development",
 			"projectLanguage": ["C++"],
 			"projectLibraries": ["Arduino", "Stepper Motor HAL"],
-			"projectAsset": "armanipulator.png",
+			"projectAsset": "armanipulator.webp",
 			"projectLinks": [{ "linkType": "github", "linkURL": "https://github.com/rhit-westeraj/Armanipulator" }],
 			"projectStatus": { "status": "Archived", "reason": "(No Longer in Active Development)" }
 		},
 		{
 			"projectId": 1,
 			"projectName": "cnhasm",
-			"projectDescription": "Regex Assembler for a Custom 16-bit Assembly Architecture",
+			"projectDescription": "CLI Assembler for a Custom 16-bit Assembly Architecture powered by Regular Expression Parsing",
 			"projectSubDesc": "For Rose-Hulman CSSE232: Computer Architecture",
 			"projectLanguage": ["C#"],
 			"projectLibraries": [".NET Core 3.1"],
-			"projectAsset": "cnhasm-noarch.png",
+			"projectAsset": "cnhasm-noarch.webp",
 			"projectLinks": [{ "linkType": "github", "linkURL": "https://github.com/rhit-westeraj/cnhasm-noarch" }],
 			"projectStatus": { "status": "Finished" }
 		},
 		{
 			"projectId": 2,
 			"projectName": "UberUnit",
-			"projectDescription": "A consolidated, lightweight unit converter built for user convenience",
+			"projectDescription": "A consolidated, lightweight unit converter built for user convenience, with Firebase Integration for History and User Favorites",
 			"projectSubDesc": "For Rose-Hulman CSSE280",
 			"projectLanguage": ["HTML5", "Sass", "TypeScript"],
 			"projectLibraries": ["Angular", "Firebase (via @angular/fire)", "Bootstrap"],
-			"projectAsset": "Picture1.png",
+			"projectAsset": "Picture1.webp",
 			"projectLinks": [
 				{ "linkType": "github", "linkURL": "https://github.com/rhit-westeraj/UberUnit" },
 				{ "linkType": "demo", "linkURL": "https://uberunit-7c04b.web.app/" },
@@ -58,18 +58,18 @@
 			"projectSubDesc": "For Rose-Hulman CSSE220: Introduction to Object Oriented Programming",
 			"projectLanguage": ["Java 8"],
 			"projectLibraries": ["Java FX Graphics"],
-			"projectAsset": "joust.png",
+			"projectAsset": "joust.webp",
 			"projectLinks": [{ "linkType": "text", "text": "Private Repo (Academic Integrity)" }],
 			"projectStatus": { "status": "Finished (Private Work)" }
 		},
 		{
 			"projectId": 5,
 			"projectName": "Portfolio Website",
-			"projectDescription": "A Personally Desinged Portfolio Website With a Modern Look and Feel",
+			"projectDescription": "A Personally Desinged Portfolio Website With a Modern Look and Feel, with Automatic Project Info Population from JSON Schemas",
 			"projectSubDesc": "Originally for Rose-Hulman CSSE280, Further Worked On Personally",
 			"projectLanguage": ["HTML5", "Sass", "TypeScript"],
 			"projectLibraries": ["Angular 12, Angular Material, NerdFonts"],
-			"projectAsset": "portfolio.png",
+			"projectAsset": "portfolio.webp",
 			"projectLinks": [
 				{ "linkType": "github", "linkURL": "https://github.com/rhit-westeraj/rhit-westeraj.github.io" }
 			],
@@ -78,7 +78,7 @@
 		{
 			"projectId": 6,
 			"projectName": "StartMenuUtil",
-			"projectDescription": "Windows Utility to Control Start Menu Shortcuts",
+			"projectDescription": "Windows Utility to Backup and Manipulate Start Menu Shortcuts and Folders,",
 			"projectSubDesc": "Personal Project",
 			"projectLanguage": ["C#"],
 			"projectLibraries": [".NET Standard 5", "Windows Script Host (via COM)"],
@@ -98,7 +98,7 @@
 		{
 			"projectId": 8,
 			"projectName": "OpenCryptoBench",
-			"projectDescription": "Rudimentary Cryptograhy Algorithm Benchmark Written in Java",
+			"projectDescription": "Rudimentary Cryptograhy Algorithm Benchmark Written in Java (Like *really* basic)",
 			"projectSubDesc": "Personal Project: The First one that is Open-Source",
 			"projectLanguage": ["Java 8"],
 			"projectLibraries": ["Bouncy Castle (Java Variant)"],
@@ -112,7 +112,7 @@
 			"projectSubDesc": "For Rose-Hulman ECE160 - Engineering Practice",
 			"projectLanguage": ["C", "C++"],
 			"projectLibraries": ["Arduino", "Stepper Motor HAL", "PS2 Controller HAL"],
-			"projectAsset": "IMG_3188.JPG",
+			"projectAsset": "ece160.webp",
 			"projectLinks": [{ "linkType": "github", "linkURL": "https://github.com/Thunderbirds-ECE160/Final-Robot" }],
 			"projectStatus": { "status": "Finished" }
 		},
@@ -123,7 +123,7 @@
 			"projectSubDesc": "For Rose-Hulman ECE230 - Embedded Systems",
 			"projectLanguage": ["C"],
 			"projectLibraries": ["TI-RTOS (For MSP432)", "TI MSP432/CC2650 Bluetooth Stack"],
-			"projectAsset": "IMG_8955.JPG",
+			"projectAsset": "scavlander.webp",
 			"projectLinks": [
 				{ "linkType": "github", "linkURL": "https://github.com/rhit-westeraj/scavlanders-gamepad" }
 			],
@@ -136,6 +136,7 @@
 			"projectSubDesc": "Personal Project",
 			"projectLanguage": ["Papyrus", "ESP Records"],
 			"projectLibraries": ["Creation Engine 1.0 (Fallout 4)"],
+			"projectAsset": "horizonplus.webp",
 			"projectLinks": [{ "linkType": "github", "linkURL": "https://github.com/rhit-westeraj/HorizonPlus" }],
 			"projectStatus": { "status": "Active Development" }
 		}

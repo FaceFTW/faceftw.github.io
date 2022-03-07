@@ -1,9 +1,19 @@
-#workspaceimg {
-	width: 100vh;
+h1 {
+	font-size: 3rem;
+	margin: 1.25rem 1.25rem 1.875rem 1.25rem;
+	padding-top: 1.875rem;
+	padding-left: 1.25rem;
 }
 
-@media (max-width: 1024px) {
-	#workspaceimg {
-		width: 50vh;
+.about {
+	display: flex;
+	margin: 1.25rem;
+
+	div {
+		margin: 1.25rem;
+	}
+
+	p {
+		text-indent: 2.8125rem;
 	}
 }

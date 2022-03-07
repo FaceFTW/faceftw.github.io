@@ -1,214 +1,88 @@
-<main class="container">
-	<section class="projintro my-2">
-
-		<ol class="breadcrumb d-inline-flex float-end">
-			<li class="breadcrumb-item"><a href="/index.html">Home</a></li>
-			<li class="breadcrumb-item active"><a href="/page/resume.html">Resume</a></li>
-		</ol>
-	</section>
-	<section class="inner-page">
-		<div class="d-inline-flex p-2 fs-1">Resume</div>
-		<section class="resume-skills" id="resume-skills">
-			<div class="container">
-				<div class="fs-2">Skills</div>
-				<div class="row no-gutters">
-					<div class="col-lg-4 col-md-6 d-md-flex align-items-md-stretch">
-						<div class="count-box">
-							<i class='bx bxs-book-bookmark bx-tada-hover'></i>
-							<span>8+ years</span>
-							<p><strong>Experience</strong> in Computers, Programming, and Technology</p>
-						</div>
-					</div>
-					<div class="col-lg-4 col-md-6 d-md-flex align-items-md-stretch">
-						<div class="count-box">
-							<i class="nf nf-fa-github rounded-circles bx-tada-hover"></i>
-							<span>10+ Repos</span>
-							<p><strong>Available on <a href="https://github.com/rhit-westeraj">Github</a></strong>
-							</p>
-						</div>
-					</div>
-					<div class="col-lg-4 col-md-6 d-md-flex align-items-md-stretch">
-						<div class="count-box">
-							<i class="nf nf-fa-heart"></i>
-							<span>Passionate</span>
-							<p>Love and Desire to Learn and Experience New Things! </p>
-						</div>
-					</div>
-					<!-- <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch">
-                        <div class="count-box">
-                            <i class="bx bxs-calendar-star"></i>
-                            <span>8+ years</span>
-                            <p><strong>Experience</strong> in Computers, Programming, etc</p>
-                        </div>
-                    </div> -->
-
-				</div>
-			</div>
-			<div class="container">
-				<div class="accordion" id="skillsAccordion">
-					<div class="accordion-item bg-dark">
-						<h2 class="accordion-header bg-dark" id="progSkills">
-							<button class="accordion-button" type="button" data-bs-toggle="collapse"
-								data-bs-target="#progCollapse" aria-expanded="true" aria-controls="collapseOne">
-								Computer Programming </button>
-						</h2>
-						<div id="progCollapse" class="accordion-collapse collapse show" aria-labelledby="progSkills">
-							<div class="accordion-body bg-dark">
-								<ul>
-									<li>Advanced experience in industry-level languages, including C, C++, and Java
-									</li>
-									<li>Intermediate experience in SQL Databases and Queries, and the PostgreSQL
-										Engine</li>
-									<li>Intermediate understanding of Windows and Linux/UNIX kernels and
-										environments</li>
-									<li>Advanced skills in web design (HTML5, CSS3, JavaScript) and other web
-										platforms (WordPress, Angular, NodeJS)</li>
-									<li>Intermediate/Advanced understanding of low-level programming and processor
-										architecture</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-					<div class="accordion-item">
-						<h2 class="accordion-header" id="hardwareSkills">
-							<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-								data-bs-target="#hardwareCollapse" aria-expanded="false" aria-controls="hardwareSkills">
-								Computer Hardware/Repair
-							</button>
-						</h2>
-						<div id="hardwareCollapse" class="accordion-collapse collapse" aria-labelledby="hardwareSkills">
-							<div class="accordion-body">
-								<li>Advanced understanding of computer internals and hardware</li>
-								<li>Able to recover data, refurbish old hardware, and construct functional devices
-									with other hardware</li>
-								<li>Intermediate/Advanced expertise in IoT devices, Arduino, and Raspberry Pi</li>
-								<li>Basic understanding of electronic component form factors, functions, behavior,
-									and use cases</li>
-							</div>
-						</div>
+<section class="outline">
+	<div class="header-row">
+		<mat-grid-list cols="3" rowHeight="100px">
+			<mat-grid-tile *ngFor="let item of highlights">
+				<div class="count-box">
+					<mat-icon class="headerIcon" fontIcon="{{item.icon}}"></mat-icon>
+					<div class="count-box-right">
+						<span class="counter">{{item.stat}}</span>
+						<p class="counter-desc">{{item.statDescription}}</p>
 					</div>
 				</div>
-			</div>
-		</section>
+			</mat-grid-tile>
+		</mat-grid-list>
+	</div>
+</section>
+<div class="resume-content">
+	<h1>Skills</h1>
+	<mat-accordion>
+		<mat-expansion-panel *ngFor="let item of skills">
+			<mat-expansion-panel-header>
+				<mat-panel-title>{{item.categoryName}}</mat-panel-title>
+				<mat-panel-description></mat-panel-description>
+			</mat-expansion-panel-header>
+			<!--Panel Content-->
+			<h3 class="panel-content-subheader" *ngIf="item.highSkill">Advanced Skills in:</h3>
+			<ul *ngFor="let skill of item.highSkill">
+				<li>{{skill}}</li>
+			</ul>
+			<br>
+			<h3 class="panel-content-subheader" *ngIf="item.medSkill">Intermediate Skills in:</h3>
+			<ul *ngFor="let skill of item.medSkill">
+				<li>{{skill}}</li>
+			</ul>
+			<br>
+			<h3 class="panel-content-subheader" *ngIf="item.lowSkill">Beginner Skills in:</h3>
+			<ul *ngFor="let skill of item.lowSkill">
+				<li>{{skill}}</li>
+			</ul>
+		</mat-expansion-panel>
+	</mat-accordion>
 
-		<section class="resume resume-edu">
-			<div class="container">
-				<div class="fs-2">Education</div>
-				<div class="accordion" id="eduAccordion">
-					<div class="accordion-item">
-						<h2 class="accordion-header" id="headingOne">
-							<button class="accordion-button card-header" type="button" data-bs-toggle="collapse"
-								data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-								Rose-Hulman Institute of Technology (Class of 2023)
-							</button>
-						</h2>
-						<div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne">
-							<div class="accordion-body bg-dark">
-								<ul>
-									<li><strong class="h5">Field of Study: </strong>Software Engineering (Bachelor
-										of
-										Science)
-										<ul>
-											<li>Originally Studied Computer Engineering until Spring 2021</li>
-										</ul>
-									</li>
-								</ul>
-								<br>
-								<div class="h5 text-decoration-underline">Relevant Coursework: </div>
-								<ul>
-									<li>Computer Architecture I (CSSE232)</li>
-									<li>Intro to Embedded Systems (ECE230)</li>
-									<li>Data Structures and Algorithms (CSSE230)</li>
-									<li>Intro to Web Programming (CSSE280)</li>
-									<li>Intro to Object-Oriented Programming</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-					<div class="accordion-item">
-						<h2 class="accordion-header" id="headingTwo">
-							<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-								data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-								Walt-Whitman High School (Class of 2019)
-							</button>
-						</h2>
-						<div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo">
-							<div class="accordion-body">
-								<p>Unweighted GPA: 3.3, Weighted GPA: 4.0</p>
-								<div class="h5 text-decoration-underline">Relevant Coursework: </div>
-								<div class="h5 text-decoration-underline">Relevant Coursework: </div>
-								<ul>
-									<li>AP Computer Science - Score: 4</li>
-									<li>AP Calculus AB - Score: 5</li>
-									<li>PLTW Digital Electronics</li>
-									<li>PLTW Engineering Design and Development Capstone Course</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
-		<section class="resume resume-exp">
-			<div class="container">
-				<div class="fs-2">Experience</div>
-				<div class="accordion" id="expAccordion">
-					<div class="accordion-item">
-						<h2 class="accordion-header" id="exp1">
-							<button class="accordion-button card-header" type="button" data-bs-toggle="collapse"
-								data-bs-target="#exp1Collapse" aria-expanded="true" aria-controls="collapseOne">
-								Rizkly Inc.
-							</button>
-						</h2>
-						<div id="exp1Collapse" class="accordion-collapse collapse show" aria-labelledby="headingOne">
-							<div class="accordion-body bg-dark">
-								<div>Company Location: Bethesda, MD</div>
-								<div>Position: Software Development Intern</div>
-								<div>Employment Length: June 2020 - Current</div>
-								<br>
-								<ul>
-									<li>Helped plan and suggest new algorithms to deploy for client use</li>
-									<li>Wrote and optimized new algorithm code for database backends to implement
-										new features</li>
-									<li>Communicated with database/server administrators about integration of new
-										feature-sets</li>
-									<li>Documented work for company transparency to clients</li>
-									<li>Implemented a CRUD-like web service that communicates with a PostgreSQL
-										database</li>
-									<li>Created Algorithm Visualizations powered by Angular</li>
-								</ul>
+	<h1>Education</h1>
+	<mat-accordion>
+		<mat-expansion-panel *ngFor="let item of education">
+			<mat-expansion-panel-header>
+				<mat-panel-title>{{item.name}}</mat-panel-title>
+				<mat-panel-description>{{item.graduationDate}}</mat-panel-description>
+			</mat-expansion-panel-header>
+			<!--Panel Content-->
+			<h3 class="panel-content-subheader">Field of Study:</h3>
+			<ul>
+				<li *ngFor="let degree of item.degree">{{degree}}</li>
+				<li *ngIf="item.degreeAddendum"> {{item.degreeAddendum}}</li>
+			</ul>
+			<br>
+			<div *ngIf="item.gpa"><strong>Unweighted GPA: </strong>{{item.gpa.unweighted}}, <strong>Weighted GPA:
+				</strong> {{item.gpa.weighted}}</div>
+			<br>
+			<p><strong>Relevant Coursework: </strong>{{item.relCoursework.join(", ")}}</p>
+			<p *ngIf="item.propCoursework"><strong>Proposed Coursework: </strong>{{item.propCoursework.join(", ")}}</p>
 
-							</div>
-						</div>
-					</div>
-					<div class="accordion-item">
-						<h2 class="accordion-header" id="exp2">
-							<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-								data-bs-target="#exp2Collapse" aria-expanded="false" aria-controls="collapseTwo">
-								Holton Arms Creative Summer </button>
-						</h2>
-						<div id="exp2Collapse" class="accordion-collapse collapse" aria-labelledby="headingTwo">
-							<div class="accordion-body">
-								<ul>
-									<div>Company Location: Bethesda, MD</div>
-									<div>Position: Web Design Counselor</div>
-									<div>Employment Length: June 2019 - August 2019</div>
-									<br>
-									<li>Taught children ages 8-15 various principles of basic web design including
-										HTML5 and CSS3</li>
-									<li>Supervised and engaged children throughout camp day</li>
-									<li>Communicated with parents about child's experiences at camp</li>
-									<li>Aided with camp-related activities and duties</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
-	</section>
-</main>
+		</mat-expansion-panel>
+	</mat-accordion>
 
+	<h1>Professional Experience</h1>
+	<mat-accordion>
+		<!--Panel 1-->
+		<mat-expansion-panel *ngFor="let item of experience">
+			<mat-expansion-panel-header>
+				<mat-panel-title>{{item.name}}</mat-panel-title>
+				<mat-panel-description>{{item.position}}</mat-panel-description>
+			</mat-expansion-panel-header>
+			<!--Panel Content-->
+			<p>Company Location: {{item.location}}</p>
+			<p>Employed from {{item.timeEmployed}}</p>
+			<p *ngIf="item.terminationReason">Reason for Termination: {{item.terminationReason}}</p>
+			<br>
+			<h3 class="panel-content-subheader">Responsibilities:</h3>
+			<ul>
+				<li *ngFor="let responsibility of item.responsibilities">{{responsibility}}</li>
+			</ul>
+		</mat-expansion-panel>
+
+	</mat-accordion>
+</div>
 
 <footer>
 	<app-footer></app-footer>

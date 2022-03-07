@@ -11,6 +11,9 @@ tab_width = 4
 [*.{json,ts}]
 max_line_length = 120
 
+[*.{yml,yaml}]
+indent_style = space
+indent_size = 2
 
 [*.{c++,cc,cpp,cppm,cxx,h,h++,hh,hpp,hxx,inl,ipp,ixx,tlh,tli,cs,vb}]
 file_header_template = Copyright (c) Alex "FaceFTW" Westerman. All Rights Reserved

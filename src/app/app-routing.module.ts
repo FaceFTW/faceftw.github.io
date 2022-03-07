@@ -7,16 +7,17 @@ import { ProjectsComponent } from "./projects/projects.component";
 import { ResumeComponent } from "./resume/resume.component";
 
 const routes: Routes = [
-    { path: "main", component: HomeComponent },
-    { path: "", redirectTo: "/main", pathMatch: "full" },
-    { path: "about", component: AboutComponent },
-    { path: "projects", component: ProjectsComponent },
-    { path: "resume", component: ResumeComponent },
-    { path: "**", component: Error404Component },
+	{ path: "main", component: HomeComponent },
+	{ path: "", redirectTo: "/main", pathMatch: "full" },
+	{ path: "about", component: AboutComponent },
+	{ path: "projects", component: ProjectsComponent },
+	{ path: "resume", component: ResumeComponent },
+	{ path: "err_404", component: Error404Component },
+	{ path: "**", redirectTo: "/err_404", pathMatch: "full" },
 ];
 
 @NgModule({
-    imports: [RouterModule.forRoot(routes)],
-    exports: [RouterModule],
+	imports: [RouterModule.forRoot(routes)],
+	exports: [RouterModule],
 })
 export class AppRoutingModule {}
