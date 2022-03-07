@@ -56,6 +56,49 @@
 				</mat-grid-tile>
 			</mat-grid-list>
 		</div>
+		<div class="card-container">
+			<mat-grid-list [cols]="isMobile? 1 : 3" class="featured" rowHeight="650px">
+				<mat-grid-tile *ngFor="let project of featured2" class="card">
+					<mat-card>
+						<mat-card-header>
+							<mat-card-title>{{project.projectName}}</mat-card-title>
+							<mat-card-subtitle>{{project.projectDescription}}</mat-card-subtitle>
+						</mat-card-header>
+						<img mat-card-image src="{{correctAssetPath(project)}}">
+						<mat-card-content>
+							<span class="devStatus">Project Status:
+								<span class="devStatus" [ngClass]="{active: project.projectStatus.status === 'Active Development',
+												finished: project.projectStatus.status ==='Finished' || project.projectStatus.status ==='Finished (Private Work)',
+												suspended: project.projectStatus.status ==='Suspended',
+												archived: project.projectStatus.status ==='Archived'}">{{project.projectStatus.status}}</span>
+								<span *ngIf="project.projectStatus.reason"><br>{{project.projectStatus.reason}}</span>
+							</span><br>
+							<span class="cardSubDesc">{{project.projectSubDesc}}</span><br>
+							<span class="cardSubDesc">Languages: {{project.projectLanguage.join(", ")}}</span><br>
+							<span class="cardSubDesc" *ngIf="project.projectLibraries">Libraries:
+								{{project.projectLibraries.join(", ")}}</span>
+						</mat-card-content>
+						<mat-card-actions class="cardLinks">
+							<ng-container *ngFor="let link of project.projectLinks">
+								<span class="" *ngIf="link.linkType === 'text'">{{link.text}}</span>
+								<a mat-raised-button color="primary" href="{{link.linkURL}}"
+									*ngIf="link.linkType === 'github'">
+									<mat-icon fontIcon="nf-fa-github"></mat-icon> GITHUB REPO
+								</a>
+								<a mat-raised-button color="primary" href="{{link.linkURL}}"
+									*ngIf="link.linkType === 'demo'">
+									<mat-icon fontIcon="nf-mdi-application"></mat-icon> LIVE DEMO
+								</a>
+								<a mat-raised-button color="primary" href="{{link.linkURL}}"
+									*ngIf="link.linkType === 'misc'">
+									<mat-icon fontIcon="nf-mdi-link"></mat-icon> {{link.linkDesc}}
+								</a>
+							</ng-container>
+						</mat-card-actions>
+					</mat-card>
+				</mat-grid-tile>
+			</mat-grid-list>
+		</div>
 		<div class="more-projects-btn">
 			<a routerLink="/projects" routerLinkActive="active" #outlet><button mat-raised-button
 					class="more-projects-btn">More Projects</button></a>
