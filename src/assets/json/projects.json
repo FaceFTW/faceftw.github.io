@@ -87,13 +87,14 @@
 		},
 		{
 			"projectId": 7,
-			"projectName": "Brutal Half-Life Rewrite",
-			"projectDescription": "A rewrite of the Brutal Half-Life game modification to remove the Xash3D dependency",
-			"projectSubDesc": "Personal Project",
-			"projectLanguage": ["C++"],
-			"projectLibraries": ["Valve's GoldSrc Engine"],
-			"projectLinks": [{ "linkType": "text", "text": "Offline Repo (No Public Commits Yet)" }],
-			"projectStatus": { "status": "Suspended", "reason": "(Indefinite, Time Constraint)" }
+			"projectName": "DesignLint",
+			"projectDescription": "A Relatively Simple Java Linter Wtih Style/OOP Principle Violations and Design Pattern Detection",
+			"projectSubDesc": "For Rose-Hulman CSSE374: Software Design",
+			"projectLanguage": ["Java 8 (Maven)"],
+			"projectLibraries": ["OW2 ASM", "JUnit (Testing)", "PIT (Test/Mutation Coverage)"],
+			"projectLinks": [{ "linkType": "text", "text": "Private Repo (Academic Integrity)" }],
+			"projectAsset": "designlint.webp",
+			"projectStatus": { "status": "Finished (Private Work)" }
 		},
 		{
 			"projectId": 8,
@@ -131,13 +132,35 @@
 		},
 		{
 			"projectId": 11,
-			"projectName": "Horizon Plus",
-			"projectDescription": "A Fallout 4 Wabbajack Modlist with some custom patches based on Zainwul's Horizon Mod",
+			"projectName": "AVeraCoolRPG",
+			"projectDescription": "A Discord Bot for playing a really basic RPG with SQL Server Data Storage",
+			"projectSubDesc": "For Rose-Hulman CSSE333: Intro to Database Systems, May contribute in the future",
+			"projectLanguage": ["Node.JS (16.x)", "Transact-SQL", "Powershell (DB Deploy Script Only)"],
+			"projectLibraries": [
+				"Discord.JS",
+				"mssql (Node.JS package)",
+				"Newtonsoft Json.NET",
+				"SqlServer Powershell Module"
+			],
+			"projectAsset": "rpgbot.webp",
+			"projectLinks": [
+				{ "linkType": "github", "linkURL": "https://github.com/jthorp07/rpgbot" },
+				{ "linkType": "text", "text": "\n(Repo not public yet)" }
+			],
+			"projectStatus": { "status": "Finished", "reason": "No Longer Actively Contributing" }
+		},
+		{
+			"projectId": 12,
+			"projectName": "ThinkPad+ Rainmeter Skin",
+			"projectDescription": "A customized Rainmeter Skin for my Thinkpad P1 Gen 1",
 			"projectSubDesc": "Personal Project",
-			"projectLanguage": ["Papyrus", "ESP Records"],
-			"projectLibraries": ["Creation Engine 1.0 (Fallout 4)"],
-			"projectAsset": "horizonplus.webp",
-			"projectLinks": [{ "linkType": "github", "linkURL": "https://github.com/rhit-westeraj/HorizonPlus" }],
+			"projectLanguage": ["Rainmeter Configuration"],
+			"projectLibraries": ["N/A"],
+			"projectAsset": "thinkpadplus.webp",
+			"projectLinks": [
+				{ "linkType": "github", "linkURL": "https://github.com/rhit-westeraj/ThinkPadPlus_RainmeterSkin" },
+				{ "linkType": "text", "text": " (Repo not public yet)" }
+			],
 			"projectStatus": { "status": "Active Development" }
 		}
 	]

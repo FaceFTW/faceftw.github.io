@@ -13,9 +13,11 @@
 		{
 			"categoryName": "Computer Programming",
 			"medSkill": [
-				"SQL Database and Queries (mainly PostgreSQL)",
+				"SQL Database and Queries (PostgreSQL/Microsoft SQL Server)",
 				"Windows and Linux/UNIX Kernels and Environments",
-				"Low-Level Programming and Processor Architecture"
+				"Low-Level Programming and Processor Architecture",
+				"Scripting/Automation (with Powershell)",
+				"Git Version Control"
 			],
 			"highSkill": [
 				"Industry-Level Languages, including C, C++, C#, and Java",
@@ -42,12 +44,22 @@
 			"degree": ["Bachelors of Science - Software Engineering", "(TENTATIVE) Masters - Engineering Management"],
 			"degreeAddendum": "Originally Studied Computer Engineering until Spring 2021",
 			"relCoursework": [
-				"Computer Architecture I (CSSE232)",
 				"Intro to Embedded Systems (ECE230)",
+				"Intro to Object Oriented Programming (CSSE220)",
 				"Data Structures and Algorithms (CSSE230)",
-				"Intro to Object Oriented Programming (CSSE220)"
+				"Computer Architecture I (CSSE232)",
+				"Intro to Database Systems (CSSE333)",
+				"Software Project Management (CSSE372)",
+				"Software Design (CSSE374)"
 			],
-			"propCoursework": ["Software Project Management (CSSE372)", "Intro to Computer Systems (CSSE132)", ""]
+			"propCoursework": [
+				"Intro to Computer Systems (CSSE132)",
+				"Operating Systems (CSSE332)",
+				"CSSE373",
+				"CSSE375",
+				"CSSE477",
+				"CSSE Senior Capstone Project (CSSE497-499)"
+			]
 		},
 		{
 			"name": "Walt Whitman High School",
