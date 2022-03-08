@@ -162,6 +162,16 @@
 				{ "linkType": "text", "text": " (Repo not public yet)" }
 			],
 			"projectStatus": { "status": "Active Development" }
+		},
+		{
+			"projectId": 13,
+			"projectName": "PSTweetTemplate",
+			"projectDescription": "A Powershell Module for Automatically sending out tweets based on a template using BluebirdPS",
+			"projectSubDesc": "Personal Project",
+			"projectLanguage": ["Powershell"],
+			"projectLibraries": ["BluebirdPS"],
+			"projectLinks": [{ "linkType": "github", "linkURL": "https://github.com/rhit-westeraj/PSTweetTemplate" }],
+			"projectStatus": { "status": "Active Development" }
 		}
 	]
 }
