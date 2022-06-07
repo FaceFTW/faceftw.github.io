@@ -89,10 +89,10 @@
 			"projectId": 7,
 			"projectName": "DesignLint",
 			"projectDescription": "A Relatively Simple Java Linter Wtih Style/OOP Principle Violations and Design Pattern Detection",
-			"projectSubDesc": "For Rose-Hulman CSSE374: Software Design",
+			"projectSubDesc": "For Rose-Hulman CSSE374: Software Design, Further Worked on in CSSE375: Software Construction and Evolution",
 			"projectLanguage": ["Java 8 (Maven)"],
 			"projectLibraries": ["OW2 ASM", "JUnit (Testing)", "PIT (Test/Mutation Coverage)"],
-			"projectLinks": [{ "linkType": "text", "text": "Private Repo (Academic Integrity)" }],
+			"projectLinks": [{ "linkType": "github", "linkURL": "https://github.com/rhit-westeraj/DesignLint" }],
 			"projectAsset": "designlint.webp",
 			"projectStatus": { "status": "Finished (Private Work)" }
 		},
@@ -171,6 +171,16 @@
 			"projectLanguage": ["Powershell"],
 			"projectLibraries": ["BluebirdPS"],
 			"projectLinks": [{ "linkType": "github", "linkURL": "https://github.com/rhit-westeraj/PSTweetTemplate" }],
+			"projectStatus": { "status": "Suspended", "reason": "No Current Motivation" }
+		},
+		{
+			"projectId": 14,
+			"projectName": "PipeLayer",
+			"projectDescription": "A Twitter Bot that posts screenshots of a Linux port of the 3D Pipes screensaver",
+			"projectSubDesc": "Personal Project",
+			"projectLanguage": ["C, Docker, "],
+			"projectLibraries": ["OpenGL (GLX)"],
+			"projectLinks": [{ "linkType": "text", "text": "Private Repo (Not Enough Work For Public Viewing)" }],
 			"projectStatus": { "status": "Active Development" }
 		}
 	]

@@ -44,22 +44,18 @@
 			"degree": ["Bachelors of Science - Software Engineering", "(TENTATIVE) Masters - Engineering Management"],
 			"degreeAddendum": "Originally Studied Computer Engineering until Spring 2021",
 			"relCoursework": [
+				"Intro to Computer Systems (CSSE132)",
 				"Intro to Embedded Systems (ECE230)",
 				"Intro to Object Oriented Programming (CSSE220)",
 				"Data Structures and Algorithms (CSSE230)",
 				"Computer Architecture I (CSSE232)",
 				"Intro to Database Systems (CSSE333)",
 				"Software Project Management (CSSE372)",
-				"Software Design (CSSE374)"
+				"Formal Methods (CSSE373)",
+				"Software Design (CSSE374)",
+				"Software Construction and Evolution (CSSE375)"
 			],
-			"propCoursework": [
-				"Intro to Computer Systems (CSSE132)",
-				"Operating Systems (CSSE332)",
-				"CSSE373",
-				"CSSE375",
-				"CSSE477",
-				"CSSE Senior Capstone Project (CSSE497-499)"
-			]
+			"propCoursework": ["Operating Systems (CSSE332)", "CSSE477", "CSSE Senior Capstone Project (CSSE497-499)"]
 		},
 		{
 			"name": "Walt Whitman High School",
