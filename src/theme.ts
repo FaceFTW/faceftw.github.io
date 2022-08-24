@@ -21,6 +21,18 @@ const themeOptions: ThemeOptions = {
 				},
 			},
 		},
+		MuiIcon: {
+			defaultProps: {
+				baseClassName: 'nf',
+			},
+			styleOverrides: {
+				root: {
+					boxSizing: 'content-box',
+					padding: 3,
+					fontSize: '1.125rem',
+				},
+			},
+		},
 	},
 };
 
