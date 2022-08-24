@@ -42,10 +42,7 @@ const sidenav = (
 		<ThemeProvider theme={appTheme}>
 			<Box>
 				<div className="profile">
-					{/* <a routerLink="/main" routerLinkActive="active"> */}
-
 					<img src={Pfp} alt="" className="pfp" />
-					{/* </a> */}
 					<h1 className="navbar-brand">
 						<Link to={'/'}>Alex Westerman</Link>
 					</h1>
@@ -108,17 +105,17 @@ function App() {
 		<div className="App">
 			<ThemeProvider theme={appTheme}>
 				<Box sx={{ d: 'flex' }}>
-					<CssBaseline />
+					<CssBaseline enableColorScheme />
 					<AppBar
-						color="primary"
+						color='secondary'
 						position="static"
 						sx={{
 							width: { sm: `calc(100%-${drawerWidth}px)` },
 							marginLeft: { sm: `${drawerWidth}px` },
 						}}
 					>
-						<Toolbar>
-							<IconButton edge="start" color="inherit" aria-label="menu">
+						<Toolbar color="secondary">
+							<IconButton edge="start" color="inherit" aria-label="menu" onClick={handleDrawerToggle}>
 								<MenuIcon />
 							</IconButton>
 							<Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>

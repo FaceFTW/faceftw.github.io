@@ -5,24 +5,20 @@
 
 Repository for my digital portfolio. This is a from-scratch website that will automatically allows me to update/add project information simply in a JSON file.
 
-## Can I use this as a template?
-
-Of course! I would wait a bit as I am currently making a "template" so that other people can use this. Keep in mind that I am still working on new features (especially responsive mobile UI), but expect a easy to use, enter and forget template ***SOON&trade;*** (like probably next week, but we'll see).
-
-(BTW the ***SOON&trade;*** joke is not mine, its from New Blood Interactive. Go check their stuff out! @ <https://newblood.games>)
+***NOTE I am currently in the process of migrating the site to React. The Angular Version of this site can be found on the [`angular` branch](https://github.com/rhit-westeraj/rhit-westeraj.github.io/tree/angular)***
 
 ## Frameworks/Libraries
 
 I would be a liar if I claimed all of this work as my own. Here are all of the library dependencies used in the deployed version of the website.
 
+- ReactJS 18 (<https://reactjs.org>)
+- MUI 5 (<https://material-ui.com>)
+
+### Old Angular Version
+
 - Angular 13 (<https://angular.io>)
 - Angular Material 13 (<https://material.angular.io>)
 - NerdFonts (For Icons) (<https://nerdfonts.com>)
-
-I also use the following for CI and Deployment
-
-- Github Pages
-- Github Actions
 
 ## Todo-List
 
