@@ -27,14 +27,6 @@ import ResumePanel from './panels/Resume';
 import { appTheme } from './theme';
 import Pfp from './assets/img/pfp.webp';
 
-function Layout() {
-	return (
-		<div>
-			<Outlet />
-		</div>
-	);
-}
-
 const drawerWidth = 240;
 
 const sidenav = (
@@ -93,7 +85,7 @@ const sidenav = (
 	</div>
 );
 
-function App() {
+const Layout = () => {
 	const [drawerOpen, setDrawerOpen] = React.useState(true);
 	const mobileQuery = useMediaQuery('(max-width:975px)');
 
@@ -102,55 +94,68 @@ function App() {
 	};
 
 	return (
-		<div className="App">
-			<ThemeProvider theme={appTheme}>
-				<Box sx={{ d: 'flex' }}>
-					<CssBaseline enableColorScheme />
-					<AppBar
-						color='secondary'
-						position="static"
-						sx={{
-							width: { sm: `calc(100%-${drawerWidth}px)` },
-							marginLeft: { sm: `${drawerWidth}px` },
-						}}
-					>
-						<Toolbar color="secondary">
-							<IconButton edge="start" color="inherit" aria-label="menu" onClick={handleDrawerToggle}>
-								<MenuIcon />
-							</IconButton>
-							<Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-								TEMP
-							</Typography>
-						</Toolbar>
-					</AppBar>
-				</Box>
-				<Box component="nav" sx={{ w: { sm: `${drawerWidth}px` }, flexShrink: { sm: 0 } }}>
-					<Drawer
-						anchor="left"
-						variant={mobileQuery ? 'temporary' : 'permanent'}
-						ModalProps={{ keepMounted: true }}
-						open={drawerOpen}
-						sx={{
-							display: mobileQuery ? { xs: 'block', sm: 'none' } : { xs: 'none', sm: 'block' },
-							'& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
-						}}
-						onClose={() => (mobileQuery ? setDrawerOpen(false) : undefined)}
-					>
-						{sidenav}
-					</Drawer>
+		<ThemeProvider theme={appTheme}>
+			<Box sx={{ d: 'flex' }}>
+				<CssBaseline enableColorScheme />
+				<AppBar
+					color="secondary"
+					position="static"
+					sx={{
+						width: { sm: `calc(100%-${drawerWidth}px)` },
+						marginLeft: { sm: `${drawerWidth}px` },
+					}}
+				>
+					<Toolbar color="secondary">
+						<IconButton edge="start" color="inherit" aria-label="menu" onClick={handleDrawerToggle}>
+							<MenuIcon />
+						</IconButton>
+						<Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+							TEMP
+						</Typography>
+					</Toolbar>
+				</AppBar>
+			</Box>
+
+			<Box sx={{ d: 'block' }}>
+				<Box
+					sx={{ width: { sm: `calc(100% - ${drawerWidth}px)`, marginLeft: `${drawerWidth}px` }, flexGrow: 1 }}
+				>
+					<Outlet />
 				</Box>
 				<Box>
-					<Routes>
-						<Route path="/" element={<Layout />}>
-							<Route index element={<MainPanel />} />
-							<Route path="projects" element={<ProjectsPanel />} />
-							<Route path="resume" element={<ResumePanel />} />
-							<Route path="about" element={<AboutPanel />} />
-							<Route path="*" element={<Error404Panel />} />
-						</Route>
-					</Routes>
+					<Box component="nav" sx={{ w: { sm: `${drawerWidth}px` }, flexShrink: { sm: 0 } }}>
+						<Drawer
+							anchor="left"
+							variant={mobileQuery ? 'temporary' : 'permanent'}
+							ModalProps={{ keepMounted: true }}
+							open={drawerOpen}
+							sx={{
+								display: mobileQuery ? { xs: 'block', sm: 'none' } : { xs: 'none', sm: 'block' },
+								'& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
+							}}
+							onClose={() => (mobileQuery ? setDrawerOpen(false) : undefined)}
+						>
+							{sidenav}
+						</Drawer>
+					</Box>
 				</Box>
-			</ThemeProvider>
+			</Box>
+		</ThemeProvider>
+	);
+};
+
+function App() {
+	return (
+		<div className="App">
+			<Routes>
+				<Route path="/" element={<Layout />}>
+					<Route index element={<MainPanel />} />
+					<Route path="/projects" element={<ProjectsPanel />} />
+					<Route path="/resume" element={<ResumePanel />} />
+					<Route path="/about" element={<AboutPanel />} />
+					<Route path="*" element={<Error404Panel />} />
+				</Route>
+			</Routes>
 		</div>
 	);
 }
