@@ -2,12 +2,16 @@ import MenuIcon from '@mui/icons-material/Menu';
 import {
 	AppBar,
 	Box,
-	CssBaseline, Drawer, IconButton, ThemeProvider,
-	Toolbar, Typography,
-	useMediaQuery
+	CssBaseline,
+	Drawer,
+	IconButton,
+	ThemeProvider,
+	Toolbar,
+	Typography,
+	useMediaQuery,
 } from '@mui/material';
 import React from 'react';
-import {Outlet, Route, Routes} from 'react-router-dom';
+import { Outlet, Route, Routes } from 'react-router-dom';
 import './App.css';
 import AboutPanel from './panels/About';
 import Error404Panel from './panels/Error404';
@@ -15,7 +19,7 @@ import MainPanel from './panels/Main';
 import ProjectsPanel from './panels/Projects';
 import ResumePanel from './panels/Resume';
 import SidenavPanel from './panels/Sidenav';
-import {appTheme} from './theme';
+import { appTheme } from './theme';
 
 const drawerWidth = 240;
 

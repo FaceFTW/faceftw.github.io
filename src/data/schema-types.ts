@@ -82,3 +82,4 @@ export interface Resume {
 	education: Education[];
 	experience: ProfessionalExperience[];
 }
+
