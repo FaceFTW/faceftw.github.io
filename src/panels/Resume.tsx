@@ -1,4 +1,4 @@
-import { Accordion, AccordionDetails, AccordionSummary, Box, Grid, Icon, Typography } from '@mui/material';
+import { Accordion, AccordionDetails, AccordionSummary, Box, Grid, Icon, Paper, Typography } from '@mui/material';
 import React from 'react';
 import resumeData from '../assets/json/resume.json';
 
@@ -20,18 +20,30 @@ interface ExperienceSectionProps {
 
 function Highlights(props: HighlightsProps) {
 	return (
-		<Grid container sx={{ padding: { sm: '2rem 5rem' } }}>
+		<Grid container spacing={3} sx={{ padding: { sm: '2rem 5rem' } }}>
 			{props.highlights.map((highlight, index) => (
 				<Grid item xs={12} sm={4} key={index}>
-					<Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+					<Paper
+						elevation={3}
+						sx={{
+							display: 'flex',
+							justifyContent: 'center',
+							alignItems: 'center',
+							padding: '1rem',
+							flexGrow: 1,
+						}}
+					>
 						<Box>
-							<Icon className={highlight.icon} sx={{ display: 'block', fontSize: '80px' }} />
+							<Icon
+								className={highlight.icon}
+								sx={{ display: 'block', fontSize: '80px', marginRight: '1rem' }}
+							/>
 						</Box>
 						<Box>
 							<Typography variant="h4">{highlight.stat}</Typography>
 							<Typography variant="h6">{highlight.statDescription}</Typography>
 						</Box>
-					</Box>
+					</Paper>
 				</Grid>
 			))}
 		</Grid>
@@ -49,7 +61,7 @@ function SkillsSection({ skills }: SkillSectionProps) {
 					expanded={skillsExpanded === skill.categoryName}
 					onChange={() => setSkillExpanded(skill.categoryName)}
 				>
-					<AccordionSummary>
+					<AccordionSummary expandIcon={<Icon className="nf-mdi-chevron_down" />}>
 						<Typography>{skill.categoryName}</Typography>
 					</AccordionSummary>
 					<AccordionDetails>
@@ -93,9 +105,10 @@ function EducationSection({ education }: EducationSectionProps) {
 				<Accordion
 					key={index}
 					expanded={educationExpanded === edu.name}
+					elevation={3}
 					onChange={() => setEducationExpanded(edu.name)}
 				>
-					<AccordionSummary>
+					<AccordionSummary expandIcon={<Icon className="nf-mdi-chevron_down" />}>
 						<Typography sx={{ width: '66%', flexShrink: 0 }}>{edu.name}</Typography>
 						<Typography sx={{ color: 'text.secondary' }}>{edu.graduationDate}</Typography>
 					</AccordionSummary>
@@ -136,7 +149,7 @@ function ExperienceSection({ experience }: ExperienceSectionProps) {
 					expanded={experienceExpanded === exp.name}
 					onChange={() => setExperienceExpanded(exp.name)}
 				>
-					<AccordionSummary>
+					<AccordionSummary expandIcon={<Icon className="nf-mdi-chevron_down" />}>
 						<Typography sx={{ width: '66%', flexShrink: 0 }}>{exp.name}</Typography>
 						<Typography sx={{ color: 'text.secondary' }}>{exp.position}</Typography>
 					</AccordionSummary>
@@ -170,7 +183,7 @@ export default function ResumePanel() {
 	const experience: ProfessionalExperience[] = resumeData.experience;
 
 	return (
-		<Box>
+		<Box sx={{ margin: '1rem' }}>
 			<Box>
 				<Highlights highlights={highlights} />
 			</Box>
