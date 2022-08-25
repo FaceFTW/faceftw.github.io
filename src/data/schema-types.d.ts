@@ -1,12 +1,12 @@
 /***************PROJECT TYPES*******************/
-export enum LinkType {
+declare enum LinkType {
 	TEXT = 'text',
 	GITHUB = 'github',
 	DEMO = 'demo',
 	MISC = 'misc',
 }
 
-export enum ProjectStatusType {
+declare enum ProjectStatusType {
 	ARCHIVED = 'Archived',
 	FINISHED = 'Finished',
 	FINISHED_PRIVATE = 'Finished (Private Work)',
@@ -14,19 +14,19 @@ export enum ProjectStatusType {
 	SUSPENDED = 'Suspended',
 }
 
-export interface ProjectStatus {
+declare interface ProjectStatus {
 	status: ProjectStatusType;
 	reason?: string;
 }
 
-export interface ProjectLink {
+declare interface ProjectLink {
 	linkType: LinkType;
 	linkUrl?: string;
 	text?: string;
 	linkDesc?: string;
 }
 
-export interface Project {
+declare interface Project {
 	projectId: number;
 	projectName: string;
 	projectDescription: string;
@@ -39,47 +39,47 @@ export interface Project {
 }
 
 /***************RESUME TYPES*******************/
-export interface Gpa {
+declare interface Gpa {
 	unweighted: number;
 	weighted: number;
 }
 
-export interface ProfessionalExperience {
+declare interface ProfessionalExperience {
 	name: string;
 	position: string;
-	timeEmployed: string;
-	location: string;
-	terminationReason: string;
+	timeEmployed?: string;
+	location?: string;
+	terminationReason?: string;
 	responsibilities: string[];
 }
 
-export interface Education {
+declare interface Education {
 	name: string;
 	graduationDate: string;
 	degree: string[];
-	degreeAddendum: string;
-	gpa: Gpa;
+	degreeAddendum?: string;
+	gpa?: Gpa;
 	relCoursework: string[];
-	propCoursework: string[];
+	propCoursework?: string[];
 }
 
-export interface SkillCategory {
+declare interface SkillCategory {
 	categoryName: string;
 	highSkill?: string[];
 	medSkill?: string[];
 	lowSkill?: string[];
 }
 
-export interface ResumeHighlight {
+declare interface ResumeHighlight {
 	icon: string;
 	stat: string;
 	statDescription: string;
 }
 
-export interface Resume {
+declare interface Resume {
+	$schema: string
 	highlights: ResumeHighlight[];
 	skills: SkillCategory[];
 	education: Education[];
 	experience: ProfessionalExperience[];
 }
-
