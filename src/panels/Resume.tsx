@@ -1,4 +1,4 @@
-import { Accordion, AccordionDetails, AccordionSummary, Box, Grid, Typography } from '@mui/material';
+import { Accordion, AccordionDetails, AccordionSummary, Box, Grid, Icon, Typography } from '@mui/material';
 import React from 'react';
 import resumeData from '../assets/json/resume.json';
 
@@ -20,13 +20,17 @@ interface ExperienceSectionProps {
 
 function Highlights(props: HighlightsProps) {
 	return (
-		<Grid container>
+		<Grid container sx={{ padding: { sm: '2rem 5rem' } }}>
 			{props.highlights.map((highlight, index) => (
 				<Grid item xs={12} sm={4} key={index}>
 					<Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-						<Typography key={index} variant="h5">
-							1
-						</Typography>
+						<Box>
+							<Icon className={highlight.icon} sx={{ display: 'block', fontSize: '80px' }} />
+						</Box>
+						<Box>
+							<Typography variant="h4">{highlight.stat}</Typography>
+							<Typography variant="h6">{highlight.statDescription}</Typography>
+						</Box>
 					</Box>
 				</Grid>
 			))}
@@ -121,7 +125,43 @@ function EducationSection({ education }: EducationSectionProps) {
 	);
 }
 
+function ExperienceSection({ experience }: ExperienceSectionProps) {
+	const [experienceExpanded, setExperienceExpanded] = React.useState<string | false>(false);
 
+	return (
+		<Box>
+			{experience.map((exp, index) => (
+				<Accordion
+					key={index}
+					expanded={experienceExpanded === exp.name}
+					onChange={() => setExperienceExpanded(exp.name)}
+				>
+					<AccordionSummary>
+						<Typography sx={{ width: '66%', flexShrink: 0 }}>{exp.name}</Typography>
+						<Typography sx={{ color: 'text.secondary' }}>{exp.position}</Typography>
+					</AccordionSummary>
+					<AccordionDetails>
+						<Typography hidden={!exp.location}>Company Location: {exp.location}</Typography>
+						<Typography hidden={!exp.timeEmployed}>Employed from {exp.timeEmployed}</Typography>
+						<Typography hidden={!exp.terminationReason}>
+							{' '}
+							Reason for Termination: {exp.terminationReason}
+						</Typography>
+						<br />
+						<Typography variant="h5">Responsibilities:</Typography>
+						<ul>
+							{exp.responsibilities.map((responsibility, index) => (
+								<Typography component="li" key={index}>
+									{responsibility}
+								</Typography>
+							))}
+						</ul>
+					</AccordionDetails>
+				</Accordion>
+			))}
+		</Box>
+	);
+}
 
 export default function ResumePanel() {
 	const highlights: ResumeHighlight[] = resumeData.highlights;
@@ -141,6 +181,10 @@ export default function ResumePanel() {
 			<Box sx={{ margin: '1rem' }}>
 				<Typography variant="h4">Education</Typography>
 				<EducationSection education={education} />
+			</Box>
+			<Box sx={{ margin: '1rem' }}>
+				<Typography variant="h4">Experience</Typography>
+				<ExperienceSection experience={experience} />
 			</Box>
 		</Box>
 	);
