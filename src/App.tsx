@@ -11,7 +11,7 @@ import {
 	useMediaQuery,
 } from '@mui/material';
 import React from 'react';
-import { Outlet, Route, Routes } from 'react-router-dom';
+import { Outlet, Route, Routes, useMatch } from 'react-router-dom';
 import './App.css';
 import AboutPanel from './panels/About';
 import Error404Panel from './panels/Error404';
@@ -26,6 +26,7 @@ const drawerWidth = 240;
 const Layout = () => {
 	const [drawerOpen, setDrawerOpen] = React.useState(true);
 	const mobileQuery = useMediaQuery('(max-width:975px)');
+	// const atHomeRoute = useMatch('/')
 
 	const handleDrawerToggle = () => {
 		setDrawerOpen(!drawerOpen);

@@ -1,29 +1,29 @@
 /***************PROJECT TYPES*******************/
-declare enum LinkType {
-	TEXT = 'text',
-	GITHUB = 'github',
-	DEMO = 'demo',
-	MISC = 'misc',
+declare enum StatusEnum {
+	ARCHIVED = "Archived",
+	FINISHED = "Finished",
+	FINISHED_PRIV = "Finished (Private Work)",
+	ACTIVE_DEVEL = "Active Development",
+	SUSPENDED = "Suspended",
 }
 
-declare enum ProjectStatusType {
-	ARCHIVED = 'Archived',
-	FINISHED = 'Finished',
-	FINISHED_PRIVATE = 'Finished (Private Work)',
-	ACTIVE_DEVELOPMENT = 'Active Development',
-	SUSPENDED = 'Suspended',
-}
-
-declare interface ProjectStatus {
-	status: ProjectStatusType;
-	reason?: string;
+declare enum LinkTypeEnum {
+	TEXT = "text",
+	GITHUB = "github",
+	DEMO = "demo",
+	MISC = "misc",
 }
 
 declare interface ProjectLink {
-	linkType: LinkType;
-	linkUrl?: string;
-	text?: string;
+	linkType: string;
+	linkURL?: string;
 	linkDesc?: string;
+	text?: string;
+}
+
+declare interface ProjectStatus {
+	status: string;
+	reason?: string;
 }
 
 declare interface Project {
@@ -32,8 +32,8 @@ declare interface Project {
 	projectDescription: string;
 	projectSubDesc: string;
 	projectLanguage: string[];
-	projectLibraries: string[];
-	projectAsset: string;
+	projectLibraries?: string[];
+	projectAsset?: string;
 	projectLinks: ProjectLink[];
 	projectStatus: ProjectStatus;
 }
@@ -77,7 +77,7 @@ declare interface ResumeHighlight {
 }
 
 declare interface Resume {
-	$schema: string
+	$schema: string;
 	highlights: ResumeHighlight[];
 	skills: SkillCategory[];
 	education: Education[];
