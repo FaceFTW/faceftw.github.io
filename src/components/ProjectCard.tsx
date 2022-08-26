@@ -51,8 +51,8 @@ export default function ProjectCard({ project }: ProjectCardProps) {
 	const miscLink = project.projectLinks.find((link) => link.linkType === 'misc');
 
 	return (
-		<Card sx={{ maxWidth: 340 }}>
-			<CardMedia component={'img'} sx={{ maxHeight: '300px' }} image={imgAsset} />
+		<Card sx={{ maxWidth: 400 }}>
+			<CardMedia component={'img'} sx={{ height: '250px', width: '400px', objectFit:'contain' }} image={imgAsset} />
 			<CardContent>
 				<Typography variant="h4">{project.projectName}</Typography>
 				<Typography variant="subtitle2">{project.projectDescription}</Typography>

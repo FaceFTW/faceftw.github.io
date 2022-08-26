@@ -20,9 +20,9 @@ interface ExperienceSectionProps {
 
 function Highlights(props: HighlightsProps) {
 	return (
-		<Grid container spacing={3} sx={{ padding: { sm: '2rem 5rem' } }}>
+		<Grid container spacing={3} sx={{ padding: { sm: '2rem 5rem' } }} alignItems="stretch">
 			{props.highlights.map((highlight, index) => (
-				<Grid item xs={12} sm={4} key={index}>
+				<Grid item xs={12} sm={4} key={index} sx={{ display: 'flex' }}>
 					<Paper
 						elevation={3}
 						sx={{

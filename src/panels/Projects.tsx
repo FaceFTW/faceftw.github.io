@@ -1,3 +1,4 @@
+import { Box, Grid } from '@mui/material';
 import React from 'react';
 import projectData from '../assets/json/projects.json';
 import ProjectCard from '../components/ProjectCard';
@@ -7,7 +8,15 @@ export default function ProjectsPanel() {
 
 	return (
 		<div>
-			<ProjectCard project={projects[1]} />
+			<Box sx={{ display: 'flex', justifyContent: 'center', margin: '2rem' }}>
+				<Grid container spacing={3} alignItems="stretch">
+					{projects.map((project, index) => (
+						<Grid item xs={12} sm={4} key={index} sx={{ display: 'flex', justifyContent: 'center' }}>
+							<ProjectCard project={project} />
+						</Grid>
+					))}
+				</Grid>
+			</Box>
 		</div>
 	);
 }
