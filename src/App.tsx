@@ -25,7 +25,7 @@ const drawerWidth = 240;
 
 const Layout = () => {
 	const [drawerOpen, setDrawerOpen] = React.useState(true);
-	const mobileQuery = useMediaQuery('(max-width:975px)');
+	const mobileQuery = useMediaQuery('(max-width:768px)');
 	// const atHomeRoute = useMatch('/')
 
 	const handleDrawerToggle = () => {
@@ -40,8 +40,8 @@ const Layout = () => {
 					color="secondary"
 					position="static"
 					sx={{
-						width: { sm: `calc(100%-${drawerWidth}px)` },
-						marginLeft: { sm: `${drawerWidth}px` },
+						width: {xs:'100%', md: `calc(100%-${drawerWidth}px)` },
+						marginLeft: {xs:0, md: `${drawerWidth}px` },
 					}}
 				>
 					<Toolbar color="secondary">
@@ -57,19 +57,19 @@ const Layout = () => {
 
 			<Box sx={{ d: 'block' }}>
 				<Box
-					sx={{ width: { sm: `calc(100% - ${drawerWidth}px)`, marginLeft: `${drawerWidth}px` }, flexGrow: 1 }}
+					sx={{ width: { md: `calc(100% - ${drawerWidth}px)`}, marginLeft: {md: `${drawerWidth}px`} , flexGrow: 0 }}
 				>
 					<Outlet />
 				</Box>
 				<Box>
-					<Box component="nav" sx={{ w: { sm: `${drawerWidth}px` }, flexShrink: { sm: 0 } }}>
+					<Box component="nav" sx={{ w: { md: `${drawerWidth}px` }, flexShrink: { md: 0 } }}>
 						<Drawer
 							anchor="left"
 							variant={mobileQuery ? 'temporary' : 'permanent'}
 							ModalProps={{ keepMounted: true }}
 							open={drawerOpen}
 							sx={{
-								display: mobileQuery ? { xs: 'block', sm: 'none' } : { xs: 'none', sm: 'block' },
+								display: mobileQuery ? { xs: 'block', md: 'none' } : { xs: 'none', md: 'block' },
 								'& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
 							}}
 							onClose={() => (mobileQuery ? setDrawerOpen(false) : undefined)}
