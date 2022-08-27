@@ -3,7 +3,7 @@
 	"highlights": [
 		{
 			"icon": "nf-fa-book",
-			"stat": "8+ years",
+			"stat": "9+ years",
 			"statDescription": "Experience in Computers, Programming, and Technology"
 		},
 		{ "icon": "nf-fa-github", "stat": "10+ Repos", "statDescription": "Available on Github" },
@@ -12,6 +12,7 @@
 	"skills": [
 		{
 			"categoryName": "Computer Programming",
+			"lowSkill": ["Graphics Programming (OpenGL Legacy)"],
 			"medSkill": [
 				"SQL Database and Queries (PostgreSQL/Microsoft SQL Server)",
 				"Windows and Linux/UNIX Kernels and Environments",
@@ -21,8 +22,8 @@
 			],
 			"highSkill": [
 				"Industry-Level Languages, including C, C++, C#, and Java",
-				"Web Design (HTML5, CSS3, Javascript)",
-				"Web Application Frameworks (Angular/NodeJS)"
+				"Web Design (HTML5, CSS3, Javascript/Typescript)",
+				"Web Application Frameworks (Angular, ReactJS (w/ Redux), NodeJS)"
 			]
 		},
 		{
@@ -73,9 +74,23 @@
 	],
 	"experience": [
 		{
+			"name": "Direct Supply",
+			"position": "Software Engineer Intern",
+			"timeEmployed": "June 2022-August 2022",
+			"location": "Milwaukee, WI",
+			"responsibilities": [
+				"Acted as a working member of a devlopment team to accomplish sprint goals",
+				"Implemented and performed end-to-end testing of new features",
+				"Coordinated and verified releases of new features/system changes",
+				"Helped refine and plan user stories for future sprints",
+				"Performed changes that served as maintenance tasks for system reliability",
+				"Communicated changes with stakeholders and product owners"
+			]
+		},
+		{
 			"name": "Rizkly Inc.",
 			"position": "Software Development Intern",
-			"timeEmployed": "June 2020 - Present",
+			"timeEmployed": "June 2020 - June 2022",
 			"location": "Bethesda, MD",
 			"responsibilities": [
 				"Helped plan and suggest new algorithms to deploy for client use",

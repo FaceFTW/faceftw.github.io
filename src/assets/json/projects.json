@@ -64,26 +64,38 @@
 		},
 		{
 			"projectId": 5,
-			"projectName": "Portfolio Website",
+			"projectName": "Portfolio Website (Angular Version)",
 			"projectDescription": "A Personally Desinged Portfolio Website With a Modern Look and Feel, with Automatic Project Info Population from JSON Schemas",
 			"projectSubDesc": "Originally for Rose-Hulman CSSE280, Further Worked On Personally",
 			"projectLanguage": ["HTML5", "Sass", "TypeScript"],
 			"projectLibraries": ["Angular 12, Angular Material, NerdFonts"],
 			"projectAsset": "portfolio.webp",
 			"projectLinks": [
-				{ "linkType": "github", "linkURL": "https://github.com/rhit-westeraj/rhit-westeraj.github.io" }
+				{
+					"linkType": "github",
+					"linkURL": "https://github.com/rhit-westeraj/rhit-westeraj.github.io/tree/angular"
+				}
 			],
-			"projectStatus": { "status": "Active Development" }
+			"projectStatus": { "status": "Finished" }
 		},
 		{
 			"projectId": 6,
-			"projectName": "StartMenuUtil",
-			"projectDescription": "Windows Utility to Backup and Manipulate Start Menu Shortcuts and Folders,",
-			"projectSubDesc": "Personal Project",
-			"projectLanguage": ["C#"],
-			"projectLibraries": [".NET Standard 5", "Windows Script Host (via COM)"],
-			"projectLinks": [{ "linkType": "text", "text": "Offline Repo (No Public Commits Yet)" }],
-			"projectStatus": { "status": "Suspended", "reason": "(Time Constraints)" }
+			"projectName": "-STRIVE- Stats",
+			"projectDescription": "Web-Based Match Data Tracker for GUILTY GEAR -STRIVE-",
+			"projectSubDesc": "For Rose-Hulman CSSE280 (Retake)",
+			"projectLanguage": ["TypeScript, CSS3"],
+			"projectLibraries": ["ReactJS", "MUI", "Firebase (via react-fire)"],
+			"projectAsset": "strivestats.webp",
+			"projectLinks": [
+				{ "linkType": "github", "linkURL": "https://github.com/rhit-westeraj/strive-stats" },
+				{ "linkType": "demo", "linkURL": "https://strive-stats.web.app/" },
+				{
+					"linkType": "misc",
+					"linkURL": "https://rosehulmanprojectvault.org/project/-N401Wni1nsf9F8lcEQ0",
+					"linkDesc": "Rose-Hulman Project Vault"
+				}
+			],
+			"projectStatus": { "status": "Finished" }
 		},
 		{
 			"projectId": 7,
@@ -94,7 +106,7 @@
 			"projectLibraries": ["OW2 ASM", "JUnit (Testing)", "PIT (Test/Mutation Coverage)"],
 			"projectLinks": [{ "linkType": "github", "linkURL": "https://github.com/rhit-westeraj/DesignLint" }],
 			"projectAsset": "designlint.webp",
-			"projectStatus": { "status": "Finished (Private Work)" }
+			"projectStatus": { "status": "Finished" }
 		},
 		{
 			"projectId": 8,
@@ -103,6 +115,7 @@
 			"projectSubDesc": "Personal Project: The First one that is Open-Source",
 			"projectLanguage": ["Java 8"],
 			"projectLibraries": ["Bouncy Castle (Java Variant)"],
+			"projectAsset": "opencryptobench.webp",
 			"projectLinks": [{ "linkType": "github", "linkURL": "https://github.com/rhit-westeraj/OpenCryptoBench" }],
 			"projectStatus": { "status": "Archived", "reason": "No Longer in Development" }
 		},
@@ -170,6 +183,7 @@
 			"projectSubDesc": "Personal Project",
 			"projectLanguage": ["Powershell"],
 			"projectLibraries": ["BluebirdPS"],
+			"projectAsset": "pstweettemplate.webp",
 			"projectLinks": [{ "linkType": "github", "linkURL": "https://github.com/rhit-westeraj/PSTweetTemplate" }],
 			"projectStatus": { "status": "Suspended", "reason": "No Current Motivation" }
 		},
@@ -180,7 +194,21 @@
 			"projectSubDesc": "Personal Project",
 			"projectLanguage": ["C, Docker, "],
 			"projectLibraries": ["OpenGL (GLX)"],
-			"projectLinks": [{ "linkType": "text", "text": "Private Repo (Not Enough Work For Public Viewing)" }],
+			"projectAsset": "3dpipes.webp",
+			"projectLinks": [{ "linkType": "github", "linkURL": "https://github.com/rhit-westeraj/gl-pipes" }],
+			"projectStatus": { "status": "Active Development" }
+		},
+		{
+			"projectId": 15,
+			"projectName": "Portfolio Website (React Edition)",
+			"projectDescription": "This website, rewritten with ReactJS (because why not)",
+			"projectSubDesc": "Personal Project",
+			"projectLanguage": ["TypeScript", "CSS3", "JSON Schema"],
+			"projectLibraries": ["ReactJS", "MUI", "NerdFonts"],
+			"projectAsset": "portfolionew.webp",
+			"projectLinks": [
+				{ "linkType": "github", "linkURL": "https://github.com/rhit-westeraj/rhit-westeraj.github.io" }
+			],
 			"projectStatus": { "status": "Active Development" }
 		}
 	]

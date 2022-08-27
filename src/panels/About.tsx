@@ -41,7 +41,6 @@ export default function AboutPanel() {
 					<img src={Workspace} alt="workspace" style={{ width: '100%', objectFit: 'contain' }} />
 				</Box>
 			</Box>
-
 			<Divider sx={{ marginTop: '2rem' }} />
 			<FooterPanel />
 		</Box>

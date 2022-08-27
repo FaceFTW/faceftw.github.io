@@ -25,7 +25,7 @@
 	margin: 0.9375rem auto;
 	display: block;
 	width: 7.5rem;
-	border: 0.5rem solid #2c2f3f;
+	border: 0.5rem solid #202020;
 	transition: 0.3s;
 }
 .profile img.pfp.pfp:hover {
