@@ -54,7 +54,7 @@ const Layout = () => {
 					color="secondary"
 					position="sticky"
 					sx={{
-						width: { xs: '100%', md: `calc(100%-${drawerWidth}px)` },
+						width: { xs: '100%', md: `calc(100% - calc(${drawerWidth}px))` },
 						marginLeft: { xs: 0, md: `${drawerWidth}px` },
 					}}
 				>
@@ -64,7 +64,7 @@ const Layout = () => {
 								<MenuIcon />
 							</IconButton>
 						</Box>
-						<Link to="/" className='link'>
+						<Link to="/" className="link">
 							<Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
 								{titleMemo}
 							</Typography>

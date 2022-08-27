@@ -64,3 +64,7 @@ section.intro .hero-text {
 	font-size: 3rem;
 	background-color: #222;
 }
+
+.errorimg {
+	width: 400px;
+}
