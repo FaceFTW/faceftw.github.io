@@ -1,7 +1,8 @@
-import { Box, Grid } from '@mui/material';
+import { Box, Divider, Grid } from '@mui/material';
 import React from 'react';
 import projectData from '../assets/json/projects.json';
 import ProjectCard from '../components/ProjectCard';
+import FooterPanel from './Footer';
 
 export default function ProjectsPanel() {
 	const projects: Project[] = projectData.projectList;
@@ -17,6 +18,9 @@ export default function ProjectsPanel() {
 					))}
 				</Grid>
 			</Box>
+
+			<Divider sx={{ marginTop: '2rem' }} />
+			<FooterPanel />
 		</div>
 	);
 }

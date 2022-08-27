@@ -1,8 +1,9 @@
-import { Box, Grid, Typography, useMediaQuery } from '@mui/material';
+import { Box, Divider, Grid, Typography, useMediaQuery } from '@mui/material';
 import React from 'react';
 import Carousel from 'react-material-ui-carousel';
 import projectData from '../assets/json/projects.json';
 import ProjectCard from '../components/ProjectCard';
+import FooterPanel from './Footer';
 
 interface CarouselSetProps {
 	projects: Project[];
@@ -71,6 +72,8 @@ export default function MainPanel() {
 					</Carousel>
 				</Box>
 			</section>
+			<Divider sx={{ marginTop: '2rem' }} />
+			<FooterPanel />
 		</div>
 	);
 }

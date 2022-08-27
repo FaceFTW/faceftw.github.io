@@ -1,6 +1,17 @@
-import { Accordion, AccordionDetails, AccordionSummary, Box, Grid, Icon, Paper, Typography } from '@mui/material';
+import {
+	Accordion,
+	AccordionDetails,
+	AccordionSummary,
+	Box,
+	Divider,
+	Grid,
+	Icon,
+	Paper,
+	Typography,
+} from '@mui/material';
 import React from 'react';
 import resumeData from '../assets/json/resume.json';
+import FooterPanel from './Footer';
 
 interface SkillSectionProps {
 	skills: SkillCategory[];
@@ -199,6 +210,9 @@ export default function ResumePanel() {
 				<Typography variant="h4">Experience</Typography>
 				<ExperienceSection experience={experience} />
 			</Box>
+
+			<Divider sx={{ marginTop: '2rem' }} />
+			<FooterPanel />
 		</Box>
 	);
 }

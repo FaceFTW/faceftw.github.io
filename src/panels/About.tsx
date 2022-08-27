@@ -1,6 +1,7 @@
-import { Box, Typography } from '@mui/material';
+import { Box, Divider, Typography } from '@mui/material';
 import React from 'react';
 import Workspace from '../assets/img/workspace.webp';
+import FooterPanel from './Footer';
 
 export default function AboutPanel() {
 	return (
@@ -40,6 +41,9 @@ export default function AboutPanel() {
 					<img src={Workspace} alt="workspace" style={{ width: '100%', objectFit: 'contain' }} />
 				</Box>
 			</Box>
+
+			<Divider sx={{ marginTop: '2rem' }} />
+			<FooterPanel />
 		</Box>
 	);
 }
