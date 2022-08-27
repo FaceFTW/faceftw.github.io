@@ -18,28 +18,6 @@ export interface ProjectCardProps {
 	project: Project;
 }
 
-// const projectStatusStyle = (status: string) => {
-// 	switch (status) {
-// 		case 'active':
-// 			return {
-// 				color: '#00bcd4',
-// 				fontWeight: 'bold',
-// 			};
-// 		case 'completed':
-// 			return {};
-// 		case 'inactive':
-// 			return {
-// 				color: '#bdbdbd',
-// 				fontWeight: 'bold',
-// 			};
-// 		default:
-// 			return {
-// 				color: '#bdbdbd',
-// 				fontWeight: 'bold',
-// 			};
-// 	}
-// };
-
 export default function ProjectCard({ project }: ProjectCardProps) {
 	const [cardExpanded, setCardExpanded] = React.useState(false);
 	const imgAsset = project.projectAsset
@@ -52,7 +30,11 @@ export default function ProjectCard({ project }: ProjectCardProps) {
 
 	return (
 		<Card sx={{ maxWidth: 400 }}>
-			<CardMedia component={'img'} sx={{ height: '250px', width: '400px', objectFit:'contain' }} image={imgAsset} />
+			<CardMedia
+				component={'img'}
+				sx={{ height: '250px', width: '400px', objectFit: 'contain' }}
+				image={imgAsset}
+			/>
 			<CardContent>
 				<Typography variant="h4">{project.projectName}</Typography>
 				<Typography variant="subtitle2">{project.projectDescription}</Typography>

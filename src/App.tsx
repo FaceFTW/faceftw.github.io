@@ -11,7 +11,7 @@ import {
 	useMediaQuery,
 } from '@mui/material';
 import React from 'react';
-import { Outlet, Route, Routes, useMatch } from 'react-router-dom';
+import { Link, Outlet, Route, Routes, useMatch } from 'react-router-dom';
 import './App.css';
 import AboutPanel from './panels/About';
 import Error404Panel from './panels/Error404';
@@ -26,7 +26,21 @@ const drawerWidth = 240;
 const Layout = () => {
 	const [drawerOpen, setDrawerOpen] = React.useState(true);
 	const mobileQuery = useMediaQuery('(max-width:768px)');
-	// const atHomeRoute = useMatch('/')
+	const atProjectsRoute = useMatch('/projects');
+	const atResumeRoute = useMatch('/resume');
+	const atAboutRoute = useMatch('/about');
+
+	const titleMemo = React.useMemo(() => {
+		if (atProjectsRoute) {
+			return 'Projects';
+		} else if (atResumeRoute) {
+			return 'Resume';
+		} else if (atAboutRoute) {
+			return 'About';
+		} else {
+			return 'Home';
+		}
+	}, [atProjectsRoute, atResumeRoute, atAboutRoute]);
 
 	const handleDrawerToggle = () => {
 		setDrawerOpen(!drawerOpen);
@@ -38,26 +52,34 @@ const Layout = () => {
 				<CssBaseline enableColorScheme />
 				<AppBar
 					color="secondary"
-					position="static"
+					position="sticky"
 					sx={{
-						width: {xs:'100%', md: `calc(100%-${drawerWidth}px)` },
-						marginLeft: {xs:0, md: `${drawerWidth}px` },
+						width: { xs: '100%', md: `calc(100%-${drawerWidth}px)` },
+						marginLeft: { xs: 0, md: `${drawerWidth}px` },
 					}}
 				>
 					<Toolbar color="secondary">
-						<IconButton edge="start" color="inherit" aria-label="menu" onClick={handleDrawerToggle}>
-							<MenuIcon />
-						</IconButton>
-						<Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-							TEMP
-						</Typography>
+						<Box hidden={!mobileQuery}>
+							<IconButton edge="start" onClick={handleDrawerToggle}>
+								<MenuIcon />
+							</IconButton>
+						</Box>
+						<Link to="/" className='link'>
+							<Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+								{titleMemo}
+							</Typography>
+						</Link>
 					</Toolbar>
 				</AppBar>
 			</Box>
 
 			<Box sx={{ d: 'block' }}>
 				<Box
-					sx={{ width: { md: `calc(100% - ${drawerWidth}px)`}, marginLeft: {md: `${drawerWidth}px`} , flexGrow: 0 }}
+					sx={{
+						width: { md: `calc(100% - ${drawerWidth}px)` },
+						marginLeft: { md: `${drawerWidth}px` },
+						flexGrow: 0,
+					}}
 				>
 					<Outlet />
 				</Box>
@@ -70,7 +92,11 @@ const Layout = () => {
 							open={drawerOpen}
 							sx={{
 								display: mobileQuery ? { xs: 'block', md: 'none' } : { xs: 'none', md: 'block' },
-								'& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
+								'& .MuiDrawer-paper': {
+									boxSizing: 'border-box',
+									width: drawerWidth,
+									backgroundColor: '#303030',
+								},
 							}}
 							onClose={() => (mobileQuery ? setDrawerOpen(false) : undefined)}
 						>

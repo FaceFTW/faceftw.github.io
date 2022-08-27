@@ -1,31 +1,36 @@
 import {
+	Alert,
 	Box,
-	Typography,
-	Tooltip,
-	IconButton,
-	Icon,
 	Divider,
+	Icon,
+	IconButton,
 	List,
 	ListItem,
 	ListItemIcon,
 	ListItemText,
+	Snackbar,
+	Tooltip,
+	Typography,
 } from '@mui/material';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Pfp from '../assets/img/pfp.webp';
+import gpgkey from '../assets/json/gpg_key.json';
 
 export default function SidenavPanel() {
+	const [gpgCopiedShown, setGpgCopiedShown] = React.useState(false);
+
 	return (
 		<div>
-			<Box>
+			<Box className="sidenav">
 				<div className="profile">
 					<img src={Pfp} alt="" className="pfp" />
-					<Link to={'/'}>
-						<Typography component="h1" variant="h6" sx={{ textAlign: 'center', textDecoration: 'none' }}>
+					<Link to={'/'} className="link">
+						<Typography component="h6" variant="h6" sx={{ textAlign: 'center', textDecoration: 'none' }}>
 							Alex Westerman
 						</Typography>
 					</Link>
-					<div className="social-links">
+					<Box className="social-links" sx={{ display: 'flex', justifyContent: 'center' }}>
 						<Tooltip title="Twitter">
 							<a href="https://twitter.com/_FaceFTW">
 								<IconButton>
@@ -51,13 +56,18 @@ export default function SidenavPanel() {
 						</Tooltip>
 
 						<Tooltip title="GPG Key">
-							{/* <a href="https://github.com/rhit-westeraj"> */}
-							<IconButton>
-								<Icon className="nf-mdi-key_variant" />
-							</IconButton>
-							{/* </a> */}
+							<a href="#">
+								<IconButton
+									onClick={() => {
+										navigator.clipboard.writeText(gpgkey.pub_key);
+										setGpgCopiedShown(true);
+									}}
+								>
+									<Icon className="nf-mdi-key_variant" />
+								</IconButton>
+							</a>
 						</Tooltip>
-					</div>
+					</Box>
 				</div>
 			</Box>
 			<Divider />
@@ -87,6 +97,16 @@ export default function SidenavPanel() {
 					<ListItemText primary="About" />
 				</ListItem>
 			</List>
+			<Snackbar
+				anchorOrigin={{ vertical: 'top', horizontal: 'left' }}
+				open={gpgCopiedShown}
+				autoHideDuration={6000}
+				onClose={() => setGpgCopiedShown(false)}
+			>
+				<Alert onClose={() => setGpgCopiedShown(false)} severity="info">
+					Copied GPG Key to Clipboard
+				</Alert>
+			</Snackbar>
 		</div>
 	);
 }

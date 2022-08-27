@@ -11,7 +11,7 @@ export default function ProjectsPanel() {
 			<Box sx={{ display: 'flex', justifyContent: 'center', margin: '2rem' }}>
 				<Grid container spacing={3} alignItems="stretch">
 					{projects.map((project, index) => (
-						<Grid item xs={12} sm={4} key={index} sx={{ display: 'flex', justifyContent: 'center' }}>
+						<Grid item xs={12} md={6} lg={4} key={index} sx={{ display: 'flex', justifyContent: 'center' }}>
 							<ProjectCard project={project} />
 						</Grid>
 					))}
