@@ -48,7 +48,7 @@ export default function SidenavPanel() {
 						</Tooltip>
 
 						<Tooltip title="Email">
-							<a href="mailto:awesterman16@live.com">
+							<a href="mailto:alex@faceftw.dev">
 								<IconButton>
 									<Icon className="nf-mdi-email" />
 								</IconButton>
