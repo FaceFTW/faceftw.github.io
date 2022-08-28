@@ -24,7 +24,9 @@ export default function SidenavPanel() {
 		<div>
 			<Box className="sidenav">
 				<div className="profile">
-					<img src={Pfp} alt="" className="pfp" />
+					<Link to={'/'}>
+						<img src={Pfp} alt="" className="pfp" />
+					</Link>
 					<Link to={'/'} className="link">
 						<Typography component="h6" variant="h6" sx={{ textAlign: 'center', textDecoration: 'none' }}>
 							Alex Westerman

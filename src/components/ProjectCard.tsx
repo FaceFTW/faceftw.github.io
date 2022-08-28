@@ -50,7 +50,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
 				{demoLink && (
 					<Tooltip title={'Application Demo'}>
 						<IconButton onClick={() => window.open(demoLink.linkURL)}>
-							<Icon className={'nf-fa-external_link'} />
+							<Icon className={'nf-mdi-application'} />
 						</IconButton>
 					</Tooltip>
 				)}

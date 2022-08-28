@@ -210,6 +210,17 @@
 				{ "linkType": "github", "linkURL": "https://github.com/rhit-westeraj/rhit-westeraj.github.io" }
 			],
 			"projectStatus": { "status": "Active Development" }
+		},
+		{
+			"projectId": 16,
+			"projectName": "Dotfiles",
+			"projectDescription": "A collection of scripts/configs I use for development. Includes a Neovim config",
+			"projectSubDesc": "Personal projects",
+			"projectLanguage": ["Powershell", "ZSH", "VimScript (Neovim)"],
+			"projectLibraries": ["Chezmoi"],
+			"projectAsset": "dotfiles.webp",
+			"projectLinks": [{ "linkType": "github", "linkURL": "https://github.com/rhit-westeraj/dotfiles" }],
+			"projectStatus": { "status": "Active Development" }
 		}
 	]
 }
