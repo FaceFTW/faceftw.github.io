@@ -12,13 +12,4 @@ updates:
     reviewers:
       - "rhit-westeraj"
     ignore:
-      - dependency-name: "@angular/cli"
-        update-types: ["version-update:semver-patch"]
-      - dependency-name: "@angular/compiler-cli"
-        update-types: ["version-update:semver-patch"]
-      - dependency-name: "@angular/router"
-        update-types: ["version-update:semver-patch"]
-      - dependency-name: "@angular/forms"
-        update-types: ["version-update:semver-patch"]
-      - dependency-name: "@angular/platform-browser-dynamic"
-        update-types: ["version-update:semver-patch"]
+      - update-types: ["version-update:semver-patch"]
