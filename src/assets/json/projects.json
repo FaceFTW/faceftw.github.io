@@ -33,7 +33,7 @@
 			"projectAsset": "Picture1.webp",
 			"projectLinks": [
 				{ "linkType": "github", "linkURL": "https://github.com/rhit-westeraj/UberUnit" },
-				{ "linkType": "demo", "linkURL": "https://uberunit-7c04b.web.app/" },
+				{ "linkType": "demo", "linkURL": "https://uberunit.faceftw.dev" },
 				{
 					"linkType": "misc",
 					"linkURL": "https://rosehulmanprojectvault.org/project/-Mcae1Wvtehq-J4saaLz",
@@ -88,7 +88,7 @@
 			"projectAsset": "strivestats.webp",
 			"projectLinks": [
 				{ "linkType": "github", "linkURL": "https://github.com/rhit-westeraj/strive-stats" },
-				{ "linkType": "demo", "linkURL": "https://strive-stats.web.app/" },
+				{ "linkType": "demo", "linkURL": "https://strive-stats.faceftw.dev" },
 				{
 					"linkType": "misc",
 					"linkURL": "https://rosehulmanprojectvault.org/project/-N401Wni1nsf9F8lcEQ0",
