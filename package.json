@@ -41,7 +41,7 @@
 		"eslint-config-prettier": "^8.5.0",
 		"eslint-plugin-react": "^7.30.1",
 		"prop-types": "^15.8.1",
-		"webpack": "^5.74.0"
+		"webpack": "^5.75.0"
 	},
 	"prettier": {
 		"jsx-single-quote": true,
