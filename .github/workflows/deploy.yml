@@ -2,7 +2,7 @@ name: Deploy to Live Branch
 
 on:
   push:
-    branches: [ deploy ]
+    branches: [ main ]
 
 jobs:
   build:
@@ -21,7 +21,7 @@ jobs:
         git_commit_gpgsign: true
 
 
-    - name: Use Node.js ${{ matrix.node-version }}
+    - name: Use Node.js 16
       uses: actions/setup-node@v1
       with:
         node-version: 16.x
