@@ -221,6 +221,28 @@
 			"projectAsset": "dotfiles.webp",
 			"projectLinks": [{ "linkType": "github", "linkURL": "https://github.com/rhit-westeraj/dotfiles" }],
 			"projectStatus": { "status": "Active Development" }
+		},
+		{
+			"projectId": 17,
+			"projectName": "JFTP \"Scuffed\" Edition",
+			"projectDescription": "A \"Scuffed\" and \"Updated\" version of the JFTP project, originally from SourceForge",
+			"projectSubDesc": "For Rose-Hulman CSSE477 - Software Architecture",
+			"projectLanguage": ["Java"],
+			"projectLibraries": ["See Repo"],
+			"projectLinks": [{ "linkType": "github", "linkURL": "https://github.com/rhit-westeraj/jftp-scuffed" }],
+			"projectStatus": { "status": "Finished" },
+			"projectAsset": "jftp.webp"
+		},
+		{
+			"projectId": 18,
+			"projectName": "RetireSimple",
+			"projectDescription": "Open-Source Serverless Retirement Modeling Solution Designed for Extensibility",
+			"projectSubDesc": "For Rose-Hulman Senior Project (CSSE497-499)",
+			"projectLanguage": ["C# (.NET 6)", "TypeScript"],
+			"projectLibraries": ["ASP.NET Core 6", "Entity Framework Core 6", "Math.NET", "ReactJS"],
+			"projectLinks": [{ "linkType": "github", "linkURL": "https://github.com/rhit-westeraj/RetireSimple" }],
+			"projectStatus": { "status": "Active Development" },
+			"projectAsset": "retiresimple.webp"
 		}
 	]
 }

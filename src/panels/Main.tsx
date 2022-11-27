@@ -22,7 +22,7 @@ const CarouselSet = ({ projects }: CarouselSetProps) => {
 };
 export default function MainPanel() {
 	const projects: Project[] = projectData.projectList;
-	const featured = [projects[15], projects[6], projects[7], projects[11], projects[1], projects[14]];
+	const featured = [projects[15], projects[6], projects[18], projects[7], projects[17], projects[14]];
 	const mdQuery = useMediaQuery('(min-width: 992px)');
 	const lgQuery = useMediaQuery('(min-width: 1200px)');
 
