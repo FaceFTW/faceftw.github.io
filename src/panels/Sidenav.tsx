@@ -57,6 +57,13 @@ export default function SidenavPanel() {
 							</a>
 						</Tooltip>
 
+						<Tooltip title="Linkedin">
+							<a href="https://www.linkedin.com/in/faceftw/">
+								<IconButton>
+									<Icon className="nf-mdi-linkedin" />
+								</IconButton>
+							</a>
+						</Tooltip>
 						<Tooltip title="GPG Key">
 							<a href="#">
 								<IconButton
