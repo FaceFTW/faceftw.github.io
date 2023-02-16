@@ -2,6 +2,9 @@
 	"name": "portfolio-website",
 	"version": "0.1.0",
 	"private": true,
+	"engines": {
+		"pnpm": "7"
+	},
 	"dependencies": {
 		"@emotion/react": "^11.10.0",
 		"@emotion/styled": "^11.10.0",
@@ -37,6 +40,9 @@
 		"@typescript-eslint/eslint-plugin": "^5.34.0",
 		"@typescript-eslint/parser": "^5.34.0",
 		"babel-plugin-named-exports-order": "^0.0.2",
+		"@babel/core": "^7.16.0",
+		"@babel/plugin-syntax-flow": "^7.14.5",
+		"@babel/plugin-transform-react-jsx": "^7.14.9",
 		"eslint": "^8.22.0",
 		"eslint-config-prettier": "^8.5.0",
 		"eslint-plugin-react": "^7.30.1",
