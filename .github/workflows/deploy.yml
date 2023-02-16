@@ -3,10 +3,33 @@ name: Deploy to Live Branch
 on:
   push:
     branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup pnpm
+      uses: pnpm/action-setup@v2
+      with:
+        version: 7
+    - name: Use Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 16
+        cache: pnpm
+        cache-dependency-path: RetireSimple.Frontend/pnpm-lock.yaml
+    - name: Load Project Dependencies
+      run: pnpm install
+    - name: Run Build
+      run: pnpm run build
+
+  release:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push' && github.event_name != 'pull_request'
     steps:
     - uses: actions/checkout@v3
     - name: Setup pnpm
