@@ -21,7 +21,7 @@ jobs:
       with:
         node-version: 16
         cache: pnpm
-        cache-dependency-path: RetireSimple.Frontend/pnpm-lock.yaml
+        cache-dependency-path: ./pnpm-lock.yaml
     - name: Load Project Dependencies
       run: pnpm install
     - name: Run Build
