@@ -2,18 +2,18 @@ import {
 	Alert,
 	Box,
 	Divider,
-	Icon,
 	IconButton,
 	List,
-	ListItem,
 	ListItemIcon,
 	ListItemText,
+	MenuItem,
 	Snackbar,
 	Tooltip,
-	Typography,
+	Typography
 } from '@mui/material';
 import React from 'react';
-import { Link } from 'react-router-dom';
+import {FaCode, FaEnvelope, FaGithub, FaHome, FaKey, FaLinkedin, FaScroll, FaTwitter, FaUserCircle} from 'react-icons/fa';
+import {Link} from 'react-router-dom';
 import Pfp from '../assets/img/pfp.webp';
 import gpgkey from '../assets/json/gpg_key.json';
 
@@ -36,7 +36,7 @@ export default function SidenavPanel() {
 						<Tooltip title="Twitter">
 							<a href="https://twitter.com/_FaceFTW">
 								<IconButton>
-									<Icon className="nf-mdi-twitter" />
+									<FaTwitter />
 								</IconButton>
 							</a>
 						</Tooltip>
@@ -44,7 +44,7 @@ export default function SidenavPanel() {
 						<Tooltip title="Github">
 							<a href="https://github.com/rhit-westeraj">
 								<IconButton>
-									<Icon className="nf-fa-github" />
+									<FaGithub />
 								</IconButton>
 							</a>
 						</Tooltip>
@@ -52,7 +52,7 @@ export default function SidenavPanel() {
 						<Tooltip title="Email">
 							<a href="mailto:alex@faceftw.dev">
 								<IconButton>
-									<Icon className="nf-mdi-email" />
+									<FaEnvelope />
 								</IconButton>
 							</a>
 						</Tooltip>
@@ -60,7 +60,7 @@ export default function SidenavPanel() {
 						<Tooltip title="Linkedin">
 							<a href="https://www.linkedin.com/in/faceftw/">
 								<IconButton>
-									<Icon className="nf-mdi-linkedin" />
+									<FaLinkedin />
 								</IconButton>
 							</a>
 						</Tooltip>
@@ -72,7 +72,7 @@ export default function SidenavPanel() {
 										setGpgCopiedShown(true);
 									}}
 								>
-									<Icon className="nf-mdi-key_variant" />
+									<FaKey />
 								</IconButton>
 							</a>
 						</Tooltip>
@@ -81,30 +81,30 @@ export default function SidenavPanel() {
 			</Box>
 			<Divider />
 			<List>
-				<ListItem button component={Link} to="/">
+				<MenuItem component={Link} to="/">
 					<ListItemIcon>
-						<Icon className="nf-mdi-home" />
+						<FaHome />
 					</ListItemIcon>
 					<ListItemText primary="Home" />
-				</ListItem>
-				<ListItem button component={Link} to="/projects">
+				</MenuItem>
+				<MenuItem component={Link} to="/projects">
 					<ListItemIcon>
-						<Icon className="nf-dev-code" />
+						<FaCode/>
 					</ListItemIcon>
 					<ListItemText primary="Projects" />
-				</ListItem>
-				<ListItem button component={Link} to="/resume">
+				</MenuItem>
+				<MenuItem component={Link} to="/resume">
 					<ListItemIcon>
-						<Icon className="nf-fa-file_text_o" />
+						<FaScroll/>
 					</ListItemIcon>
 					<ListItemText primary="Resume" />
-				</ListItem>
-				<ListItem button component={Link} to="/about">
+				</MenuItem>
+				<MenuItem component={Link} to="/about">
 					<ListItemIcon>
-						<Icon className="nf-fa-user_circle_o" />
+						<FaUserCircle/>
 					</ListItemIcon>
 					<ListItemText primary="About" />
-				</ListItem>
+				</MenuItem>
 			</List>
 			<Snackbar
 				anchorOrigin={{ vertical: 'top', horizontal: 'left' }}

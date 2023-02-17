@@ -23,7 +23,7 @@ const themeOptions: ThemeOptions = {
 		},
 		MuiIcon: {
 			defaultProps: {
-				baseClassName: 'nf',
+				baseClassName: 'material-icons',
 			},
 			styleOverrides: {
 				root: {

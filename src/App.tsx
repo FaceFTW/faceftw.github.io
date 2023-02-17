@@ -1,9 +1,9 @@
-import MenuIcon from '@mui/icons-material/Menu';
 import {
 	AppBar,
 	Box,
 	CssBaseline,
 	Drawer,
+	Icon,
 	IconButton,
 	ThemeProvider,
 	Toolbar,
@@ -11,7 +11,7 @@ import {
 	useMediaQuery,
 } from '@mui/material';
 import React from 'react';
-import { Link, Outlet, Route, Routes, useMatch } from 'react-router-dom';
+import {Link, Outlet, Route, Routes, useMatch} from 'react-router-dom';
 import './App.css';
 import AboutPanel from './panels/About';
 import Error404Panel from './panels/Error404';
@@ -19,7 +19,7 @@ import MainPanel from './panels/Main';
 import ProjectsPanel from './panels/Projects';
 import ResumePanel from './panels/Resume';
 import SidenavPanel from './panels/Sidenav';
-import { appTheme } from './theme';
+import {appTheme} from './theme';
 
 const drawerWidth = 240;
 
@@ -60,8 +60,8 @@ const Layout = () => {
 				>
 					<Toolbar color="secondary">
 						<Box hidden={!mobileQuery}>
-							<IconButton edge="start" onClick={handleDrawerToggle}>
-								<MenuIcon />
+							<IconButton edge="start" onClick={handleDrawerToggle} >
+
 							</IconButton>
 						</Box>
 						<Link to="/" className="link">

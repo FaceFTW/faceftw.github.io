@@ -1,5 +1,4 @@
-import { Box, Divider, Typography } from '@mui/material';
-import React from 'react';
+import {Box, Divider, Typography} from '@mui/material';
 import Workspace from '../assets/img/workspace.webp';
 import FooterPanel from './Footer';
 
