@@ -3,7 +3,6 @@ import {
 	Box,
 	CssBaseline,
 	Drawer,
-	Icon,
 	IconButton,
 	ThemeProvider,
 	Toolbar,
@@ -33,11 +32,14 @@ const Layout = () => {
 	const titleMemo = React.useMemo(() => {
 		if (atProjectsRoute) {
 			return 'Projects';
-		} else if (atResumeRoute) {
+		}
+ else if (atResumeRoute) {
 			return 'Resume';
-		} else if (atAboutRoute) {
+		}
+ else if (atAboutRoute) {
 			return 'About';
-		} else {
+		}
+ else {
 			return 'Home';
 		}
 	}, [atProjectsRoute, atResumeRoute, atAboutRoute]);
@@ -51,21 +53,21 @@ const Layout = () => {
 			<Box sx={{ d: 'flex' }}>
 				<CssBaseline enableColorScheme />
 				<AppBar
-					color="secondary"
-					position="sticky"
+					color='secondary'
+					position='sticky'
 					sx={{
 						width: { xs: '100%', md: `calc(100% - calc(${drawerWidth}px))` },
 						marginLeft: { xs: 0, md: `${drawerWidth}px` },
 					}}
 				>
-					<Toolbar color="secondary">
+					<Toolbar color='secondary'>
 						<Box hidden={!mobileQuery}>
-							<IconButton edge="start" onClick={handleDrawerToggle} >
+							<IconButton edge='start' onClick={handleDrawerToggle} >
 
 							</IconButton>
 						</Box>
-						<Link to="/" className="link">
-							<Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+						<Link to='/' className='link'>
+							<Typography variant='h6' component='div' sx={{ flexGrow: 1 }}>
 								{titleMemo}
 							</Typography>
 						</Link>
@@ -84,9 +86,9 @@ const Layout = () => {
 					<Outlet />
 				</Box>
 				<Box>
-					<Box component="nav" sx={{ w: { md: `${drawerWidth}px` }, flexShrink: { md: 0 } }}>
+					<Box component='nav' sx={{ w: { md: `${drawerWidth}px` }, flexShrink: { md: 0 } }}>
 						<Drawer
-							anchor="left"
+							anchor='left'
 							variant={mobileQuery ? 'temporary' : 'permanent'}
 							ModalProps={{ keepMounted: true }}
 							open={drawerOpen}
@@ -111,14 +113,14 @@ const Layout = () => {
 
 function App() {
 	return (
-		<div className="App">
+		<div className='App'>
 			<Routes>
-				<Route path="/" element={<Layout />}>
+				<Route path='/' element={<Layout />}>
 					<Route index element={<MainPanel />} />
-					<Route path="/projects" element={<ProjectsPanel />} />
-					<Route path="/resume" element={<ResumePanel />} />
-					<Route path="/about" element={<AboutPanel />} />
-					<Route path="*" element={<Error404Panel />} />
+					<Route path='/projects' element={<ProjectsPanel />} />
+					<Route path='/resume' element={<ResumePanel />} />
+					<Route path='/about' element={<AboutPanel />} />
+					<Route path='*' element={<Error404Panel />} />
 				</Route>
 			</Routes>
 		</div>

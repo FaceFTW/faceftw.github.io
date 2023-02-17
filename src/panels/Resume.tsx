@@ -11,6 +11,7 @@ import {
 } from '@mui/material';
 import React from 'react';
 import resumeData from '../assets/json/resume.json';
+import {Education, ProfessionalExperience, ResumeHighlight, SkillCategory} from '../data/schema-types';
 import FooterPanel from './Footer';
 
 interface SkillSectionProps {
@@ -31,7 +32,7 @@ interface ExperienceSectionProps {
 
 function Highlights(props: HighlightsProps) {
 	return (
-		<Grid container spacing={3} sx={{ padding: { sm: '2rem 5rem' } }} alignItems="stretch">
+		<Grid container spacing={3} sx={{ padding: { sm: '2rem 5rem' } }} alignItems='stretch'>
 			{props.highlights.map((highlight, index) => (
 				<Grid item xs={12} lg={4} key={index} sx={{ display: 'flex' }}>
 					<Paper
@@ -51,8 +52,8 @@ function Highlights(props: HighlightsProps) {
 							/>
 						</Box>
 						<Box>
-							<Typography variant="h4">{highlight.stat}</Typography>
-							<Typography variant="h6">{highlight.statDescription}</Typography>
+							<Typography variant='h4'>{highlight.stat}</Typography>
+							<Typography variant='h6'>{highlight.statDescription}</Typography>
 						</Box>
 					</Paper>
 				</Grid>
@@ -72,30 +73,30 @@ function SkillsSection({ skills }: SkillSectionProps) {
 					expanded={skillsExpanded === skill.categoryName}
 					onChange={() => setSkillExpanded(skill.categoryName)}
 				>
-					<AccordionSummary expandIcon={<Icon className="nf-mdi-chevron_down" />}>
+					<AccordionSummary expandIcon={<Icon className='nf-mdi-chevron_down' />}>
 						<Typography>{skill.categoryName}</Typography>
 					</AccordionSummary>
 					<AccordionDetails>
-						<Typography variant="h5">Advanced Skills</Typography>
+						<Typography variant='h5'>Advanced Skills</Typography>
 						<ul>
 							{skill.highSkill?.map((advancedSkill, index) => (
-								<Typography component="li" key={index}>
+								<Typography component='li' key={index}>
 									{advancedSkill}
 								</Typography>
 							))}
 						</ul>
-						<Typography variant="h5">Intermediate Skills</Typography>
+						<Typography variant='h5'>Intermediate Skills</Typography>
 						<ul>
 							{skill.medSkill?.map((intermediateSkill, index) => (
-								<Typography component="li" key={index}>
+								<Typography component='li' key={index}>
 									{intermediateSkill}
 								</Typography>
 							))}
 						</ul>
-						<Typography variant="h5">Beginner Skills</Typography>
+						<Typography variant='h5'>Beginner Skills</Typography>
 						<ul>
 							{skill.lowSkill?.map((beginnerSkill, index) => (
-								<Typography component="li" key={index}>
+								<Typography component='li' key={index}>
 									{beginnerSkill}
 								</Typography>
 							))}
@@ -119,13 +120,13 @@ function EducationSection({ education }: EducationSectionProps) {
 					elevation={3}
 					onChange={() => setEducationExpanded(edu.name)}
 				>
-					<AccordionSummary expandIcon={<Icon className="nf-mdi-chevron_down" />}>
+					<AccordionSummary expandIcon={<Icon className='nf-mdi-chevron_down' />}>
 						<Typography sx={{ width: '66%', flexShrink: 0 }}>{edu.name}</Typography>
 						<Typography sx={{ color: 'text.secondary' }}>{edu.graduationDate}</Typography>
 					</AccordionSummary>
 					<AccordionDetails>
-						<Typography variant="h6">Field of Study:</Typography>
-						<Typography variant="body1">
+						<Typography variant='h6'>Field of Study:</Typography>
+						<Typography variant='body1'>
 							{edu.degree?.join(', ') + (edu.degreeAddendum ? ` (${edu.degreeAddendum})` : '')}
 						</Typography>
 						<Typography hidden={!edu.gpa}>
@@ -160,7 +161,7 @@ function ExperienceSection({ experience }: ExperienceSectionProps) {
 					expanded={experienceExpanded === exp.name}
 					onChange={() => setExperienceExpanded(exp.name)}
 				>
-					<AccordionSummary expandIcon={<Icon className="nf-mdi-chevron_down" />}>
+					<AccordionSummary expandIcon={<Icon className='nf-mdi-chevron_down' />}>
 						<Typography sx={{ width: '66%', flexShrink: 0 }}>{exp.name}</Typography>
 						<Typography sx={{ color: 'text.secondary' }}>{exp.position}</Typography>
 					</AccordionSummary>
@@ -172,10 +173,10 @@ function ExperienceSection({ experience }: ExperienceSectionProps) {
 							Reason for Termination: {exp.terminationReason}
 						</Typography>
 						<br />
-						<Typography variant="h5">Responsibilities:</Typography>
+						<Typography variant='h5'>Responsibilities:</Typography>
 						<ul>
 							{exp.responsibilities.map((responsibility, index) => (
-								<Typography component="li" key={index}>
+								<Typography component='li' key={index}>
 									{responsibility}
 								</Typography>
 							))}
@@ -199,15 +200,15 @@ export default function ResumePanel() {
 				<Highlights highlights={highlights} />
 			</Box>
 			<Box sx={{ margin: '1rem' }}>
-				<Typography variant="h4">Skills</Typography>
+				<Typography variant='h4'>Skills</Typography>
 				<SkillsSection skills={skills} />
 			</Box>
 			<Box sx={{ margin: '1rem' }}>
-				<Typography variant="h4">Education</Typography>
+				<Typography variant='h4'>Education</Typography>
 				<EducationSection education={education} />
 			</Box>
 			<Box sx={{ margin: '1rem' }}>
-				<Typography variant="h4">Experience</Typography>
+				<Typography variant='h4'>Experience</Typography>
 				<ExperienceSection experience={experience} />
 			</Box>
 

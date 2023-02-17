@@ -22,7 +22,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
 	const [cardExpanded, setCardExpanded] = React.useState(false);
 	const imgAsset = project.projectAsset
 		? require(`../assets/img/${project.projectAsset}`)
-		: require(`../assets/img/no_asset.webp`);
+		: require('../assets/img/no_asset.webp');
 
 	const githubLink = project.projectLinks.find((link) => link.linkType === 'github');
 	const demoLink = project.projectLinks.find((link) => link.linkType === 'demo');
@@ -36,12 +36,12 @@ export default function ProjectCard({ project }: ProjectCardProps) {
 				image={imgAsset}
 			/>
 			<CardContent>
-				<Typography variant="h4">{project.projectName}</Typography>
-				<Typography variant="subtitle2">{project.projectDescription}</Typography>
+				<Typography variant='h4'>{project.projectName}</Typography>
+				<Typography variant='subtitle2'>{project.projectDescription}</Typography>
 			</CardContent>
 			<CardActions>
 				{githubLink && (
-					<Tooltip title="Github Repo">
+					<Tooltip title='Github Repo'>
 						<IconButton onClick={() => window.open(githubLink.linkURL)}>
 							<Icon className={'nf-fa-github'} />
 						</IconButton>
@@ -77,22 +77,22 @@ export default function ProjectCard({ project }: ProjectCardProps) {
 			</CardActions>
 			<Collapse in={cardExpanded}>
 				<CardContent>
-					<Typography variant="body1">{project.projectSubDesc}</Typography>
+					<Typography variant='body1'>{project.projectSubDesc}</Typography>
 					<Divider sx={{ my: '0.5rem' }} />
-					<Typography variant="overline">Languages</Typography>
-					<Typography variant="body2">{project.projectLanguage.join(', ')}</Typography>
-					<Typography variant="overline">Libraries</Typography>
-					<Typography variant="body2">
+					<Typography variant='overline'>Languages</Typography>
+					<Typography variant='body2'>{project.projectLanguage.join(', ')}</Typography>
+					<Typography variant='overline'>Libraries</Typography>
+					<Typography variant='body2'>
 						{project.projectLibraries ? project.projectLibraries.join(', ') : 'N/A'}
 					</Typography>
 					<Divider sx={{ my: '0.5rem' }} />
-					<Typography variant="overline">Status</Typography>
-					<Typography variant="body1" sx={{ fontWeight: 'bold' }}>
+					<Typography variant='overline'>Status</Typography>
+					<Typography variant='body1' sx={{ fontWeight: 'bold' }}>
 						{project.projectStatus.status}
 					</Typography>
 
 					{project.projectStatus.reason && (
-						<Typography variant="body1">{project.projectStatus.reason}</Typography>
+						<Typography variant='body1'>{project.projectStatus.reason}</Typography>
 					)}
 				</CardContent>
 			</Collapse>
