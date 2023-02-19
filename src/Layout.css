@@ -1,38 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto");
 
-.link {
-	text-decoration: none;
-	color: #fff;
-}
-
-.profile .social-links a {
-	display: inline-block;
-	background: #212431;
-	color: #fff;
-	transition: 0.3s;
-	border-radius: 100%;
-	text-decoration: none;
-}
-.profile .social-links a:hover {
-	background: #43a047;
-	color: #fff;
-	text-decoration: none;
-}
-.profile img.pfp {
-	border-radius: 50%;
-	margin: 0.9375rem auto;
-	display: block;
-	width: 7.5rem;
-	border: 0.5rem solid #202020;
-	transition: 0.3s;
-}
-.profile img.pfp.pfp:hover {
-	border-color: #43a047;
-}
-.profile mat-icon {
-	font-size: 1.25rem;
-}
-
 .sidenav {
 	background-color: #303030;
 }

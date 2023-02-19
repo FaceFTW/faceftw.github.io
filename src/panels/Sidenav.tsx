@@ -1,5 +1,6 @@
 import {
 	Alert,
+	Box,
 	Divider,
 	List,
 	ListItemIcon,
@@ -12,12 +13,14 @@ import {FaCode, FaHome, FaScroll, FaUserCircle} from 'react-icons/fa';
 import {Link} from 'react-router-dom';
 import SocialLinks from '../components/SocialLinks';
 
-export const SidenavPanel= () => {
-	const [gpgCopiedShown, setGpgCopiedShown] = React.useState(false);
+export const SidenavPanel = () => {
 
 	return (
-		<div>
-			<SocialLinks setGpgCopiedShown={setGpgCopiedShown} />
+		<Box sx={{
+			'display': 'flex',
+			'flexDirection': 'column',
+		}}>
+			<SocialLinks />
 			<Divider />
 			<List>
 				<MenuItem component={Link} to='/'>
@@ -28,34 +31,25 @@ export const SidenavPanel= () => {
 				</MenuItem>
 				<MenuItem component={Link} to='/projects'>
 					<ListItemIcon>
-						<FaCode/>
+						<FaCode />
 					</ListItemIcon>
 					<ListItemText primary='Projects' />
 				</MenuItem>
 				<MenuItem component={Link} to='/resume'>
 					<ListItemIcon>
-						<FaScroll/>
+						<FaScroll />
 					</ListItemIcon>
 					<ListItemText primary='Resume' />
 				</MenuItem>
 				<MenuItem component={Link} to='/about'>
 					<ListItemIcon>
-						<FaUserCircle/>
+						<FaUserCircle />
 					</ListItemIcon>
 					<ListItemText primary='About' />
 				</MenuItem>
 			</List>
-			<Snackbar
-				anchorOrigin={{ vertical: 'top', horizontal: 'left' }}
-				open={gpgCopiedShown}
-				autoHideDuration={6000}
-				onClose={() => setGpgCopiedShown(false)}
-			>
-				<Alert onClose={() => setGpgCopiedShown(false)} severity='info'>
-					Copied GPG Key to Clipboard
-				</Alert>
-			</Snackbar>
-		</div>
+
+		</Box>
 	);
 };
 

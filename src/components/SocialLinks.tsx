@@ -1,48 +1,81 @@
-import {Box, Typography, Tooltip, IconButton} from '@mui/material';
+import {Box, Typography, Tooltip, IconButton, Alert, Snackbar} from '@mui/material';
+import Image from 'mui-image';
 import React from 'react';
 import {FaTwitter, FaGithub, FaEnvelope, FaLinkedin, FaKey} from 'react-icons/fa';
 import {Link} from 'react-router-dom';
 import Pfp from '../assets/img/pfp.webp';
 import gpgkey from '../assets/json/gpg_key.json';
 
-const SocialLinks = (
-	{ setGpgCopiedShown} : { setGpgCopiedShown: React.Dispatch<React.SetStateAction<boolean>> },
-) => {
+const SocialLinks = () => {
+	const [gpgCopiedShown, setGpgCopiedShown] = React.useState(false);
+
+	//Styles
+	const pictueBoxStyle = {
+		'borderRadius': '50%',
+		'border': '0.5rem solid #202020',
+		'width': '8.5rem',
+		'transition': 'all 0.3s ease-in-out',
+		'margin': 'auto',
+		'&:hover': {'borderColor': '#43a047', },
+	};
+	const nameStyle = {
+		textDecoration: 'none',
+		color: 'white',
+		margin: 'auto',
+		'&:hover': {color: 'white', textDecoration: 'none'}
+	};
+
+
+	const pictureBox = (
+		<Box component={Link} to='/' sx={{
+			'display': 'flex',
+			'flexDirection': 'column',
+			'textDecoration': 'none'
+		}}>
+			<Box sx={pictueBoxStyle}>
+				<Image src={Pfp} style={{borderRadius: '50%', width: '7.5rem', }} />
+			</Box>
+			<Typography component='h6' variant='h6' sx={nameStyle}>
+				Alex Westerman
+			</Typography>
+		</Box>
+	);
 
 	return (
 		<Box className='sidenav'>
-			<div className='profile'>
-				<Link to={'/'}>
-					<img src={Pfp} alt='' className='pfp' />
-				</Link>
-				<Link to={'/'} className='link'>
-					<Typography component='h6' variant='h6' sx={{ textAlign: 'center', textDecoration: 'none' }}>
-					Alex Westerman
-					</Typography>
-				</Link>
-				<Box className='social-links'
-					sx={{ display: 'flex', justifyContent: 'center' }}>
-					<Tooltip title='Twitter'>
-						<IconButton href='https://twitter.com/_FaceFTW'><FaTwitter /></IconButton>
-					</Tooltip>
-					<Tooltip title='Github'>
-						<IconButton href='https://github.com/rhit-westeraj'><FaGithub /></IconButton>
-					</Tooltip>
-					<Tooltip title='Email'>
-						<IconButton href='mailto:alex@faceftw.dev'><FaEnvelope /></IconButton>
-					</Tooltip>
-					<Tooltip title='Linkedin'>
-						<IconButton href='https://www.linkedin.com/in/faceftw'><FaLinkedin /></IconButton>
-					</Tooltip>
-					<Tooltip title='GPG Key'>
-						<IconButton
-							onClick={() => {
-								navigator.clipboard.writeText(gpgkey.pub_key);
-								setGpgCopiedShown(true);
-							}}><FaKey /></IconButton>
-					</Tooltip>
-				</Box>
-			</div>
+			{pictureBox}
+			<Box
+				sx={{display: 'flex', justifyContent: 'center'}}>
+				<Tooltip title='Twitter'>
+					<IconButton href='https://twitter.com/_FaceFTW'><FaTwitter /></IconButton>
+				</Tooltip>
+				<Tooltip title='Github'>
+					<IconButton href='https://github.com/FaceFTW'><FaGithub /></IconButton>
+				</Tooltip>
+				<Tooltip title='Email'>
+					<IconButton href='mailto:alex@faceftw.dev'><FaEnvelope /></IconButton>
+				</Tooltip>
+				<Tooltip title='Linkedin'>
+					<IconButton href='https://www.linkedin.com/in/faceftw'><FaLinkedin /></IconButton>
+				</Tooltip>
+				<Tooltip title='GPG Key'>
+					<IconButton
+						onClick={() => {
+							navigator.clipboard.writeText(gpgkey.pub_key);
+							setGpgCopiedShown(true);
+						}}><FaKey /></IconButton>
+				</Tooltip>
+			</Box>
+			<Snackbar
+				anchorOrigin={{vertical: 'top', horizontal: 'left'}}
+				open={gpgCopiedShown}
+				autoHideDuration={6000}
+				onClose={() => setGpgCopiedShown(false)}
+			>
+				<Alert onClose={() => setGpgCopiedShown(false)} severity='info'>
+					Copied GPG Key to Clipboard
+				</Alert>
+			</Snackbar>
 		</Box>
 	);
 };
