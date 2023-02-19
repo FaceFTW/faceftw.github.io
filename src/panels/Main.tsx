@@ -31,10 +31,10 @@ export default function MainPanel() {
 		if (lgQuery) {
 			return [featured.slice(0, 3), featured.slice(3, 6)];
 		}
- else if (mdQuery) {
+		else if (mdQuery) {
 			return [featured.slice(0, 2), featured.slice(2, 4), featured.slice(4, 6)];
 		}
- else {
+		else {
 			return [
 				featured.slice(0, 1),
 				featured.slice(1, 2),

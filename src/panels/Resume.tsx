@@ -71,8 +71,7 @@ function SkillsSection({ skills }: SkillSectionProps) {
 				<Accordion
 					key={index}
 					expanded={skillsExpanded === skill.categoryName}
-					onChange={() => setSkillExpanded(skill.categoryName)}
-				>
+					onChange={() => setSkillExpanded(skill.categoryName)}>
 					<AccordionSummary expandIcon={<Icon className='nf-mdi-chevron_down' />}>
 						<Typography>{skill.categoryName}</Typography>
 					</AccordionSummary>

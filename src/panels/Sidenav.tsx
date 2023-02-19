@@ -57,6 +57,6 @@ export const SidenavPanel= () => {
 			</Snackbar>
 		</div>
 	);
-}
+};
 
 export default SidenavPanel;

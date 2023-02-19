@@ -1,7 +1,7 @@
 import {Box, Divider, Typography} from '@mui/material';
 import Workspace from '../assets/img/workspace.webp';
 import FooterPanel from './Footer';
-import React from 'react'
+import React from 'react';
 
 export default function AboutPanel() {
 	return (

@@ -13,6 +13,8 @@ import {
 	Typography,
 } from '@mui/material';
 import React from 'react';
+import {Project} from '../data/schema-types';
+import {FaChevronDown} from 'react-icons/fa';
 
 export interface ProjectCardProps {
 	project: Project;
@@ -65,13 +67,11 @@ export default function ProjectCard({ project }: ProjectCardProps) {
 				<Tooltip title={'More Details'}>
 					<IconButton onClick={() => setCardExpanded(!cardExpanded)}>
 						<Icon
-							className={'nf-mdi-chevron_down'}
 							sx={{
 								transform: cardExpanded ? 'rotate(180deg)' : 'rotate(0deg)',
 								marginLeft: 'auto',
 								transition: 'transform 0.2s ease-in-out',
-							}}
-						/>
+							}}><FaChevronDown/></Icon>
 					</IconButton>
 				</Tooltip>
 			</CardActions>
