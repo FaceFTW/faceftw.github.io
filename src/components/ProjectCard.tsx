@@ -23,8 +23,8 @@ export interface ProjectCardProps {
 export default function ProjectCard({ project }: ProjectCardProps) {
 	const [cardExpanded, setCardExpanded] = React.useState(false);
 	const imgAsset = project.projectAsset
-		? require(`../assets/img/${project.projectAsset}`)
-		: require('../assets/img/no_asset.webp');
+		? new URL(`../assets/img/${project.projectAsset}`, import.meta.url).href
+		: new URL('../assets/img/no_asset.webp', import.meta.url).href;
 
 	const githubLink = project.projectLinks.find((link) => link.linkType === 'github');
 	const demoLink = project.projectLinks.find((link) => link.linkType === 'demo');
