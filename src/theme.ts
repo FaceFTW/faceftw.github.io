@@ -1,9 +1,9 @@
-import { green } from '@mui/material/colors';
-import { createTheme, ThemeOptions } from '@mui/material/styles';
+import { green } from "@mui/material/colors";
+import { createTheme, ThemeOptions } from "@mui/material/styles";
 
 const themeOptions: ThemeOptions = {
 	palette: {
-		mode: 'dark',
+		mode: "dark",
 		primary: {
 			main: green[600],
 			dark: green[600],
@@ -23,17 +23,17 @@ const themeOptions: ThemeOptions = {
 		},
 		MuiIcon: {
 			defaultProps: {
-				baseClassName: 'nf',
+				baseClassName: "material-icons",
 			},
 			styleOverrides: {
 				root: {
-					boxSizing: 'content-box',
+					boxSizing: "content-box",
 					padding: 3,
-					fontSize: '1.125rem',
+					fontSize: "1.125rem",
 				},
 			},
 		},
 	},
 };
 
-export const appTheme = createTheme(themeOptions, { palette: { mode: 'dark' } });
+export const appTheme = createTheme(themeOptions, { palette: { mode: "dark" } });

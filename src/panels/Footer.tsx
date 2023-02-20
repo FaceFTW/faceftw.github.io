@@ -10,8 +10,8 @@ export default function FooterPanel() {
 			</Typography>
 			<Typography> Source code for this website is licensed under the MIT License</Typography>
 			<br />
-			<div className="footerTxt">
-				<Link to="/err_404">super secret link :)</Link>
+			<div className='footerTxt'>
+				<Link to='/err_404'>super secret link :)</Link>
 			</div>
 		</Box>
 	);

@@ -1,4 +1,4 @@
-name: Deploy to Live Branch
+name: CI
 
 on:
   push:
@@ -8,6 +8,7 @@ on:
 
 jobs:
   build:
+    name: PR Build
     runs-on: ubuntu-latest
     if: github.event_name == 'pull_request'
     steps:
@@ -28,6 +29,7 @@ jobs:
       run: pnpm run build
 
   release:
+    name: Deploy
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main' && github.event_name == 'push' && github.event_name != 'pull_request'
     steps:
@@ -41,15 +43,11 @@ jobs:
       with:
         node-version: 16
         cache: pnpm
-        cache-dependency-path: RetireSimple.Frontend/pnpm-lock.yaml
+        cache-dependency-path: pnpm-lock.yaml
     - name: Load Project Dependencies
       run: pnpm install
     - name: Run Build
       run: pnpm run build
-    - name: Some SPA Workarounds for Github Pages
-      run : |
-        touch build/.nojekyll
-        cp build/index.html build/404.html
     - name: Deploy
       uses: JamesIves/github-pages-deploy-action@4.1.5
       with:

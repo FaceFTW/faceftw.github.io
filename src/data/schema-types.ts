@@ -1,32 +1,32 @@
 /***************PROJECT TYPES*******************/
-declare enum StatusEnum {
-	ARCHIVED = "Archived",
-	FINISHED = "Finished",
-	FINISHED_PRIV = "Finished (Private Work)",
-	ACTIVE_DEVEL = "Active Development",
-	SUSPENDED = "Suspended",
+export enum StatusEnum {
+	ARCHIVED = 'Archived',
+	FINISHED = 'Finished',
+	FINISHED_PRIV = 'Finished (Private Work)',
+	ACTIVE_DEVEL = 'Active Development',
+	SUSPENDED = 'Suspended',
 }
 
-declare enum LinkTypeEnum {
-	TEXT = "text",
-	GITHUB = "github",
-	DEMO = "demo",
-	MISC = "misc",
+export enum LinkTypeEnum {
+	TEXT = 'text',
+	GITHUB = 'github',
+	DEMO = 'demo',
+	MISC = 'misc',
 }
 
-declare interface ProjectLink {
+export interface ProjectLink {
 	linkType: string;
 	linkURL?: string;
 	linkDesc?: string;
 	text?: string;
 }
 
-declare interface ProjectStatus {
+export interface ProjectStatus {
 	status: string;
 	reason?: string;
 }
 
-declare interface Project {
+export interface Project {
 	projectId: number;
 	projectName: string;
 	projectDescription: string;
@@ -39,12 +39,12 @@ declare interface Project {
 }
 
 /***************RESUME TYPES*******************/
-declare interface Gpa {
+export interface Gpa {
 	unweighted: number;
 	weighted: number;
 }
 
-declare interface ProfessionalExperience {
+export interface ProfessionalExperience {
 	name: string;
 	position: string;
 	timeEmployed?: string;
@@ -53,7 +53,7 @@ declare interface ProfessionalExperience {
 	responsibilities: string[];
 }
 
-declare interface Education {
+export interface Education {
 	name: string;
 	graduationDate: string;
 	degree: string[];
@@ -63,20 +63,20 @@ declare interface Education {
 	propCoursework?: string[];
 }
 
-declare interface SkillCategory {
+export interface SkillCategory {
 	categoryName: string;
 	highSkill?: string[];
 	medSkill?: string[];
 	lowSkill?: string[];
 }
 
-declare interface ResumeHighlight {
+export interface ResumeHighlight {
 	icon: string;
 	stat: string;
 	statDescription: string;
 }
 
-declare interface Resume {
+export interface Resume {
 	$schema: string;
 	highlights: ResumeHighlight[];
 	skills: SkillCategory[];

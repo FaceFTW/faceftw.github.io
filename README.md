@@ -1,7 +1,6 @@
-# rhit-westeraj.github.io
+# faceftw.github.io
 
 ![Deploy Status](https://github.com/rhit-westeraj/rhit-westeraj.github.io/actions/workflows/deploy.yml/badge.svg?branch=deploy)
-![Code Quality](https://github.com/rhit-westeraj/rhit-westeraj.github.io/actions/workflows/codeql-analysis.yml/badge.svg)
 
 Repository for my digital portfolio. This is a from-scratch website that will automatically allows me to update/add project information simply in a JSON file.
 
@@ -27,5 +26,3 @@ I don't have issues setup on the repository because I don't expect bug reports, 
 - [x] Responsive Mobile UI
 - [ ] Project Tagging System
 - [ ] More ways to show projects (Open to suggestions!)
-
-Keep in mind the template will receive all changes that this site gets, so if you choose to use the template early, be careful of merging from upstream!

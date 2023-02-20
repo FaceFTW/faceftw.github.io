@@ -1,121 +1,44 @@
 import {
-	Alert,
 	Box,
 	Divider,
-	Icon,
-	IconButton,
 	List,
-	ListItem,
 	ListItemIcon,
 	ListItemText,
-	Snackbar,
-	Tooltip,
-	Typography,
+	MenuItem
 } from '@mui/material';
-import React from 'react';
-import { Link } from 'react-router-dom';
-import Pfp from '../assets/img/pfp.webp';
-import gpgkey from '../assets/json/gpg_key.json';
+import {FaCode, FaHome, FaScroll, FaUserCircle} from 'react-icons/fa';
+import {Link} from 'react-router-dom';
+import SocialLinks from '../components/SocialLinks';
 
-export default function SidenavPanel() {
-	const [gpgCopiedShown, setGpgCopiedShown] = React.useState(false);
+export const SidenavPanel = () => {
 
 	return (
-		<div>
-			<Box className="sidenav">
-				<div className="profile">
-					<Link to={'/'}>
-						<img src={Pfp} alt="" className="pfp" />
-					</Link>
-					<Link to={'/'} className="link">
-						<Typography component="h6" variant="h6" sx={{ textAlign: 'center', textDecoration: 'none' }}>
-							Alex Westerman
-						</Typography>
-					</Link>
-					<Box className="social-links" sx={{ display: 'flex', justifyContent: 'center' }}>
-						<Tooltip title="Twitter">
-							<a href="https://twitter.com/_FaceFTW">
-								<IconButton>
-									<Icon className="nf-mdi-twitter" />
-								</IconButton>
-							</a>
-						</Tooltip>
-
-						<Tooltip title="Github">
-							<a href="https://github.com/rhit-westeraj">
-								<IconButton>
-									<Icon className="nf-fa-github" />
-								</IconButton>
-							</a>
-						</Tooltip>
-
-						<Tooltip title="Email">
-							<a href="mailto:alex@faceftw.dev">
-								<IconButton>
-									<Icon className="nf-mdi-email" />
-								</IconButton>
-							</a>
-						</Tooltip>
-
-						<Tooltip title="Linkedin">
-							<a href="https://www.linkedin.com/in/faceftw/">
-								<IconButton>
-									<Icon className="nf-mdi-linkedin" />
-								</IconButton>
-							</a>
-						</Tooltip>
-						<Tooltip title="GPG Key">
-							<a href="#">
-								<IconButton
-									onClick={() => {
-										navigator.clipboard.writeText(gpgkey.pub_key);
-										setGpgCopiedShown(true);
-									}}
-								>
-									<Icon className="nf-mdi-key_variant" />
-								</IconButton>
-							</a>
-						</Tooltip>
-					</Box>
-				</div>
-			</Box>
+		<Box sx={{
+			'display': 'flex',
+			'flexDirection': 'column',
+		}}>
+			<SocialLinks />
 			<Divider />
 			<List>
-				<ListItem button component={Link} to="/">
-					<ListItemIcon>
-						<Icon className="nf-mdi-home" />
-					</ListItemIcon>
-					<ListItemText primary="Home" />
-				</ListItem>
-				<ListItem button component={Link} to="/projects">
-					<ListItemIcon>
-						<Icon className="nf-dev-code" />
-					</ListItemIcon>
-					<ListItemText primary="Projects" />
-				</ListItem>
-				<ListItem button component={Link} to="/resume">
-					<ListItemIcon>
-						<Icon className="nf-fa-file_text_o" />
-					</ListItemIcon>
-					<ListItemText primary="Resume" />
-				</ListItem>
-				<ListItem button component={Link} to="/about">
-					<ListItemIcon>
-						<Icon className="nf-fa-user_circle_o" />
-					</ListItemIcon>
-					<ListItemText primary="About" />
-				</ListItem>
+				<MenuItem component={Link} to='/'>
+					<ListItemIcon><FaHome /></ListItemIcon>
+					<ListItemText primary='Home' />
+				</MenuItem>
+				<MenuItem component={Link} to='/projects'>
+					<ListItemIcon><FaCode /></ListItemIcon>
+					<ListItemText primary='Projects' />
+				</MenuItem>
+				<MenuItem component={Link} to='/resume'>
+					<ListItemIcon><FaScroll /></ListItemIcon>
+					<ListItemText primary='Resume' />
+				</MenuItem>
+				<MenuItem component={Link} to='/about'>
+					<ListItemIcon><FaUserCircle /></ListItemIcon>
+					<ListItemText primary='About' />
+				</MenuItem>
 			</List>
-			<Snackbar
-				anchorOrigin={{ vertical: 'top', horizontal: 'left' }}
-				open={gpgCopiedShown}
-				autoHideDuration={6000}
-				onClose={() => setGpgCopiedShown(false)}
-			>
-				<Alert onClose={() => setGpgCopiedShown(false)} severity="info">
-					Copied GPG Key to Clipboard
-				</Alert>
-			</Snackbar>
-		</div>
+		</Box>
 	);
-}
+};
+
+export default SidenavPanel;

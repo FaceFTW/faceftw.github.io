@@ -1,13 +1,9 @@
 {
 	"$schema": "./resume.schema.json",
 	"highlights": [
-		{
-			"icon": "nf-fa-book",
-			"stat": "9+ years",
-			"statDescription": "Experience in Computers, Programming, and Technology"
-		},
-		{ "icon": "nf-fa-github", "stat": "10+ Repos", "statDescription": "Available on Github" },
-		{ "icon": "nf-fa-heart", "stat": "1000+ hours", "statDescription": "Effort, Dedication, and Learning" }
+		{"icon": "fa-book","stat": "11+ years","statDescription": "Learning & Experience in Tech"},
+		{ "icon": "fa-github", "stat": "10+ Repos", "statDescription": "Available on Github" },
+		{ "icon": "fa-heart", "stat": "1000+ hours", "statDescription": "Effort, Dedication, and Learning" }
 	],
 	"skills": [
 		{

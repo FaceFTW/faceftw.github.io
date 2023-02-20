@@ -1,12 +1,12 @@
-import { Box, Divider, Typography } from '@mui/material';
-import React from 'react';
+import {Box, Divider, Typography} from '@mui/material';
 import Workspace from '../assets/img/workspace.webp';
 import FooterPanel from './Footer';
+import React from 'react';
 
 export default function AboutPanel() {
 	return (
 		<Box>
-			<Typography variant="h4" sx={{ m: '1rem' }}>
+			<Typography variant='h4' sx={{ m: '1rem' }}>
 				Hi! My name is Alex
 			</Typography>
 			<Box sx={{ display: 'flex', m: '1.25rem' }}>
@@ -38,7 +38,7 @@ export default function AboutPanel() {
 					</p>
 				</Box>
 				<Box sx={{ width: { sm: '50%' }, m: '1rem' }}>
-					<img src={Workspace} alt="workspace" style={{ width: '100%', objectFit: 'contain' }} />
+					<img src={Workspace} alt='workspace' style={{ width: '100%', objectFit: 'contain' }} />
 				</Box>
 			</Box>
 			<Divider sx={{ marginTop: '2rem' }} />

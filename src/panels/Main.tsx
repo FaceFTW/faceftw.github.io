@@ -1,8 +1,9 @@
-import { Box, Divider, Grid, Typography, useMediaQuery } from '@mui/material';
+import {Box, Divider, Grid, Typography, useMediaQuery} from '@mui/material';
 import React from 'react';
 import Carousel from 'react-material-ui-carousel';
 import projectData from '../assets/json/projects.json';
 import ProjectCard from '../components/ProjectCard';
+import {Project} from '../data/schema-types';
 import FooterPanel from './Footer';
 
 interface CarouselSetProps {
@@ -49,8 +50,7 @@ export default function MainPanel() {
 				<div
 					className="justify-content-center"
 					style={{ paddingTop: '100px', paddingLeft: '100px' }}
-					id="hero-container"
-				>
+					id="hero-container">
 					<span className="hero-text">Software Engineer</span>
 					<div className="padding-div"> </div>
 					<span className="hero-text">Hardware Tinkerer</span>
