@@ -68,7 +68,6 @@ const MainPanel = () => {
 					</Carousel>
 				</Box>
 			</section>
-			<Divider sx={{ marginTop: '2rem' }} />
 			<FooterPanel />
 		</div>
 	);

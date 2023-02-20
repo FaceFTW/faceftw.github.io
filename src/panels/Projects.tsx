@@ -19,7 +19,6 @@ export default function ProjectsPanel() {
 					))}
 				</Grid>
 			</Box>
-			<Divider sx={{ marginTop: '2rem' }} />
 			<FooterPanel />
 		</div>
 	);

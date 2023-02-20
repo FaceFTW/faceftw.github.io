@@ -215,7 +215,6 @@ export default function ResumePanel() {
 				<ExperienceSection experience={experience} />
 			</Box>
 
-			<Divider sx={{ marginTop: '2rem' }} />
 			<FooterPanel />
 		</Box>
 	);
