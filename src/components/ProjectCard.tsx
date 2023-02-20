@@ -11,16 +11,12 @@ import {
 	Tooltip,
 	Typography,
 } from '@mui/material';
-import React from 'react';
 import Image from 'mui-image';
-import {Project} from '../data/schema-types';
-import {FaChevronDown, FaDesktop, FaGithub, FaLink} from 'react-icons/fa';
+import React from 'react';
+import { FaChevronDown, FaDesktop, FaGithub, FaLink } from 'react-icons/fa';
+import { Project } from '../data/schema-types';
 
-export interface ProjectCardProps {
-	project: Project;
-}
-
-export default function ProjectCard({project}: ProjectCardProps) {
+export default function ProjectCard({ project }: { project: Project }) {
 	const [cardExpanded, setCardExpanded] = React.useState(false);
 	const imgAsset = project.projectAsset
 		? new URL(`../assets/img/${project.projectAsset}`, import.meta.url).href
@@ -31,12 +27,9 @@ export default function ProjectCard({project}: ProjectCardProps) {
 	const miscLink = project.projectLinks.find((link) => link.linkType === 'misc');
 
 	return (
-		<Card sx={{maxWidth: 400}}>
+		<Card sx={{ maxWidth: 400 }}>
 			<CardMedia>
-				<Image
-					src={imgAsset}
-					duration={500}
-					style={{height: '250px', width: '400px', objectFit: 'contain'}} />
+				<Image src={imgAsset} duration={500} style={{ height: '250px', width: '400px', objectFit: 'contain' }} />
 			</CardMedia>
 			<CardContent>
 				<Typography variant='h4'>{project.projectName}</Typography>
@@ -46,25 +39,31 @@ export default function ProjectCard({project}: ProjectCardProps) {
 				{githubLink && (
 					<Tooltip title='Github Repo'>
 						<IconButton onClick={() => window.open(githubLink.linkURL)}>
-							<Icon><FaGithub /></Icon>
+							<Icon>
+								<FaGithub />
+							</Icon>
 						</IconButton>
 					</Tooltip>
 				)}
 				{demoLink && (
 					<Tooltip title={'Application Demo'}>
 						<IconButton onClick={() => window.open(demoLink.linkURL)}>
-							<Icon><FaDesktop /></Icon>
+							<Icon>
+								<FaDesktop />
+							</Icon>
 						</IconButton>
 					</Tooltip>
 				)}
 				{miscLink && (
 					<Tooltip title={miscLink.linkDesc ?? 'Misc Link'}>
 						<IconButton onClick={() => window.open(miscLink.linkURL)}>
-							<Icon><FaLink /></Icon>
+							<Icon>
+								<FaLink />
+							</Icon>
 						</IconButton>
 					</Tooltip>
 				)}
-				<Box sx={{flexGrow: 1}} />
+				<Box sx={{ flexGrow: 1 }} />
 				<Tooltip title={'More Details'}>
 					<IconButton onClick={() => setCardExpanded(!cardExpanded)}>
 						<Icon
@@ -72,29 +71,29 @@ export default function ProjectCard({project}: ProjectCardProps) {
 								transform: cardExpanded ? 'rotate(180deg)' : 'rotate(0deg)',
 								marginLeft: 'auto',
 								transition: 'transform 0.2s ease-in-out',
-							}}><FaChevronDown /></Icon>
+							}}>
+							<FaChevronDown />
+						</Icon>
 					</IconButton>
 				</Tooltip>
 			</CardActions>
 			<Collapse in={cardExpanded}>
 				<CardContent>
 					<Typography variant='body1'>{project.projectSubDesc}</Typography>
-					<Divider sx={{my: '0.5rem'}} />
+					<Divider sx={{ my: '0.5rem' }} />
 					<Typography variant='overline'>Languages</Typography>
 					<Typography variant='body2'>{project.projectLanguage.join(', ')}</Typography>
 					<Typography variant='overline'>Libraries</Typography>
 					<Typography variant='body2'>
 						{project.projectLibraries ? project.projectLibraries.join(', ') : 'N/A'}
 					</Typography>
-					<Divider sx={{my: '0.5rem'}} />
+					<Divider sx={{ my: '0.5rem' }} />
 					<Typography variant='overline'>Status</Typography>
-					<Typography variant='body1' sx={{fontWeight: 'bold'}}>
+					<Typography variant='body1' sx={{ fontWeight: 'bold' }}>
 						{project.projectStatus.status}
 					</Typography>
 
-					{project.projectStatus.reason && (
-						<Typography variant='body1'>{project.projectStatus.reason}</Typography>
-					)}
+					{project.projectStatus.reason && <Typography variant='body1'>{project.projectStatus.reason}</Typography>}
 				</CardContent>
 			</Collapse>
 		</Card>

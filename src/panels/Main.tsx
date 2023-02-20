@@ -1,36 +1,32 @@
-import {Box, Divider, Grid, Typography, useMediaQuery} from '@mui/material';
+import { Box, Divider, Grid, Typography, useMediaQuery } from '@mui/material';
 import React from 'react';
 import Carousel from 'react-material-ui-carousel';
 import projectData from '../assets/json/projects.json';
-import ProjectCard from '../components/ProjectCard';
-import {Project} from '../data/schema-types';
+import ProjectCarouselCard from '../components/ProjectCarouselCard';
+import { Project } from '../data/schema-types';
 import FooterPanel from './Footer';
 
-interface CarouselSetProps {
-	projects: Project[];
-}
-
-const CarouselSet = ({ projects }: CarouselSetProps) => {
+const CarouselSet = ({ projects }: { projects: Project[] }) => {
 	return (
-		<Grid container spacing={3} alignItems="stretch">
-			{projects.map((project, index) => (
-				<Grid key={index} item xs={12} lg={6} xl={4} sx={{ display: 'flex', justifyContent: 'center' }}>
-					<ProjectCard project={project} />
+		<Grid container spacing={1}>
+			<Grid item xs={1} sm={2} />
+			{projects.map((project) => (
+				<Grid item xs={10} sm={4} key={project.projectName}>
+					<ProjectCarouselCard project={project} />
 				</Grid>
 			))}
+			<Grid item xs={1} sm={2} />
 		</Grid>
 	);
 };
-export default function MainPanel() {
+
+const MainPanel = () => {
 	const projects: Project[] = projectData.projectList;
-	const featured = [projects[15], projects[6], projects[18], projects[7], projects[17], projects[14]];
-	const mdQuery = useMediaQuery('(min-width: 992px)');
-	const lgQuery = useMediaQuery('(min-width: 1200px)');
+	const featured = [projects[15], projects[18], projects[7], projects[17], projects[6], projects[14]];
+	const mdQuery = useMediaQuery('(min-width: 1200px)');
 
 	const carouselItems = React.useMemo(() => {
-		if (lgQuery) {
-			return [featured.slice(0, 3), featured.slice(3, 6)];
-		} else if (mdQuery) {
+		if (mdQuery) {
 			return [featured.slice(0, 2), featured.slice(2, 4), featured.slice(4, 6)];
 		} else {
 			return [
@@ -42,30 +38,30 @@ export default function MainPanel() {
 				featured.slice(5, 6),
 			];
 		}
-	}, [featured, mdQuery, lgQuery]);
+	}, [featured, mdQuery]);
 
 	return (
 		<div>
-			<section className="intro">
+			<section className='intro'>
 				<div
-					className="justify-content-center"
+					className='justify-content-center'
 					style={{ paddingTop: '100px', paddingLeft: '100px' }}
-					id="hero-container">
-					<span className="hero-text">Software Engineer</span>
-					<div className="padding-div"> </div>
-					<span className="hero-text">Hardware Tinkerer</span>
-					<div className="padding-div"> </div>
-					<span className="hero-text">Power User</span>
-					<div className="padding-div"> </div>
-					<span className="hero-text">Tech Enthusiast</span>
+					id='hero-container'>
+					<span className='hero-text'>Software Engineer</span>
+					<div className='padding-div'> </div>
+					<span className='hero-text'>Hardware Tinkerer</span>
+					<div className='padding-div'> </div>
+					<span className='hero-text'>Power User</span>
+					<div className='padding-div'> </div>
+					<span className='hero-text'>Tech Enthusiast</span>
 				</div>
 			</section>
-			<section className="projects">
-				<Typography variant="h3" sx={{ m: '1rem' }}>
+			<section className='projects'>
+				<Typography variant='h3' sx={{ m: '1rem' }}>
 					Featured Projects
 				</Typography>
 				<Box>
-					<Carousel swipe duration={250} interval={20000} animation="slide">
+					<Carousel swipe duration={250} interval={20000} animation='slide'>
 						{carouselItems.map((items, index) => (
 							<CarouselSet key={index} projects={items} />
 						))}
@@ -76,4 +72,6 @@ export default function MainPanel() {
 			<FooterPanel />
 		</div>
 	);
-}
+};
+
+export default MainPanel;
