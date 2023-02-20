@@ -27,7 +27,7 @@ export default function ProjectCard({ project }: { project: Project }) {
 	const miscLink = project.projectLinks.find((link) => link.linkType === 'misc');
 
 	return (
-		<Card sx={{ maxWidth: 400 }}>
+		<Card sx={{ maxWidth: 400, minWidth: 325, display: 'flex', flexDirection: 'column' }}>
 			<CardMedia>
 				<Image src={imgAsset} duration={500} style={{ height: '250px', width: '400px', objectFit: 'contain' }} />
 			</CardMedia>
@@ -35,7 +35,7 @@ export default function ProjectCard({ project }: { project: Project }) {
 				<Typography variant='h4'>{project.projectName}</Typography>
 				<Typography variant='subtitle2'>{project.projectDescription}</Typography>
 			</CardContent>
-			<CardActions>
+			<CardActions sx={{ marginTop: 'auto' }}>
 				{githubLink && (
 					<Tooltip title='Github Repo'>
 						<IconButton onClick={() => window.open(githubLink.linkURL)}>
