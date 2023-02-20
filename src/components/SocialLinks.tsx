@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import Pfp from '../assets/img/pfp.webp';
 import gpgkey from '../assets/json/gpg_key.json';
 
-const SocialLinks = () => {
+export const SocialLinks = () => {
 	const [gpgCopiedShown, setGpgCopiedShown] = React.useState(false);
 
 	const copyGpgKey = () => {
@@ -90,5 +90,3 @@ const SocialLinks = () => {
 		</Box>
 	);
 };
-
-export default SocialLinks;

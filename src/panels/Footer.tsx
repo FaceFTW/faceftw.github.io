@@ -1,18 +1,33 @@
-import { Box, Typography } from '@mui/material';
-import React from 'react';
+import { Paper, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
 
-export default function FooterPanel() {
+const FooterPanel = () => {
 	return (
-		<Box sx={{ display: 'block', margin: '1rem 0rem', textAlign: 'center' }}>
-			<Typography component={'p'}>
-				Alex &quot;FaceFTW&quot; Westerman &copy; 2021-2022 All Rights Reserved.{' '}
+		<Paper
+			component={'footer'}
+			elevation={5}
+			sx={{ display: 'block', margin: '1rem auto', textAlign: 'center', bottom: 0, width: '80%' }}>
+			<Typography variant='caption'>
+				Made by Alex &quot;FaceFTW&quot; Westerman &copy; 2021-{new Date().getFullYear()} All Rights Reserved.{' '}
 			</Typography>
-			<Typography> Source code for this website is licensed under the MIT License</Typography>
+			<br />
+			<Typography variant='caption'> Source code for this website is licensed under the MIT License</Typography>
+			<br />
+			<Typography variant='caption'>
+				All projects mentioned are subject to their specific licenses and copyrights as designated by their owners
+			</Typography>
 			<br />
 			<div className='footerTxt'>
-				<Link to='/err_404'>super secret link :)</Link>
+				<Typography
+					component={Link}
+					variant={'caption'}
+					to='/err_404'
+					sx={{ textDecoration: 'none', color: '#404040' }}>
+					super secret link :)
+				</Typography>
 			</div>
-		</Box>
+		</Paper>
 	);
-}
+};
+
+export default FooterPanel;

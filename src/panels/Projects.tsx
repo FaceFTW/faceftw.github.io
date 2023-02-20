@@ -3,9 +3,9 @@ import React from 'react';
 import projectData from '../assets/json/projects.json';
 import ProjectCard from '../components/ProjectCard';
 import FooterPanel from './Footer';
-import {Project} from '../data/schema-types';
+import { Project } from '../data/schema-types';
 
-export default function ProjectsPanel() {
+export const ProjectsPanel = () => {
 	const projects: Project[] = projectData.projectList;
 
 	return (
@@ -19,8 +19,7 @@ export default function ProjectsPanel() {
 					))}
 				</Grid>
 			</Box>
-			<Divider sx={{ marginTop: '2rem' }} />
 			<FooterPanel />
 		</div>
 	);
-}
+};

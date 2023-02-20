@@ -1,12 +1,10 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
-import { Box, Divider, Typography } from '@mui/material';
-import React from 'react';
+import { Box, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
 import FooterPanel from './Footer';
 
 const Error404Panel = () => {
 	const imageNum = Math.floor(Math.random() * 19);
-	const imageSrc = require(`../assets/img/404/err_${imageNum}.webp`);
+	const imageSrc = new URL(`../assets/img/404/err_${imageNum}.webp`, import.meta.url).href;
 	return (
 		<Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
 			<Typography variant='h1'>Oops...</Typography>
@@ -18,7 +16,6 @@ const Error404Panel = () => {
 			<Box sx={{ margin: '1rem 0rem' }}>
 				<img src={imageSrc} alt='404' className='errorimg' />
 			</Box>
-			<Divider />
 			<FooterPanel />
 		</Box>
 	);
