@@ -1,13 +1,19 @@
-import {Box, Typography, Tooltip, IconButton, Alert, Snackbar} from '@mui/material';
+import {Alert, Box, IconButton, Snackbar, Tooltip, Typography} from '@mui/material';
 import Image from 'mui-image';
 import React from 'react';
-import {FaTwitter, FaGithub, FaEnvelope, FaLinkedin, FaKey} from 'react-icons/fa';
+import {FaEnvelope, FaGithub, FaKey, FaLinkedin, FaTwitter} from 'react-icons/fa';
 import {Link} from 'react-router-dom';
 import Pfp from '../assets/img/pfp.webp';
 import gpgkey from '../assets/json/gpg_key.json';
 
+
 const SocialLinks = () => {
 	const [gpgCopiedShown, setGpgCopiedShown] = React.useState(false);
+
+	const copyGpgKey = () => {
+		navigator.clipboard.writeText(gpgkey.pub_key);
+		setGpgCopiedShown(true);
+	};
 
 	//Styles
 	const pictueBoxStyle = {
@@ -24,7 +30,6 @@ const SocialLinks = () => {
 		margin: 'auto',
 		'&:hover': {color: 'white', textDecoration: 'none'}
 	};
-
 
 	const pictureBox = (
 		<Box component={Link} to='/' sx={{
@@ -59,11 +64,7 @@ const SocialLinks = () => {
 					<IconButton href='https://www.linkedin.com/in/faceftw'><FaLinkedin /></IconButton>
 				</Tooltip>
 				<Tooltip title='GPG Key'>
-					<IconButton
-						onClick={() => {
-							navigator.clipboard.writeText(gpgkey.pub_key);
-							setGpgCopiedShown(true);
-						}}><FaKey /></IconButton>
+					<IconButton onClick={copyGpgKey}><FaKey /></IconButton>
 				</Tooltip>
 			</Box>
 			<Snackbar

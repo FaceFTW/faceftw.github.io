@@ -8,7 +8,6 @@ import MainPanel from './panels/Main';
 import ProjectsPanel from './panels/Projects';
 import ResumePanel from './panels/Resume';
 
-
 const router = createHashRouter(
 	createRoutesFromElements([
 		<Route path='/' element={<Layout />}>

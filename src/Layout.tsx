@@ -1,10 +1,10 @@
-import {useMediaQuery, ThemeProvider, Box, CssBaseline, AppBar, Toolbar, IconButton, Typography, Drawer} from '@mui/material';
+import {AppBar, Box, CssBaseline, Drawer, IconButton, ThemeProvider, Toolbar, Typography, useMediaQuery} from '@mui/material';
 import React from 'react';
-import {useMatch, Link, Outlet} from 'react-router-dom';
+import {FaBars} from 'react-icons/fa';
+import {Link, Outlet, useMatch, useMatches} from 'react-router-dom';
+import './Layout.css';
 import SidenavPanel from './panels/Sidenav';
 import {appTheme} from './theme';
-import './Layout.css';
-import {FaBars} from 'react-icons/fa';
 
 const drawerWidth = 240;
 
@@ -30,6 +30,8 @@ export const Layout = () => {
 		}
 	}, [atProjectsRoute, atResumeRoute, atAboutRoute]);
 
+	const matches = useMatches();
+
 	const handleDrawerToggle = () => {
 		setDrawerOpen(!drawerOpen);
 	};
@@ -48,13 +50,10 @@ export const Layout = () => {
 				>
 					<Toolbar color='secondary'>
 						<Box hidden={!mobileQuery}>
-							<IconButton edge='start' onClick={handleDrawerToggle} >
-								<FaBars />
-							</IconButton>
+							<IconButton edge='start' onClick={handleDrawerToggle}><FaBars /></IconButton>
 						</Box>
 						<Typography
-							component={Link} to='/'
-							variant='h6'
+							component={Link} to='/' variant='h6'
 							sx={{flexGrow: 1, textDecoration: 'none', color: 'white'}}>
 							{titleMemo}
 						</Typography>

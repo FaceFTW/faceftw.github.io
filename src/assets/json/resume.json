@@ -1,11 +1,7 @@
 {
 	"$schema": "./resume.schema.json",
 	"highlights": [
-		{
-			"icon": "fa-book",
-			"stat": "11+ years",
-			"statDescription": "Learning & Experience in Tech"
-		},
+		{"icon": "fa-book","stat": "11+ years","statDescription": "Learning & Experience in Tech"},
 		{ "icon": "fa-github", "stat": "10+ Repos", "statDescription": "Available on Github" },
 		{ "icon": "fa-heart", "stat": "1000+ hours", "statDescription": "Effort, Dedication, and Learning" }
 	],

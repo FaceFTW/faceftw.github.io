@@ -7,19 +7,15 @@ import {
 	Grid,
 	Icon,
 	Paper,
-	Typography
+	Typography,
 } from '@mui/material';
 import React from 'react';
-import {FaBook, FaChevronDown, FaGithub, FaHeart} from 'react-icons/fa';
+import { FaBook, FaChevronDown, FaGithub, FaHeart } from 'react-icons/fa';
 import resumeData from '../assets/json/resume.json';
-import {Education, ProfessionalExperience, ResumeHighlight, SkillCategory} from '../data/schema-types';
+import { Education, ProfessionalExperience, ResumeHighlight, SkillCategory } from '../data/schema-types';
 import FooterPanel from './Footer';
 
-interface ExperienceSectionProps {
-	experience: ProfessionalExperience[];
-}
-
-function Highlights({highlights}: {highlights: ResumeHighlight[];}) {
+function Highlights({ highlights }: { highlights: ResumeHighlight[] }) {
 	//This is kinda hacky, but I can't think of a better solution
 	const resolveIcon = (iconName: string) => {
 		switch (iconName) {
@@ -33,10 +29,11 @@ function Highlights({highlights}: {highlights: ResumeHighlight[];}) {
 	};
 
 	return (
-		<Grid container spacing={3} sx={{padding: {sm: '2rem 5rem'}}} alignItems='stretch'>
+		<Grid container spacing={3} sx={{ padding: { sm: '2rem 5rem' } }} alignItems='stretch'>
 			{highlights.map((highlight, index) => (
-				<Grid item xs={12} lg={4} key={index} sx={{display: 'flex'}}>
-					<Paper elevation={3}
+				<Grid item xs={12} lg={4} key={index} sx={{ display: 'flex' }}>
+					<Paper
+						elevation={3}
 						sx={{
 							display: 'flex',
 							justifyContent: 'center',
@@ -44,7 +41,7 @@ function Highlights({highlights}: {highlights: ResumeHighlight[];}) {
 							flexGrow: 1,
 						}}>
 						<Box>
-							<Icon sx={{display: 'block', fontSize: '80px', marginRight: '1rem'}}>
+							<Icon sx={{ display: 'block', fontSize: '80px', marginRight: '1rem' }}>
 								{resolveIcon(highlight.icon)}
 							</Icon>
 						</Box>
@@ -57,9 +54,9 @@ function Highlights({highlights}: {highlights: ResumeHighlight[];}) {
 			))}
 		</Grid>
 	);
-};
+}
 
-function SkillsSection({skills}: {skills: SkillCategory[];}) {
+function SkillsSection({ skills }: { skills: SkillCategory[] }) {
 	const [skillsExpanded, setSkillExpanded] = React.useState<string | false>(false);
 
 	return (
@@ -69,7 +66,12 @@ function SkillsSection({skills}: {skills: SkillCategory[];}) {
 					key={index}
 					expanded={skillsExpanded === skill.categoryName}
 					onChange={() => setSkillExpanded(skill.categoryName)}>
-					<AccordionSummary expandIcon={<Icon><FaChevronDown /></Icon>}>
+					<AccordionSummary
+						expandIcon={
+							<Icon>
+								<FaChevronDown />
+							</Icon>
+						}>
 						<Typography>{skill.categoryName}</Typography>
 					</AccordionSummary>
 					<AccordionDetails>
@@ -104,7 +106,7 @@ function SkillsSection({skills}: {skills: SkillCategory[];}) {
 	);
 }
 
-function EducationSection({education}: {education: Education[];}) {
+function EducationSection({ education }: { education: Education[] }) {
 	const [educationExpanded, setEducationExpanded] = React.useState<string | false>(false);
 
 	return (
@@ -114,11 +116,15 @@ function EducationSection({education}: {education: Education[];}) {
 					key={index}
 					expanded={educationExpanded === edu.name}
 					elevation={3}
-					onChange={() => setEducationExpanded(edu.name)}
-				>
-					<AccordionSummary expandIcon={<Icon ><FaChevronDown /></Icon>}>
-						<Typography sx={{width: '66%', flexShrink: 0}}>{edu.name}</Typography>
-						<Typography sx={{color: 'text.secondary'}}>{edu.graduationDate}</Typography>
+					onChange={() => setEducationExpanded(edu.name)}>
+					<AccordionSummary
+						expandIcon={
+							<Icon>
+								<FaChevronDown />
+							</Icon>
+						}>
+						<Typography sx={{ width: '66%', flexShrink: 0 }}>{edu.name}</Typography>
+						<Typography sx={{ color: 'text.secondary' }}>{edu.graduationDate}</Typography>
 					</AccordionSummary>
 					<AccordionDetails>
 						<Typography variant='h6'>Field of Study:</Typography>
@@ -146,7 +152,7 @@ function EducationSection({education}: {education: Education[];}) {
 	);
 }
 
-function ExperienceSection({experience}: {experience: ProfessionalExperience[];}) {
+function ExperienceSection({ experience }: { experience: ProfessionalExperience[] }) {
 	const [experienceExpanded, setExperienceExpanded] = React.useState<string | false>(false);
 
 	return (
@@ -155,19 +161,20 @@ function ExperienceSection({experience}: {experience: ProfessionalExperience[];}
 				<Accordion
 					key={index}
 					expanded={experienceExpanded === exp.name}
-					onChange={() => setExperienceExpanded(exp.name)}
-				>
-					<AccordionSummary expandIcon={<Icon ><FaChevronDown /></Icon>}>
-						<Typography sx={{width: '66%', flexShrink: 0}}>{exp.name}</Typography>
-						<Typography sx={{color: 'text.secondary'}}>{exp.position}</Typography>
+					onChange={() => setExperienceExpanded(exp.name)}>
+					<AccordionSummary
+						expandIcon={
+							<Icon>
+								<FaChevronDown />
+							</Icon>
+						}>
+						<Typography sx={{ width: '66%', flexShrink: 0 }}>{exp.name}</Typography>
+						<Typography sx={{ color: 'text.secondary' }}>{exp.position}</Typography>
 					</AccordionSummary>
 					<AccordionDetails>
 						<Typography hidden={!exp.location}>Company Location: {exp.location}</Typography>
 						<Typography hidden={!exp.timeEmployed}>Employed from {exp.timeEmployed}</Typography>
-						<Typography hidden={!exp.terminationReason}>
-							{' '}
-							Reason for Termination: {exp.terminationReason}
-						</Typography>
+						<Typography hidden={!exp.terminationReason}> Reason for Termination: {exp.terminationReason}</Typography>
 						<br />
 						<Typography variant='h5'>Responsibilities:</Typography>
 						<ul>
@@ -191,24 +198,24 @@ export default function ResumePanel() {
 	const experience: ProfessionalExperience[] = resumeData.experience;
 
 	return (
-		<Box sx={{margin: '1rem'}}>
+		<Box sx={{ margin: '1rem' }}>
 			<Box>
 				<Highlights highlights={highlights} />
 			</Box>
-			<Box sx={{margin: '1rem'}}>
+			<Box sx={{ margin: '1rem' }}>
 				<Typography variant='h4'>Skills</Typography>
 				<SkillsSection skills={skills} />
 			</Box>
-			<Box sx={{margin: '1rem'}}>
+			<Box sx={{ margin: '1rem' }}>
 				<Typography variant='h4'>Education</Typography>
 				<EducationSection education={education} />
 			</Box>
-			<Box sx={{margin: '1rem'}}>
+			<Box sx={{ margin: '1rem' }}>
 				<Typography variant='h4'>Experience</Typography>
 				<ExperienceSection experience={experience} />
 			</Box>
 
-			<Divider sx={{marginTop: '2rem'}} />
+			<Divider sx={{ marginTop: '2rem' }} />
 			<FooterPanel />
 		</Box>
 	);
