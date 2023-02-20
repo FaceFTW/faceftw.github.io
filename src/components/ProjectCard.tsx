@@ -16,7 +16,7 @@ import React from 'react';
 import { FaChevronDown, FaDesktop, FaGithub, FaLink } from 'react-icons/fa';
 import { Project } from '../data/schema-types';
 
-export default function ProjectCard({ project }: { project: Project }) {
+const ProjectCard = ({ project }: { project: Project }) => {
 	const [cardExpanded, setCardExpanded] = React.useState(false);
 	const imgAsset = project.projectAsset
 		? new URL(`../assets/img/${project.projectAsset}`, import.meta.url).href
@@ -98,4 +98,6 @@ export default function ProjectCard({ project }: { project: Project }) {
 			</Collapse>
 		</Card>
 	);
-}
+};
+
+export default ProjectCard;

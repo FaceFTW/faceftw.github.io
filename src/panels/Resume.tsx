@@ -15,7 +15,7 @@ import resumeData from '../assets/json/resume.json';
 import { Education, ProfessionalExperience, ResumeHighlight, SkillCategory } from '../data/schema-types';
 import FooterPanel from './Footer';
 
-function Highlights({ highlights }: { highlights: ResumeHighlight[] }) {
+const Highlights = ({ highlights }: { highlights: ResumeHighlight[] }) => {
 	//This is kinda hacky, but I can't think of a better solution
 	const resolveIcon = (iconName: string) => {
 		switch (iconName) {
@@ -54,9 +54,9 @@ function Highlights({ highlights }: { highlights: ResumeHighlight[] }) {
 			))}
 		</Grid>
 	);
-}
+};
 
-function SkillsSection({ skills }: { skills: SkillCategory[] }) {
+const SkillsSection = ({ skills }: { skills: SkillCategory[] }) => {
 	const [skillsExpanded, setSkillExpanded] = React.useState<string | false>(false);
 
 	return (
@@ -104,9 +104,9 @@ function SkillsSection({ skills }: { skills: SkillCategory[] }) {
 			))}
 		</Box>
 	);
-}
+};
 
-function EducationSection({ education }: { education: Education[] }) {
+const EducationSection = ({ education }: { education: Education[] }) => {
 	const [educationExpanded, setEducationExpanded] = React.useState<string | false>(false);
 
 	return (
@@ -150,9 +150,9 @@ function EducationSection({ education }: { education: Education[] }) {
 			))}
 		</Box>
 	);
-}
+};
 
-function ExperienceSection({ experience }: { experience: ProfessionalExperience[] }) {
+const ExperienceSection = ({ experience }: { experience: ProfessionalExperience[] }) => {
 	const [experienceExpanded, setExperienceExpanded] = React.useState<string | false>(false);
 
 	return (
@@ -189,9 +189,9 @@ function ExperienceSection({ experience }: { experience: ProfessionalExperience[
 			))}
 		</Box>
 	);
-}
+};
 
-export default function ResumePanel() {
+export const ResumePanel = () => {
 	const highlights: ResumeHighlight[] = resumeData.highlights;
 	const skills: SkillCategory[] = resumeData.skills;
 	const education: Education[] = resumeData.education;
@@ -214,8 +214,7 @@ export default function ResumePanel() {
 				<Typography variant='h4'>Experience</Typography>
 				<ExperienceSection experience={experience} />
 			</Box>
-
 			<FooterPanel />
 		</Box>
 	);
-}
+};

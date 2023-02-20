@@ -1,9 +1,8 @@
-import { Box, Divider, Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import Workspace from '../assets/img/workspace.webp';
 import FooterPanel from './Footer';
-import React from 'react';
 
-export default function AboutPanel() {
+export const AboutPanel = () => {
 	return (
 		<Box sx={{ display: 'flex', flexDirection: 'column' }}>
 			<Box>
@@ -47,4 +46,4 @@ export default function AboutPanel() {
 			</Box>
 		</Box>
 	);
-}
+};

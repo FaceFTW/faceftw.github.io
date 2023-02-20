@@ -15,7 +15,7 @@ import {
 } from '@mui/material';
 import { FaGithub, FaDesktop, FaLink } from 'react-icons/fa';
 
-const ProjectCarouselCard = ({ project }: { project: Project }) => {
+export const ProjectCarouselCard = ({ project }: { project: Project }) => {
 	const imgAsset = project.projectAsset
 		? new URL(`../assets/img/${project.projectAsset}`, import.meta.url).href
 		: new URL('../assets/img/no_asset.webp', import.meta.url).href;
@@ -72,5 +72,3 @@ const ProjectCarouselCard = ({ project }: { project: Project }) => {
 		</Card>
 	);
 };
-
-export default ProjectCarouselCard;

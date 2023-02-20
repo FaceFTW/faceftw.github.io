@@ -1,8 +1,7 @@
-import { Box, Paper, Typography } from '@mui/material';
-import React from 'react';
+import { Paper, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
 
-export default function FooterPanel() {
+const FooterPanel = () => {
 	return (
 		<Paper
 			component={'footer'}
@@ -19,10 +18,16 @@ export default function FooterPanel() {
 			</Typography>
 			<br />
 			<div className='footerTxt'>
-				<Typography component={Link} variant={'caption'} to='/err_404' sx={{ textDecoration: 'none', color: '#404040' }}>
+				<Typography
+					component={Link}
+					variant={'caption'}
+					to='/err_404'
+					sx={{ textDecoration: 'none', color: '#404040' }}>
 					super secret link :)
 				</Typography>
 			</div>
 		</Paper>
 	);
-}
+};
+
+export default FooterPanel;

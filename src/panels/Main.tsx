@@ -1,8 +1,8 @@
-import { Box, Divider, Grid, Typography, useMediaQuery } from '@mui/material';
+import { Box, Grid, Typography, useMediaQuery } from '@mui/material';
 import React from 'react';
 import Carousel from 'react-material-ui-carousel';
 import projectData from '../assets/json/projects.json';
-import ProjectCarouselCard from '../components/ProjectCarouselCard';
+import { ProjectCarouselCard } from '../components/ProjectCarouselCard';
 import { Project } from '../data/schema-types';
 import FooterPanel from './Footer';
 
@@ -20,7 +20,7 @@ const CarouselSet = ({ projects }: { projects: Project[] }) => {
 	);
 };
 
-const MainPanel = () => {
+export const MainPanel = () => {
 	const projects: Project[] = projectData.projectList;
 	const featured = [projects[15], projects[18], projects[7], projects[17], projects[6], projects[14]];
 	const mdQuery = useMediaQuery('(min-width: 1200px)');
@@ -72,5 +72,3 @@ const MainPanel = () => {
 		</div>
 	);
 };
-
-export default MainPanel;
