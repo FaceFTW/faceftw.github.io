@@ -1,14 +1,28 @@
 {
 	"$schema": "./resume.schema.json",
 	"highlights": [
-		{"icon": "fa-book","stat": "11+ years","statDescription": "Learning & Experience in Tech"},
-		{ "icon": "fa-github", "stat": "10+ Repos", "statDescription": "Available on Github" },
-		{ "icon": "fa-heart", "stat": "1000+ hours", "statDescription": "Effort, Dedication, and Learning" }
+		{
+			"icon": "fa-book",
+			"stat": "11+ years",
+			"statDescription": "Learning & Experience in Tech"
+		},
+		{
+			"icon": "fa-github",
+			"stat": "10+ Repos",
+			"statDescription": "Available on Github"
+		},
+		{
+			"icon": "fa-heart",
+			"stat": "1000+ hours",
+			"statDescription": "Effort, Dedication, and Learning"
+		}
 	],
 	"skills": [
 		{
 			"categoryName": "Computer Programming",
-			"lowSkill": ["Graphics Programming (OpenGL Legacy)"],
+			"lowSkill": [
+				"Graphics Programming (OpenGL Legacy)"
+			],
 			"medSkill": [
 				"SQL Database and Queries (PostgreSQL/Microsoft SQL Server)",
 				"Windows and Linux/UNIX Kernels and Environments",
@@ -24,21 +38,28 @@
 		},
 		{
 			"categoryName": "Computer Hardware/Repair",
-			"lowSkill": ["Electronic Component Form Factors, Functions, and Use Cases"],
+			"lowSkill": [
+				"Electronic Component Form Factors, Functions, and Use Cases"
+			],
 			"medSkill": [
 				"IoT Devices and Architecture",
 				"Arduino",
 				"Raspberry Pi",
 				"Data Recovery and Old Hardware Refurbishment"
 			],
-			"highSkill": ["Computer Internals and Hardware"]
+			"highSkill": [
+				"Computer Internals and Hardware"
+			]
 		}
 	],
 	"education": [
 		{
 			"name": "Rose-Hulman Institute of Technology",
 			"graduationDate": "Graduating in Spring of 2024",
-			"degree": ["Bachelors of Science - Software Engineering", "(TENTATIVE) Masters - Engineering Management"],
+			"degree": [
+				"Bachelors of Science - Software Engineering",
+				"(TENTATIVE) Masters - Engineering Management"
+			],
 			"degreeAddendum": "Originally Studied Computer Engineering until Spring 2021",
 			"relCoursework": [
 				"Intro to Computer Systems (CSSE132)",
@@ -52,14 +73,22 @@
 				"Software Design (CSSE374)",
 				"Software Construction and Evolution (CSSE375)"
 			],
-			"propCoursework": ["Operating Systems (CSSE332)", "CSSE477", "CSSE Senior Capstone Project (CSSE497-499)"]
+			"propCoursework": [
+				"Operating Systems (CSSE332)",
+				"CSSE Senior Capstone Project (CSSE497-499)"
+			]
 		},
 		{
 			"name": "Walt Whitman High School",
-			"degree": ["High School Diploma"],
+			"degree": [
+				"High School Diploma"
+			],
 			"degreeAddendum": "Maryland Seal of Bi-Literacy (Chinese)",
 			"graduationDate": "Graduated - Class of 2019",
-			"gpa": { "unweighted": 3.31, "weighted": 4.0 },
+			"gpa": {
+				"unweighted": 3.31,
+				"weighted": 4.0
+			},
 			"relCoursework": [
 				"AP Computer Science",
 				"AP Calclus AB",
@@ -69,6 +98,18 @@
 		}
 	],
 	"experience": [
+		{
+			"name": "Rose Hulman CSSE Department",
+			"position": "Teaching Assistant/Grader (CSSE374 - Software Design)",
+			"timeEmployed": "November 2022 - Present",
+			"location": "Terre Haute, IN",
+			"responsibilities": [
+				"Graded and provided feedback on student's code in assignments ",
+				"Answered students questions related to software design and the course material",
+				"Provided insights into proper design and coding practices",
+				"Assisted professor in facilitating in-class activities"
+			]
+		},
 		{
 			"name": "Direct Supply",
 			"position": "Software Engineer Intern",
