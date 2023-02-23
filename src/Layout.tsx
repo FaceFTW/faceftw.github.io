@@ -38,12 +38,39 @@ export const Layout = () => {
 
 	const titleMemo = React.useMemo(() => {
 		const title = currentLocation.pathname.split('/')[1];
-		return title === '' ? 'Home' : title.charAt(0).toUpperCase() + title.slice(1);
+		return title === '' ? '' : ' > ' + title.charAt(0).toUpperCase() + title.slice(1);
 	}, [currentLocation.pathname]);
 
 	const handleDrawerToggle = () => {
 		setDrawerOpen(!drawerOpen);
 	};
+
+	const appBar = (
+		<AppBar
+			color='secondary'
+			position='sticky'
+			enableColorOnDark={true}
+			sx={{
+				width: { xs: '100%', lg: `calc(100% - calc(${drawerWidth}px))` },
+				marginLeft: { xs: 0, lg: `${drawerWidth}px` },
+			}}>
+			<Toolbar color='secondary'>
+				<Box hidden={!mobileQuery}>
+					<IconButton edge='start' onClick={handleDrawerToggle}>
+						<FaBars />
+					</IconButton>
+				</Box>
+				<Typography
+					component={Link}
+					to='/'
+					variant='h6'
+					sx={{ marginRight: '0.5rem', textDecoration: 'none', color: 'white' }}>
+					Home
+				</Typography>
+				<Typography variant='h6'>{titleMemo}</Typography>
+			</Toolbar>
+		</AppBar>
+	);
 
 	const footer = (
 		<Paper
@@ -66,51 +93,25 @@ export const Layout = () => {
 		<ThemeProvider theme={appTheme}>
 			<Box sx={{ d: 'flex' }}>
 				<CssBaseline enableColorScheme />
-				<AppBar
-					color='secondary'
-					position='sticky'
-					enableColorOnDark={true}
+				{appBar}
+			</Box>
+			<Box component='nav' sx={{ w: { lg: `${drawerWidth}px` }, flexShrink: { lg: 0 } }}>
+				<Drawer
+					anchor='left'
+					variant={mobileQuery ? 'temporary' : 'permanent'}
+					open={drawerOpen}
 					sx={{
-						width: { xs: '100%', lg: `calc(100% - calc(${drawerWidth}px))` },
-						marginLeft: { xs: 0, lg: `${drawerWidth}px` },
-					}}>
-					<Toolbar color='secondary'>
-						<Box hidden={!mobileQuery}>
-							<IconButton edge='start' onClick={handleDrawerToggle}>
-								<FaBars />
-							</IconButton>
-						</Box>
-						<Typography
-							component={Link}
-							to='/'
-							variant='h6'
-							sx={{ flexGrow: 1, textDecoration: 'none', color: 'white' }}>
-							{titleMemo}
-						</Typography>
-					</Toolbar>
-				</AppBar>
+						display: mobileQuery ? { xs: 'block', lg: 'none' } : { xs: 'none', lg: 'block' },
+						'& .MuiDrawer-paper': {
+							boxSizing: 'border-box',
+							width: drawerWidth,
+							backgroundColor: '#303030',
+						},
+					}}
+					onClose={() => (mobileQuery ? setDrawerOpen(false) : undefined)}>
+					<Sidenav />
+				</Drawer>
 			</Box>
-			<Box>
-				<Box component='nav' sx={{ w: { lg: `${drawerWidth}px` }, flexShrink: { lg: 0 }, backgroundColor: '#303030' }}>
-					<Drawer
-						anchor='left'
-						variant={mobileQuery ? 'temporary' : 'permanent'}
-						open={drawerOpen}
-						sx={{
-							display: mobileQuery ? { xs: 'block', lg: 'none' } : { xs: 'none', lg: 'block' },
-							'& .MuiDrawer-paper': {
-								boxSizing: 'border-box',
-								width: drawerWidth,
-								backgroundColor: '#303030',
-							},
-
-						}}
-						onClose={() => (mobileQuery ? setDrawerOpen(false) : undefined)}>
-						<Sidenav />
-					</Drawer>
-				</Box>
-			</Box>
-
 			<Box
 				sx={{
 					display: 'flex',
