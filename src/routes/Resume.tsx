@@ -3,17 +3,15 @@ import {
 	AccordionDetails,
 	AccordionSummary,
 	Box,
-	Divider,
 	Grid,
 	Icon,
 	Paper,
-	Typography,
+	Typography
 } from '@mui/material';
 import React from 'react';
-import { FaBook, FaChevronDown, FaGithub, FaHeart } from 'react-icons/fa';
+import {FaBook, FaChevronDown, FaGithub, FaHeart} from 'react-icons/fa';
+import {Education, ProfessionalExperience, ResumeHighlight, SkillCategory} from '../DataTypes';
 import resumeData from '../assets/json/resume.json';
-import { Education, ProfessionalExperience, ResumeHighlight, SkillCategory } from '../DataTypes';
-import FooterPanel from './Footer';
 
 const Highlights = ({ highlights }: { highlights: ResumeHighlight[] }) => {
 	//This is kinda hacky, but I can't think of a better solution
@@ -214,7 +212,6 @@ export const ResumePanel = () => {
 				<Typography variant='h4'>Experience</Typography>
 				<ExperienceSection experience={experience} />
 			</Box>
-			{/* <FooterPanel /> */}
 		</Box>
 	);
 };

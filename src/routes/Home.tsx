@@ -68,7 +68,6 @@ export const HomePanel = () => {
 					</Carousel>
 				</Box>
 			</section>
-			{/* <FooterPanel /> */}
 		</div>
 	);
 };

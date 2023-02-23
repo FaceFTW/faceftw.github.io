@@ -40,10 +40,6 @@ export const AboutPanel = () => {
 					</Box>
 				</Box>
 			</Box>
-
-			<Box sx={{ display: 'flex' }}>
-				{/* <FooterPanel /> */}
-			</Box>
 		</Box>
 	);
 };

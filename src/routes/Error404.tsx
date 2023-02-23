@@ -16,7 +16,6 @@ const Error404Panel = () => {
 			<Box sx={{ margin: '1rem 0rem' }}>
 				<img src={imageSrc} alt='404' className='errorimg' />
 			</Box>
-			{/* <FooterPanel /> */}
 		</Box>
 	);
 };

@@ -2,11 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Route, RouterProvider, createHashRouter, createRoutesFromElements } from 'react-router-dom';
 import { Layout } from './Layout';
-import { AboutPanel } from './panels/About';
-import Error404Panel from './panels/Error404';
-import { HomePanel } from './panels/Home';
-import { ProjectsPanel } from './panels/Projects';
-import { ResumePanel } from './panels/Resume';
+import { AboutPanel } from './routes/About';
+import Error404Panel from './routes/Error404';
+import { HomePanel } from './routes/Home';
+import { ProjectsPanel } from './routes/Projects';
+import { ResumePanel } from './routes/Resume';
 
 const router = createHashRouter(
 	createRoutesFromElements([
