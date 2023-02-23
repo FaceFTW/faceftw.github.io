@@ -3,7 +3,7 @@ import React from 'react';
 import Carousel from 'react-material-ui-carousel';
 import projectData from '../assets/json/projects.json';
 import { ProjectCarouselCard } from '../components/ProjectCarouselCard';
-import { Project } from '../data/schema-types';
+import { Project } from '../DataTypes';
 import FooterPanel from './Footer';
 
 const CarouselSet = ({ projects }: { projects: Project[] }) => {
@@ -20,7 +20,7 @@ const CarouselSet = ({ projects }: { projects: Project[] }) => {
 	);
 };
 
-export const MainPanel = () => {
+export const HomePanel = () => {
 	const projects: Project[] = projectData.projectList;
 	const featured = [projects[15], projects[18], projects[7], projects[17], projects[6], projects[14]];
 	const mdQuery = useMediaQuery('(min-width: 1200px)');
@@ -68,7 +68,7 @@ export const MainPanel = () => {
 					</Carousel>
 				</Box>
 			</section>
-			<FooterPanel />
+			{/* <FooterPanel /> */}
 		</div>
 	);
 };

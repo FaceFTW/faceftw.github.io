@@ -12,7 +12,7 @@ import {
 import React from 'react';
 import { FaBook, FaChevronDown, FaGithub, FaHeart } from 'react-icons/fa';
 import resumeData from '../assets/json/resume.json';
-import { Education, ProfessionalExperience, ResumeHighlight, SkillCategory } from '../data/schema-types';
+import { Education, ProfessionalExperience, ResumeHighlight, SkillCategory } from '../DataTypes';
 import FooterPanel from './Footer';
 
 const Highlights = ({ highlights }: { highlights: ResumeHighlight[] }) => {
@@ -214,7 +214,7 @@ export const ResumePanel = () => {
 				<Typography variant='h4'>Experience</Typography>
 				<ExperienceSection experience={experience} />
 			</Box>
-			<FooterPanel />
+			{/* <FooterPanel /> */}
 		</Box>
 	);
 };

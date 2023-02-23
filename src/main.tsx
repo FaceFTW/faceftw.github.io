@@ -4,14 +4,14 @@ import { Route, RouterProvider, createHashRouter, createRoutesFromElements } fro
 import { Layout } from './Layout';
 import { AboutPanel } from './panels/About';
 import Error404Panel from './panels/Error404';
-import { MainPanel } from './panels/Main';
+import { HomePanel } from './panels/Home';
 import { ProjectsPanel } from './panels/Projects';
 import { ResumePanel } from './panels/Resume';
 
 const router = createHashRouter(
 	createRoutesFromElements([
 		<Route path='/' element={<Layout />}>
-			<Route index element={<MainPanel />} />
+			<Route index element={<HomePanel />} />
 			<Route path='/projects' element={<ProjectsPanel />} />
 			<Route path='/resume' element={<ResumePanel />} />
 			<Route path='/about' element={<AboutPanel />} />

@@ -14,7 +14,7 @@ import {
 import Image from 'mui-image';
 import React from 'react';
 import { FaChevronDown, FaDesktop, FaGithub, FaLink } from 'react-icons/fa';
-import { Project } from '../data/schema-types';
+import { Project } from '../DataTypes';
 
 const ProjectCard = ({ project }: { project: Project }) => {
 	const [cardExpanded, setCardExpanded] = React.useState(false);

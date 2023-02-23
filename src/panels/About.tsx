@@ -42,7 +42,7 @@ export const AboutPanel = () => {
 			</Box>
 
 			<Box sx={{ display: 'flex' }}>
-				<FooterPanel />
+				{/* <FooterPanel /> */}
 			</Box>
 		</Box>
 	);

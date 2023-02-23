@@ -4,6 +4,7 @@ import {
 	CssBaseline,
 	Drawer,
 	IconButton,
+	Paper,
 	ThemeProvider,
 	Toolbar,
 	Typography,
@@ -13,7 +14,7 @@ import React from 'react';
 import { FaBars } from 'react-icons/fa';
 import { Link, Outlet, useMatch, useMatches } from 'react-router-dom';
 import './Layout.css';
-import { SidenavPanel } from './panels/Sidenav';
+import { Sidenav } from './components/Sidenav';
 import { appTheme } from './theme';
 
 const drawerWidth = 240;
@@ -43,6 +44,33 @@ export const Layout = () => {
 		setDrawerOpen(!drawerOpen);
 	};
 
+	const footer = (
+		<Paper
+			component={'footer'}
+			elevation={5}
+			sx={{ display: 'block', margin: '1rem auto', textAlign: 'center', bottom: 0, width: '80%' }}>
+			<Typography variant='caption'>
+				Made by Alex &quot;FaceFTW&quot; Westerman &copy; 2021-{new Date().getFullYear()} All Rights Reserved.{' '}
+			</Typography>
+			<br />
+			<Typography variant='caption'> Source code for this website is licensed under the MIT License</Typography>
+			<br />
+			<Typography variant='caption'>
+				All projects mentioned are subject to their specific licenses and copyrights as designated by their owners
+			</Typography>
+			<br />
+			<div className='footerTxt'>
+				<Typography
+					component={Link}
+					variant={'caption'}
+					to='/err_404'
+					sx={{ textDecoration: 'none', color: '#404040' }}>
+					super secret link :)
+				</Typography>
+			</div>
+		</Paper>
+	);
+
 	return (
 		<ThemeProvider theme={appTheme}>
 			<Box sx={{ d: 'flex' }}>
@@ -71,21 +99,12 @@ export const Layout = () => {
 				</AppBar>
 			</Box>
 
-			<Box sx={{ d: 'block' }}>
-				<Box
-					sx={{
-						width: { md: `calc(100% - ${drawerWidth}px)` },
-						marginLeft: { md: `${drawerWidth}px` },
-						flexGrow: 0,
-					}}>
-					<Outlet />
-				</Box>
+			<Box sx={{ d: 'flex' }}>
 				<Box>
 					<Box component='nav' sx={{ w: { md: `${drawerWidth}px` }, flexShrink: { md: 0 } }}>
 						<Drawer
 							anchor='left'
 							variant={mobileQuery ? 'temporary' : 'permanent'}
-							ModalProps={{ keepMounted: true }}
 							open={drawerOpen}
 							sx={{
 								display: mobileQuery ? { xs: 'block', md: 'none' } : { xs: 'none', md: 'block' },
@@ -96,9 +115,21 @@ export const Layout = () => {
 								},
 							}}
 							onClose={() => (mobileQuery ? setDrawerOpen(false) : undefined)}>
-							<SidenavPanel />
+							<Sidenav />
 						</Drawer>
 					</Box>
+				</Box>
+				<Box
+					sx={{
+						display: 'flex',
+						flexDirection: 'column',
+						width: { md: `calc(100% - ${drawerWidth}px)` },
+						marginLeft: { md: `${drawerWidth}px` },
+						flexGrow: 1,
+					}}>
+					<Outlet />
+					<Box sx={{ height: 'auto', marginY: 'auto', flexGrow: 1 }} />
+					<Box>{footer}</Box>
 				</Box>
 			</Box>
 		</ThemeProvider>
