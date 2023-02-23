@@ -91,7 +91,7 @@ export const Layout = () => {
 				</AppBar>
 			</Box>
 			<Box>
-				<Box component='nav' sx={{ w: { lg: `${drawerWidth}px` }, flexShrink: { lg: 0 } }}>
+				<Box component='nav' sx={{ w: { lg: `${drawerWidth}px` }, flexShrink: { lg: 0 }, backgroundColor: '#303030' }}>
 					<Drawer
 						anchor='left'
 						variant={mobileQuery ? 'temporary' : 'permanent'}
@@ -103,6 +103,7 @@ export const Layout = () => {
 								width: drawerWidth,
 								backgroundColor: '#303030',
 							},
+
 						}}
 						onClose={() => (mobileQuery ? setDrawerOpen(false) : undefined)}>
 						<Sidenav />

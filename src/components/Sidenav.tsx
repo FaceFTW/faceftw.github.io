@@ -5,9 +5,8 @@ import { SocialLinks } from './SocialLinks';
 
 export const Sidenav = () => {
 	return (
-		<Box sx={{ display: 'flex', flexDirection: 'column' }}>
+		<Box sx={{ display: 'flex', flexDirection: 'column', backgroundColor: '#303030', flexGrow: 1 }}>
 			<SocialLinks />
-			<Divider sx={{ marginTop: '1rem' }} />
 			<List>
 				<MenuItem component={Link} to='/'>
 					<ListItemIcon>
