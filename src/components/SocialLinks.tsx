@@ -49,7 +49,7 @@ export const SocialLinks = () => {
 	);
 
 	return (
-		<Box sx={{ backgroundColor: '#303030' }}>
+		<Box sx={{ backgroundColor: '#303030', marginTop: '1rem' }}>
 			{pictureBox}
 			<Box sx={{ display: 'flex', justifyContent: 'center' }}>
 				<Tooltip title='Twitter'>
