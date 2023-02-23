@@ -1,6 +1,5 @@
 import { Box, Typography } from '@mui/material';
 import Workspace from '../assets/img/workspace.webp';
-import FooterPanel from './Footer';
 
 export const AboutPanel = () => {
 	return (
@@ -39,10 +38,6 @@ export const AboutPanel = () => {
 						<img src={Workspace} alt='workspace' style={{ width: '100%', objectFit: 'contain' }} />
 					</Box>
 				</Box>
-			</Box>
-
-			<Box sx={{ display: 'flex' }}>
-				<FooterPanel />
 			</Box>
 		</Box>
 	);

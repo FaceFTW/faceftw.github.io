@@ -1,6 +1,5 @@
 import { Box, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
-import FooterPanel from './Footer';
 
 const Error404Panel = () => {
 	const imageNum = Math.floor(Math.random() * 19);
@@ -16,7 +15,6 @@ const Error404Panel = () => {
 			<Box sx={{ margin: '1rem 0rem' }}>
 				<img src={imageSrc} alt='404' className='errorimg' />
 			</Box>
-			<FooterPanel />
 		</Box>
 	);
 };

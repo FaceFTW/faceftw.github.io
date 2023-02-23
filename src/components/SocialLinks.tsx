@@ -1,4 +1,4 @@
-import { Alert, Box, IconButton, Snackbar, Tooltip, Typography } from '@mui/material';
+import { Alert, Box, Divider, IconButton, Snackbar, Tooltip, Typography } from '@mui/material';
 import Image from 'mui-image';
 import React from 'react';
 import { FaEnvelope, FaGithub, FaKey, FaLinkedin, FaTwitter } from 'react-icons/fa';
@@ -49,7 +49,7 @@ export const SocialLinks = () => {
 	);
 
 	return (
-		<Box className='sidenav'>
+		<Box sx={{ backgroundColor: '#303030', marginTop: '1rem' }}>
 			{pictureBox}
 			<Box sx={{ display: 'flex', justifyContent: 'center' }}>
 				<Tooltip title='Twitter'>
@@ -78,6 +78,7 @@ export const SocialLinks = () => {
 					</IconButton>
 				</Tooltip>
 			</Box>
+			<Divider sx={{ marginTop: '1rem' }} />
 			<Snackbar
 				anchorOrigin={{ vertical: 'top', horizontal: 'left' }}
 				open={gpgCopiedShown}

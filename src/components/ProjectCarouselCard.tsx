@@ -1,5 +1,5 @@
 import React from 'react';
-import { Project } from '../data/schema-types';
+import { Project } from '../DataTypes';
 import Image from 'mui-image';
 import {
 	Card,

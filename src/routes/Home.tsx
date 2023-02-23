@@ -1,32 +1,32 @@
-import { Box, Grid, Typography, useMediaQuery } from '@mui/material';
+import { Box, Grid, Typography, useMediaQuery, useTheme } from '@mui/material';
 import React from 'react';
 import Carousel from 'react-material-ui-carousel';
 import projectData from '../assets/json/projects.json';
 import { ProjectCarouselCard } from '../components/ProjectCarouselCard';
-import { Project } from '../data/schema-types';
-import FooterPanel from './Footer';
+import { Project } from '../DataTypes';
 
 const CarouselSet = ({ projects }: { projects: Project[] }) => {
 	return (
 		<Grid container spacing={1}>
-			<Grid item xs={1} sm={2} />
+			<Grid item xs={1} sm={3} lg={2} />
 			{projects.map((project) => (
-				<Grid item xs={10} sm={4} key={project.projectName}>
+				<Grid item xs={10} sm={6} lg={4} key={project.projectName}>
 					<ProjectCarouselCard project={project} />
 				</Grid>
 			))}
-			<Grid item xs={1} sm={2} />
+			<Grid item xs={1} sm={3} lg={2} />
 		</Grid>
 	);
 };
 
-export const MainPanel = () => {
+export const HomePanel = () => {
 	const projects: Project[] = projectData.projectList;
 	const featured = [projects[15], projects[18], projects[7], projects[17], projects[6], projects[14]];
-	const mdQuery = useMediaQuery('(min-width: 1200px)');
+	const theme = useTheme();
+	const lgQuery = useMediaQuery(theme.breakpoints.down('lg'));
 
 	const carouselItems = React.useMemo(() => {
-		if (mdQuery) {
+		if (!lgQuery) {
 			return [featured.slice(0, 2), featured.slice(2, 4), featured.slice(4, 6)];
 		} else {
 			return [
@@ -38,7 +38,7 @@ export const MainPanel = () => {
 				featured.slice(5, 6),
 			];
 		}
-	}, [featured, mdQuery]);
+	}, [featured, lgQuery]);
 
 	return (
 		<div>
@@ -68,7 +68,6 @@ export const MainPanel = () => {
 					</Carousel>
 				</Box>
 			</section>
-			<FooterPanel />
 		</div>
 	);
 };
