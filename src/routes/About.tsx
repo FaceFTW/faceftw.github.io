@@ -1,6 +1,5 @@
 import { Box, Typography } from '@mui/material';
 import Workspace from '../assets/img/workspace.webp';
-import FooterPanel from './Footer';
 
 export const AboutPanel = () => {
 	return (

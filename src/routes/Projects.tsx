@@ -2,7 +2,6 @@ import { Box, Divider, Grid } from '@mui/material';
 import React from 'react';
 import projectData from '../assets/json/projects.json';
 import ProjectCard from '../components/ProjectCard';
-import FooterPanel from './Footer';
 import { Project } from '../DataTypes';
 
 export const ProjectsPanel = () => {

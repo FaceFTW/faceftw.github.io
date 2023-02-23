@@ -5,23 +5,50 @@ import {
 	Drawer,
 	IconButton,
 	Paper,
+	ThemeOptions,
 	ThemeProvider,
 	Toolbar,
 	Typography,
+	createTheme,
 	useMediaQuery,
 } from '@mui/material';
+import { green } from '@mui/material/colors';
 import React from 'react';
 import { FaBars } from 'react-icons/fa';
-import { Link, Outlet, useMatch, useMatches } from 'react-router-dom';
+import { Link, Outlet, useMatch } from 'react-router-dom';
 import './Layout.css';
 import { Sidenav } from './components/Sidenav';
-import { appTheme } from './theme';
 
 const drawerWidth = 240;
 
+const themeOptions: ThemeOptions = {
+	palette: {
+		mode: 'dark',
+		primary: {
+			main: green[600],
+			dark: green[600],
+		},
+		secondary: {
+			main: green[600],
+			dark: green[600],
+		},
+	},
+	components: {
+		MuiAppBar: {
+			styleOverrides: {
+				root: {
+					backgroundColor: green[600],
+				},
+			},
+		},
+	},
+};
+
+const appTheme = createTheme(themeOptions, { palette: { mode: 'dark' } });
+
 export const Layout = () => {
 	const [drawerOpen, setDrawerOpen] = React.useState(true);
-	const mobileQuery = useMediaQuery('(max-width:768px)');
+	const mobileQuery = useMediaQuery(appTheme.breakpoints.down('lg'));
 	const atProjectsRoute = useMatch('/projects');
 	const atResumeRoute = useMatch('/resume');
 	const atAboutRoute = useMatch('/about');
@@ -38,8 +65,6 @@ export const Layout = () => {
 		}
 	}, [atProjectsRoute, atResumeRoute, atAboutRoute]);
 
-	const matches = useMatches();
-
 	const handleDrawerToggle = () => {
 		setDrawerOpen(!drawerOpen);
 	};
@@ -48,7 +73,7 @@ export const Layout = () => {
 		<Paper
 			component={'footer'}
 			elevation={5}
-			sx={{ display: 'block', margin: '1rem auto', textAlign: 'center', bottom: 0, width: '80%' }}>
+			sx={{ display: 'block', margin: '1rem auto', textAlign: 'center', width: '80%' }}>
 			<Typography variant='caption'>
 				Made by Alex &quot;FaceFTW&quot; Westerman &copy; 2021-{new Date().getFullYear()} All Rights Reserved.{' '}
 			</Typography>
@@ -79,8 +104,8 @@ export const Layout = () => {
 					color='secondary'
 					position='sticky'
 					sx={{
-						width: { xs: '100%', md: `calc(100% - calc(${drawerWidth}px))` },
-						marginLeft: { xs: 0, md: `${drawerWidth}px` },
+						width: { xs: '100%', lg: `calc(100% - calc(${drawerWidth}px))` },
+						marginLeft: { xs: 0, lg: `${drawerWidth}px` },
 					}}>
 					<Toolbar color='secondary'>
 						<Box hidden={!mobileQuery}>
@@ -98,39 +123,35 @@ export const Layout = () => {
 					</Toolbar>
 				</AppBar>
 			</Box>
+			<Box>
+				<Box component='nav' sx={{ w: { lg: `${drawerWidth}px` }, flexShrink: { lg: 0 } }}>
+					<Drawer
+						anchor='left'
+						variant={mobileQuery ? 'temporary' : 'permanent'}
+						open={drawerOpen}
+						sx={{
+							display: mobileQuery ? { xs: 'block', lg: 'none' } : { xs: 'none', lg: 'block' },
+							'& .MuiDrawer-paper': {
+								boxSizing: 'border-box',
+								width: drawerWidth,
+								backgroundColor: '#303030',
+							},
+						}}
+						onClose={() => (mobileQuery ? setDrawerOpen(false) : undefined)}>
+						<Sidenav />
+					</Drawer>
+				</Box>
+			</Box>
 
-			<Box sx={{ d: 'flex' }}>
-				<Box>
-					<Box component='nav' sx={{ w: { md: `${drawerWidth}px` }, flexShrink: { md: 0 } }}>
-						<Drawer
-							anchor='left'
-							variant={mobileQuery ? 'temporary' : 'permanent'}
-							open={drawerOpen}
-							sx={{
-								display: mobileQuery ? { xs: 'block', md: 'none' } : { xs: 'none', md: 'block' },
-								'& .MuiDrawer-paper': {
-									boxSizing: 'border-box',
-									width: drawerWidth,
-									backgroundColor: '#303030',
-								},
-							}}
-							onClose={() => (mobileQuery ? setDrawerOpen(false) : undefined)}>
-							<Sidenav />
-						</Drawer>
-					</Box>
-				</Box>
-				<Box
-					sx={{
-						display: 'flex',
-						flexDirection: 'column',
-						width: { md: `calc(100% - ${drawerWidth}px)` },
-						marginLeft: { md: `${drawerWidth}px` },
-						flexGrow: 1,
-					}}>
-					<Outlet />
-					<Box sx={{ height: 'auto', marginY: 'auto', flexGrow: 1 }} />
-					<Box>{footer}</Box>
-				</Box>
+			<Box
+				sx={{
+					display: 'flex',
+					flexDirection: 'column',
+					width: { lg: `calc(100% - ${drawerWidth}px)` },
+					marginLeft: { lg: `${drawerWidth}px` },
+				}}>
+				<Outlet />
+				<Box>{footer}</Box>
 			</Box>
 		</ThemeProvider>
 	);

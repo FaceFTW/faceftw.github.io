@@ -1,16 +1,7 @@
-import {
-	Accordion,
-	AccordionDetails,
-	AccordionSummary,
-	Box,
-	Grid,
-	Icon,
-	Paper,
-	Typography
-} from '@mui/material';
+import { Accordion, AccordionDetails, AccordionSummary, Box, Grid, Icon, Paper, Typography } from '@mui/material';
 import React from 'react';
-import {FaBook, FaChevronDown, FaGithub, FaHeart} from 'react-icons/fa';
-import {Education, ProfessionalExperience, ResumeHighlight, SkillCategory} from '../DataTypes';
+import { FaBook, FaChevronDown, FaGithub, FaHeart } from 'react-icons/fa';
+import { Education, ProfessionalExperience, ResumeHighlight, SkillCategory } from '../DataTypes';
 import resumeData from '../assets/json/resume.json';
 
 const Highlights = ({ highlights }: { highlights: ResumeHighlight[] }) => {
