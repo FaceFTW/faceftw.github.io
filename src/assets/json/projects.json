@@ -103,7 +103,7 @@
 			"projectDescription": "A Relatively Simple Java Linter Wtih Style/OOP Principle Violations and Design Pattern Detection",
 			"projectSubDesc": "For Rose-Hulman CSSE374: Software Design, Further Worked on in CSSE375: Software Construction and Evolution",
 			"projectLanguage": ["Java 8 (Maven)"],
-			"projectLibraries": ["OW2 ASM", "JUnit (Testing)", "PIT (Test/Mutation Coverage)"],
+			"projectLibraries": ["OW2 ASM", "JUnit (Testing)"],
 			"projectLinks": [{ "linkType": "github", "linkURL": "https://github.com/FaceFTW/DesignLint" }],
 			"projectAsset": "designlint.webp",
 			"projectStatus": { "status": "Finished" }
@@ -200,11 +200,11 @@
 		},
 		{
 			"projectId": 15,
-			"projectName": "Portfolio Website (React Edition)",
+			"projectName": "Portfolio Website",
 			"projectDescription": "This website, rewritten with ReactJS (because why not)",
 			"projectSubDesc": "Personal Project",
-			"projectLanguage": ["TypeScript", "CSS3", "JSON Schema"],
-			"projectLibraries": ["ReactJS", "MUI", "NerdFonts"],
+			"projectLanguage": ["TypeScript", "JSON Schema"],
+			"projectLibraries": ["ReactJS", "MUI", "React-Icons", "React-Router", "And more"],
 			"projectAsset": "portfolionew.webp",
 			"projectLinks": [
 				{ "linkType": "github", "linkURL": "https://github.com/FaceFTW/FaceFTW.github.io" }

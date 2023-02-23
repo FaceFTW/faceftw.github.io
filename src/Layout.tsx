@@ -15,7 +15,7 @@ import {
 import { green } from '@mui/material/colors';
 import React from 'react';
 import { FaBars } from 'react-icons/fa';
-import { Link, Outlet, useMatch } from 'react-router-dom';
+import { Link, Outlet, useLocation, useMatch } from 'react-router-dom';
 import './Layout.css';
 import { Sidenav } from './components/Sidenav';
 
@@ -24,23 +24,8 @@ const drawerWidth = 240;
 const themeOptions: ThemeOptions = {
 	palette: {
 		mode: 'dark',
-		primary: {
-			main: green[600],
-			dark: green[600],
-		},
-		secondary: {
-			main: green[600],
-			dark: green[600],
-		},
-	},
-	components: {
-		MuiAppBar: {
-			styleOverrides: {
-				root: {
-					backgroundColor: green[600],
-				},
-			},
-		},
+		primary: { main: green[600], dark: green[600] },
+		secondary: { main: green[600], dark: green[600] },
 	},
 };
 
@@ -49,21 +34,12 @@ const appTheme = createTheme(themeOptions, { palette: { mode: 'dark' } });
 export const Layout = () => {
 	const [drawerOpen, setDrawerOpen] = React.useState(true);
 	const mobileQuery = useMediaQuery(appTheme.breakpoints.down('lg'));
-	const atProjectsRoute = useMatch('/projects');
-	const atResumeRoute = useMatch('/resume');
-	const atAboutRoute = useMatch('/about');
+	const currentLocation = useLocation();
 
 	const titleMemo = React.useMemo(() => {
-		if (atProjectsRoute) {
-			return 'Projects';
-		} else if (atResumeRoute) {
-			return 'Resume';
-		} else if (atAboutRoute) {
-			return 'About';
-		} else {
-			return 'Home';
-		}
-	}, [atProjectsRoute, atResumeRoute, atAboutRoute]);
+		const title = currentLocation.pathname.split('/')[1];
+		return title === '' ? 'Home' : title.charAt(0).toUpperCase() + title.slice(1);
+	}, [currentLocation.pathname]);
 
 	const handleDrawerToggle = () => {
 		setDrawerOpen(!drawerOpen);
@@ -71,28 +47,18 @@ export const Layout = () => {
 
 	const footer = (
 		<Paper
-			component={'footer'}
+			component='footer'
 			elevation={5}
 			sx={{ display: 'block', margin: '1rem auto', textAlign: 'center', width: '80%' }}>
-			<Typography variant='caption'>
-				Made by Alex &quot;FaceFTW&quot; Westerman &copy; 2021-{new Date().getFullYear()} All Rights Reserved.{' '}
-			</Typography>
-			<br />
-			<Typography variant='caption'> Source code for this website is licensed under the MIT License</Typography>
-			<br />
-			<Typography variant='caption'>
+			<Typography variant='caption' component='pre'>
+				Made by Alex &quot;FaceFTW&quot; Westerman &copy; 2021-{new Date().getFullYear()} All Rights Reserved. {'\n'}
+				Source code for this website is licensed under the MIT License {'\n'}
 				All projects mentioned are subject to their specific licenses and copyrights as designated by their owners
+				{'\n'}
 			</Typography>
-			<br />
-			<div className='footerTxt'>
-				<Typography
-					component={Link}
-					variant={'caption'}
-					to='/err_404'
-					sx={{ textDecoration: 'none', color: '#404040' }}>
-					super secret link :)
-				</Typography>
-			</div>
+			<Typography component={Link} variant='caption' to='/funny' sx={{ textDecoration: 'none', color: '#404040' }}>
+				super secret link :)
+			</Typography>
 		</Paper>
 	);
 
@@ -103,6 +69,7 @@ export const Layout = () => {
 				<AppBar
 					color='secondary'
 					position='sticky'
+					enableColorOnDark={true}
 					sx={{
 						width: { xs: '100%', lg: `calc(100% - calc(${drawerWidth}px))` },
 						marginLeft: { xs: 0, lg: `${drawerWidth}px` },
