@@ -54,9 +54,30 @@ jobs:
         run: pnpm install
       - name: Run Build
         run: pnpm build
-      - uses: FirebaseExtended/action-hosting-deploy@v0
+      - name: Deploy to Firebase
+        uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: "${{ secrets.GITHUB_TOKEN }}"
           firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_PORTFOLIO_WEB_1CC78 }}"
           projectId: portfolio-web-1cc78
           channelId: live
+      - uses: actions/upload-pages-artifact@v1.0.7
+        with: 
+          path: dist
+        
+        
+  github-pages:
+    name: GitHub Pages
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    needs: [release]
+    steps:
+      - uses: actions/deploy-pages@v1.2.4
+      - id: gh-deploy
+      
+        
