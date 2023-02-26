@@ -20,6 +20,7 @@ specifiers:
   eslint-plugin-prettier: ^4.2.1
   eslint-plugin-promise: ^6.0.0
   eslint-plugin-react: ^7.32.2
+  framer-motion: ^10.0.0
   mui-image: ^1.0.7
   prettier: ^2.8.4
   prop-types: ^15.8.1
@@ -35,6 +36,7 @@ dependencies:
   '@emotion/react': 11.10.6_pmekkgnqduwlme35zpnqhenc34
   '@emotion/styled': 11.10.6_oouaibmszuch5k64ms7uxp2aia
   '@mui/material': 5.11.9_xqeqsl5kvjjtyxwyi3jhw3yuli
+  framer-motion: 10.0.0_biqbaboplfbrettd7655fr4n2y
   mui-image: 1.0.7_di3ulaxv3lf356tn2t47pifsci
   prop-types: 15.8.1
   react: 18.2.0
@@ -1932,6 +1934,19 @@ packages:
     dependencies:
       is-callable: 1.2.7
     dev: true
+
+  /framer-motion/10.0.0_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-qVmndcu4Z3q5ftqcbUCvVewHc5yiw4uIZyM0uvJ0/spj9lza/FnWywUUc8DNIZTG1my6nFsNLRPGDruP4o6eIw==}
+    peerDependencies:
+      react: ^18.0.0
+      react-dom: ^18.0.0
+    dependencies:
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+      tslib: 2.5.0
+    optionalDependencies:
+      '@emotion/is-prop-valid': 0.8.8
+    dev: false
 
   /framer-motion/4.1.17_biqbaboplfbrettd7655fr4n2y:
     resolution: {integrity: sha512-thx1wvKzblzbs0XaK2X0G1JuwIdARcoNOW7VVwjO8BUltzXPyONGAElLu6CiCScsOQRI7FIk/45YTFtJw5Yozw==}
