@@ -15,6 +15,7 @@ import Image from 'mui-image';
 import React from 'react';
 import { FaChevronDown, FaDesktop, FaGithub, FaLink } from 'react-icons/fa';
 import { Project } from '../DataTypes';
+import { useInView } from 'framer-motion';
 
 const ProjectCard = ({ project }: { project: Project }) => {
 	const [cardExpanded, setCardExpanded] = React.useState(false);
@@ -26,8 +27,21 @@ const ProjectCard = ({ project }: { project: Project }) => {
 	const demoLink = project.projectLinks.find((link) => link.linkType === 'demo');
 	const miscLink = project.projectLinks.find((link) => link.linkType === 'misc');
 
+	const cardRef = React.useRef<HTMLDivElement>(null);
+	const isInView = useInView(cardRef);
+
 	return (
-		<Card sx={{ maxWidth: 400, minWidth: 325, display: 'flex', flexDirection: 'column' }}>
+		<Card
+			ref={cardRef}
+			sx={{
+				maxWidth: 400,
+				minWidth: 325,
+				display: 'flex',
+				flexDirection: 'column',
+				transform: isInView ? 'none' : 'translateY(50px)',
+				opacity: isInView ? 1 : 0,
+				transition: 'transform 0.5s ease-in-out, opacity 0.5s ease-in-out',
+			}}>
 			<CardMedia>
 				<Image src={imgAsset} duration={500} style={{ height: '250px', width: '400px', objectFit: 'contain' }} />
 			</CardMedia>

@@ -14,6 +14,7 @@ import {
 	Box,
 } from '@mui/material';
 import { FaGithub, FaDesktop, FaLink } from 'react-icons/fa';
+import { useInView } from 'framer-motion';
 
 export const ProjectCarouselCard = ({ project }: { project: Project }) => {
 	const imgAsset = project.projectAsset
@@ -23,10 +24,24 @@ export const ProjectCarouselCard = ({ project }: { project: Project }) => {
 	const githubLink = project.projectLinks.find((link) => link.linkType === 'github');
 	const demoLink = project.projectLinks.find((link) => link.linkType === 'demo');
 	const miscLink = project.projectLinks.find((link) => link.linkType === 'misc');
+	const cardRef = React.useRef<HTMLDivElement>(null);
+	const isInView = useInView(cardRef);
 
 	return (
 		<Card
-			sx={{ maxWidth: 400, minWidth: 325, maxHeight: 500, minHeight: 500, display: 'flex', flexDirection: 'column' }}>
+			ref={cardRef}
+			sx={{
+				maxWidth: 400,
+				minWidth: 325,
+				maxHeight: 500,
+				minHeight: 500,
+				display: 'flex',
+				flexDirection: 'column',
+
+				transition: 'all 0.5s ease',
+				opacity: isInView ? 1 : 0,
+				transform: isInView ? 'none' : 'translateY(50px)',
+			}}>
 			<CardMedia>
 				<Image src={imgAsset} duration={500} style={{ height: '250px', width: '400px', objectFit: 'contain' }} />
 			</CardMedia>
