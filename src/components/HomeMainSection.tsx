@@ -5,14 +5,6 @@ import TypewriterComponent from 'typewriter-effect';
 export const HomeMainSection = () => {
 	const backgroundImage = new URL('../assets/img/setupv2.webp', import.meta.url).href;
 
-	const mainBoxStyle = {
-		backgroundImage: `url(${backgroundImage})`,
-		backgroundSize: 'cover',
-		backgroundPosition: 'center',
-		backgroundRepeat: 'no-repeat',
-		height: '100vh',
-	};
-
 	return (
 		<Box
 			component={'section'}
@@ -40,7 +32,7 @@ export const HomeMainSection = () => {
 					<Typography variant='h1' sx={{ color: '#FFFFFFFF' }}>
 						I am a{' '}
 					</Typography>
-					<Typography variant='h1' sx={{color: '#20FF20'}}>
+					<Typography variant='h1' sx={{ color: '#20FF20' }}>
 						<TypewriterComponent
 							options={{
 								strings: ['Software Engineer', 'Hardware Tinkerer', 'Power User', 'Tech Enthusiast'],
