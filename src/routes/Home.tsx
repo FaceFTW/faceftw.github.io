@@ -4,6 +4,7 @@ import Carousel from 'react-material-ui-carousel';
 import projectData from '../assets/json/projects.json';
 import { ProjectCarouselCard } from '../components/ProjectCarouselCard';
 import { Project } from '../DataTypes';
+import {HomeMainSection} from '../components/HomeMainSection';
 
 const CarouselSet = ({ projects }: { projects: Project[] }) => {
 	return (
@@ -41,8 +42,8 @@ export const HomePanel = () => {
 	}, [featured, lgQuery]);
 
 	return (
-		<div>
-			<section className='intro'>
+		<Box>
+			{/* <section className='intro'>
 				<div
 					className='justify-content-center'
 					style={{ paddingTop: '100px', paddingLeft: '100px' }}
@@ -55,8 +56,9 @@ export const HomePanel = () => {
 					<div className='padding-div'> </div>
 					<span className='hero-text'>Tech Enthusiast</span>
 				</div>
-			</section>
-			<section className='projects'>
+			</section> */}
+			<HomeMainSection />
+			<Box component={'section'}>
 				<Typography variant='h3' sx={{ m: '1rem' }}>
 					Featured Projects
 				</Typography>
@@ -67,7 +69,7 @@ export const HomePanel = () => {
 						))}
 					</Carousel>
 				</Box>
-			</section>
-		</div>
+			</Box>
+		</Box>
 	);
 };

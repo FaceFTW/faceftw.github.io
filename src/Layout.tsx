@@ -15,7 +15,7 @@ import {
 import { green } from '@mui/material/colors';
 import React from 'react';
 import { FaBars } from 'react-icons/fa';
-import { Link, Outlet, useLocation, useMatch } from 'react-router-dom';
+import { Link, Outlet, ScrollRestoration, useLocation, useMatch } from 'react-router-dom';
 import './Layout.css';
 import { Sidenav } from './components/Sidenav';
 
@@ -48,7 +48,7 @@ export const Layout = () => {
 	const appBar = (
 		<AppBar
 			color='secondary'
-			position='sticky'
+			position='fixed'
 			enableColorOnDark={true}
 			sx={{
 				width: { xs: '100%', lg: `calc(100% - calc(${drawerWidth}px))` },
@@ -91,6 +91,7 @@ export const Layout = () => {
 
 	return (
 		<ThemeProvider theme={appTheme}>
+			<ScrollRestoration />
 			<Box sx={{ d: 'flex' }}>
 				<CssBaseline enableColorScheme />
 				{appBar}
@@ -118,6 +119,7 @@ export const Layout = () => {
 					flexDirection: 'column',
 					width: { lg: `calc(100% - ${drawerWidth}px)` },
 					marginLeft: { lg: `${drawerWidth}px` },
+					paddingTop: '4rem',
 				}}>
 				<Outlet />
 				<Box>{footer}</Box>
