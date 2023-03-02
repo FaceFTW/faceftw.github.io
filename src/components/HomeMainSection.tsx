@@ -29,14 +29,32 @@ export const HomeMainSection = () => {
 						opacity: '0.75',
 					}}>
 					<Typography variant='h1' sx={{ color: '#FFFFFFFF' }}>
-						I am a{' '}
+						Alex is a{' '}
 					</Typography>
 					<Typography variant='h1' sx={{ color: '#20FF20' }}>
 						<TypewriterComponent
 							options={{
-								strings: ['Software Engineer', 'Hardware Tinkerer', 'Power User', 'Tech Enthusiast'],
 								autoStart: true,
 								loop: true,
+							}}
+							onInit={(typewriter) => {
+								typewriter
+									.typeString('Software Engineer')
+									.pauseFor(3000)
+									.deleteAll()
+									.typeString('Hardware Tinkerer')
+									.pauseFor(3000)
+									.deleteAll()
+									.typeString('Power User')
+									.pauseFor(3000)
+									.deleteAll()
+									.typeString('Tech Enthusiast')
+									.pauseFor(3000)
+									.deleteAll()
+									.typeString('Problem Solver')
+									.pauseFor(3000)
+									.deleteAll()
+									.start();
 							}}
 						/>
 					</Typography>
