@@ -1,7 +1,7 @@
 import { Box, Typography } from '@mui/material';
-import { Link } from 'react-router-dom';
-import Image from 'mui-image';
 import { motion } from 'framer-motion';
+import Image from 'mui-image';
+import { Link } from 'react-router-dom';
 
 export const Error404Panel = () => {
 	const imageNum = Math.floor(Math.random() * 19);

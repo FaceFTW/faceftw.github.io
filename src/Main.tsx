@@ -13,7 +13,7 @@ const Error404Panel = React.lazy(() =>
 	import('./routes/Error404').then((module) => ({ default: module.Error404Panel }))
 );
 
-export const SuspenseRoute = ({ children }: { children: React.ReactNode }) => {
+const SuspenseRoute = ({ children }: { children: React.ReactNode }) => {
 	return <React.Suspense fallback={<></>}>{children}</React.Suspense>;
 };
 

@@ -1,11 +1,11 @@
 import { Box, Grid, Typography, useMediaQuery, useTheme } from '@mui/material';
+import { motion } from 'framer-motion';
 import React from 'react';
 import Carousel from 'react-material-ui-carousel';
 import { Project } from '../DataTypes';
 import projectData from '../assets/json/projects.json';
 import { HomeMainSection } from '../components/HomeMainSection';
 import { ProjectCarouselCard } from '../components/ProjectCarouselCard';
-import { motion } from 'framer-motion';
 
 const CarouselSet = ({ projects }: { projects: Project[] }) => {
 	return (

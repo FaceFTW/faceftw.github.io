@@ -1,9 +1,9 @@
 import { Accordion, AccordionDetails, AccordionSummary, Box, Grid, Icon, Paper, Typography } from '@mui/material';
+import { motion } from 'framer-motion';
 import React from 'react';
 import { FaBook, FaChevronDown, FaGithub, FaHeart } from 'react-icons/fa';
 import { Education, ProfessionalExperience, ResumeHighlight, SkillCategory } from '../DataTypes';
 import resumeData from '../assets/json/resume.json';
-import { motion } from 'framer-motion';
 
 const Highlights = ({ highlights }: { highlights: ResumeHighlight[] }) => {
 	//This is kinda hacky, but I can't think of a better solution
