@@ -3,6 +3,7 @@ import React from 'react';
 import { FaBook, FaChevronDown, FaGithub, FaHeart } from 'react-icons/fa';
 import { Education, ProfessionalExperience, ResumeHighlight, SkillCategory } from '../DataTypes';
 import resumeData from '../assets/json/resume.json';
+import { motion } from 'framer-motion';
 
 const Highlights = ({ highlights }: { highlights: ResumeHighlight[] }) => {
 	//This is kinda hacky, but I can't think of a better solution
@@ -187,7 +188,12 @@ export const ResumePanel = () => {
 	const experience: ProfessionalExperience[] = resumeData.experience;
 
 	return (
-		<Box sx={{ margin: '1rem' }}>
+		<Box
+			component={motion.div}
+			initial={{ opacity: 0 }}
+			animate={{ opacity: 1 }}
+			transition={{ duration: 0.5 }}
+			sx={{ margin: '1rem' }}>
 			<Box>
 				<Highlights highlights={highlights} />
 			</Box>

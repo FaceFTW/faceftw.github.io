@@ -2,18 +2,20 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Route, RouterProvider, createHashRouter, createRoutesFromElements } from 'react-router-dom';
 import { Layout } from './Layout';
-// import { AboutPanel } from './routes/About';
-import Error404Panel from './routes/Error404';
-// import { HomePanel } from './routes/Home';
-// import { ProjectsPanel } from './routes/Projects';
-// import { ResumePanel } from './routes/Resume';
-import { RouteSuspenseFallback, RouteWithSuspense } from './components/RouteSuspenseFallback';
 
 const HomePanel = React.lazy(() => import('./routes/Home').then((module) => ({ default: module.HomePanel })));
-const ProjectsPanel = React.lazy(() => import('./routes/Projects').then((module) => ({ default: module.ProjectsPanel })));
+const ProjectsPanel = React.lazy(() =>
+	import('./routes/Projects').then((module) => ({ default: module.ProjectsPanel }))
+);
 const ResumePanel = React.lazy(() => import('./routes/Resume').then((module) => ({ default: module.ResumePanel })));
 const AboutPanel = React.lazy(() => import('./routes/About').then((module) => ({ default: module.AboutPanel })));
+const Error404Panel = React.lazy(() =>
+	import('./routes/Error404').then((module) => ({ default: module.Error404Panel }))
+);
 
+export const SuspenseRoute = ({ children }: { children: React.ReactNode }) => {
+	return <React.Suspense fallback={<></>}>{children}</React.Suspense>;
+};
 
 const router = createHashRouter(
 	createRoutesFromElements([
@@ -21,42 +23,41 @@ const router = createHashRouter(
 			<Route
 				index
 				element={
-					<RouteWithSuspense>
+					<SuspenseRoute>
 						<HomePanel />
-					</RouteWithSuspense>
+					</SuspenseRoute>
 				}
 			/>
 			<Route
 				path='/projects'
 				element={
-					<RouteWithSuspense>
+					<SuspenseRoute>
 						<ProjectsPanel />
-					</RouteWithSuspense>
+					</SuspenseRoute>
 				}
 			/>
 			<Route
 				path='/resume'
 				element={
-					<RouteWithSuspense>
+					<SuspenseRoute>
 						<ResumePanel />
-					</RouteWithSuspense>
+					</SuspenseRoute>
 				}
 			/>
 			<Route
 				path='/about'
 				element={
-					<RouteWithSuspense>
+					<SuspenseRoute>
 						<AboutPanel />
-					</RouteWithSuspense>
+					</SuspenseRoute>
 				}
 			/>
-			<Route path='/suspense' element={<RouteSuspenseFallback />} />
 			<Route
 				path='*'
 				element={
-					<RouteWithSuspense>
+					<SuspenseRoute>
 						<Error404Panel />
-					</RouteWithSuspense>
+					</SuspenseRoute>
 				}
 			/>
 		</Route>,

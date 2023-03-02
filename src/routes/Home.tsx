@@ -1,10 +1,11 @@
-import {Box, Grid, Typography, useMediaQuery, useTheme} from '@mui/material';
+import { Box, Grid, Typography, useMediaQuery, useTheme } from '@mui/material';
 import React from 'react';
 import Carousel from 'react-material-ui-carousel';
-import {Project} from '../DataTypes';
+import { Project } from '../DataTypes';
 import projectData from '../assets/json/projects.json';
-import {HomeMainSection} from '../components/HomeMainSection';
-import {ProjectCarouselCard} from '../components/ProjectCarouselCard';
+import { HomeMainSection } from '../components/HomeMainSection';
+import { ProjectCarouselCard } from '../components/ProjectCarouselCard';
+import { motion } from 'framer-motion';
 
 const CarouselSet = ({ projects }: { projects: Project[] }) => {
 	return (
@@ -42,7 +43,7 @@ export const HomePanel = () => {
 	}, [featured, lgQuery]);
 
 	return (
-		<Box>
+		<Box component={motion.div} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
 			<HomeMainSection />
 			<Box component={'section'}>
 				<Typography variant='h3' sx={{ m: '1rem' }}>

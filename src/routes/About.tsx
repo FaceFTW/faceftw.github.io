@@ -1,9 +1,15 @@
 import { Box, Typography } from '@mui/material';
 import Workspace from '../assets/img/workspace.webp';
+import { motion } from 'framer-motion';
 
 export const AboutPanel = () => {
 	return (
-		<Box sx={{ display: 'flex', flexDirection: 'column' }}>
+		<Box
+			component={motion.div}
+			initial={{ opacity: 0 }}
+			animate={{ opacity: 1 }}
+			transition={{ duration: 0.5 }}
+			sx={{ display: 'flex', flexDirection: 'column' }}>
 			<Box>
 				<Typography variant='h4' sx={{ m: '1rem' }}>
 					Hi! My name is Alex

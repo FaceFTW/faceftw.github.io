@@ -12,11 +12,11 @@ import {
 	createTheme,
 	useMediaQuery,
 } from '@mui/material';
-import {green} from '@mui/material/colors';
+import { green } from '@mui/material/colors';
 import React from 'react';
-import {FaBars} from 'react-icons/fa';
-import {Link, Outlet, ScrollRestoration, useLocation} from 'react-router-dom';
-import {Sidenav} from './components/Sidenav';
+import { FaBars } from 'react-icons/fa';
+import { Link, Outlet, ScrollRestoration, useLocation } from 'react-router-dom';
+import { Sidenav } from './components/Sidenav';
 
 const drawerWidth = 240;
 
@@ -121,6 +121,8 @@ export const Layout = () => {
 					paddingTop: '4rem',
 				}}>
 				<Outlet />
+
+				<Box sx={{ marginY: 'auto' }} />
 				<Box>{footer}</Box>
 			</Box>
 		</ThemeProvider>
