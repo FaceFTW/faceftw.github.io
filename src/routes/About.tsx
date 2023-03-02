@@ -1,9 +1,18 @@
 import { Box, Typography } from '@mui/material';
-import Workspace from '../assets/img/workspace.webp';
+import { motion } from 'framer-motion';
+import Image from 'mui-image';
+
+const workspaceImage = new URL('../assets/img/workspace.webp', import.meta.url).href;
+const setupImage = new URL('../assets/img/setupv2.webp', import.meta.url).href;
 
 export const AboutPanel = () => {
 	return (
-		<Box sx={{ display: 'flex', flexDirection: 'column' }}>
+		<Box
+			component={motion.div}
+			initial={{ opacity: 0 }}
+			animate={{ opacity: 1 }}
+			transition={{ duration: 0.5 }}
+			sx={{ display: 'flex', flexDirection: 'column' }}>
 			<Box>
 				<Typography variant='h4' sx={{ m: '1rem' }}>
 					Hi! My name is Alex
@@ -34,8 +43,23 @@ export const AboutPanel = () => {
 							experiences I have gone through!
 						</p>
 					</Box>
-					<Box sx={{ width: { sm: '50%' }, m: '1rem' }}>
-						<img src={Workspace} alt='workspace' style={{ width: '100%', objectFit: 'contain' }} />
+					<Box sx={{ display: 'flex', flexDirection: 'column', width: { sm: '50%' }, m: '1rem' }}>
+						<Image
+							src={workspaceImage}
+							alt='workspace'
+							style={{ width: '100%', objectFit: 'contain' }}
+							duration={500}
+						/>
+						<Image
+							src={setupImage}
+							alt='setup'
+							height={500}
+							style={{
+								marginTop: '1rem',
+								objectFit: 'contain',
+							}}
+							duration={500}
+						/>
 					</Box>
 				</Box>
 			</Box>

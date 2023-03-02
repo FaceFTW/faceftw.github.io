@@ -1,4 +1,5 @@
 import { Accordion, AccordionDetails, AccordionSummary, Box, Grid, Icon, Paper, Typography } from '@mui/material';
+import { motion } from 'framer-motion';
 import React from 'react';
 import { FaBook, FaChevronDown, FaGithub, FaHeart } from 'react-icons/fa';
 import { Education, ProfessionalExperience, ResumeHighlight, SkillCategory } from '../DataTypes';
@@ -187,7 +188,12 @@ export const ResumePanel = () => {
 	const experience: ProfessionalExperience[] = resumeData.experience;
 
 	return (
-		<Box sx={{ margin: '1rem' }}>
+		<Box
+			component={motion.div}
+			initial={{ opacity: 0 }}
+			animate={{ opacity: 1 }}
+			transition={{ duration: 0.5 }}
+			sx={{ margin: '1rem' }}>
 			<Box>
 				<Highlights highlights={highlights} />
 			</Box>

@@ -11,11 +11,11 @@ import {
 	Tooltip,
 	Typography,
 } from '@mui/material';
+import { useInView } from 'framer-motion';
 import Image from 'mui-image';
 import React from 'react';
 import { FaChevronDown, FaDesktop, FaGithub, FaLink } from 'react-icons/fa';
 import { Project } from '../DataTypes';
-import { useInView } from 'framer-motion';
 
 const ProjectCard = ({ project }: { project: Project }) => {
 	const [cardExpanded, setCardExpanded] = React.useState(false);

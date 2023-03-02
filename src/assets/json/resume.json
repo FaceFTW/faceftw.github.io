@@ -28,12 +28,16 @@
 				"Windows and Linux/UNIX Kernels and Environments",
 				"Low-Level Programming and Processor Architecture",
 				"Scripting/Automation (with Powershell)",
-				"Git Version Control"
+				"Git Version Control",
+				"Continuous Integration/Continuous Deployment (CI/CD) via GitHub Actions",
+				"Full-Stack Web Development"
 			],
 			"highSkill": [
+				"Software Design and Architecture",
 				"Industry-Level Languages, including C, C++, C#, and Java",
 				"Web Design (HTML5, CSS3, Javascript/Typescript)",
-				"Web Application Frameworks (Angular, ReactJS (w/ Redux), NodeJS)"
+				"Web Application Frameworks (Angular, ReactJS (w/ Redux), NodeJS)",
+				".NET and .NET Extensions (ASP.NET, Entity Framework, LINQ)"
 			]
 		},
 		{

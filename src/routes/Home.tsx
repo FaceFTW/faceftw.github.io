@@ -1,9 +1,11 @@
 import { Box, Grid, Typography, useMediaQuery, useTheme } from '@mui/material';
+import { motion } from 'framer-motion';
 import React from 'react';
 import Carousel from 'react-material-ui-carousel';
-import projectData from '../assets/json/projects.json';
-import { ProjectCarouselCard } from '../components/ProjectCarouselCard';
 import { Project } from '../DataTypes';
+import projectData from '../assets/json/projects.json';
+import { HomeMainSection } from '../components/HomeMainSection';
+import { ProjectCarouselCard } from '../components/ProjectCarouselCard';
 
 const CarouselSet = ({ projects }: { projects: Project[] }) => {
 	return (
@@ -41,22 +43,9 @@ export const HomePanel = () => {
 	}, [featured, lgQuery]);
 
 	return (
-		<div>
-			<section className='intro'>
-				<div
-					className='justify-content-center'
-					style={{ paddingTop: '100px', paddingLeft: '100px' }}
-					id='hero-container'>
-					<span className='hero-text'>Software Engineer</span>
-					<div className='padding-div'> </div>
-					<span className='hero-text'>Hardware Tinkerer</span>
-					<div className='padding-div'> </div>
-					<span className='hero-text'>Power User</span>
-					<div className='padding-div'> </div>
-					<span className='hero-text'>Tech Enthusiast</span>
-				</div>
-			</section>
-			<section className='projects'>
+		<Box component={motion.div} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
+			<HomeMainSection />
+			<Box component={'section'}>
 				<Typography variant='h3' sx={{ m: '1rem' }}>
 					Featured Projects
 				</Typography>
@@ -67,7 +56,7 @@ export const HomePanel = () => {
 						))}
 					</Carousel>
 				</Box>
-			</section>
-		</div>
+			</Box>
+		</Box>
 	);
 };
