@@ -357,20 +357,24 @@
 		},
 		{
 			"projectId": 14,
-			"projectName": "PipeLayer",
-			"projectDescription": "A Twitter Bot that posts screenshots of a Linux port of the 3D Pipes screensaver",
+			"projectName": "rust-pipes",
+			"projectDescription": "A Rust-based remake of the 3D Pipes screensaver\nDesigned for cross-platform deploy and reproducible patterns.",
 			"projectSubDesc": "Personal Project",
 			"projectLanguage": [
-				"C or Rust (Possibly Porting), Docker"
+				"Rust"
 			],
 			"projectLibraries": [
-				"OpenGL (GLX)"
+				"three-d", "wasm-bindgen"
 			],
 			"projectAsset": "3dpipes.webp",
 			"projectLinks": [
 				{
 					"linkType": "github",
 					"linkURL": "https://github.com/FaceFTW/gl-pipes"
+				},
+				{
+					"linkType": "demo",
+					"linkURL": "https://pipes.faceftw.dev"
 				}
 			],
 			"projectStatus": {
