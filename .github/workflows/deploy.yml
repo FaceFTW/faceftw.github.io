@@ -61,7 +61,7 @@ jobs:
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_PORTFOLIO_WEB_1CC78 }}'
           projectId: portfolio-web-1cc78
           channelId: live
-      - uses: actions/upload-pages-artifact@v1.0.7
+      - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
 
@@ -73,8 +73,8 @@ jobs:
       id-token: write
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      url: ${{ steps.gh-deploy.outputs.page_url }}
     needs: [release]
     steps:
-      - uses: actions/deploy-pages@v1.2.4
+      - uses: actions/deploy-pages@v4.0.2
         id: gh-deploy
