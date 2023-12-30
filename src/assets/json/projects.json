@@ -67,15 +67,6 @@
 				{
 					"linkType": "github",
 					"linkURL": "https://github.com/FaceFTW/UberUnit"
-				},
-				{
-					"linkType": "demo",
-					"linkURL": "https://uberunit.faceftw.dev"
-				},
-				{
-					"linkType": "misc",
-					"linkURL": "https://rosehulmanprojectvault.org/project/-Mcae1Wvtehq-J4saaLz",
-					"linkDesc": "ROSE-HULMAN PROJECT VAULT"
 				}
 			],
 			"projectStatus": {
@@ -164,15 +155,6 @@
 				{
 					"linkType": "github",
 					"linkURL": "https://github.com/FaceFTW/strive-stats"
-				},
-				{
-					"linkType": "demo",
-					"linkURL": "https://strive-stats.faceftw.dev"
-				},
-				{
-					"linkType": "misc",
-					"linkURL": "https://rosehulmanprojectvault.org/project/-N401Wni1nsf9F8lcEQ0",
-					"linkDesc": "Rose-Hulman Project Vault"
 				}
 			],
 			"projectStatus": {
@@ -329,7 +311,8 @@
 				}
 			],
 			"projectStatus": {
-				"status": "Active Development"
+				"status": "Archived",
+				"reason": "No Longer Used"
 			}
 		},
 		{
@@ -364,7 +347,8 @@
 				"Rust"
 			],
 			"projectLibraries": [
-				"three-d", "wasm-bindgen"
+				"three-d",
+				"wasm-bindgen"
 			],
 			"projectAsset": "3dpipes.webp",
 			"projectLinks": [
