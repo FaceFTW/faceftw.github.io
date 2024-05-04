@@ -21,11 +21,6 @@ export interface ProjectLink {
 	text?: string;
 }
 
-export interface ProjectStatus {
-	status: string;
-	reason?: string;
-}
-
 export interface Project {
 	projectId: number;
 	projectName: string;
@@ -35,7 +30,6 @@ export interface Project {
 	projectLibraries?: string[];
 	projectAsset?: string;
 	projectLinks: ProjectLink[];
-	projectStatus: ProjectStatus;
 }
 
 /***************RESUME TYPES*******************/
