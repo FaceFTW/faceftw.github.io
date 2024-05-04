@@ -19,11 +19,7 @@
 					"linkType": "github",
 					"linkURL": "https://github.com/FaceFTW/Armanipulator"
 				}
-			],
-			"projectStatus": {
-				"status": "Archived",
-				"reason": "(No Longer in Active Development)"
-			}
+			]
 		},
 		{
 			"projectId": 1,
@@ -68,10 +64,7 @@
 					"linkType": "github",
 					"linkURL": "https://github.com/FaceFTW/UberUnit"
 				}
-			],
-			"projectStatus": {
-				"status": "Finished"
-			}
+			]
 		},
 		{
 			"projectId": 3,
@@ -86,10 +79,7 @@
 					"linkType": "text",
 					"text": "Private Repo (Academic Integrity)"
 				}
-			],
-			"projectStatus": {
-				"status": "Finished (Private Work)"
-			}
+			]
 		},
 		{
 			"projectId": 4,
@@ -108,10 +98,7 @@
 					"linkType": "text",
 					"text": "Private Repo (Academic Integrity)"
 				}
-			],
-			"projectStatus": {
-				"status": "Finished (Private Work)"
-			}
+			]
 		},
 		{
 			"projectId": 5,
@@ -132,10 +119,7 @@
 					"linkType": "github",
 					"linkURL": "https://github.com/FaceFTW/FaceFTW.github.io/tree/angular"
 				}
-			],
-			"projectStatus": {
-				"status": "Finished"
-			}
+			]
 		},
 		{
 			"projectId": 6,
@@ -156,10 +140,7 @@
 					"linkType": "github",
 					"linkURL": "https://github.com/FaceFTW/strive-stats"
 				}
-			],
-			"projectStatus": {
-				"status": "Finished"
-			}
+			]
 		},
 		{
 			"projectId": 7,
@@ -179,10 +160,7 @@
 					"linkURL": "https://github.com/FaceFTW/DesignLint"
 				}
 			],
-			"projectAsset": "designlint.webp",
-			"projectStatus": {
-				"status": "Finished"
-			}
+			"projectAsset": "designlint.webp"
 		},
 		{
 			"projectId": 8,
@@ -201,11 +179,7 @@
 					"linkType": "github",
 					"linkURL": "https://github.com/FaceFTW/OpenCryptoBench"
 				}
-			],
-			"projectStatus": {
-				"status": "Archived",
-				"reason": "No Longer in Development"
-			}
+			]
 		},
 		{
 			"projectId": 9,
@@ -227,10 +201,7 @@
 					"linkType": "github",
 					"linkURL": "https://github.com/Thunderbirds-ECE160/Final-Robot"
 				}
-			],
-			"projectStatus": {
-				"status": "Finished"
-			}
+			]
 		},
 		{
 			"projectId": 10,
@@ -250,11 +221,7 @@
 					"linkType": "github",
 					"linkURL": "https://github.com/FaceFTW/scavlanders-gamepad"
 				}
-			],
-			"projectStatus": {
-				"status": "Archived",
-				"reason": "No Longer in Active Development"
-			}
+			]
 		},
 		{
 			"projectId": 11,
@@ -282,11 +249,7 @@
 					"linkType": "text",
 					"text": "\n(Repo not public yet)"
 				}
-			],
-			"projectStatus": {
-				"status": "Finished",
-				"reason": "No Longer Actively Contributing"
-			}
+			]
 		},
 		{
 			"projectId": 12,
@@ -309,11 +272,7 @@
 					"linkType": "text",
 					"text": " (Repo not public yet)"
 				}
-			],
-			"projectStatus": {
-				"status": "Archived",
-				"reason": "No Longer Used"
-			}
+			]
 		},
 		{
 			"projectId": 13,
@@ -332,11 +291,7 @@
 					"linkType": "github",
 					"linkURL": "https://github.com/FaceFTW/PSTweetTemplate"
 				}
-			],
-			"projectStatus": {
-				"status": "Suspended",
-				"reason": "No Current Motivation"
-			}
+			]
 		},
 		{
 			"projectId": 14,
@@ -360,10 +315,7 @@
 					"linkType": "demo",
 					"linkURL": "https://pipes.faceftw.dev"
 				}
-			],
-			"projectStatus": {
-				"status": "Active Development"
-			}
+			]
 		},
 		{
 			"projectId": 15,
@@ -387,10 +339,7 @@
 					"linkType": "github",
 					"linkURL": "https://github.com/FaceFTW/FaceFTW.github.io"
 				}
-			],
-			"projectStatus": {
-				"status": "Active Development"
-			}
+			]
 		},
 		{
 			"projectId": 16,
@@ -411,10 +360,7 @@
 					"linkType": "github",
 					"linkURL": "https://github.com/FaceFTW/dotfiles"
 				}
-			],
-			"projectStatus": {
-				"status": "Active Development"
-			}
+			]
 		},
 		{
 			"projectId": 17,
@@ -433,9 +379,6 @@
 					"linkURL": "https://github.com/FaceFTW/jftp-scuffed"
 				}
 			],
-			"projectStatus": {
-				"status": "Finished"
-			},
 			"projectAsset": "jftp.webp"
 		},
 		{
@@ -459,9 +402,6 @@
 					"linkURL": "https://github.com/RetireSimple/RetireSimple"
 				}
 			],
-			"projectStatus": {
-				"status": "Active Development"
-			},
 			"projectAsset": "retiresimple.webp"
 		},
 		{
@@ -481,9 +421,6 @@
 					"linkURL": "https://github.com/FaceFTW/settlers-of-catan"
 				}
 			],
-			"projectStatus": {
-				"status": "Finished"
-			},
 			"projectAsset": "settlers.webp"
 		},
 		{
@@ -503,9 +440,6 @@
 					"linkURL": "https://github.com/FaceFTW/xv6-signals"
 				}
 			],
-			"projectStatus": {
-				"status": "Finished"
-			},
 			"projectAsset": "xv6.webp"
 		}
 	]
