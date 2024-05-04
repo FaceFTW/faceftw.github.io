@@ -101,13 +101,6 @@ const ProjectCard = ({ project }: { project: Project }) => {
 					<Typography variant='body2'>
 						{project.projectLibraries ? project.projectLibraries.join(', ') : 'N/A'}
 					</Typography>
-					<Divider sx={{ my: '0.5rem' }} />
-					<Typography variant='overline'>Status</Typography>
-					<Typography variant='body1' sx={{ fontWeight: 'bold' }}>
-						{project.projectStatus.status}
-					</Typography>
-
-					{project.projectStatus.reason && <Typography variant='body1'>{project.projectStatus.reason}</Typography>}
 				</CardContent>
 			</Collapse>
 		</Card>

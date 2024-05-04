@@ -29,14 +29,18 @@
 					"projectLanguage": {
 						"description": "Array of strings indicating the languages used in a project",
 						"type": "array",
-						"items": { "type": "string" },
+						"items": {
+							"type": "string"
+						},
 						"minItems": 1,
 						"uniqueItems": true
 					},
 					"projectLibraries": {
 						"description": "Array of strings indicating the libraries used in a project",
 						"type": "array",
-						"items": { "type": "string" },
+						"items": {
+							"type": "string"
+						},
 						"minItems": 1,
 						"uniqueItems": true
 					},
@@ -48,12 +52,12 @@
 					"projectLinks": {
 						"description": "Array of objects with various links. Each object has a link type (predefined) and a link",
 						"type": "array",
-						"items": { "type": "object", "$ref": "#/$defs/projectLink" },
+						"items": {
+							"type": "object",
+							"$ref": "#/$defs/projectLink"
+						},
 						"minItems": 1,
 						"uniqueItems": true
-					},
-					"projectStatus": {
-						"$ref": "#/$defs/projectStatus"
 					}
 				},
 				"required": [
@@ -62,39 +66,24 @@
 					"projectDescription",
 					"projectSubDesc",
 					"projectLanguage",
-					"projectLinks",
-					"projectStatus"
+					"projectLinks"
 				]
 			}
 		}
 	},
 	"$defs": {
-		"projectStatus": {
-			"description": "Object with describing the status of the project. Reason is included for specific project statuses",
-			"type": "object",
-			"properties": {
-				"status": {
-					"description": "Status enum describing project status",
-					"enum": ["Archived", "Finished", "Finished (Private Work)", "Active Development", "Suspended"]
-				},
-				"reason": {
-					"description": "For archived or suspended projects, this often accompanies an additional reasoning to the status of the project",
-					"type": "string"
-				}
-			},
-			"required": ["status"],
-			"if": { "oneOf": [{ "properties": { "status": { "enum": ["Archived", "Suspended"] } } }] },
-			"then": {
-				"required": ["reason"]
-			}
-		},
 		"projectLink": {
 			"description": "Describes the type of link/text and other necessary info",
 			"type": "object",
 			"properties": {
 				"linkType": {
 					"description": "Type of link",
-					"enum": ["text", "github", "demo", "misc"]
+					"enum": [
+						"text",
+						"github",
+						"demo",
+						"misc"
+					]
 				},
 				"linkURL": {
 					"description": "URL of the link",
@@ -109,13 +98,41 @@
 					"type": "string"
 				}
 			},
-			"required": ["linkType"],
-			"if": { "properties": { "linkType": { "enum": ["text"] } } },
-			"then": { "required": ["text"] },
+			"required": [
+				"linkType"
+			],
+			"if": {
+				"properties": {
+					"linkType": {
+						"enum": [
+							"text"
+						]
+					}
+				}
+			},
+			"then": {
+				"required": [
+					"text"
+				]
+			},
 			"else": {
-				"required": ["linkURL"],
-				"if": { "properties": { "linkType": { "enum": ["misc"] } } },
-				"then": { "required": ["linkDesc"] }
+				"required": [
+					"linkURL"
+				],
+				"if": {
+					"properties": {
+						"linkType": {
+							"enum": [
+								"misc"
+							]
+						}
+					}
+				},
+				"then": {
+					"required": [
+						"linkDesc"
+					]
+				}
 			}
 		}
 	}
