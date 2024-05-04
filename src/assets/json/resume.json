@@ -19,7 +19,7 @@
 	],
 	"skills": [
 		{
-			"categoryName": "Computer Programming",
+			"categoryName": "Computer Programming/Software Engineering",
 			"lowSkill": [
 				"Graphics Programming (OpenGL Legacy)"
 			],
@@ -29,16 +29,17 @@
 				"Low-Level Programming and Processor Architecture",
 				"Scripting/Automation (with Powershell/Bash)",
 				"Git Version Control",
-				"Systems Programming with Rust",
 				"Continuous Integration/Continuous Deployment (CI/CD) via GitHub Actions",
 				"Full-Stack Web Development"
 			],
 			"highSkill": [
+				"Software Testing Automation",
 				"Software Design and Architecture",
-				"Industry-Level Languages, including C, C++, C#, and Java",
+				"Industry-Standard Languages, including C, C++, C#, and Java",
 				"Web Design (HTML5, CSS3, Javascript/Typescript)",
 				"Web Application Frameworks (Angular, ReactJS (w/ Redux), NodeJS)",
-				".NET and .NET Extensions (ASP.NET, Entity Framework, LINQ)"
+				".NET and .NET Extensions (ASP.NET, Entity Framework, LINQ)",
+				"Systems Programming with Rust"
 			]
 		},
 		{
@@ -103,11 +104,17 @@
 	],
 	"experience": [
 		{
-			"name":"Comcast",
+			"name": "Comcast",
 			"position": "Software Engineer II (Contractor)",
 			"timeEmployed": "August 2023 - Present",
 			"location": "Washington, DC",
-			"responsibilities": ["In Progress..."]
+			"responsibilities": [
+				"Designed and Implemented novel automation tools in Rust for monitoring changes in end-user behavior",
+				"Created focused test cases for component testing in a voice-recognition software stack",
+				"Improved existing external-facing documentation and other automations to be more detail-oriented and concise",
+				"Communicated with stakeholders and teams owning dependency services to perform integration testing and clarify desired functionality",
+				"Helped identify/fix bugs and implement best practices in testing tools written with Java Spring"
+			]
 		},
 		{
 			"name": "Rose Hulman CSSE Department",
