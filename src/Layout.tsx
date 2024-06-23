@@ -141,49 +141,37 @@ import { Link, Outlet } from 'react-router-dom';
 import { Sheet, SheetContent, SheetTrigger } from './components/ui/sheet';
 
 export const Layout = () => {
+	const sidebarNavItemClass =
+		'flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground';
+
 	const sidebar = (
 		<nav className='grid gap-2 md:text-lg md:font-medium'>
-			<Link to='#' className='flex items-center gap-2 md:text-lg font-semibold'>
-				<Package2 className='h-6 w-6' />
-				<span className='sr-only'>Acme Inc</span>
-			</Link>
-			<Link
-				to='#'
-				className='mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground'>
+			<Link to='#' className={sidebarNavItemClass}>
 				<Home className='h-5 w-5' />
-				<span className=''></span>
-				Dashboard
+				<span className='md:visible lg:sr-only'>Home</span>
 			</Link>
-			<Link
-				to='#'
-				className='mx-[-0.65rem] flex items-center gap-4 rounded-xl bg-muted px-3 py-2 text-foreground hover:text-foreground'>
+			<Link to='#' className={sidebarNavItemClass}>
 				<ShoppingCart className='h-5 w-5' />
-				Orders
+				<span className='md:visible lg:sr-only'>Projects</span>
 			</Link>
-			<Link
-				to='#'
-				className='mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground'>
+			<Link to='#' className={sidebarNavItemClass}>
 				<Package className='h-5 w-5' />
-				Products
+				<span className='md:visible lg:sr-only'>Resume</span>
 			</Link>
-			<Link
-				to='#'
-				className='mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground'>
+			<Link to='#' className={sidebarNavItemClass}>
 				<Users className='h-5 w-5' />
-				Customers
+				<span className='md:visible lg:sr-only'>Blog (Under Construction)</span>
 			</Link>
-			<Link
-				to='#'
-				className='mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground'>
+			<Link to='#' className={sidebarNavItemClass}>
 				<LineChart className='h-5 w-5' />
-				Analytics
+				<span className='md:visible lg:sr-only'>About</span>
 			</Link>
 		</nav>
 	);
 
 	return (
-		<div className='grid min-h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[56px_1fr]'>
-			<div className='hidden border-r bg-muted/40 md:block'>
+		<div className='grid min-h-screen w-full md:grid-cols-[0px_1fr] lg:grid-cols-[48px_1fr]'>
+			<div className='hidden border-r bg-muted/40 md:block lg:visible md:invisible'>
 				<div className='flex h-full max-h-screen flex-col gap-2'>
 					<div className='flex h-6 items-center border-b px-4 lg:h-[60px] lg:px-6'>
 						<Link to='/' className='flex items-center gap-2 font-semibold'>
@@ -199,7 +187,7 @@ export const Layout = () => {
 				<header className='flex h-6 items-center gap-4 border-b bg-muted/40 px-4 lg:h-[60px] lg:px-6'>
 					<Sheet>
 						<SheetTrigger asChild>
-							<Button variant='outline' size='icon' className='shrink-0 md:hidden'>
+							<Button variant='outline' size='icon' className='shrink-0 lg:hidden'>
 								<Menu className='h-5 w-5' />
 								<span className='sr-only'>Toggle navigation menu</span>
 							</Button>
