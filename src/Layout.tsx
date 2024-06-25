@@ -1,12 +1,12 @@
 //The following is derived from the shadcn/ui dashboard-02 building blocks
 //https://ui.shadcn.com/blocks#dashboard-02
-import { CircleUser, Home, Menu, Rss, ScrollText, SquareDashedBottomCode } from 'lucide-react';
+import { CircleUser, Home, Menu, MoonStar, Rss, ScrollText, SquareDashedBottomCode, Sun } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Link as RouterLink, useLocation } from 'react-router-dom';
 import { Outlet } from 'react-router-dom';
 import { Sheet, SheetContent, SheetTrigger } from './components/ui/sheet';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Tooltip, TooltipContent, TooltipProvider } from './components/ui/tooltip';
 import { TooltipTrigger } from '@radix-ui/react-tooltip';
 
@@ -37,7 +37,7 @@ const SidenavLinks = ({
 	};
 
 	return (
-		<nav className='grid gap-2 md:text-lg md:font-medium left-0 xl:text-xl'>
+		<nav className='left-0 grid gap-2 md:text-lg md:font-medium xl:text-xl'>
 			{wrapWithToolTip(
 				<RouterLink to='/' className={sidebarNavItemClass} onClick={closeSidebarTrigger}>
 					<Home className='h-5 w-5 xl:h-10 xl:w-10' />
@@ -79,9 +79,9 @@ const SidenavLinks = ({
 
 const SiteFooter = () => {
 	return (
-		<footer className='block w-[80%] mx-auto mb-4'>
+		<footer className='mx-auto mb-4 block w-[80%]'>
 			<Card className='flex'>
-				<CardContent className='flex mx-auto mt-4 text-wrap'>
+				<CardContent className='mx-auto mt-4 flex text-wrap'>
 					<caption>
 						<pre className='text-wrap'>
 							Made by Alex &quot;FaceFTW&quot; Westerman &copy; 2021-{new Date().getFullYear()} All Rights Reserved.{' '}
@@ -89,7 +89,7 @@ const SiteFooter = () => {
 							Source code for this website is licensed under the MIT License {'\n'}
 							All projects mentioned are subject to their specific licenses and copyrights as designated by their owners
 							{'\n\n'}
-							<RouterLink to='/funny' className='decoration-muted text-sm text-gray-500'>
+							<RouterLink to='/funny' className='text-sm text-gray-500 decoration-muted'>
 								super secret link
 							</RouterLink>
 						</pre>
@@ -101,8 +101,10 @@ const SiteFooter = () => {
 };
 
 export const Layout = () => {
+	const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 	//Move sheet open/close state up
 	const [openSheet, setOpenSheet] = React.useState(false);
+	const [darkMode, setDarkMode] = React.useState(prefersDark);
 	const currentLocation = useLocation();
 
 	const titleMemo = React.useMemo(() => {
@@ -114,13 +116,17 @@ export const Layout = () => {
 		setOpenSheet(false);
 	};
 
+	useEffect(() => {
+		darkMode ? document.body.classList.add('dark') : document.body.classList.remove('dark');
+	}, [darkMode]);
+
 	return (
 		<div className='flex flex-col'>
-			<header className='flex items-center gap-2 lg:gap-4 border-b bg-muted/40 h-[44px] xl:h-[60px]'>
+			<header className='flex h-[44px] items-center gap-2 border-b bg-muted/40 lg:gap-4 xl:h-[60px]'>
 				<div className='flex pl-1 xl:pl-4'>
 					<Sheet open={openSheet} onOpenChange={setOpenSheet}>
 						<SheetTrigger asChild>
-							<Button variant='ghost' size='icon' className='shrink-0 '>
+							<Button variant='ghost' size='icon' className='shrink-0'>
 								<Menu className='h-5 w-5 xl:h-7 xl:w-7' />
 								<span className='sr-only'>Toggle navigation menu</span>
 							</Button>
@@ -136,10 +142,16 @@ export const Layout = () => {
 					<span className='lg:text-xl xl:text-2xl'>Alex Westerman{titleMemo}</span>
 					{/* </RouterLink> */}
 				</div>
+				<div className='flex pr-2'>
+					<Button variant='ghost' onClick={() => setDarkMode(!darkMode)}>
+						{darkMode && <MoonStar />}
+						{!darkMode && <Sun />}
+					</Button>
+				</div>
 			</header>
 			<div className='grid min-h-screen w-full md:grid-cols-[44px_1fr] xl:grid-cols-[64px_1fr]'>
-				<div className='border-r bg-muted/40 hidden md:block'>
-					<div className='hidden md:flex md:h-[calc(100% - 44px)] md:max-h-[calc(100vh-44px)] md:flex-col md:gap-2'>
+				<div className='hidden border-r bg-muted/40 md:block'>
+					<div className='md:h-[calc(100% - 44px)] hidden md:flex md:max-h-[calc(100vh-44px)] md:flex-col md:gap-2'>
 						<div className='flex-1'>
 							<SidenavLinks />
 						</div>

@@ -9,5 +9,8 @@
 	"printWidth": 120,
 	"jsxSingleQuote": true,
 	"jsxBracketSameLine": true,
-	"bracketSpacing": true
+	"bracketSpacing": true,
+	"plugins": [
+		"prettier-plugin-tailwindcss"
+	]
 }
