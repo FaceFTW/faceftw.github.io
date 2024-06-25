@@ -130,88 +130,156 @@
 // };
 
 //The following is derived from the shadcn/ui dashboard-02 building blocks
-import { Bell, CircleUser, Home, LineChart, Menu, Package, Package2, Search, ShoppingCart, Users } from 'lucide-react';
+import {
+	Bell,
+	CircleUser,
+	Home,
+	LineChart,
+	Menu,
+	Package,
+	Package2,
+	Router,
+	Rss,
+	ScrollText,
+	Search,
+	ShoppingCart,
+	SquareDashedBottomCode,
+	Users,
+} from 'lucide-react';
 
-import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 
-import { Input } from '@/components/ui/input';
-import { Link, Outlet } from 'react-router-dom';
+import { Link as RouterLink } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 import { Sheet, SheetContent, SheetTrigger } from './components/ui/sheet';
+import React from 'react';
+import { Tooltip, TooltipContent, TooltipProvider } from './components/ui/tooltip';
+import { TooltipTrigger } from '@radix-ui/react-tooltip';
 
-export const Layout = () => {
+const SidenavLinks = ({ showText = false }: { showText: boolean }) => {
 	const sidebarNavItemClass =
 		'flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground';
+	const sidenavTextClass = showText ? 'visible' : 'sr-only';
 
-	const sidebar = (
-		<nav className='grid gap-2 md:text-lg md:font-medium'>
-			<Link to='#' className={sidebarNavItemClass}>
-				<Home className='h-5 w-5' />
-				<span className='md:visible lg:sr-only'>Home</span>
-			</Link>
-			<Link to='#' className={sidebarNavItemClass}>
-				<ShoppingCart className='h-5 w-5' />
-				<span className='md:visible lg:sr-only'>Projects</span>
-			</Link>
-			<Link to='#' className={sidebarNavItemClass}>
-				<Package className='h-5 w-5' />
-				<span className='md:visible lg:sr-only'>Resume</span>
-			</Link>
-			<Link to='#' className={sidebarNavItemClass}>
-				<Users className='h-5 w-5' />
-				<span className='md:visible lg:sr-only'>Blog (Under Construction)</span>
-			</Link>
-			<Link to='#' className={sidebarNavItemClass}>
-				<LineChart className='h-5 w-5' />
-				<span className='md:visible lg:sr-only'>About</span>
-			</Link>
-		</nav>
-	);
+	const wrapWithToolTip = (elements: React.ReactNode, text: String) => {
+		return showText ? (
+			elements
+		) : (
+			<TooltipProvider>
+				<Tooltip delayDuration={500}>
+					<TooltipTrigger asChild>{elements}</TooltipTrigger>
+					<TooltipContent>
+						<p>{text}</p>
+					</TooltipContent>
+				</Tooltip>
+			</TooltipProvider>
+		);
+	};
 
 	return (
-		<div className='grid min-h-screen w-full md:grid-cols-[0px_1fr] lg:grid-cols-[48px_1fr]'>
+		<nav className='grid gap-2 md:text-lg md:font-medium left-0 xl:text-xl'>
+			{wrapWithToolTip(
+				<RouterLink to='/' className={sidebarNavItemClass}>
+					<Home className='h-5 w-5 xl:h-10 xl:w-10' />
+					<span className={sidenavTextClass}>Home</span>
+				</RouterLink>,
+				'Home'
+			)}
+			{wrapWithToolTip(
+				<RouterLink to='/projects' className={sidebarNavItemClass}>
+					<SquareDashedBottomCode className='h-5 w-5 xl:h-10 xl:w-10' />
+					<span className={sidenavTextClass}>Projects</span>
+				</RouterLink>,
+				'Projects'
+			)}
+			{wrapWithToolTip(
+				<RouterLink to='/resume' className={sidebarNavItemClass}>
+					<ScrollText className='h-5 w-5 xl:h-10 xl:w-10' />
+					<span className={sidenavTextClass}>Resume</span>
+				</RouterLink>,
+				'Resume'
+			)}
+			{wrapWithToolTip(
+				<RouterLink to='#' className={sidebarNavItemClass}>
+					<Rss className='h-5 w-5 xl:h-10 xl:w-10' />
+					<span className={sidenavTextClass}>Blog (Under Construction)</span>
+				</RouterLink>,
+				'Blog (Under Construction)'
+			)}
+			{wrapWithToolTip(
+				<RouterLink to='/about' className={sidebarNavItemClass}>
+					<CircleUser className='h-5 w-5 xl:h-10 xl:w-10' />
+					<span className={sidenavTextClass}>About</span>
+				</RouterLink>,
+				'About'
+			)}
+		</nav>
+	);
+};
+
+const SiteFooter = () => {
+	return (
+		<footer className='block w-[80%] mx-auto mb-4'>
+			<Card className='flex'>
+				<CardContent className='flex mx-auto mt-4 text-wrap'>
+					<caption>
+						<pre className='text-wrap'>
+							Made by Alex &quot;FaceFTW&quot; Westerman &copy; 2021-{new Date().getFullYear()} All Rights Reserved.{' '}
+							{'\n'}
+							Source code for this website is licensed under the MIT License {'\n'}
+							All projects mentioned are subject to their specific licenses and copyrights as designated by their owners
+							{'\n\n'}
+							<RouterLink to='/funny' className='decoration-muted text-sm text-gray-500'>
+								super secret link
+							</RouterLink>
+						</pre>
+					</caption>
+				</CardContent>
+			</Card>
+		</footer>
+	);
+};
+
+export const Layout = () => {
+	return (
+		<div className='grid min-h-screen w-full md:grid-cols-[0px_1fr] lg:grid-cols-[44px_1fr] xl:grid-cols-[64px_1fr]'>
 			<div className='hidden border-r bg-muted/40 md:block lg:visible md:invisible'>
 				<div className='flex h-full max-h-screen flex-col gap-2'>
-					<div className='flex h-6 items-center border-b px-4 lg:h-[60px] lg:px-6'>
-						<Link to='/' className='flex items-center gap-2 font-semibold'>
-							<Package2 className='h-4 w-4' />
-							<span className=''>Alex Westerman</span>
-						</Link>
+					<div className='flex md:h-4 items-center border-b lg:h-[44px] xl:h-[60px] xl:px-3'>
+						<Sheet>
+							<SheetTrigger asChild>
+								<Button variant='ghost' size='icon' className='shrink-0 '>
+									<Menu className='h-5 w-5 xl:h-7 xl:w-7' />
+									<span className='sr-only'>Toggle navigation menu</span>
+								</Button>
+							</SheetTrigger>
+							<SheetContent side='left' className='flex flex-col'>
+								<SidenavLinks showText />
+								<div className='mt-auto'></div>
+							</SheetContent>
+						</Sheet>
 					</div>
-					<div className='flex-1'>{sidebar}</div>
+					<div className='flex-1'>
+						<SidenavLinks showText={false} />
+					</div>
 					<div className='mt-auto p-4'></div>
 				</div>
 			</div>
 			<div className='flex flex-col'>
-				<header className='flex h-6 items-center gap-4 border-b bg-muted/40 px-4 lg:h-[60px] lg:px-6'>
-					<Sheet>
-						<SheetTrigger asChild>
-							<Button variant='outline' size='icon' className='shrink-0 lg:hidden'>
-								<Menu className='h-5 w-5' />
-								<span className='sr-only'>Toggle navigation menu</span>
-							</Button>
-						</SheetTrigger>
-						<SheetContent side='left' className='flex flex-col'>
-							{sidebar}
-							<div className='mt-auto'></div>
-						</SheetContent>
-					</Sheet>
+				<header className='flex h-6 items-center gap-4 border-b bg-muted/40 px-4 lg:h-[44px] xl:h-[60px] lg:px-6'>
 					<div className='w-full flex-1'>
-						<form>
-							<div className='relative'>
-								<Search className='absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground' />
-								<Input
-									type='search'
-									placeholder='Search products...'
-									className='w-full appearance-none bg-background pl-8 shadow-none md:w-2/3 lg:w-1/3'
-								/>
-							</div>
-						</form>
+						<RouterLink to='/' className='flex items-center gap-2 font-semibold'>
+							<Package2 className='h-4 w-4' />
+							<span className=''>Alex Westerman</span>
+						</RouterLink>
 					</div>
 				</header>
-				<main className='flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6'>
+				<main className='flex flex-1 flex-col'>
 					<Outlet />
+					<div className='flex items-center'>
+						<SiteFooter />
+					</div>
 				</main>
 			</div>
 		</div>
