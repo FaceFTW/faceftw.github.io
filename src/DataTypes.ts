@@ -43,7 +43,6 @@ export interface ProfessionalExperience {
 	position: string;
 	timeEmployed?: string;
 	location?: string;
-	terminationReason?: string;
 	responsibilities: string[];
 }
 

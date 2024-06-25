@@ -1,214 +1,166 @@
-import { Accordion, AccordionDetails, AccordionSummary, Box, Grid, Icon, Paper, Typography } from '@mui/material';
 import { motion } from 'framer-motion';
-import React from 'react';
-import { FaBook, FaChevronDown, FaGithub, FaHeart } from 'react-icons/fa';
-import { Education, ProfessionalExperience, ResumeHighlight, SkillCategory } from '../DataTypes';
+import { Education, ProfessionalExperience, SkillCategory } from '../DataTypes';
 import resumeData from '../assets/json/resume.json';
+import { Accordion, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import { AccordionContent } from '@radix-ui/react-accordion';
 
-const Highlights = ({ highlights }: { highlights: ResumeHighlight[] }) => {
-	//This is kinda hacky, but I can't think of a better solution
-	const resolveIcon = (iconName: string) => {
-		switch (iconName) {
-			case 'fa-book':
-				return <FaBook />;
-			case 'fa-github':
-				return <FaGithub />;
-			case 'fa-heart':
-				return <FaHeart />;
-		}
-	};
+// const Highlights = ({ highlights }: { highlights: ResumeHighlight[] }) => {
+// 	//This is kinda hacky, but I can't think of a better solution
+// 	const resolveIcon = (iconName: string) => {
+// 		switch (iconName) {
+// 			case 'fa-book':
+// 				return <FaBook />;
+// 			case 'fa-github':
+// 				return <FaGithub />;
+// 			case 'fa-heart':
+// 				return <FaHeart />;
+// 		}
+// 	};
 
-	return (
-		<Grid container spacing={3} sx={{ padding: { sm: '2rem 5rem' } }} alignItems='stretch'>
-			{highlights.map((highlight, index) => (
-				<Grid item xs={12} lg={4} key={index} sx={{ display: 'flex' }}>
-					<Paper
-						elevation={3}
-						sx={{
-							display: 'flex',
-							justifyContent: 'center',
-							padding: '1rem',
-							flexGrow: 1,
-						}}>
-						<Box>
-							<Icon sx={{ display: 'block', fontSize: '80px', marginRight: '1rem' }}>
-								{resolveIcon(highlight.icon)}
-							</Icon>
-						</Box>
-						<Box>
-							<Typography variant='h4'>{highlight.stat}</Typography>
-							<Typography variant='h6'>{highlight.statDescription}</Typography>
-						</Box>
-					</Paper>
-				</Grid>
-			))}
-		</Grid>
-	);
-};
+// 	return (
+// 		<Grid container spacing={3} sx={{ padding: { sm: '2rem 5rem' } }} alignItems='stretch'>
+// 			{highlights.map((highlight, index) => (
+// 				<Grid item xs={12} lg={4} key={index} sx={{ display: 'flex' }}>
+// 					<Paper
+// 						elevation={3}
+// 						sx={{
+// 							display: 'flex',
+// 							justifyContent: 'center',
+// 							padding: '1rem',
+// 							flexGrow: 1,
+// 						}}>
+// 						<Box>
+// 							<Icon sx={{ display: 'block', fontSize: '80px', marginRight: '1rem' }}>
+// 								{resolveIcon(highlight.icon)}
+// 							</Icon>
+// 						</Box>
+// 						<Box>
+// 							<Typography variant='h4'>{highlight.stat}</Typography>
+// 							<Typography variant='h6'>{highlight.statDescription}</Typography>
+// 						</Box>
+// 					</Paper>
+// 				</Grid>
+// 			))}
+// 		</Grid>
+// 	);
+// };
 
 const SkillsSection = ({ skills }: { skills: SkillCategory[] }) => {
-	const [skillsExpanded, setSkillExpanded] = React.useState<string | false>(false);
-
 	return (
-		<Box>
-			{skills.map((skill, index) => (
-				<Accordion
-					key={index}
-					expanded={skillsExpanded === skill.categoryName}
-					onChange={() => setSkillExpanded(skill.categoryName)}>
-					<AccordionSummary
-						expandIcon={
-							<Icon>
-								<FaChevronDown />
-							</Icon>
-						}>
-						<Typography>{skill.categoryName}</Typography>
-					</AccordionSummary>
-					<AccordionDetails>
-						<Typography variant='h5'>Advanced Skills</Typography>
-						<ul>
-							{skill.highSkill?.map((advancedSkill, index) => (
-								<Typography component='li' key={index}>
-									{advancedSkill}
-								</Typography>
-							))}
-						</ul>
-						<Typography variant='h5'>Intermediate Skills</Typography>
-						<ul>
-							{skill.medSkill?.map((intermediateSkill, index) => (
-								<Typography component='li' key={index}>
-									{intermediateSkill}
-								</Typography>
-							))}
-						</ul>
-						<Typography variant='h5'>Beginner Skills</Typography>
-						<ul>
-							{skill.lowSkill?.map((beginnerSkill, index) => (
-								<Typography component='li' key={index}>
-									{beginnerSkill}
-								</Typography>
-							))}
-						</ul>
-					</AccordionDetails>
-				</Accordion>
-			))}
-		</Box>
+		<div>
+			<Accordion type='multiple'>
+				{skills.map((skill, index) => (
+					<AccordionItem value={index.toString()}>
+						<AccordionTrigger>{skill.categoryName}</AccordionTrigger>
+						<AccordionContent>
+							<div className='mb-6 px-6'>
+								<h5 className='text-2xl underline'>Advanced Skills</h5>
+								<ul className='list-disc'>{skill.highSkill?.map((skill, index) => <li key={index}>{skill}</li>)}</ul>
+								<h5 className='text-2xl underline'>Intermediate Skills</h5>
+								<ul className='list-disc'>{skill.medSkill?.map((skill, index) => <li key={index}>{skill}</li>)}</ul>
+								<h5 className='text-2xl underline'>Beginner Skills</h5>
+								<ul className='list-disc'>{skill.lowSkill?.map((skill, index) => <li key={index}>{skill}</li>)}</ul>
+							</div>
+						</AccordionContent>
+					</AccordionItem>
+				))}
+			</Accordion>
+		</div>
 	);
 };
 
 const EducationSection = ({ education }: { education: Education[] }) => {
-	const [educationExpanded, setEducationExpanded] = React.useState<string | false>(false);
-
 	return (
-		<Box>
-			{education.map((edu, index) => (
-				<Accordion
-					key={index}
-					expanded={educationExpanded === edu.name}
-					elevation={3}
-					onChange={() => setEducationExpanded(edu.name)}>
-					<AccordionSummary
-						expandIcon={
-							<Icon>
-								<FaChevronDown />
-							</Icon>
-						}>
-						<Typography sx={{ width: '66%', flexShrink: 0 }}>{edu.name}</Typography>
-						<Typography sx={{ color: 'text.secondary' }}>{edu.graduationDate}</Typography>
-					</AccordionSummary>
-					<AccordionDetails>
-						<Typography variant='h6'>Field of Study:</Typography>
-						<Typography variant='body1'>
-							{edu.degree?.join(', ') + (edu.degreeAddendum ? ` (${edu.degreeAddendum})` : '')}
-						</Typography>
-						<Typography hidden={!edu.gpa}>
-							<strong>Unweighted GPA: </strong>
-							{edu.gpa?.unweighted},<strong> Weighted GPA: </strong>
-							{edu.gpa?.weighted}
-						</Typography>
-						<br />
-						<Typography>
-							<strong>Relevant Coursework: </strong>
-							{edu.relCoursework.join(', ')}
-						</Typography>
-						<Typography hidden={!edu.propCoursework}>
-							<strong>Proposed Coursework: </strong>
-							{edu.propCoursework?.join(', ')}
-						</Typography>
-					</AccordionDetails>
-				</Accordion>
-			))}
-		</Box>
+		<div>
+			<Accordion type='multiple'>
+				{education.map((edu, index) => (
+					<AccordionItem value={index.toString()}>
+						<AccordionTrigger>
+							<div className='flex flex-row'>
+								<p>{edu.name} -&nbsp;</p>
+								<p className='text-gray-500'>{edu.graduationDate}</p>
+							</div>
+						</AccordionTrigger>
+						<AccordionContent>
+							<div className='mb-6 px-6'>
+								<h6 className='text-xl underline'>Field of Study:</h6>
+								<p>{edu.degree?.join(', ') + (edu.degreeAddendum ? ` (${edu.degreeAddendum})` : '')}</p>
+								<p hidden={!edu.gpa}>
+									<strong>Unweighted GPA: </strong>
+									{edu.gpa?.unweighted},<strong> Weighted GPA: </strong>
+									{edu.gpa?.weighted}
+								</p>
+								<br />
+								<h6 className='text-xl underline'>Relevant Courses</h6>
+								<ul className='list-disc'>
+									{edu.relCoursework.map((course, idx) => (
+										<li key={idx}>{course}</li>
+									))}
+								</ul>
+								<div hidden={!edu.propCoursework}>
+									<h6 className='text-xl underline'>Proposed Courses</h6>
+									<ul className='list-disc'>{edu.propCoursework?.map((course, idx) => <li key={idx}>{course}</li>)}</ul>
+								</div>
+							</div>
+						</AccordionContent>
+					</AccordionItem>
+				))}
+			</Accordion>
+		</div>
 	);
 };
 
 const ExperienceSection = ({ experience }: { experience: ProfessionalExperience[] }) => {
-	const [experienceExpanded, setExperienceExpanded] = React.useState<string | false>(false);
-
 	return (
-		<Box>
-			{experience.map((exp, index) => (
-				<Accordion
-					key={index}
-					expanded={experienceExpanded === exp.name}
-					onChange={() => setExperienceExpanded(exp.name)}>
-					<AccordionSummary
-						expandIcon={
-							<Icon>
-								<FaChevronDown />
-							</Icon>
-						}>
-						<Typography sx={{ width: '66%', flexShrink: 0 }}>{exp.name}</Typography>
-						<Typography sx={{ color: 'text.secondary' }}>{exp.position}</Typography>
-					</AccordionSummary>
-					<AccordionDetails>
-						<Typography hidden={!exp.location}>Company Location: {exp.location}</Typography>
-						<Typography hidden={!exp.timeEmployed}>Employed from {exp.timeEmployed}</Typography>
-						<Typography hidden={!exp.terminationReason}> Reason for Termination: {exp.terminationReason}</Typography>
-						<br />
-						<Typography variant='h5'>Responsibilities:</Typography>
-						<ul>
-							{exp.responsibilities.map((responsibility, index) => (
-								<Typography component='li' key={index}>
-									{responsibility}
-								</Typography>
-							))}
-						</ul>
-					</AccordionDetails>
-				</Accordion>
-			))}
-		</Box>
+		<div>
+			<Accordion type='multiple'>
+				{experience.map((exp, index) => (
+					<AccordionItem value={index.toString()}>
+						<AccordionTrigger>
+							<div className='flex flex-row'>
+								<p>{exp.position} -&nbsp;</p>
+								<p className='text-gray-500'>{exp.name}</p>
+							</div>
+						</AccordionTrigger>
+						<AccordionContent>
+							<div className='mb-6 px-6'>
+								<p hidden={!exp.location}>Company Location: {exp.location}</p>
+								<p hidden={!exp.timeEmployed}>Employed from {exp.timeEmployed}</p>
+								<br />
+								<h5 className='text-xl underline'>Responsibilities:</h5>
+								<ul className='list-disc'>
+									{exp.responsibilities.map((responsibility, index) => (
+										<li key={index}>{responsibility}</li>
+									))}
+								</ul>
+							</div>
+						</AccordionContent>
+					</AccordionItem>
+				))}
+			</Accordion>
+		</div>
 	);
 };
 
 export const ResumePanel = () => {
-	const highlights: ResumeHighlight[] = resumeData.highlights;
 	const skills: SkillCategory[] = resumeData.skills;
 	const education: Education[] = resumeData.education;
 	const experience: ProfessionalExperience[] = resumeData.experience;
 
 	return (
-		<Box
-			component={motion.div}
-			initial={{ opacity: 0 }}
-			animate={{ opacity: 1 }}
-			transition={{ duration: 0.5 }}
-			sx={{ margin: '1rem' }}>
-			<Box>
-				<Highlights highlights={highlights} />
-			</Box>
-			<Box sx={{ margin: '1rem' }}>
-				<Typography variant='h4'>Skills</Typography>
+		<motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }} className='m-4'>
+			<div className='m-4'>
+				<h4 className='text-4xl underline'>Skills</h4>
 				<SkillsSection skills={skills} />
-			</Box>
-			<Box sx={{ margin: '1rem' }}>
-				<Typography variant='h4'>Education</Typography>
+			</div>
+			<div className='m-4'>
+				<h4 className='text-4xl underline'>Education</h4>
 				<EducationSection education={education} />
-			</Box>
-			<Box sx={{ margin: '1rem' }}>
-				<Typography variant='h4'>Experience</Typography>
+			</div>
+			<div className='m-4'>
+				<h4 className='text-4xl underline'>Experience</h4>
 				<ExperienceSection experience={experience} />
-			</Box>
-		</Box>
+			</div>
+		</motion.div>
 	);
 };

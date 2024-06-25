@@ -61,7 +61,7 @@
 	"education": [
 		{
 			"name": "Rose-Hulman Institute of Technology",
-			"graduationDate": "Graduated in Summer of 2023",
+			"graduationDate": "BS Software Engineering - Class of 2023 (Summer)",
 			"degree": [
 				"Bachelors of Science - Software Engineering"
 			],
@@ -76,9 +76,7 @@
 				"Software Project Management (CSSE372)",
 				"Formal Methods (CSSE373)",
 				"Software Design (CSSE374)",
-				"Software Construction and Evolution (CSSE375)"
-			],
-			"propCoursework": [
+				"Software Construction and Evolution (CSSE375)",
 				"Operating Systems (CSSE332)",
 				"CSSE Senior Capstone Project (CSSE497-499)"
 			]
@@ -89,7 +87,7 @@
 				"High School Diploma"
 			],
 			"degreeAddendum": "Maryland Seal of Bi-Literacy (Chinese)",
-			"graduationDate": "Graduated - Class of 2019",
+			"graduationDate": "Class of 2019",
 			"gpa": {
 				"unweighted": 3.31,
 				"weighted": 4.0
