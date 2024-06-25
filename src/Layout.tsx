@@ -9,6 +9,15 @@ import { Sheet, SheetContent, SheetTrigger } from './components/ui/sheet';
 import React, { useEffect } from 'react';
 import { Tooltip, TooltipContent, TooltipProvider } from './components/ui/tooltip';
 import { TooltipTrigger } from '@radix-ui/react-tooltip';
+import {
+	AlertDialog,
+	AlertDialogAction,
+	AlertDialogFooter,
+	AlertDialogHeader,
+	AlertDialogTrigger,
+	AlertDialogContent,
+	AlertDialogDescription,
+} from './components/ui/alert-dialog';
 
 const SidenavLinks = ({
 	showText = false,
@@ -105,6 +114,7 @@ export const Layout = () => {
 	//Move sheet open/close state up
 	const [openSheet, setOpenSheet] = React.useState(false);
 	const [darkMode, setDarkMode] = React.useState(prefersDark);
+	const [alert, setAlert] = React.useState(true);
 	const currentLocation = useLocation();
 
 	const titleMemo = React.useMemo(() => {
@@ -119,6 +129,10 @@ export const Layout = () => {
 	useEffect(() => {
 		darkMode ? document.body.classList.add('dark') : document.body.classList.remove('dark');
 	}, [darkMode]);
+
+	// useEffect(() => {
+	// 	setAlert(true);
+	// });
 
 	return (
 		<div className='flex flex-col'>
@@ -158,6 +172,27 @@ export const Layout = () => {
 					</div>
 				</div>
 				<main className='flex flex-1 flex-col'>
+					<AlertDialog open={alert} onOpenChange={setAlert}>
+						<AlertDialogTrigger asChild>
+							<button></button>
+						</AlertDialogTrigger>
+						<AlertDialogContent>
+							<AlertDialogHeader>Renovations in Progress!</AlertDialogHeader>
+							<AlertDialogDescription>
+								<p>
+									Pardon the mess, I'm currently migrating the site to use a different UI framework. During this
+									migration, you'll see things looking slightly out of shape or unthemed. Check back in a day or two for
+									the dust to settle.
+								</p>
+								<br />
+								<p>Thanks for your understanding!</p>
+								<em>This will reappear when you reload the page</em>
+							</AlertDialogDescription>
+							<AlertDialogFooter>
+								<AlertDialogAction onClick={() => setAlert(false)}>Ok, Cool!</AlertDialogAction>
+							</AlertDialogFooter>
+						</AlertDialogContent>
+					</AlertDialog>
 					<Outlet />
 					<div className='flex items-center'>
 						<SiteFooter />
