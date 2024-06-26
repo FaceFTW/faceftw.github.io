@@ -130,10 +130,6 @@ export const Layout = () => {
 		darkMode ? document.body.classList.add('dark') : document.body.classList.remove('dark');
 	}, [darkMode]);
 
-	// useEffect(() => {
-	// 	setAlert(true);
-	// });
-
 	return (
 		<div className='flex flex-col'>
 			<header className='flex h-[44px] items-center gap-2 border-b bg-muted/40 lg:gap-4 xl:h-[60px]'>
@@ -152,9 +148,7 @@ export const Layout = () => {
 					</Sheet>
 				</div>
 				<div className='w-full flex-1'>
-					{/* <RouterLink to='/' className='flex items-center gap-2 font-semibold'> */}
 					<span className='lg:text-xl xl:text-2xl'>Alex Westerman{titleMemo}</span>
-					{/* </RouterLink> */}
 				</div>
 				<div className='flex pr-2'>
 					<Button variant='ghost' onClick={() => setDarkMode(!darkMode)}>

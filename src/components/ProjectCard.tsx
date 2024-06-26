@@ -1,21 +1,26 @@
-import {
-	Box,
-	Card,
-	CardActions,
-	CardContent,
-	CardMedia,
-	Collapse,
-	Divider,
-	Icon,
-	IconButton,
-	Tooltip,
-	Typography,
-} from '@mui/material';
 import { useInView } from 'framer-motion';
-import Image from 'mui-image';
 import React from 'react';
-import { FaChevronDown, FaDesktop, FaGithub, FaLink } from 'react-icons/fa';
 import { Project } from '../DataTypes';
+import { Card, CardDescription, CardFooter, CardTitle, CardContent, CardHeader } from './ui/card';
+import { Button } from './ui/button';
+import { TooltipTrigger, TooltipProvider, TooltipContent, Tooltip } from './ui/tooltip';
+import { AppWindow, ArrowDown, ArrowUp, Code2, Link } from 'lucide-react';
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from './ui/collapsible';
+import { Separator } from './ui/separator';
+
+//TODO For future me: image transition props
+// 	sx={{
+// 		maxWidth: 400,
+// 		minWidth: 325,
+// 		display: 'flex',
+// 		flexDirection: 'column',
+// 		transform: isInView ? 'none' : 'translateY(50px)',
+// 		opacity: isInView ? 1 : 0,
+// 		transition: 'transform 0.5s ease-in-out, opacity 0.5s ease-in-out',
+// 	}}>
+// 	<CardMedia>
+// 		<Image src={imgAsset} duration={500} style={{ height: '250px', width: '400px', objectFit: 'contain' }} />
+// 	</CardMedia>
 
 const ProjectCard = ({ project }: { project: Project }) => {
 	const [cardExpanded, setCardExpanded] = React.useState(false);
@@ -31,78 +36,84 @@ const ProjectCard = ({ project }: { project: Project }) => {
 	const isInView = useInView(cardRef);
 
 	return (
-		<Card
-			ref={cardRef}
-			sx={{
-				maxWidth: 400,
-				minWidth: 325,
-				display: 'flex',
-				flexDirection: 'column',
-				transform: isInView ? 'none' : 'translateY(50px)',
-				opacity: isInView ? 1 : 0,
-				transition: 'transform 0.5s ease-in-out, opacity 0.5s ease-in-out',
-			}}>
-			<CardMedia>
-				<Image src={imgAsset} duration={500} style={{ height: '250px', width: '400px', objectFit: 'contain' }} />
-			</CardMedia>
+		<Card className='flex min-w-[325px] max-w-[400px] flex-col'>
+			<CardHeader>
+				<CardTitle>{project.projectName}</CardTitle>
+				<CardDescription>{project.projectDescription}</CardDescription>
+			</CardHeader>
 			<CardContent>
-				<Typography variant='h4'>{project.projectName}</Typography>
-				<Typography variant='subtitle2'>{project.projectDescription}</Typography>
+				<img src={imgAsset} className='h-[250px] w-[400px] object-contain' />
 			</CardContent>
-			<CardActions sx={{ marginTop: 'auto' }}>
-				{githubLink && (
-					<Tooltip title='Github Repo'>
-						<IconButton onClick={() => window.open(githubLink.linkURL)}>
-							<Icon>
-								<FaGithub />
-							</Icon>
-						</IconButton>
-					</Tooltip>
-				)}
-				{demoLink && (
-					<Tooltip title={'Application Demo'}>
-						<IconButton onClick={() => window.open(demoLink.linkURL)}>
-							<Icon>
-								<FaDesktop />
-							</Icon>
-						</IconButton>
-					</Tooltip>
-				)}
-				{miscLink && (
-					<Tooltip title={miscLink.linkDesc ?? 'Misc Link'}>
-						<IconButton onClick={() => window.open(miscLink.linkURL)}>
-							<Icon>
-								<FaLink />
-							</Icon>
-						</IconButton>
-					</Tooltip>
-				)}
-				<Box sx={{ flexGrow: 1 }} />
-				<Tooltip title={'More Details'}>
-					<IconButton onClick={() => setCardExpanded(!cardExpanded)}>
-						<Icon
-							sx={{
-								transform: cardExpanded ? 'rotate(180deg)' : 'rotate(0deg)',
-								marginLeft: 'auto',
-								transition: 'transform 0.2s ease-in-out',
-							}}>
-							<FaChevronDown />
-						</Icon>
-					</IconButton>
-				</Tooltip>
-			</CardActions>
-			<Collapse in={cardExpanded}>
-				<CardContent>
-					<Typography variant='body1'>{project.projectSubDesc}</Typography>
-					<Divider sx={{ my: '0.5rem' }} />
-					<Typography variant='overline'>Languages</Typography>
-					<Typography variant='body2'>{project.projectLanguage.join(', ')}</Typography>
-					<Typography variant='overline'>Libraries</Typography>
-					<Typography variant='body2'>
-						{project.projectLibraries ? project.projectLibraries.join(', ') : 'N/A'}
-					</Typography>
-				</CardContent>
-			</Collapse>
+			<Collapsible open={cardExpanded} onOpenChange={setCardExpanded}>
+				<CardFooter className='flex gap-4'>
+					{githubLink && (
+						<TooltipProvider>
+							<Tooltip>
+								<TooltipTrigger asChild>
+									<Button variant='link' size='icon' onClick={() => window.open(githubLink.linkURL)}>
+										<Code2 className='h-8 w-8' />
+									</Button>
+								</TooltipTrigger>
+								<TooltipContent>Github Repo</TooltipContent>
+							</Tooltip>
+						</TooltipProvider>
+					)}
+					{demoLink && (
+						<TooltipProvider>
+							<Tooltip>
+								<TooltipTrigger asChild>
+									<Button variant='link' size='icon' onClick={() => window.open(demoLink.linkURL)}>
+										<AppWindow className='h-8 w-8' />
+									</Button>
+								</TooltipTrigger>
+								<TooltipContent>Application Demo</TooltipContent>
+							</Tooltip>
+						</TooltipProvider>
+					)}
+					{miscLink && (
+						<TooltipProvider>
+							<Tooltip>
+								<TooltipTrigger asChild>
+									<Button variant='link' onClick={() => window.open(miscLink.linkURL)}>
+										<Link />
+									</Button>
+								</TooltipTrigger>
+								<TooltipContent>{miscLink.linkDesc ?? 'Misc Link'}</TooltipContent>
+							</Tooltip>
+						</TooltipProvider>
+					)}
+					<span className='w-full'></span>
+					<CollapsibleTrigger asChild>
+						<TooltipProvider>
+							<Tooltip>
+								<TooltipTrigger asChild>
+									{!cardExpanded ? (
+										<Button variant='ghost' size='sm' onClick={() => setCardExpanded(!cardExpanded)}>
+											<ArrowDown />
+										</Button>
+									) : (
+										<Button variant='ghost' size='sm' onClick={() => setCardExpanded(!cardExpanded)}>
+											<ArrowUp />
+										</Button>
+									)}
+								</TooltipTrigger>
+								<TooltipContent>More Details</TooltipContent>
+							</Tooltip>
+						</TooltipProvider>
+					</CollapsibleTrigger>
+				</CardFooter>
+
+				<CollapsibleContent>
+					<div className='mx-4 mb-4'>
+						<p>{project.projectSubDesc}</p>
+						<Separator className='my-2' />
+						<p className=''>Languages</p>
+						<p>{project.projectLanguage.join(', ')}</p>
+						<p>Libraries</p>
+						<p>{project.projectLibraries ? project.projectLibraries.join(', ') : 'N/A'}</p>
+					</div>
+				</CollapsibleContent>
+			</Collapsible>
 		</Card>
 	);
 };
