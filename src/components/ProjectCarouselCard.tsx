@@ -1,20 +1,28 @@
 import React from 'react';
 import { Project } from '../DataTypes';
-import Image from 'mui-image';
-import {
-	Card,
-	CardMedia,
-	CardContent,
-	Typography,
-	CardActions,
-	Tooltip,
-	IconButton,
-	Icon,
-	Divider,
-	Box,
-} from '@mui/material';
-import { FaGithub, FaDesktop, FaLink } from 'react-icons/fa';
 import { useInView } from 'framer-motion';
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from './ui/card';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from './ui/tooltip';
+import { Button } from './ui/button';
+import { AppWindow, Code2, Link } from 'lucide-react';
+import { Separator } from './ui/separator';
+
+//TODO for future me, transition code for cards
+// 	sx={{
+// 		maxWidth: 400,
+// 		minWidth: 325,
+// 		maxHeight: 500,
+// 		minHeight: 500,
+// 		display: 'flex',
+// 		flexDirection: 'column',
+
+// 		transition: 'all 0.5s ease',
+// 		opacity: isInView ? 1 : 0,
+// 		transform: isInView ? 'none' : 'translateY(50px)',
+// 	}}>
+// 	<CardMedia>
+// 		<Image src={imgAsset} duration={500} style={{ height: '250px', width: '400px', objectFit: 'contain' }} />
+// 	</CardMedia>
 
 export const ProjectCarouselCard = ({ project }: { project: Project }) => {
 	const imgAsset = project.projectAsset
@@ -28,62 +36,62 @@ export const ProjectCarouselCard = ({ project }: { project: Project }) => {
 	const isInView = useInView(cardRef);
 
 	return (
-		<Card
-			ref={cardRef}
-			sx={{
-				maxWidth: 400,
-				minWidth: 325,
-				maxHeight: 500,
-				minHeight: 500,
-				display: 'flex',
-				flexDirection: 'column',
-
-				transition: 'all 0.5s ease',
-				opacity: isInView ? 1 : 0,
-				transform: isInView ? 'none' : 'translateY(50px)',
-			}}>
-			<CardMedia>
-				<Image src={imgAsset} duration={500} style={{ height: '250px', width: '400px', objectFit: 'contain' }} />
-			</CardMedia>
+		<Card className='flex min-w-[325px] flex-col'>
+			<CardHeader>
+				<CardTitle>{project.projectName}</CardTitle>
+				<CardDescription>{project.projectDescription}</CardDescription>
+			</CardHeader>
 			<CardContent>
-				<Typography variant='h4'>{project.projectName}</Typography>
-				<Typography variant='subtitle2'>{project.projectDescription}</Typography>
-				<Divider sx={{ my: 1 }} />
-				<Typography variant='body2'>Languages: {project.projectLanguage.join(', ')}</Typography>
-				<Typography variant='body2'>
-					Libraries: {project.projectLibraries ? project.projectLibraries.join(', ') : 'N/A'}
-				</Typography>
+				<div className='flex lg:flex-row-reverse flex-col-reverse'>
+					<img src={imgAsset} className='h-[250px] w-[400px] object-contain' />
+					<div className='mx-4 mb-4'>
+						<p>{project.projectSubDesc}</p>
+						<Separator className='my-2' />
+						<p className='underline'>Languages</p>
+						<p>{project.projectLanguage.join(', ')}</p>
+						<p className='underline'>Libraries</p>
+						<p>{project.projectLibraries ? project.projectLibraries.join(', ') : 'N/A'}</p>
+					</div>
+				</div>
 			</CardContent>
-
-			<CardActions sx={{ marginTop: 'auto' }}>
+			<CardFooter className='flex gap-4'>
 				{githubLink && (
-					<Tooltip title='Github Repo'>
-						<IconButton onClick={() => window.open(githubLink.linkURL)}>
-							<Icon>
-								<FaGithub />
-							</Icon>
-						</IconButton>
-					</Tooltip>
+					<TooltipProvider>
+						<Tooltip>
+							<TooltipTrigger asChild>
+								<Button variant='link' size='icon' onClick={() => window.open(githubLink.linkURL)}>
+									<Code2 className='h-8 w-8' />
+								</Button>
+							</TooltipTrigger>
+							<TooltipContent>Github Repo</TooltipContent>
+						</Tooltip>
+					</TooltipProvider>
 				)}
 				{demoLink && (
-					<Tooltip title={'Application Demo'}>
-						<IconButton onClick={() => window.open(demoLink.linkURL)}>
-							<Icon>
-								<FaDesktop />
-							</Icon>
-						</IconButton>
-					</Tooltip>
+					<TooltipProvider>
+						<Tooltip>
+							<TooltipTrigger asChild>
+								<Button variant='link' size='icon' onClick={() => window.open(demoLink.linkURL)}>
+									<AppWindow className='h-8 w-8' />
+								</Button>
+							</TooltipTrigger>
+							<TooltipContent>Application Demo</TooltipContent>
+						</Tooltip>
+					</TooltipProvider>
 				)}
 				{miscLink && (
-					<Tooltip title={miscLink.linkDesc ?? 'Misc Link'}>
-						<IconButton onClick={() => window.open(miscLink.linkURL)}>
-							<Icon>
-								<FaLink />
-							</Icon>
-						</IconButton>
-					</Tooltip>
+					<TooltipProvider>
+						<Tooltip>
+							<TooltipTrigger asChild>
+								<Button variant='link' onClick={() => window.open(miscLink.linkURL)}>
+									<Link />
+								</Button>
+							</TooltipTrigger>
+							<TooltipContent>{miscLink.linkDesc ?? 'Misc Link'}</TooltipContent>
+						</Tooltip>
+					</TooltipProvider>
 				)}
-			</CardActions>
+			</CardFooter>
 		</Card>
 	);
 };
