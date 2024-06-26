@@ -36,14 +36,14 @@ export const ProjectCarouselCard = ({ project }: { project: Project }) => {
 	const isInView = useInView(cardRef);
 
 	return (
-		<Card className='flex min-w-[325px] flex-col'>
+		<Card className='flex min-w-[200px] flex-col'>
 			<CardHeader>
 				<CardTitle>{project.projectName}</CardTitle>
-				<CardDescription>{project.projectDescription}</CardDescription>
+				<CardDescription className='text-wrap'>{project.projectDescription}</CardDescription>
 			</CardHeader>
 			<CardContent>
-				<div className='flex lg:flex-row-reverse flex-col-reverse'>
-					<img src={imgAsset} className='h-[250px] w-[400px] object-contain' />
+				<div className='flex flex-col-reverse lg:flex-row-reverse'>
+					<img src={imgAsset} className='h-[125px] object-contain md:h-[250px] md:w-[400px]' />
 					<div className='mx-4 mb-4'>
 						<p>{project.projectSubDesc}</p>
 						<Separator className='my-2' />
