@@ -10,189 +10,190 @@ import React, { useEffect } from 'react';
 import { Tooltip, TooltipContent, TooltipProvider } from './components/ui/tooltip';
 import { TooltipTrigger } from '@radix-ui/react-tooltip';
 import {
-	AlertDialog,
-	AlertDialogAction,
-	AlertDialogFooter,
-	AlertDialogHeader,
-	AlertDialogTrigger,
-	AlertDialogContent,
-	AlertDialogDescription,
+    AlertDialog,
+    AlertDialogAction,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogTrigger,
+    AlertDialogContent,
+    AlertDialogDescription,
 } from './components/ui/alert-dialog';
 
 const SidenavLinks = ({
-	showText = false,
-	closeSidebarTrigger = () => {},
+    showText = false,
+    closeSidebarTrigger = () => {},
 }: {
-	showText?: boolean;
-	closeSidebarTrigger?: () => void;
+    showText?: boolean;
+    closeSidebarTrigger?: () => void;
 }) => {
-	const sidebarNavItemClass =
-		'flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground';
-	const sidenavTextClass = showText ? 'visible' : 'sr-only';
+    const sidebarNavItemClass =
+        'flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground';
+    const sidenavTextClass = showText ? 'visible' : 'sr-only';
 
-	const wrapWithToolTip = (elements: React.ReactNode, text: String) => {
-		return showText ? (
-			elements
-		) : (
-			<TooltipProvider>
-				<Tooltip delayDuration={500}>
-					<TooltipTrigger asChild>{elements}</TooltipTrigger>
-					<TooltipContent>
-						<p>{text}</p>
-					</TooltipContent>
-				</Tooltip>
-			</TooltipProvider>
-		);
-	};
+    const wrapWithToolTip = (elements: React.ReactNode, text: String) => {
+        return showText ? (
+            elements
+        ) : (
+            <TooltipProvider>
+                <Tooltip delayDuration={500}>
+                    <TooltipTrigger asChild>{elements}</TooltipTrigger>
+                    <TooltipContent>
+                        <p>{text}</p>
+                    </TooltipContent>
+                </Tooltip>
+            </TooltipProvider>
+        );
+    };
 
-	return (
-		<nav className='left-0 grid gap-2 md:text-lg md:font-medium xl:text-xl'>
-			{wrapWithToolTip(
-				<RouterLink to='/' className={sidebarNavItemClass} onClick={closeSidebarTrigger}>
-					<Home className='h-5 w-5 xl:h-10 xl:w-10' />
-					<span className={sidenavTextClass}>Home</span>
-				</RouterLink>,
-				'Home'
-			)}
-			{wrapWithToolTip(
-				<RouterLink to='/projects' className={sidebarNavItemClass} onClick={closeSidebarTrigger}>
-					<SquareDashedBottomCode className='h-5 w-5 xl:h-10 xl:w-10' />
-					<span className={sidenavTextClass}>Projects</span>
-				</RouterLink>,
-				'Projects'
-			)}
-			{wrapWithToolTip(
-				<RouterLink to='/resume' className={sidebarNavItemClass} onClick={closeSidebarTrigger}>
-					<ScrollText className='h-5 w-5 xl:h-10 xl:w-10' />
-					<span className={sidenavTextClass}>Resume</span>
-				</RouterLink>,
-				'Resume'
-			)}
-			{wrapWithToolTip(
-				<RouterLink to='#' className={sidebarNavItemClass} onClick={closeSidebarTrigger}>
-					<Rss className='h-5 w-5 xl:h-10 xl:w-10' />
-					<span className={sidenavTextClass}>Blog (Under Construction)</span>
-				</RouterLink>,
-				'Blog (Under Construction)'
-			)}
-			{wrapWithToolTip(
-				<RouterLink to='/about' className={sidebarNavItemClass} onClick={closeSidebarTrigger}>
-					<CircleUser className='h-5 w-5 xl:h-10 xl:w-10' />
-					<span className={sidenavTextClass}>About</span>
-				</RouterLink>,
-				'About'
-			)}
-		</nav>
-	);
+    return (
+        <nav className='left-0 grid gap-2 md:text-lg md:font-medium xl:text-xl'>
+            {wrapWithToolTip(
+                <RouterLink to='/' className={sidebarNavItemClass} onClick={closeSidebarTrigger}>
+                    <Home className='h-5 w-5 xl:h-10 xl:w-10' />
+                    <span className={sidenavTextClass}>Home</span>
+                </RouterLink>,
+                'Home'
+            )}
+            {wrapWithToolTip(
+                <RouterLink to='/projects' className={sidebarNavItemClass} onClick={closeSidebarTrigger}>
+                    <SquareDashedBottomCode className='h-5 w-5 xl:h-10 xl:w-10' />
+                    <span className={sidenavTextClass}>Projects</span>
+                </RouterLink>,
+                'Projects'
+            )}
+            {wrapWithToolTip(
+                <RouterLink to='/resume' className={sidebarNavItemClass} onClick={closeSidebarTrigger}>
+                    <ScrollText className='h-5 w-5 xl:h-10 xl:w-10' />
+                    <span className={sidenavTextClass}>Resume</span>
+                </RouterLink>,
+                'Resume'
+            )}
+            {wrapWithToolTip(
+                <RouterLink to='#' className={sidebarNavItemClass} onClick={closeSidebarTrigger}>
+                    <Rss className='h-5 w-5 xl:h-10 xl:w-10' />
+                    <span className={sidenavTextClass}>Blog (Under Construction)</span>
+                </RouterLink>,
+                'Blog (Under Construction)'
+            )}
+            {wrapWithToolTip(
+                <RouterLink to='/about' className={sidebarNavItemClass} onClick={closeSidebarTrigger}>
+                    <CircleUser className='h-5 w-5 xl:h-10 xl:w-10' />
+                    <span className={sidenavTextClass}>About</span>
+                </RouterLink>,
+                'About'
+            )}
+        </nav>
+    );
 };
 
 const SiteFooter = () => {
-	return (
-		<footer className='mx-auto mb-4 block w-[80%]'>
-			<Card className='flex'>
-				<CardContent className='mx-auto mt-4 flex text-wrap'>
-					<caption>
-						<pre className='text-wrap'>
-							Made by Alex &quot;FaceFTW&quot; Westerman &copy; 2021-{new Date().getFullYear()} All Rights Reserved.{' '}
-							{'\n'}
-							Source code for this website is licensed under the MIT License {'\n'}
-							All projects mentioned are subject to their specific licenses and copyrights as designated by their owners
-							{'\n\n'}
-							<RouterLink to='/funny' className='text-sm text-gray-500 decoration-muted'>
-								super secret link
-							</RouterLink>
-						</pre>
-					</caption>
-				</CardContent>
-			</Card>
-		</footer>
-	);
+    return (
+        <footer className='mx-auto mb-4 block w-[80%]'>
+            <Card className='flex'>
+                <CardContent className='mx-auto mt-4 flex text-wrap'>
+                    <caption>
+                        <pre className='text-wrap'>
+                            Made by Alex &quot;FaceFTW&quot; Westerman &copy; 2021-{new Date().getFullYear()} All Rights
+                            Reserved. {'\n'}
+                            Source code for this website is licensed under the MIT License {'\n'}
+                            All projects mentioned are subject to their specific licenses and copyrights as designated
+                            by their owners
+                            {'\n\n'}
+                            <RouterLink to='/funny' className='text-sm text-gray-500 decoration-muted'>
+                                super secret link
+                            </RouterLink>
+                        </pre>
+                    </caption>
+                </CardContent>
+            </Card>
+        </footer>
+    );
 };
 
 export const Layout = () => {
-	const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-	//Move sheet open/close state up
-	const [openSheet, setOpenSheet] = React.useState(false);
-	const [darkMode, setDarkMode] = React.useState(prefersDark);
-	const [alert, setAlert] = React.useState(true);
-	const currentLocation = useLocation();
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    //Move sheet open/close state up
+    const [openSheet, setOpenSheet] = React.useState(false);
+    const [darkMode, setDarkMode] = React.useState(prefersDark);
+    const [alert, setAlert] = React.useState(true);
+    const currentLocation = useLocation();
 
-	const titleMemo = React.useMemo(() => {
-		const title = currentLocation.pathname.split('/')[1];
-		return title === '' ? '' : ' - ' + title.charAt(0).toUpperCase() + title.slice(1);
-	}, [currentLocation.pathname]);
+    const titleMemo = React.useMemo(() => {
+        const title = currentLocation.pathname.split('/')[1];
+        return title === '' ? '' : ' - ' + title.charAt(0).toUpperCase() + title.slice(1);
+    }, [currentLocation.pathname]);
 
-	const sheetClickCloseTrigger = () => {
-		setOpenSheet(false);
-	};
+    const sheetClickCloseTrigger = () => {
+        setOpenSheet(false);
+    };
 
-	useEffect(() => {
-		darkMode ? document.body.classList.add('dark') : document.body.classList.remove('dark');
-	}, [darkMode]);
+    useEffect(() => {
+        darkMode ? document.body.classList.add('dark') : document.body.classList.remove('dark');
+    }, [darkMode]);
 
-	return (
-		<div className='flex flex-col'>
-			<header className='flex h-[44px] items-center gap-2 border-b bg-muted/40 lg:gap-4 xl:h-[60px]'>
-				<div className='flex pl-1 xl:pl-4'>
-					<Sheet open={openSheet} onOpenChange={setOpenSheet}>
-						<SheetTrigger asChild>
-							<Button variant='ghost' size='icon' className='shrink-0'>
-								<Menu className='h-5 w-5 xl:h-7 xl:w-7' />
-								<span className='sr-only'>Toggle navigation menu</span>
-							</Button>
-						</SheetTrigger>
-						<SheetContent side='left' className='flex flex-col'>
-							<SidenavLinks showText closeSidebarTrigger={sheetClickCloseTrigger} />
-							<div className='mt-auto'></div>
-						</SheetContent>
-					</Sheet>
-				</div>
-				<div className='w-full flex-1'>
-					<span className='lg:text-xl xl:text-2xl'>Alex Westerman{titleMemo}</span>
-				</div>
-				<div className='flex pr-2'>
-					<Button variant='ghost' onClick={() => setDarkMode(!darkMode)}>
-						{darkMode && <MoonStar />}
-						{!darkMode && <Sun />}
-					</Button>
-				</div>
-			</header>
-			<div className='grid min-h-screen w-full md:grid-cols-[44px_1fr] xl:grid-cols-[64px_1fr]'>
-				<div className='hidden border-r bg-muted/40 md:block'>
-					<div className='md:h-[calc(100% - 44px)] hidden md:flex md:max-h-[calc(100vh-44px)] md:flex-col md:gap-2'>
-						<div className='flex-1'>
-							<SidenavLinks />
-						</div>
-					</div>
-				</div>
-				<main className='flex flex-1 flex-col'>
-					<AlertDialog open={alert} onOpenChange={setAlert}>
-						<AlertDialogTrigger asChild>
-							<button></button>
-						</AlertDialogTrigger>
-						<AlertDialogContent>
-							<AlertDialogHeader>Renovations in Progress!</AlertDialogHeader>
-							<AlertDialogDescription>
-								<p>
-									Pardon the mess, I'm currently migrating the site to use a different UI framework. During this
-									migration, you'll see things looking slightly out of shape or unthemed. Check back in a day or two for
-									the dust to settle.
-								</p>
-								<br />
-								<p>Thanks for your understanding!</p>
-								<em>This will reappear when you reload the page</em>
-							</AlertDialogDescription>
-							<AlertDialogFooter>
-								<AlertDialogAction onClick={() => setAlert(false)}>Ok, Cool!</AlertDialogAction>
-							</AlertDialogFooter>
-						</AlertDialogContent>
-					</AlertDialog>
-					<Outlet />
-					<div className='flex items-center'>
-						<SiteFooter />
-					</div>
-				</main>
-			</div>
-		</div>
-	);
+    return (
+        <div className='flex flex-col'>
+            <header className='flex h-[44px] items-center gap-2 border-b bg-muted/40 lg:gap-4 xl:h-[60px]'>
+                <div className='flex pl-1 xl:pl-4'>
+                    <Sheet open={openSheet} onOpenChange={setOpenSheet}>
+                        <SheetTrigger asChild>
+                            <Button variant='ghost' size='icon' className='shrink-0'>
+                                <Menu className='h-5 w-5 xl:h-7 xl:w-7' />
+                                <span className='sr-only'>Toggle navigation menu</span>
+                            </Button>
+                        </SheetTrigger>
+                        <SheetContent side='left' className='flex flex-col'>
+                            <SidenavLinks showText closeSidebarTrigger={sheetClickCloseTrigger} />
+                            <div className='mt-auto'></div>
+                        </SheetContent>
+                    </Sheet>
+                </div>
+                <div className='w-full flex-1'>
+                    <span className='lg:text-xl xl:text-2xl'>Alex Westerman{titleMemo}</span>
+                </div>
+                <div className='flex pr-2'>
+                    <Button variant='ghost' onClick={() => setDarkMode(!darkMode)}>
+                        {darkMode && <MoonStar />}
+                        {!darkMode && <Sun />}
+                    </Button>
+                </div>
+            </header>
+            <div className='grid min-h-screen w-full md:grid-cols-[44px_1fr] xl:grid-cols-[64px_1fr]'>
+                <div className='hidden border-r bg-muted/40 md:block'>
+                    <div className='md:h-[calc(100% - 44px)] hidden md:flex md:max-h-[calc(100vh-44px)] md:flex-col md:gap-2'>
+                        <div className='flex-1'>
+                            <SidenavLinks />
+                        </div>
+                    </div>
+                </div>
+                <main className='flex flex-1 flex-col'>
+                    <AlertDialog open={alert} onOpenChange={setAlert}>
+                        <AlertDialogTrigger asChild>
+                            <button></button>
+                        </AlertDialogTrigger>
+                        <AlertDialogContent>
+                            <AlertDialogHeader>Renovations in Progress!</AlertDialogHeader>
+                            <AlertDialogDescription>
+                                <p>
+                                    Pardon the mess, I'm currently migrating the site to use a different UI framework.
+                                    During this migration, you'll see things looking slightly out of shape or unthemed.
+                                    Check back in a day or two for the dust to settle.
+                                </p>
+                                <br />
+                                <p>Thanks for your understanding!</p>
+                                <em>This will reappear when you reload the page</em>
+                            </AlertDialogDescription>
+                            <AlertDialogFooter>
+                                <AlertDialogAction onClick={() => setAlert(false)}>Ok, Cool!</AlertDialogAction>
+                            </AlertDialogFooter>
+                        </AlertDialogContent>
+                    </AlertDialog>
+                    <Outlet />
+                    <div className='flex items-center'>
+                        <SiteFooter />
+                    </div>
+                </main>
+            </div>
+        </div>
+    );
 };

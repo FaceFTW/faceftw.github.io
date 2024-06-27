@@ -110,7 +110,7 @@
 			"semicolons": "always",
 			"arrowParentheses": "always",
 			"bracketSpacing": true,
-			"bracketSameLine": false,
+			"bracketSameLine": true,
 			"quoteStyle": "single",
 			"attributePosition": "auto"
 		}
