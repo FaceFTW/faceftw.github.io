@@ -1,5 +1,3 @@
-import { Box, Divider, Grid } from '@mui/material';
-import React from 'react';
 import projectData from '../assets/json/projects.json';
 import ProjectCard from '../components/ProjectCard';
 import { Project } from '../DataTypes';
@@ -8,14 +6,14 @@ export const ProjectsPanel = () => {
 	const projects: Project[] = projectData.projectList;
 
 	return (
-		<Box sx={{ display: 'flex', justifyContent: 'center', margin: '2rem' }}>
-			<Grid container spacing={3} alignItems='stretch'>
+		<div className='justify-content m-8 flex items-center'>
+			<div className='mx-auto' />
+			<div className='grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-3'>
 				{projects.map((project, index) => (
-					<Grid item xs={12} md={6} lg={4} key={index} sx={{ display: 'flex', justifyContent: 'center' }}>
-						<ProjectCard project={project} />
-					</Grid>
+					<ProjectCard project={project} key={index} />
 				))}
-			</Grid>
-		</Box>
+			</div>
+			<div className='mx-auto' />
+		</div>
 	);
 };
