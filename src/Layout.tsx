@@ -21,7 +21,9 @@ import {
 
 const SidenavLinks = ({
     showText = false,
-    closeSidebarTrigger = () => {},
+    closeSidebarTrigger = () => {
+        return;
+    },
 }: {
     showText?: boolean;
     closeSidebarTrigger?: () => void;
@@ -30,7 +32,7 @@ const SidenavLinks = ({
         'flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground';
     const sidenavTextClass = showText ? 'visible' : 'sr-only';
 
-    const wrapWithToolTip = (elements: React.ReactNode, text: String) => {
+    const wrapWithToolTip = (elements: React.ReactNode, text: string) => {
         return showText ? (
             elements
         ) : (
@@ -46,7 +48,7 @@ const SidenavLinks = ({
     };
 
     return (
-        <nav className='left-0 grid gap-2 md:text-lg md:font-medium xl:text-xl'>
+        <nav className='left-0 grid gap-2 md:font-medium md:text-lg xl:text-xl'>
             {wrapWithToolTip(
                 <RouterLink to='/' className={sidebarNavItemClass} onClick={closeSidebarTrigger}>
                     <Home className='h-5 w-5 xl:h-10 xl:w-10' />
@@ -99,7 +101,7 @@ const SiteFooter = () => {
                             All projects mentioned are subject to their specific licenses and copyrights as designated
                             by their owners
                             {'\n\n'}
-                            <RouterLink to='/funny' className='text-sm text-gray-500 decoration-muted'>
+                            <RouterLink to='/funny' className='text-gray-500 text-sm decoration-muted'>
                                 super secret link
                             </RouterLink>
                         </pre>
@@ -120,7 +122,7 @@ export const Layout = () => {
 
     const titleMemo = React.useMemo(() => {
         const title = currentLocation.pathname.split('/')[1];
-        return title === '' ? '' : ' - ' + title.charAt(0).toUpperCase() + title.slice(1);
+        return title === '' ? '' : ` - ${title.charAt(0).toUpperCase()}${title.slice(1)}`;
     }, [currentLocation.pathname]);
 
     const sheetClickCloseTrigger = () => {
@@ -144,7 +146,7 @@ export const Layout = () => {
                         </SheetTrigger>
                         <SheetContent side='left' className='flex flex-col'>
                             <SidenavLinks showText closeSidebarTrigger={sheetClickCloseTrigger} />
-                            <div className='mt-auto'></div>
+                            <div className='mt-auto' />
                         </SheetContent>
                     </Sheet>
                 </div>
@@ -160,7 +162,8 @@ export const Layout = () => {
             </header>
             <div className='grid min-h-screen w-full md:grid-cols-[44px_1fr] xl:grid-cols-[64px_1fr]'>
                 <div className='hidden border-r bg-muted/40 md:block'>
-                    <div className='md:h-[calc(100% - 44px)] hidden md:flex md:max-h-[calc(100vh-44px)] md:flex-col md:gap-2'>
+                    {/* biome-ignore lint/nursery/useSortedClasses: lint broken? */}
+                    <div className='hidden md:flex md:flex-col md:h-[calc(100% - 44px)] md:max-h-[calc(100vh-44px)] md:gap-2'>
                         <div className='flex-1'>
                             <SidenavLinks />
                         </div>
@@ -169,7 +172,7 @@ export const Layout = () => {
                 <main className='flex flex-1 flex-col'>
                     <AlertDialog open={alert} onOpenChange={setAlert}>
                         <AlertDialogTrigger asChild>
-                            <button></button>
+                            <button type='button' />
                         </AlertDialogTrigger>
                         <AlertDialogContent>
                             <AlertDialogHeader>Renovations in Progress!</AlertDialogHeader>

@@ -42,7 +42,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
                 <CardDescription>{project.projectDescription}</CardDescription>
             </CardHeader>
             <CardContent>
-                <img src={imgAsset} className='h-[250px] w-[400px] object-contain' />
+                <img src={imgAsset} className='h-[250px] w-[400px] object-contain' alt={project.projectName} />
             </CardContent>
             <Collapsible open={cardExpanded} onOpenChange={setCardExpanded}>
                 <CardFooter className='flex gap-4'>

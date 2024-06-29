@@ -50,26 +50,26 @@ const SkillsSection = ({ skills }: { skills: SkillCategory[] }) => {
         <div>
             <Accordion type='multiple'>
                 {skills.map((skill, index) => (
-                    <AccordionItem value={index.toString()}>
+                    <AccordionItem value={index.toString()} key={skill.categoryName}>
                         <AccordionTrigger>{skill.categoryName}</AccordionTrigger>
                         <AccordionContent>
                             <div className='mb-6 px-6'>
                                 <h5 className='text-2xl underline'>Advanced Skills</h5>
                                 <ul className='list-disc'>
-                                    {skill.highSkill?.map((skill, index) => (
-                                        <li key={index}>{skill}</li>
+                                    {skill.highSkill?.map((skill) => (
+                                        <li key={skill}>{skill}</li>
                                     ))}
                                 </ul>
                                 <h5 className='text-2xl underline'>Intermediate Skills</h5>
                                 <ul className='list-disc'>
-                                    {skill.medSkill?.map((skill, index) => (
-                                        <li key={index}>{skill}</li>
+                                    {skill.medSkill?.map((skill) => (
+                                        <li key={skill}>{skill}</li>
                                     ))}
                                 </ul>
                                 <h5 className='text-2xl underline'>Beginner Skills</h5>
                                 <ul className='list-disc'>
-                                    {skill.lowSkill?.map((skill, index) => (
-                                        <li key={index}>{skill}</li>
+                                    {skill.lowSkill?.map((skill) => (
+                                        <li key={skill}>{skill}</li>
                                     ))}
                                 </ul>
                             </div>
@@ -86,7 +86,7 @@ const EducationSection = ({ education }: { education: Education[] }) => {
         <div>
             <Accordion type='multiple'>
                 {education.map((edu, index) => (
-                    <AccordionItem value={index.toString()}>
+                    <AccordionItem value={index.toString()} key={edu.name}>
                         <AccordionTrigger>
                             <div className='flex flex-row'>
                                 <p>{edu.name} -&nbsp;</p>
@@ -105,15 +105,15 @@ const EducationSection = ({ education }: { education: Education[] }) => {
                                 <br />
                                 <h6 className='text-xl underline'>Relevant Courses</h6>
                                 <ul className='list-disc'>
-                                    {edu.relCoursework.map((course, idx) => (
-                                        <li key={idx}>{course}</li>
+                                    {edu.relCoursework.map((course) => (
+                                        <li key={course}>{course}</li>
                                     ))}
                                 </ul>
                                 <div hidden={!edu.propCoursework}>
                                     <h6 className='text-xl underline'>Proposed Courses</h6>
                                     <ul className='list-disc'>
-                                        {edu.propCoursework?.map((course, idx) => (
-                                            <li key={idx}>{course}</li>
+                                        {edu.propCoursework?.map((course) => (
+                                            <li key={course}>{course}</li>
                                         ))}
                                     </ul>
                                 </div>
@@ -131,7 +131,7 @@ const ExperienceSection = ({ experience }: { experience: ProfessionalExperience[
         <div>
             <Accordion type='multiple'>
                 {experience.map((exp, index) => (
-                    <AccordionItem value={index.toString()}>
+                    <AccordionItem value={index.toString()} key={exp.name}>
                         <AccordionTrigger>
                             <div className='flex flex-row'>
                                 <p>{exp.position} -&nbsp;</p>
@@ -145,8 +145,8 @@ const ExperienceSection = ({ experience }: { experience: ProfessionalExperience[
                                 <br />
                                 <h5 className='text-xl underline'>Responsibilities:</h5>
                                 <ul className='list-disc'>
-                                    {exp.responsibilities.map((responsibility, index) => (
-                                        <li key={index}>{responsibility}</li>
+                                    {exp.responsibilities.map((responsibility) => (
+                                        <li key={responsibility}>{responsibility}</li>
                                     ))}
                                 </ul>
                             </div>

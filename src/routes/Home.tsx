@@ -126,6 +126,7 @@ const HomeMainSection = () => {
                         <img
                             src={Pfp}
                             className='h-48 w-48 rounded-full border-8 transition-all hover:border-primary'
+                            alt='me :)'
                         />
                     </div>
                     <div className='flex flex-col justify-center text-center md:text-left'>
@@ -181,9 +182,9 @@ export const HomePanel = () => {
                     plugins={[Autoplay({ delay: 10000 })]}
                     opts={{ loop: true }}>
                     <CarouselContent>
-                        {featured.map((project, idx) => {
+                        {featured.map((project) => {
                             return (
-                                <CarouselItem key={idx}>
+                                <CarouselItem key={project.projectName}>
                                     <div className='p-1'>
                                         <ProjectCarouselCard project={project} />
                                     </div>

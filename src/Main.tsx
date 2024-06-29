@@ -20,7 +20,7 @@ const SuspenseRoute = ({ children }: { children: React.ReactNode }) => {
 
 const router = createHashRouter(
     createRoutesFromElements([
-        <Route path='/' element={<Layout />}>
+        <Route path='/' element={<Layout />} key={'root-route'}>
             <Route
                 index
                 element={

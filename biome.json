@@ -1,11 +1,18 @@
 {
 	"$schema": "https://biomejs.dev/schemas/1.8.3/schema.json",
+	"files": {
+		"ignore": [
+			"src/components/ui/**",
+			"src/lib/**",
+			"dist/**"
+		]
+	},
 	"formatter": {
 		"enabled": true,
 		"formatWithErrors": false,
 		"indentStyle": "space",
 		"indentWidth": 4,
-		"lineEnding": "lf",
+		"lineEnding": "crlf",
 		"lineWidth": 120,
 		"attributePosition": "auto"
 	},
@@ -113,6 +120,11 @@
 			"bracketSameLine": true,
 			"quoteStyle": "single",
 			"attributePosition": "auto"
+		}
+	},
+	"json": {
+		"formatter": {
+			"indentStyle": "tab"
 		}
 	}
 }
