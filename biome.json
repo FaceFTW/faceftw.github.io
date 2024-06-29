@@ -4,7 +4,8 @@
 		"ignore": [
 			"src/components/ui/**",
 			"src/lib/**",
-			"dist/**"
+			"dist/**",
+			"src/assets/**"
 		]
 	},
 	"formatter": {
