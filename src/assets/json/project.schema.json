@@ -22,28 +22,6 @@
 						"description": "Huamn-readable description of the project. Appears as the subtitle of a project's card",
 						"type": "string"
 					},
-					"projectSubDesc": {
-						"description": "Sub-description of the project. Appears as a muted subtext under the description",
-						"type": "string"
-					},
-					"projectLanguage": {
-						"description": "Array of strings indicating the languages used in a project",
-						"type": "array",
-						"items": {
-							"type": "string"
-						},
-						"minItems": 1,
-						"uniqueItems": true
-					},
-					"projectLibraries": {
-						"description": "Array of strings indicating the libraries used in a project",
-						"type": "array",
-						"items": {
-							"type": "string"
-						},
-						"minItems": 1,
-						"uniqueItems": true
-					},
 					"projectAsset": {
 						"description": "URL for the image on a project's card. Can be null",
 						"type": "string",
@@ -58,14 +36,21 @@
 						},
 						"minItems": 1,
 						"uniqueItems": true
+					},
+					"projectTags": {
+						"description": "Array of strings representing tags identifying the contents of the project",
+						"type": "array",
+						"items": {
+							"type": "string"
+						},
+						"minItems": 1,
+						"uniqueItems": true
 					}
 				},
 				"required": [
 					"projectId",
 					"projectName",
 					"projectDescription",
-					"projectSubDesc",
-					"projectLanguage",
 					"projectLinks"
 				]
 			}

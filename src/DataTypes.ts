@@ -25,11 +25,9 @@ export interface Project {
     projectId: number;
     projectName: string;
     projectDescription: string;
-    projectSubDesc: string;
-    projectLanguage: string[];
-    projectLibraries?: string[];
     projectAsset?: string;
     projectLinks: ProjectLink[];
+    projectTags: string[];
 }
 
 /***************RESUME TYPES*******************/

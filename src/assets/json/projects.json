@@ -5,33 +5,26 @@
 			"projectId": 0,
 			"projectName": "Armanipulator",
 			"projectDescription": "Rudimentary Robotic Arm Utilizing Pneumatic Leverage and Extensible Arduino Firmware",
-			"projectSubDesc": "For PLTW Engineering Design and Development",
-			"projectLanguage": [
-				"C++"
-			],
-			"projectLibraries": [
-				"Arduino",
-				"Stepper Motor HAL"
-			],
 			"projectAsset": "armanipulator.webp",
 			"projectLinks": [
 				{
 					"linkType": "github",
 					"linkURL": "https://github.com/FaceFTW/Armanipulator"
 				}
+			],
+			"projectTags": [
+				"C++",
+				"Hardware",
+				"Arduino",
+				"Stepper Motor HAL",
+				"School Project",
+				"Open Source"
 			]
 		},
 		{
 			"projectId": 1,
 			"projectName": "cnhasm",
 			"projectDescription": "CLI Assembler for a Custom 16-bit Assembly Architecture powered by Regular Expression Parsing",
-			"projectSubDesc": "For Rose-Hulman CSSE232: Computer Architecture",
-			"projectLanguage": [
-				"C#"
-			],
-			"projectLibraries": [
-				".NET Core 3.1"
-			],
 			"projectAsset": "cnhasm-noarch.webp",
 			"projectLinks": [
 				{
@@ -41,204 +34,202 @@
 			],
 			"projectStatus": {
 				"status": "Finished"
-			}
+			},
+			"projectTags": [
+				"C#",
+				".NET Core 3.1",
+				"Assembly (Custom)",
+				"School Project",
+				"Computer Architecture",
+				"Open Source"
+			]
 		},
 		{
 			"projectId": 2,
 			"projectName": "UberUnit",
 			"projectDescription": "A consolidated, lightweight unit converter built for user convenience, with Firebase Integration for History and User Favorites",
-			"projectSubDesc": "For Rose-Hulman CSSE280",
-			"projectLanguage": [
-				"HTML5",
-				"Sass",
-				"TypeScript"
-			],
-			"projectLibraries": [
-				"Angular",
-				"Firebase (via @angular/fire)",
-				"Bootstrap"
-			],
 			"projectAsset": "Picture1.webp",
 			"projectLinks": [
 				{
 					"linkType": "github",
 					"linkURL": "https://github.com/FaceFTW/UberUnit"
 				}
+			],
+			"projectTags": [
+				"HTML5",
+				"Sass",
+				"TypeScript",
+				"Angular",
+				"Firebase",
+				"Bootstrap",
+				"School Project",
+				"Open-Source"
 			]
 		},
 		{
 			"projectId": 3,
 			"projectName": "*Creative Name Here* Architecture",
 			"projectDescription": "16-bit RISC Architecture With a Flexible Assembly Dialect and Efficient Performance",
-			"projectSubDesc": "For Rose-Hulman CSSE232 - Computer Architecture",
-			"projectLanguage": [
-				"SystemVerilog"
-			],
 			"projectLinks": [
 				{
 					"linkType": "text",
 					"text": "Private Repo (Academic Integrity)"
 				}
+			],
+			"projectTags": [
+				"SystemVerilog",
+				"Assembly (Custom)",
+				"Computer Architecture",
+				"School Project"
 			]
 		},
 		{
 			"projectId": 4,
 			"projectName": "Joust (Remake)",
 			"projectDescription": "Remake of the 1982 Arcade Classic <em>Joust</em> by Williams Electronics in Java",
-			"projectSubDesc": "For Rose-Hulman CSSE220: Introduction to Object Oriented Programming",
-			"projectLanguage": [
-				"Java 8"
-			],
-			"projectLibraries": [
-				"Java FX Graphics"
-			],
 			"projectAsset": "joust.webp",
 			"projectLinks": [
 				{
 					"linkType": "text",
 					"text": "Private Repo (Academic Integrity)"
 				}
+			],
+			"projectTags": [
+				"Java",
+				"JavaFX",
+				"School Project"
 			]
 		},
 		{
 			"projectId": 5,
 			"projectName": "Portfolio Website (Angular Version)",
 			"projectDescription": "A Personally Desinged Portfolio Website With a Modern Look and Feel, with Automatic Project Info Population from JSON Schemas",
-			"projectSubDesc": "Originally for Rose-Hulman CSSE280, Further Worked On Personally",
-			"projectLanguage": [
-				"HTML5",
-				"Sass",
-				"TypeScript"
-			],
-			"projectLibraries": [
-				"Angular 12, Angular Material, NerdFonts"
-			],
 			"projectAsset": "portfolio.webp",
 			"projectLinks": [
 				{
 					"linkType": "github",
 					"linkURL": "https://github.com/FaceFTW/FaceFTW.github.io/tree/angular"
 				}
+			],
+			"projectTags": [
+				"HTML5",
+				"Sass",
+				"Typescript",
+				"Angular",
+				"Angular Material",
+				"NerdFonts",
+				"Open Source",
+				"School Project",
+				"Personal Project"
 			]
 		},
 		{
 			"projectId": 6,
 			"projectName": "-STRIVE- Stats",
 			"projectDescription": "Web-Based Match Data Tracker for GUILTY GEAR -STRIVE-",
-			"projectSubDesc": "For Rose-Hulman CSSE280 (Retake)",
-			"projectLanguage": [
-				"TypeScript, CSS3"
-			],
-			"projectLibraries": [
-				"ReactJS",
-				"MUI",
-				"Firebase (via react-fire)"
-			],
 			"projectAsset": "strivestats.webp",
 			"projectLinks": [
 				{
 					"linkType": "github",
 					"linkURL": "https://github.com/FaceFTW/strive-stats"
 				}
+			],
+			"projectTags": [
+				"TypeScript",
+				"CSS 3",
+				"React",
+				"MUI",
+				"Firebase",
+				"School Project",
+				"Open Source"
 			]
 		},
 		{
 			"projectId": 7,
 			"projectName": "DesignLint",
 			"projectDescription": "A Relatively Simple Java Linter Wtih Style/OOP Principle Violations and Design Pattern Detection",
-			"projectSubDesc": "For Rose-Hulman CSSE374: Software Design, Further Worked on in CSSE375: Software Construction and Evolution",
-			"projectLanguage": [
-				"Java 8 (Maven)"
-			],
-			"projectLibraries": [
-				"OW2 ASM",
-				"JUnit (Testing)"
-			],
 			"projectLinks": [
 				{
 					"linkType": "github",
 					"linkURL": "https://github.com/FaceFTW/DesignLint"
 				}
 			],
-			"projectAsset": "designlint.webp"
+			"projectAsset": "designlint.webp",
+			"projectTags": [
+				"Java",
+				"Maven",
+				"OW2 ASM",
+				"JUnit",
+				"JVM Bytecode",
+				"School Project",
+				"Open Source"
+			]
 		},
 		{
 			"projectId": 8,
 			"projectName": "OpenCryptoBench",
 			"projectDescription": "Rudimentary Cryptograhy Algorithm Benchmark Written in Java (Like *really* basic)",
-			"projectSubDesc": "Personal Project: The First one that is Open-Source",
-			"projectLanguage": [
-				"Java 8"
-			],
-			"projectLibraries": [
-				"Bouncy Castle (Java Variant)"
-			],
 			"projectAsset": "opencryptobench.webp",
 			"projectLinks": [
 				{
 					"linkType": "github",
 					"linkURL": "https://github.com/FaceFTW/OpenCryptoBench"
 				}
+			],
+			"projectTags": [
+				"Java",
+				"Bouncy Castle",
+				"Personal Project",
+				"Open Source"
 			]
 		},
 		{
 			"projectId": 9,
 			"projectName": "Team Thunderbirds ECE160 Robot",
 			"projectDescription": "Specialized Arduino Firmware to Remotely Operate a Robot for Rose-Hulman's Annual ECE160 Competition for Freshman",
-			"projectSubDesc": "For Rose-Hulman ECE160 - Engineering Practice",
-			"projectLanguage": [
-				"C",
-				"C++"
-			],
-			"projectLibraries": [
-				"Arduino",
-				"Stepper Motor HAL",
-				"PS2 Controller HAL"
-			],
 			"projectAsset": "ece160.webp",
 			"projectLinks": [
 				{
 					"linkType": "github",
 					"linkURL": "https://github.com/Thunderbirds-ECE160/Final-Robot"
 				}
+			],
+			"projectTags": [
+				"C",
+				"C++",
+				"Hardware",
+				"Arduino",
+				"Stepper Motor HAL",
+				"PS2 Controller HAL",
+				"School Project",
+				"Open Source"
 			]
 		},
 		{
 			"projectId": 10,
 			"projectName": "Scavlander's Gamepad",
 			"projectDescription": "Attempt at a \"Apocalypse\"-styled Gamepad powered by the TI MSP432 Launchpad with CC2650 Boosterpack",
-			"projectSubDesc": "For Rose-Hulman ECE230 - Embedded Systems",
-			"projectLanguage": [
-				"C"
-			],
-			"projectLibraries": [
-				"TI-RTOS (For MSP432)",
-				"TI MSP432/CC2650 Bluetooth Stack"
-			],
 			"projectAsset": "scavlander.webp",
 			"projectLinks": [
 				{
 					"linkType": "github",
 					"linkURL": "https://github.com/FaceFTW/scavlanders-gamepad"
 				}
+			],
+			"projectTags": [
+				"C",
+				"Hardware",
+				"TI MSP432",
+				"TI-RTOS",
+				"CC2650 Bluetooth Stack",
+				"School Project",
+				"Open Source"
 			]
 		},
 		{
 			"projectId": 11,
 			"projectName": "AVeraCoolRPG",
 			"projectDescription": "A Discord Bot for playing a really basic RPG with SQL Server Data Storage",
-			"projectSubDesc": "For Rose-Hulman CSSE333: Intro to Database Systems, May contribute in the future",
-			"projectLanguage": [
-				"Node.JS (16.x)",
-				"Transact-SQL",
-				"Powershell (DB Deploy Script Only)"
-			],
-			"projectLibraries": [
-				"Discord.JS",
-				"mssql (Node.JS package)",
-				"Newtonsoft Json.NET",
-				"SqlServer Powershell Module"
-			],
 			"projectAsset": "rpgbot.webp",
 			"projectLinks": [
 				{
@@ -249,19 +240,23 @@
 					"linkType": "text",
 					"text": "\n(Repo not public yet)"
 				}
+			],
+			"projectTags": [
+				"Node.JS 16",
+				"T-SQL",
+				"PowerShell",
+				"mssql",
+				"Newtonsoft Json.NET",
+				"SqlServer PowerShell Module",
+				"Discord Bot",
+				"Discord.JS",
+				"School Project"
 			]
 		},
 		{
 			"projectId": 12,
 			"projectName": "ThinkPad+ Rainmeter Skin",
 			"projectDescription": "A customized Rainmeter Skin for my Thinkpad P1 Gen 1",
-			"projectSubDesc": "Personal Project",
-			"projectLanguage": [
-				"Rainmeter Configuration"
-			],
-			"projectLibraries": [
-				"N/A"
-			],
 			"projectAsset": "thinkpadplus.webp",
 			"projectLinks": [
 				{
@@ -272,39 +267,36 @@
 					"linkType": "text",
 					"text": " (Repo not public yet)"
 				}
+			],
+			"projectTags": [
+				"Rainmeter",
+				"Personal Project",
+				"Open Source"
 			]
 		},
 		{
 			"projectId": 13,
 			"projectName": "PSTweetTemplate",
 			"projectDescription": "A Powershell Module for Automatically sending out tweets based on a template using BluebirdPS",
-			"projectSubDesc": "Personal Project",
-			"projectLanguage": [
-				"Powershell"
-			],
-			"projectLibraries": [
-				"BluebirdPS"
-			],
 			"projectAsset": "pstweettemplate.webp",
 			"projectLinks": [
 				{
 					"linkType": "github",
 					"linkURL": "https://github.com/FaceFTW/PSTweetTemplate"
 				}
+			],
+			"projectTags": [
+				"PowerShell",
+				"X (Formerly Known as Twitter)",
+				"BluebirdPS",
+				"Personal Project",
+				"Open Source"
 			]
 		},
 		{
 			"projectId": 14,
 			"projectName": "rust-pipes",
 			"projectDescription": "A Rust-based remake of the 3D Pipes screensaver\nDesigned for cross-platform deploy and reproducible patterns.",
-			"projectSubDesc": "Personal Project",
-			"projectLanguage": [
-				"Rust"
-			],
-			"projectLibraries": [
-				"three-d",
-				"wasm-bindgen"
-			],
 			"projectAsset": "3dpipes.webp",
 			"projectLinks": [
 				{
@@ -315,132 +307,163 @@
 					"linkType": "demo",
 					"linkURL": "https://pipes.faceftw.dev"
 				}
+			],
+			"projectTags": [
+				"Rust",
+				"OpenGL",
+				"three-d",
+				"WASM",
+				"Personal Project",
+				"Open Source"
 			]
 		},
 		{
 			"projectId": 15,
-			"projectName": "Portfolio Website",
+			"projectName": "Portfolio Website (V2 - React)",
 			"projectDescription": "This website, rewritten with ReactJS (because why not)",
-			"projectSubDesc": "Personal Project",
-			"projectLanguage": [
-				"TypeScript",
-				"JSON Schema"
-			],
-			"projectLibraries": [
-				"ReactJS",
-				"MUI",
-				"React-Icons",
-				"React-Router",
-				"And more"
-			],
 			"projectAsset": "portfolionew.webp",
 			"projectLinks": [
 				{
 					"linkType": "github",
-					"linkURL": "https://github.com/FaceFTW/FaceFTW.github.io"
+					"linkURL": "https://github.com/FaceFTW/faceftw.github.io/tree/v2"
 				}
+			],
+			"projectTags": [
+				"TypeScript",
+				"JSON Schema",
+				"React",
+				"MUI",
+				"react-icons",
+				"react-router",
+				"Personal Project",
+				"Open Source"
 			]
 		},
 		{
 			"projectId": 16,
 			"projectName": "Dotfiles",
-			"projectDescription": "A collection of scripts/configs I use for development. Includes a Neovim config",
-			"projectSubDesc": "Personal projects",
-			"projectLanguage": [
-				"Powershell",
-				"ZSH",
-				"VimScript (Neovim)"
-			],
-			"projectLibraries": [
-				"Chezmoi"
-			],
+			"projectDescription": "A collection of scripts/configs I use for development",
 			"projectAsset": "dotfiles.webp",
 			"projectLinks": [
 				{
 					"linkType": "github",
 					"linkURL": "https://github.com/FaceFTW/dotfiles"
 				}
+			],
+			"projectTags": [
+				"PowerShell",
+				"ZSH",
+				"VimScript",
+				"Chezmoi",
+				"Personal Project",
+				"Open Source"
 			]
 		},
 		{
 			"projectId": 17,
 			"projectName": "JFTP \"Scuffed\" Edition",
 			"projectDescription": "A \"Scuffed\" and \"Updated\" version of the JFTP project, originally from SourceForge",
-			"projectSubDesc": "For Rose-Hulman CSSE477 - Software Architecture",
-			"projectLanguage": [
-				"Java"
-			],
-			"projectLibraries": [
-				"See Repo"
-			],
 			"projectLinks": [
 				{
 					"linkType": "github",
 					"linkURL": "https://github.com/FaceFTW/jftp-scuffed"
 				}
 			],
-			"projectAsset": "jftp.webp"
+			"projectAsset": "jftp.webp",
+			"projectTags": [
+				"Java",
+				"School Project",
+				"Open Source"
+			]
 		},
 		{
 			"projectId": 18,
 			"projectName": "RetireSimple",
 			"projectDescription": "Open-Source Retirement Modeling Solution Designed for Extensibility",
-			"projectSubDesc": "For Rose-Hulman Senior Project (CSSE497-499), Advising Development with Next Team",
-			"projectLanguage": [
-				"C# (.NET 6)",
-				"TypeScript"
-			],
-			"projectLibraries": [
-				"ASP.NET Core 6",
-				"Entity Framework Core 6",
-				"Math.NET",
-				"ReactJS"
-			],
 			"projectLinks": [
 				{
 					"linkType": "github",
 					"linkURL": "https://github.com/RetireSimple/RetireSimple"
 				}
 			],
-			"projectAsset": "retiresimple.webp"
+			"projectAsset": "retiresimple.webp",
+			"projectTags": [
+				"C#",
+				".NET 6",
+				"TypeScript",
+				"ASP.NET Core 6",
+				"Entity Framework 6",
+				"Math.NET",
+				"React",
+				"MUI",
+				"Electron",
+				"School Project",
+				"Open Source"
+			]
 		},
 		{
 			"projectId": 19,
 			"projectName": "Settlers of Catan",
 			"projectDescription": "A Java Implementation of the Settlers of Catan with focuses on QA and Testing",
-			"projectSubDesc": "For Rose-Hulman CSSE376 - Software Quality Assurance",
-			"projectLanguage": [
-				"Java"
-			],
-			"projectLibraries": [
-				"N/A"
-			],
 			"projectLinks": [
 				{
 					"linkType": "github",
 					"linkURL": "https://github.com/FaceFTW/settlers-of-catan"
 				}
 			],
-			"projectAsset": "settlers.webp"
+			"projectAsset": "settlers.webp",
+			"projectTags": [
+				"Java",
+				"JavaFX",
+				"JUnit",
+				"School Project",
+				"Open Source"
+			]
 		},
 		{
 			"projectId": 20,
 			"projectName": "xv6 Signals",
 			"projectDescription": "A fork of xv6 with added support for rudimentary signal handling",
-			"projectSubDesc": "For Rose-Hulman CSSE332 - Operating Systems",
-			"projectLanguage": [
-				"C"
-			],
-			"projectLibraries": [
-				"xv6 Kernel"
-			],
 			"projectLinks": [
 				{
 					"linkType": "github",
 					"linkURL": "https://github.com/FaceFTW/xv6-signals"
 				}
 			],
-			"projectAsset": "xv6.webp"
+			"projectAsset": "xv6.webp",
+			"projectTags": [
+				"C",
+				"xv6",
+				"ARM",
+				"Computer Architecture",
+				"Kernel Programming",
+				"School Project",
+				"Open Source"
+			]
+		},
+		{
+			"projectId": 21,
+			"projectName": "Portfolio Website v3",
+			"projectDescription": "This website, redesigned to be slimmer + more performant",
+			"projectAsset": "portfolionew.webp",
+			"projectLinks": [
+				{
+					"linkType": "github",
+					"linkURL": "https://github.com/FaceFTW/FaceFTW.github.io"
+				}
+			],
+			"projectTags": [
+				"TypeScript",
+				"JSON Schema",
+				"React",
+				"react-router",
+				"shadcn/ui",
+				"lucide-react",
+				"TailwindCSS",
+				"Framer Motion",
+				"Personal Project",
+				"Open Source"
+			]
 		}
 	]
 }

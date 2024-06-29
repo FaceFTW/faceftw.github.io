@@ -6,6 +6,7 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from './ui/t
 import { Button } from './ui/button';
 import { AppWindow, Code2, Link } from 'lucide-react';
 import { Separator } from './ui/separator';
+import { Badge } from './ui/badge';
 
 //TODO for future me, transition code for cards
 // 	sx={{
@@ -48,13 +49,13 @@ export const ProjectCarouselCard = ({ project }: { project: Project }) => {
                         className='h-[125px] object-contain md:h-[250px] md:w-[400px]'
                         alt={project.projectName}
                     />
-                    <div className='mx-4 mb-4'>
-                        <p>{project.projectSubDesc}</p>
-                        <Separator className='my-2' />
-                        <p className='underline'>Languages</p>
-                        <p>{project.projectLanguage.join(', ')}</p>
-                        <p className='underline'>Libraries</p>
-                        <p>{project.projectLibraries ? project.projectLibraries.join(', ') : 'N/A'}</p>
+                    <div className='mb-4 space-x-1'>
+                        <p>
+                            <em>Tags:</em>
+                        </p>
+                        {project.projectTags.map((tag) => {
+                            return <Badge key={tag}>{tag}</Badge>;
+                        })}
                     </div>
                 </div>
             </CardContent>
