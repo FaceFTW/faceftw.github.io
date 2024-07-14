@@ -61,6 +61,12 @@ export interface SkillCategory {
     lowSkill?: string[];
 }
 
+export interface Skill {
+    name: string;
+    years: number;
+    description?: string;
+}
+
 export interface ResumeHighlight {
     icon: string;
     stat: string;
@@ -70,7 +76,8 @@ export interface ResumeHighlight {
 export interface Resume {
     $schema: string;
     highlights: ResumeHighlight[];
-    skills: SkillCategory[];
+    skillCategories: SkillCategory[];
+    skills: Skill[];
     education: Education[];
     experience: ProfessionalExperience[];
 }

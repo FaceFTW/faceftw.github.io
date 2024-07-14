@@ -8,29 +8,48 @@
 		"highlights": {
 			"description": "A list of 3 highlights that are seen at the top of the resume page",
 			"type": "array",
-			"items": { "type": "object", "$ref": "#/$defs/highlightItem" },
+			"items": {
+				"type": "object",
+				"$ref": "#/$defs/highlightItem"
+			},
 			"uniqueItems": true,
 			"minItems": 3,
 			"maxItems": 3
 		},
-		"skills": {
+		"skillCategories": {
 			"description": "Represents the skills shown on the resume",
 			"type": "array",
-			"items": { "type": "object", "$ref": "#/$defs/skillCategory" },
+			"items": {
+				"type": "object",
+				"$ref": "#/$defs/skillCategory"
+			},
+			"minItems": 1,
+			"uniqueItems": true
+		},
+		"skills": {
+			"description": "Represents the skills shown on the resume",
+			"type": "object",
+			"$ref": "#/$defs/skills",
 			"minItems": 1,
 			"uniqueItems": true
 		},
 		"education": {
 			"description": "Represents the education on the resume",
 			"type": "array",
-			"items": { "type": "object", "$ref": "#/$defs/eduExperience" },
+			"items": {
+				"type": "object",
+				"$ref": "#/$defs/eduExperience"
+			},
 			"minItems": 1,
 			"uniqueItems": true
 		},
 		"experience": {
 			"description": "Represents the Job Experience shown on the resume",
 			"type": "array",
-			"items": { "type": "object", "$ref": "#/$defs/profExperience" },
+			"items": {
+				"type": "object",
+				"$ref": "#/$defs/profExperience"
+			},
 			"minItems": 1,
 			"uniqueItems": true
 		}
@@ -53,7 +72,11 @@
 					"type": "string"
 				}
 			},
-			"required": ["icon", "stat", "statDescription"]
+			"required": [
+				"icon",
+				"stat",
+				"statDescription"
+			]
 		},
 		"skillCategory": {
 			"description": "Represents a category for skills",
@@ -66,32 +89,66 @@
 				"highSkill": {
 					"description": "List of skills withing the category with advanced knowledge",
 					"type": "array",
-					"items": { "type": "string" },
+					"items": {
+						"type": "string"
+					},
 					"minItems": 1,
 					"uniqueItems": true
 				},
 				"medSkill": {
 					"description": "List of skills withing the category with intermediate knowledge",
 					"type": "array",
-					"items": { "type": "string" },
+					"items": {
+						"type": "string"
+					},
 					"minItems": 1,
 					"uniqueItems": true
 				},
 				"lowSkill": {
 					"description": "List of skills withing the category with beginner knowledge",
 					"type": "array",
-					"items": { "type": "string" },
+					"items": {
+						"type": "string"
+					},
 					"minItems": 1,
 					"uniqueItems": true
 				}
 			},
-			"required": ["categoryName"]
+			"required": [
+				"categoryName"
+			]
+		},
+		"skills": {
+			"description": "A list of skills to display on the Resume. Will be searchable",
+			"type": "array",
+			"items": {
+				"description": "A Skill, with a description that can be displayed on Hover",
+				"type": "object",
+				"properties": {
+					"name": {
+						"description": "Name of the skill",
+						"type": "string"
+					},
+					"years": {
+						"description": "Number of years this skill is known/used",
+						"type": "number"
+					},
+					"description": {
+						"description": "An optional description of the skill",
+						"type": "string",
+						"optional": "true"
+					}
+				}
+			}
 		},
 		"eduExperience": {
 			"description": "Represents education section of a resume",
 			"type": "object",
 			"properties": {
-				"name": { "description": "Name of the institution/school", "type": "string" },
+				"name": {
+					"description": "Name of the institution/school",
+					"type": "string"
+				},
 				"graduationDate": {
 					"description": "Graduation date for this institution. Appears as a subtitle to the accordion card",
 					"type": "string"
@@ -99,7 +156,11 @@
 				"degree": {
 					"description": "The degree(s) and graduation class of the insitution/school",
 					"type": "array",
-					"items": { "type": "string", "minItems": 1, "uniqueItems": true }
+					"items": {
+						"type": "string",
+						"minItems": 1,
+						"uniqueItems": true
+					}
 				},
 				"degreeAddendum": {
 					"description": "Any other relevant information about your degree (i.e. Major change, adding minors, etc)",
@@ -111,15 +172,28 @@
 				"relCoursework": {
 					"description": "The list of completed courses that may be relevant to employers",
 					"type": "array",
-					"items": { "type": "string", "minItems": 1, "uniqueItems": true }
+					"items": {
+						"type": "string",
+						"minItems": 1,
+						"uniqueItems": true
+					}
 				},
 				"propCoursework": {
 					"description": "The list of current/future courses that may be relevant to employers",
 					"type": "array",
-					"items": { "type": "string", "minItems": 1, "uniqueItems": true }
+					"items": {
+						"type": "string",
+						"minItems": 1,
+						"uniqueItems": true
+					}
 				}
 			},
-			"required": ["name", "graduationDate", "degree", "relCoursework"]
+			"required": [
+				"name",
+				"graduationDate",
+				"degree",
+				"relCoursework"
+			]
 		},
 		"profExperience": {
 			"description": "This is an entry for profesional experience (e.g. a job/internship)",
@@ -129,12 +203,18 @@
 					"description": "Name of the company/employer",
 					"type": "string"
 				},
-				"position": { "description": "Position held at the company/employer", "type": "string" },
+				"position": {
+					"description": "Position held at the company/employer",
+					"type": "string"
+				},
 				"timeEmployed": {
 					"description": "String detailing length of time employed. Best formatted as <Month><Year> - (<Month><Year> OR 'Present')",
 					"type": "string"
 				},
-				"location": { "description": "Location of the professional experience, is optional", "type": "string" },
+				"location": {
+					"description": "Location of the professional experience, is optional",
+					"type": "string"
+				},
 				"terminationReason": {
 					"description": "If applicable, adds a reason why you are no longer employed. This field is not required",
 					"type": "string"
@@ -142,7 +222,11 @@
 				"responsibilities": {
 					"description": "A list of strings that represent the responsibilities you held at this employer",
 					"type": "array",
-					"items": { "type": "string", "minItems": 1, "uniqueItems": true }
+					"items": {
+						"type": "string",
+						"minItems": 1,
+						"uniqueItems": true
+					}
 				}
 			}
 		},

@@ -17,7 +17,7 @@
 			"statDescription": "Effort, Dedication, and Learning"
 		}
 	],
-	"skills": [
+	"skillCategories": [
 		{
 			"categoryName": "Computer Programming/Software Engineering",
 			"lowSkill": [
@@ -56,6 +56,125 @@
 			"highSkill": [
 				"Computer Internals and Hardware"
 			]
+		}
+	],
+	"skills": [
+		{
+			"name": "Rust",
+			"years": 3
+		},
+		{
+			"name": "Java",
+			"years": 5
+		},
+		{
+			"name": "SQL",
+			"years": 2
+		},
+		{
+			"name": "Git",
+			"years": 6
+		},
+		{
+			"name": "C#",
+			"years": 3
+		},
+		{
+			"name": "Full Stack Development",
+			"years": 2
+		},
+		{
+			"name": "ASP.NET",
+			"years": 2
+		},
+		{
+			"name": "Entity Framework",
+			"years": 2
+		},
+		{
+			"name": "PowerShell",
+			"years": 2,
+			"description": "Specifically PowerShell v7"
+		},
+		{
+			"name": "Computer Architecture",
+			"years": 2
+		},
+		{
+			"name": "UNIX Scripting (Bash/ZSH/etc.)",
+			"years": 2
+		},
+		{
+			"name": "GitHub Actions",
+			"years": 2
+		},
+		{
+			"name": "Software Design",
+			"years": 3
+		},
+		{
+			"name": "Software Architecture",
+			"years": 2
+		},
+		{
+			"name": "HTML5",
+			"years": 6
+		},
+		{
+			"name": "CSS3",
+			"years": 6
+		},
+		{
+			"name": "Javascript",
+			"years": 5
+		},
+		{
+			"name": "Typescript",
+			"years": 3
+		},
+		{
+			"name": "NodeJS",
+			"years": 2
+		},
+		{
+			"name": "React",
+			"years": 3
+		},
+		{
+			"name": "Angular",
+			"years": 2
+		},
+		{
+			"name": "C/C++",
+			"years": 3
+		},
+		{
+			"name": "Arduino",
+			"years": 3
+		},
+		{
+			"name": "Raspberry Pi",
+			"years": 2
+		},
+		{
+			"name": "Operating System Kernels/Internals",
+			"years": 1
+		},
+		{
+			"name": ".NET Core",
+			"years": 3
+		},
+		{
+			"name": "Test Automation",
+			"years": 3
+		},
+		{
+			"name": "Unit Testing",
+			"years": 3
+		},
+		{
+			"name": "Computer Internals/Hardware",
+			"years": 2
 		}
 	],
 	"education": [

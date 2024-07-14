@@ -1,8 +1,9 @@
 import { motion } from 'framer-motion';
-import type { Education, ProfessionalExperience, SkillCategory } from '../DataTypes';
+import type { Education, ProfessionalExperience, Skill, SkillCategory } from '../DataTypes';
 import resumeData from '../assets/json/resume.json';
 import { Accordion, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { AccordionContent } from '@radix-ui/react-accordion';
+import { Badge } from '@/components/ui/badge';
 
 // const Highlights = ({ highlights }: { highlights: ResumeHighlight[] }) => {
 // 	//This is kinda hacky, but I can't think of a better solution
@@ -45,41 +46,79 @@ import { AccordionContent } from '@radix-ui/react-accordion';
 // 	);
 // };
 
-const SkillsSection = ({ skills }: { skills: SkillCategory[] }) => {
+const SkillSectionNew = ({ skills }: { skills: Skill[] }) => {
     return (
-        <div>
-            <Accordion type='multiple'>
-                {skills.map((skill, index) => (
-                    <AccordionItem value={index.toString()} key={skill.categoryName}>
-                        <AccordionTrigger>{skill.categoryName}</AccordionTrigger>
-                        <AccordionContent>
-                            <div className='mb-6 px-6'>
-                                <h5 className='text-2xl underline'>Advanced Skills</h5>
-                                <ul className='list-disc'>
-                                    {skill.highSkill?.map((skill) => (
-                                        <li key={skill}>{skill}</li>
-                                    ))}
-                                </ul>
-                                <h5 className='text-2xl underline'>Intermediate Skills</h5>
-                                <ul className='list-disc'>
-                                    {skill.medSkill?.map((skill) => (
-                                        <li key={skill}>{skill}</li>
-                                    ))}
-                                </ul>
-                                <h5 className='text-2xl underline'>Beginner Skills</h5>
-                                <ul className='list-disc'>
-                                    {skill.lowSkill?.map((skill) => (
-                                        <li key={skill}>{skill}</li>
-                                    ))}
-                                </ul>
-                            </div>
-                        </AccordionContent>
-                    </AccordionItem>
-                ))}
-            </Accordion>
+        <div className='mb-4 space-x-1 space-y-2 '>
+            {skills.map((skill) => {
+                let skill_class = '';
+                switch (skill.years) {
+                    case 1:
+                        skill_class = 'text-md my-auto';
+                        break;
+                    case 2:
+                        skill_class = 'text-lg my-auto';
+                        break;
+                    case 3:
+                        skill_class = 'text-xl my-auto';
+                        break;
+                    case 4:
+                        skill_class = 'text-2xl my-auto';
+                        break;
+                    case 5:
+                        skill_class = 'text-3xl my-auto';
+                        break;
+                    case 6:
+                        skill_class = 'text-4xl my-auto';
+                        break;
+                    default:
+                        ('');
+                }
+
+                return (
+                    <Badge key={skill.name} className={skill_class}>
+                        {skill.name}
+                    </Badge>
+                );
+            })}
         </div>
     );
 };
+
+// const SkillsSection = ({ skills }: { skills: SkillCategory[] }) => {
+//     return (
+//         <div>
+//             <Accordion type='multiple'>
+//                 {skills.map((skill, index) => (
+//                     <AccordionItem value={index.toString()} key={skill.categoryName}>
+//                         <AccordionTrigger>{skill.categoryName}</AccordionTrigger>
+//                         <AccordionContent>
+//                             <div className='mb-6 px-6'>
+//                                 <h5 className='text-2xl underline'>Advanced Skills</h5>
+//                                 <ul className='list-disc'>
+//                                     {skill.highSkill?.map((skill) => (
+//                                         <li key={skill}>{skill}</li>
+//                                     ))}
+//                                 </ul>
+//                                 <h5 className='text-2xl underline'>Intermediate Skills</h5>
+//                                 <ul className='list-disc'>
+//                                     {skill.medSkill?.map((skill) => (
+//                                         <li key={skill}>{skill}</li>
+//                                     ))}
+//                                 </ul>
+//                                 <h5 className='text-2xl underline'>Beginner Skills</h5>
+//                                 <ul className='list-disc'>
+//                                     {skill.lowSkill?.map((skill) => (
+//                                         <li key={skill}>{skill}</li>
+//                                     ))}
+//                                 </ul>
+//                             </div>
+//                         </AccordionContent>
+//                     </AccordionItem>
+//                 ))}
+//             </Accordion>
+//         </div>
+//     );
+// };
 
 const EducationSection = ({ education }: { education: Education[] }) => {
     return (
@@ -159,7 +198,8 @@ const ExperienceSection = ({ experience }: { experience: ProfessionalExperience[
 };
 
 export const ResumePanel = () => {
-    const skills: SkillCategory[] = resumeData.skills;
+    const skills: Skill[] = resumeData.skills;
+    // const skillCategories: SkillCategory[] = resumeData.skillCategories;
     const education: Education[] = resumeData.education;
     const experience: ProfessionalExperience[] = resumeData.experience;
 
@@ -167,7 +207,8 @@ export const ResumePanel = () => {
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }} className='m-4'>
             <div className='m-4'>
                 <h4 className='text-4xl underline'>Skills</h4>
-                <SkillsSection skills={skills} />
+                {/* <SkillsSection skills={skillCategories} /> */}
+                <SkillSectionNew skills={skills} />
             </div>
             <div className='m-4'>
                 <h4 className='text-4xl underline'>Education</h4>
