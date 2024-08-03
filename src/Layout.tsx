@@ -144,7 +144,7 @@ export const Layout = () => {
                     <span className='lg:text-xl xl:text-2xl'>Alex Westerman{titleMemo}</span>
                 </div>
                 <div className='flex pr-2'>
-                    <Button variant='ghost' onClick={() => setDarkMode(!darkMode)}>
+                    <Button variant='ghost' onClick={() => setDarkMode(!darkMode)} aria-label='Change Light/Dark Mode'>
                         {darkMode && <MoonStar />}
                         {!darkMode && <Sun />}
                     </Button>

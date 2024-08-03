@@ -54,7 +54,11 @@ const ProjectCard = ({ project }: { project: Project }) => {
                     <TooltipProvider>
                         <Tooltip>
                             <TooltipTrigger asChild>
-                                <Button variant='link' size='icon' onClick={() => window.open(githubLink.linkURL)}>
+                                <Button
+                                    variant='link'
+                                    size='icon'
+                                    onClick={() => window.open(githubLink.linkURL)}
+                                    aria-label='GitHub Repository'>
                                     <Code2 className='h-8 w-8' />
                                 </Button>
                             </TooltipTrigger>
@@ -66,7 +70,11 @@ const ProjectCard = ({ project }: { project: Project }) => {
                     <TooltipProvider>
                         <Tooltip>
                             <TooltipTrigger asChild>
-                                <Button variant='link' size='icon' onClick={() => window.open(demoLink.linkURL)}>
+                                <Button
+                                    variant='link'
+                                    size='icon'
+                                    onClick={() => window.open(demoLink.linkURL)}
+                                    aria-label='Web Demo'>
                                     <AppWindow className='h-8 w-8' />
                                 </Button>
                             </TooltipTrigger>
@@ -78,7 +86,10 @@ const ProjectCard = ({ project }: { project: Project }) => {
                     <TooltipProvider>
                         <Tooltip>
                             <TooltipTrigger asChild>
-                                <Button variant='link' onClick={() => window.open(miscLink.linkURL)}>
+                                <Button
+                                    variant='link'
+                                    onClick={() => window.open(miscLink.linkURL)}
+                                    aria-label='Other Link'>
                                     <Link />
                                 </Button>
                             </TooltipTrigger>
