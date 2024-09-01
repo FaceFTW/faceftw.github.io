@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Route, RouterProvider, createHashRouter, createRoutesFromElements } from 'react-router-dom';
 import { Layout } from './Layout';
+import { BlogPanel } from './routes/Blog';
+import { BlogPagePanel, blogPageLoader } from './routes/BlogPage';
 
 const HomePanel = React.lazy(() => import('./routes/Home').then((module) => ({ default: module.HomePanel })));
 const ProjectsPanel = React.lazy(() =>
@@ -45,6 +47,24 @@ const router = createHashRouter(
                     </SuspenseRoute>
                 }
             />
+
+            <Route
+                path='/blog'
+                element={
+                    <SuspenseRoute>
+                        <BlogPanel />
+                    </SuspenseRoute>
+                }>
+                <Route
+                    path=':postId'
+                    element={
+                        <SuspenseRoute>
+                            <BlogPagePanel />
+                        </SuspenseRoute>
+                    }
+					loader={blogPageLoader}
+                />
+            </Route>
             <Route
                 path='/about'
                 element={

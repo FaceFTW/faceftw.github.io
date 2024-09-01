@@ -62,7 +62,7 @@ const SidenavLinks = ({
                 'Resume'
             )}
             {wrapWithToolTip(
-                <RouterLink to='#' className={sidebarNavItemClass} onClick={closeSidebarTrigger}>
+                <RouterLink to='/blog' className={sidebarNavItemClass} onClick={closeSidebarTrigger}>
                     <Rss className='h-5 w-5 xl:h-10 xl:w-10' />
                     <span className={sidenavTextClass}>Blog (Under Construction)</span>
                 </RouterLink>,

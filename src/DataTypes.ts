@@ -81,3 +81,12 @@ export interface Resume {
     education: Education[];
     experience: ProfessionalExperience[];
 }
+
+export interface BlogPost {
+    title: string;
+    index: string;
+    markdown: string;
+    date: string;
+    summary: string;
+    ext_resources?: string[];
+}
