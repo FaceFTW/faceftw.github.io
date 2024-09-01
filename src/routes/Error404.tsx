@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import { Link } from 'wouter';
 
 export const Error404Panel = () => {
     const imageNum = Math.floor(Math.random() * 19);

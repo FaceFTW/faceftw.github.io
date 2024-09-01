@@ -3,10 +3,11 @@
 import { CircleUser, Home, Menu, MoonStar, Rss, ScrollText, SquareDashedBottomCode, Sun } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { Link as RouterLink, useLocation } from 'react-router-dom';
-import { Outlet } from 'react-router-dom';
+// import { Link as RouterLink, useLocation } from 'react-router-dom';
+// import { Outlet } from 'react-router-dom';
+import { Link, useLocation } from 'wouter';
 import { Sheet, SheetContent, SheetTrigger } from './components/ui/sheet';
-import React, { useEffect } from 'react';
+import React, { type ReactNode, useEffect } from 'react';
 import { Tooltip, TooltipContent, TooltipProvider } from './components/ui/tooltip';
 import { TooltipTrigger } from '@radix-ui/react-tooltip';
 
@@ -41,38 +42,38 @@ const SidenavLinks = ({
     return (
         <nav className='left-0 grid gap-2 md:font-medium md:text-lg xl:text-xl'>
             {wrapWithToolTip(
-                <RouterLink to='/' className={sidebarNavItemClass} onClick={closeSidebarTrigger}>
+                <Link to='/' className={sidebarNavItemClass} onClick={closeSidebarTrigger}>
                     <Home className='h-5 w-5 xl:h-10 xl:w-10' />
                     <span className={sidenavTextClass}>Home</span>
-                </RouterLink>,
+                </Link>,
                 'Home'
             )}
             {wrapWithToolTip(
-                <RouterLink to='/projects' className={sidebarNavItemClass} onClick={closeSidebarTrigger}>
+                <Link to='/projects' className={sidebarNavItemClass} onClick={closeSidebarTrigger}>
                     <SquareDashedBottomCode className='h-5 w-5 xl:h-10 xl:w-10' />
                     <span className={sidenavTextClass}>Projects</span>
-                </RouterLink>,
+                </Link>,
                 'Projects'
             )}
             {wrapWithToolTip(
-                <RouterLink to='/resume' className={sidebarNavItemClass} onClick={closeSidebarTrigger}>
+                <Link to='/resume' className={sidebarNavItemClass} onClick={closeSidebarTrigger}>
                     <ScrollText className='h-5 w-5 xl:h-10 xl:w-10' />
                     <span className={sidenavTextClass}>Resume</span>
-                </RouterLink>,
+                </Link>,
                 'Resume'
             )}
             {wrapWithToolTip(
-                <RouterLink to='#' className={sidebarNavItemClass} onClick={closeSidebarTrigger}>
+                <Link to='#' className={sidebarNavItemClass} onClick={closeSidebarTrigger}>
                     <Rss className='h-5 w-5 xl:h-10 xl:w-10' />
                     <span className={sidenavTextClass}>Blog (Under Construction)</span>
-                </RouterLink>,
+                </Link>,
                 'Blog (Under Construction)'
             )}
             {wrapWithToolTip(
-                <RouterLink to='/about' className={sidebarNavItemClass} onClick={closeSidebarTrigger}>
+                <Link to='/about' className={sidebarNavItemClass} onClick={closeSidebarTrigger}>
                     <CircleUser className='h-5 w-5 xl:h-10 xl:w-10' />
                     <span className={sidenavTextClass}>About</span>
-                </RouterLink>,
+                </Link>,
                 'About'
             )}
         </nav>
@@ -92,9 +93,9 @@ const SiteFooter = () => {
                             All projects mentioned are subject to their specific licenses and copyrights as designated
                             by their owners
                             {'\n\n'}
-                            <RouterLink to='/funny' className='text-gray-500 text-sm decoration-muted'>
+                            <Link to='/funny' className='text-gray-500 text-sm decoration-muted'>
                                 super secret link
-                            </RouterLink>
+                            </Link>
                         </pre>
                     </caption>
                 </CardContent>
@@ -103,17 +104,17 @@ const SiteFooter = () => {
     );
 };
 
-export const Layout = () => {
+export const Layout = ({ children }: { children: ReactNode }) => {
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     //Move sheet open/close state up
     const [openSheet, setOpenSheet] = React.useState(false);
     const [darkMode, setDarkMode] = React.useState(prefersDark);
-    const currentLocation = useLocation();
+    const [location, _] = useLocation();
 
     const titleMemo = React.useMemo(() => {
-        const title = currentLocation.pathname.split('/')[1];
+        const title = location.split('/')[1];
         return title === '' ? '' : ` - ${title.charAt(0).toUpperCase()}${title.slice(1)}`;
-    }, [currentLocation.pathname]);
+    }, [location]);
 
     const sheetClickCloseTrigger = () => {
         setOpenSheet(false);
@@ -160,7 +161,8 @@ export const Layout = () => {
                     </div>
                 </div>
                 <main className='flex flex-1 flex-col'>
-                    <Outlet />
+                    {/* <Outlet /> */}
+                    {children}
                     <div className='flex items-center'>
                         <SiteFooter />
                     </div>

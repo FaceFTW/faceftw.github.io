@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { Route, RouterProvider, createHashRouter, createRoutesFromElements } from 'react-router-dom';
+// import { Route, RouterProvider, createHashRouter, createRoutesFromElements } from 'react-router-dom';
 import { Layout } from './Layout';
+import { Route, Switch } from 'wouter';
 
 const HomePanel = React.lazy(() => import('./routes/Home').then((module) => ({ default: module.HomePanel })));
 const ProjectsPanel = React.lazy(() =>
@@ -18,56 +19,85 @@ const SuspenseRoute = ({ children }: { children: React.ReactNode }) => {
     return <React.Suspense fallback={<></>}>{children}</React.Suspense>;
 };
 
-const router = createHashRouter(
-    createRoutesFromElements([
-        <Route path='/' element={<Layout />} key={'root-route'}>
-            <Route
-                index
-                element={
-                    <SuspenseRoute>
-                        <HomePanel />
-                    </SuspenseRoute>
-                }
-            />
-            <Route
-                path='/projects'
-                element={
-                    <SuspenseRoute>
-                        <ProjectsPanel />
-                    </SuspenseRoute>
-                }
-            />
-            <Route
-                path='/resume'
-                element={
-                    <SuspenseRoute>
-                        <ResumePanel />
-                    </SuspenseRoute>
-                }
-            />
-            <Route
-                path='/about'
-                element={
-                    <SuspenseRoute>
-                        <AboutPanel />
-                    </SuspenseRoute>
-                }
-            />
-            <Route
-                path='*'
-                element={
-                    <SuspenseRoute>
-                        <Error404Panel />
-                    </SuspenseRoute>
-                }
-            />
-        </Route>,
-    ])
-);
+// const router = createHashRouter(
+//     createRoutesFromElements([
+//         <Route path='/' element={<Layout />} key={'root-route'}>
+//             <Route
+//                 index
+//                 element={
+//                     <SuspenseRoute>
+//                         <HomePanel />
+//                     </SuspenseRoute>
+//                 }
+//             />
+//             <Route
+//                 path='/projects'
+//                 element={
+//                     <SuspenseRoute>
+//                         <ProjectsPanel />
+//                     </SuspenseRoute>
+//                 }
+//             />
+//             <Route
+//                 path='/resume'
+//                 element={
+//                     <SuspenseRoute>
+//                         <ResumePanel />
+//                     </SuspenseRoute>
+//                 }
+//             />
+//             <Route
+//                 path='/about'
+//                 element={
+//                     <SuspenseRoute>
+//                         <AboutPanel />
+//                     </SuspenseRoute>
+//                 }
+//             />
+//             <Route
+//                 path='*'
+//                 element={
+//                     <SuspenseRoute>
+//                         <Error404Panel />
+//                     </SuspenseRoute>
+//                 }
+//             />
+//         </Route>,
+//     ])
+// );
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
     <React.StrictMode>
-        <RouterProvider router={router} />
+        {/* <RouterProvider router={router} /> */}
+        <Layout>
+            <Switch>
+                <Route path='/'>
+                    <SuspenseRoute>
+                        <HomePanel />
+                    </SuspenseRoute>
+                </Route>
+                <Route path='/projects'>
+                    <SuspenseRoute>
+                        <ProjectsPanel />
+                    </SuspenseRoute>
+                </Route>
+                <Route path='/resume'>
+                    <SuspenseRoute>
+                        <ResumePanel />
+                    </SuspenseRoute>
+                </Route>
+                <Route path='/about'>
+                    <SuspenseRoute>
+                        <AboutPanel />
+                    </SuspenseRoute>
+                </Route>
+                <Route path='*'>
+                    <SuspenseRoute>
+                        <Error404Panel />
+                    </SuspenseRoute>
+                </Route>
+            </Switch>
+        </Layout>
     </React.StrictMode>
 );
