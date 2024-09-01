@@ -8,6 +8,8 @@ import React from 'react';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import ReactDOM from 'react-dom/client';
 import { Route, Switch, Link, useLocation } from 'wouter';
+import { BlogPanel } from '@/routes/Blog';
+import { BlogPagePanel } from '@/routes/BlogPage';
 
 const HomePanel = React.lazy(() => import('@/routes/Home').then((module) => ({ default: module.HomePanel })));
 const ProjectsPanel = React.lazy(() =>
@@ -76,7 +78,7 @@ const SidenavLinks = ({
                 'Resume'
             )}
             {wrapWithToolTip(
-                <Link to='#' className={sidebarNavItemClass} onClick={closeSidebarTrigger}>
+                <Link to='/blog' className={sidebarNavItemClass} onClick={closeSidebarTrigger}>
                     <Rss className='h-5 w-5 xl:h-10 xl:w-10' />
                     <span className={sidenavTextClass}>Blog (Under Construction)</span>
                 </Link>,
@@ -138,6 +140,16 @@ const SiteRouter = () => {
             <Route path='/about'>
                 <SuspenseRoute>
                     <AboutPanel />
+                </SuspenseRoute>
+            </Route>
+            <Route path='/blog'>
+                <SuspenseRoute>
+                    <BlogPanel />
+                </SuspenseRoute>
+            </Route>
+            <Route path='/blog/:postId'>
+                <SuspenseRoute>
+                    <BlogPagePanel />
                 </SuspenseRoute>
             </Route>
             <Route path='*'>

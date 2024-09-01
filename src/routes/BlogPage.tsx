@@ -1,6 +1,6 @@
 import type { BlogPost } from '@/DataTypes';
 import blogData from '../assets/markdown/blog_list.json';
-import { useLoaderData } from 'react-router-dom';
+// import { useLoaderData } from 'react-router-dom';
 
 const LIST: BlogPost[] = blogData;
 
@@ -9,8 +9,8 @@ const indexString = (idx: number): string => {
 };
 
 export const BlogPagePanel = () => {
-    const blogPageInfo: BlogPost = useLoaderData() as BlogPost;
-    return <div>{blogPageInfo.index}</div>;
+    // const blogPageInfo: BlogPost = useLoaderData() as BlogPost;
+    return <div>test</div>;
 };
 
 export const blogPageLoader = async (params: { index: number }) => {
