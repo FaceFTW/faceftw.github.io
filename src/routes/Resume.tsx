@@ -45,7 +45,7 @@ import { Badge } from '@/components/ui/badge';
 // 	);
 // };
 
-const SkillSectionNew = ({ skills }: { skills: Skill[] }) => {
+const SkillSection = ({ skills }: { skills: Skill[] }) => {
     return (
         <div className='mb-4 space-x-1 space-y-2 '>
             {skills.map((skill) => {
@@ -82,42 +82,6 @@ const SkillSectionNew = ({ skills }: { skills: Skill[] }) => {
         </div>
     );
 };
-
-// const SkillsSection = ({ skills }: { skills: SkillCategory[] }) => {
-//     return (
-//         <div>
-//             <Accordion type='multiple'>
-//                 {skills.map((skill, index) => (
-//                     <AccordionItem value={index.toString()} key={skill.categoryName}>
-//                         <AccordionTrigger>{skill.categoryName}</AccordionTrigger>
-//                         <AccordionContent>
-//                             <div className='mb-6 px-6'>
-//                                 <h5 className='text-2xl underline'>Advanced Skills</h5>
-//                                 <ul className='list-disc'>
-//                                     {skill.highSkill?.map((skill) => (
-//                                         <li key={skill}>{skill}</li>
-//                                     ))}
-//                                 </ul>
-//                                 <h5 className='text-2xl underline'>Intermediate Skills</h5>
-//                                 <ul className='list-disc'>
-//                                     {skill.medSkill?.map((skill) => (
-//                                         <li key={skill}>{skill}</li>
-//                                     ))}
-//                                 </ul>
-//                                 <h5 className='text-2xl underline'>Beginner Skills</h5>
-//                                 <ul className='list-disc'>
-//                                     {skill.lowSkill?.map((skill) => (
-//                                         <li key={skill}>{skill}</li>
-//                                     ))}
-//                                 </ul>
-//                             </div>
-//                         </AccordionContent>
-//                     </AccordionItem>
-//                 ))}
-//             </Accordion>
-//         </div>
-//     );
-// };
 
 const EducationSection = ({ education }: { education: Education[] }) => {
     return (
@@ -206,8 +170,7 @@ export const ResumePanel = () => {
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }} className='m-4'>
             <div className='m-4'>
                 <h4 className='text-4xl underline'>Skills</h4>
-                {/* <SkillsSection skills={skillCategories} /> */}
-                <SkillSectionNew skills={skills} />
+                <SkillSection skills={skills} />
             </div>
             <div className='m-4'>
                 <h4 className='text-4xl underline'>Education</h4>

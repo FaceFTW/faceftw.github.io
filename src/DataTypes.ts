@@ -54,13 +54,6 @@ export interface Education {
     propCoursework?: string[];
 }
 
-export interface SkillCategory {
-    categoryName: string;
-    highSkill?: string[];
-    medSkill?: string[];
-    lowSkill?: string[];
-}
-
 export interface Skill {
     name: string;
     years: number;
@@ -76,7 +69,6 @@ export interface ResumeHighlight {
 export interface Resume {
     $schema: string;
     highlights: ResumeHighlight[];
-    skillCategories: SkillCategory[];
     skills: Skill[];
     education: Education[];
     experience: ProfessionalExperience[];

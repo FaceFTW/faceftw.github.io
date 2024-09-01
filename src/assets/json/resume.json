@@ -17,47 +17,6 @@
 			"statDescription": "Effort, Dedication, and Learning"
 		}
 	],
-	"skillCategories": [
-		{
-			"categoryName": "Computer Programming/Software Engineering",
-			"lowSkill": [
-				"Graphics Programming (OpenGL Legacy)"
-			],
-			"medSkill": [
-				"SQL Database and Queries (PostgreSQL/Microsoft SQL Server)",
-				"Windows and Linux/UNIX Kernels and Environments",
-				"Low-Level Programming and Processor Architecture",
-				"Scripting/Automation (with Powershell/Bash)",
-				"Git Version Control",
-				"Continuous Integration/Continuous Deployment (CI/CD) via GitHub Actions",
-				"Full-Stack Web Development"
-			],
-			"highSkill": [
-				"Software Testing Automation",
-				"Software Design and Architecture",
-				"Industry-Standard Languages, including C, C++, C#, and Java",
-				"Web Design (HTML5, CSS3, Javascript/Typescript)",
-				"Web Application Frameworks (Angular, ReactJS (w/ Redux), NodeJS)",
-				".NET and .NET Extensions (ASP.NET, Entity Framework, LINQ)",
-				"Systems Programming with Rust"
-			]
-		},
-		{
-			"categoryName": "Computer Hardware/Repair",
-			"lowSkill": [
-				"Electronic Component Form Factors, Functions, and Use Cases"
-			],
-			"medSkill": [
-				"IoT Devices and Architecture",
-				"Arduino",
-				"Raspberry Pi",
-				"Data Recovery and Old Hardware Refurbishment"
-			],
-			"highSkill": [
-				"Computer Internals and Hardware"
-			]
-		}
-	],
 	"skills": [
 		{
 			"name": "Rust",
