@@ -1,24 +1,25 @@
 import { motion } from 'framer-motion';
 import React from 'react';
-import type { Project } from '../DataTypes';
-import projectData from '../assets/json/projects.json';
+import type { Project } from '@/DataTypes';
+import projectData from '@/assets/json/projects.json';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import Autoplay from 'embla-carousel-autoplay';
-import { ProjectCarouselCard } from '../components/ProjectCarouselCard';
+import { ProjectCarouselCard } from '@/components/ProjectCarouselCard';
 import TypewriterComponent from 'typewriter-effect';
-import Pfp from '../assets/img/pfp.webp';
-import gpgkey from '../assets/json/gpg_key.json';
+import Pfp from '@/assets/img/pfp.webp';
+import gpgkey from '@/assets/json/gpg_key.json';
 import { TooltipProvider, Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 import { Button } from '@/components/ui/button';
 import { Github, Key, Linkedin, Mail, Twitter } from 'lucide-react';
 import { Separator } from '@radix-ui/react-separator';
-import { AlertDialog, AlertDialogFooter, AlertDialogHeader } from '@/components/ui/alert-dialog';
 import {
+    AlertDialog,
+    AlertDialogFooter,
+    AlertDialogHeader,
     AlertDialogAction,
     AlertDialogContent,
     AlertDialogDescription,
-    AlertDialogTrigger,
-} from '@radix-ui/react-alert-dialog';
+} from '@/components/ui/alert-dialog';
 
 const SocialSection = () => {
     const [gpgAlertWindow, setGpgAlertWindow] = React.useState(false);

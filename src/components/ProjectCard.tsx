@@ -1,11 +1,11 @@
 import { useInView } from 'framer-motion';
 import React from 'react';
-import type { Project } from '../DataTypes';
-import { Card, CardDescription, CardFooter, CardTitle, CardContent, CardHeader } from './ui/card';
-import { Button } from './ui/button';
-import { TooltipTrigger, TooltipProvider, TooltipContent, Tooltip } from './ui/tooltip';
+import type { Project } from '@/DataTypes';
+import { Card, CardDescription, CardFooter, CardTitle, CardContent, CardHeader } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { TooltipTrigger, TooltipProvider, TooltipContent, Tooltip } from '@/components/ui/tooltip';
 import { AppWindow, Code2, Link } from 'lucide-react';
-import { Badge } from './ui/badge';
+import { Badge } from '@/components/ui/badge';
 
 //TODO For future me: image transition props
 // 	sx={{

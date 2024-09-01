@@ -1,8 +1,7 @@
 import { motion } from 'framer-motion';
-import type { Education, ProfessionalExperience, Skill, SkillCategory } from '../DataTypes';
-import resumeData from '../assets/json/resume.json';
-import { Accordion, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
-import { AccordionContent } from '@radix-ui/react-accordion';
+import type { Education, ProfessionalExperience, Skill } from '@/DataTypes';
+import resumeData from '@/assets/json/resume.json';
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/components/ui/accordion';
 import { Badge } from '@/components/ui/badge';
 
 // const Highlights = ({ highlights }: { highlights: ResumeHighlight[] }) => {

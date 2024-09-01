@@ -1,6 +1,6 @@
-import projectData from '../assets/json/projects.json';
-import ProjectCard from '../components/ProjectCard';
-import type { Project } from '../DataTypes';
+import projectData from '@/assets/json/projects.json';
+import ProjectCard from '@/components/ProjectCard';
+import type { Project } from '@/DataTypes';
 
 export const ProjectsPanel = () => {
     const projects: Project[] = projectData.projectList;

@@ -4,19 +4,19 @@ import { CircleUser, Home, Menu, MoonStar, Rss, ScrollText, SquareDashedBottomCo
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
-import React, { type ReactNode, useEffect } from 'react';
+import React from 'react';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import ReactDOM from 'react-dom/client';
 import { Route, Switch, Link, useLocation } from 'wouter';
 
-const HomePanel = React.lazy(() => import('./routes/Home').then((module) => ({ default: module.HomePanel })));
+const HomePanel = React.lazy(() => import('@/routes/Home').then((module) => ({ default: module.HomePanel })));
 const ProjectsPanel = React.lazy(() =>
-    import('./routes/Projects').then((module) => ({ default: module.ProjectsPanel }))
+    import('@/routes/Projects').then((module) => ({ default: module.ProjectsPanel }))
 );
-const ResumePanel = React.lazy(() => import('./routes/Resume').then((module) => ({ default: module.ResumePanel })));
-const AboutPanel = React.lazy(() => import('./routes/About').then((module) => ({ default: module.AboutPanel })));
+const ResumePanel = React.lazy(() => import('@/routes/Resume').then((module) => ({ default: module.ResumePanel })));
+const AboutPanel = React.lazy(() => import('@/routes/About').then((module) => ({ default: module.AboutPanel })));
 const Error404Panel = React.lazy(() =>
-    import('./routes/Error404').then((module) => ({ default: module.Error404Panel }))
+    import('@/routes/Error404').then((module) => ({ default: module.Error404Panel }))
 );
 
 const SuspenseRoute = ({ children }: { children: React.ReactNode }) => {
@@ -165,7 +165,7 @@ const Layout = () => {
         setOpenSheet(false);
     };
 
-    useEffect(() => {
+    React.useEffect(() => {
         darkMode ? document.body.classList.add('dark') : document.body.classList.remove('dark');
     }, [darkMode]);
 

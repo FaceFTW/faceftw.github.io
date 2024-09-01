@@ -1,12 +1,11 @@
 import React from 'react';
-import type { Project } from '../DataTypes';
+import type { Project } from '@/DataTypes';
 import { useInView } from 'framer-motion';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from './ui/card';
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from './ui/tooltip';
-import { Button } from './ui/button';
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
+import { Button } from '@/components/ui/button';
 import { AppWindow, Code2, Link } from 'lucide-react';
-import { Separator } from './ui/separator';
-import { Badge } from './ui/badge';
+import { Badge } from '@/components/ui/badge';
 
 //TODO for future me, transition code for cards
 // 	sx={{
