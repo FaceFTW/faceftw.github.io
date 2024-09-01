@@ -16,16 +16,6 @@
 			"minItems": 3,
 			"maxItems": 3
 		},
-		"skillCategories": {
-			"description": "Represents the skills shown on the resume",
-			"type": "array",
-			"items": {
-				"type": "object",
-				"$ref": "#/$defs/skillCategory"
-			},
-			"minItems": 1,
-			"uniqueItems": true
-		},
 		"skills": {
 			"description": "Represents the skills shown on the resume",
 			"type": "object",
@@ -76,46 +66,6 @@
 				"icon",
 				"stat",
 				"statDescription"
-			]
-		},
-		"skillCategory": {
-			"description": "Represents a category for skills",
-			"type": "object",
-			"properties": {
-				"categoryName": {
-					"description": "Name of the skill category",
-					"type": "string"
-				},
-				"highSkill": {
-					"description": "List of skills withing the category with advanced knowledge",
-					"type": "array",
-					"items": {
-						"type": "string"
-					},
-					"minItems": 1,
-					"uniqueItems": true
-				},
-				"medSkill": {
-					"description": "List of skills withing the category with intermediate knowledge",
-					"type": "array",
-					"items": {
-						"type": "string"
-					},
-					"minItems": 1,
-					"uniqueItems": true
-				},
-				"lowSkill": {
-					"description": "List of skills withing the category with beginner knowledge",
-					"type": "array",
-					"items": {
-						"type": "string"
-					},
-					"minItems": 1,
-					"uniqueItems": true
-				}
-			},
-			"required": [
-				"categoryName"
 			]
 		},
 		"skills": {

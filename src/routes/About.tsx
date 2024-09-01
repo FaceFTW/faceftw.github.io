@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 
-const workspaceImage = new URL('../assets/img/workspace.webp', import.meta.url).href;
-const setupImage = new URL('../assets/img/setupv2.webp', import.meta.url).href;
+const workspaceImage = new URL('@/assets/img/workspace.webp', import.meta.url).href;
+const setupImage = new URL('@/assets/img/setupv2.webp', import.meta.url).href;
 
 export const AboutPanel = () => {
     return (
