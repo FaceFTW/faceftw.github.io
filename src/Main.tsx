@@ -18,6 +18,10 @@ const AboutPanel = React.lazy(() => import('@/routes/About').then((module) => ({
 const Error404Panel = React.lazy(() =>
     import('@/routes/Error404').then((module) => ({ default: module.Error404Panel }))
 );
+const BlogPanel = React.lazy(() => import('@/routes/Blog').then((module) => ({ default: module.BlogPanel })));
+const BlogPagePanel = React.lazy(() =>
+    import('@/routes/BlogPage').then((module) => ({ default: module.BlogPagePanel }))
+);
 
 const SuspenseRoute = ({ children }: { children: React.ReactNode }) => {
     // biome-ignore lint/complexity/noUselessFragments: need an empty fragment here
@@ -76,7 +80,7 @@ const SidenavLinks = ({
                 'Resume'
             )}
             {wrapWithToolTip(
-                <Link to='#' className={sidebarNavItemClass} onClick={closeSidebarTrigger}>
+                <Link to='/blog' className={sidebarNavItemClass} onClick={closeSidebarTrigger}>
                     <Rss className='h-5 w-5 xl:h-10 xl:w-10' />
                     <span className={sidenavTextClass}>Blog (Under Construction)</span>
                 </Link>,
@@ -140,7 +144,17 @@ const SiteRouter = () => {
                     <AboutPanel />
                 </SuspenseRoute>
             </Route>
-            <Route path='*'>
+            <Route path='/blog'>
+                <SuspenseRoute>
+                    <BlogPanel />
+                </SuspenseRoute>
+            </Route>
+            <Route path='/blog/:postId'>
+                <SuspenseRoute>
+                    <BlogPagePanel />
+                </SuspenseRoute>
+            </Route>
+            <Route>
                 <SuspenseRoute>
                     <Error404Panel />
                 </SuspenseRoute>
