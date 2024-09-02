@@ -8,8 +8,6 @@ import React from 'react';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import ReactDOM from 'react-dom/client';
 import { Route, Switch, Link, useLocation } from 'wouter';
-import { BlogPanel } from '@/routes/Blog';
-import { BlogPagePanel } from '@/routes/BlogPage';
 
 const HomePanel = React.lazy(() => import('@/routes/Home').then((module) => ({ default: module.HomePanel })));
 const ProjectsPanel = React.lazy(() =>
@@ -19,6 +17,10 @@ const ResumePanel = React.lazy(() => import('@/routes/Resume').then((module) => 
 const AboutPanel = React.lazy(() => import('@/routes/About').then((module) => ({ default: module.AboutPanel })));
 const Error404Panel = React.lazy(() =>
     import('@/routes/Error404').then((module) => ({ default: module.Error404Panel }))
+);
+const BlogPanel = React.lazy(() => import('@/routes/Blog').then((module) => ({ default: module.BlogPanel })));
+const BlogPagePanel = React.lazy(() =>
+    import('@/routes/BlogPage').then((module) => ({ default: module.BlogPagePanel }))
 );
 
 const SuspenseRoute = ({ children }: { children: React.ReactNode }) => {

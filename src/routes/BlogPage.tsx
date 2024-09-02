@@ -2,15 +2,15 @@ import type { BlogPost } from '@/DataTypes';
 import blogData from '../assets/markdown/blog_list.json';
 import { useParams } from 'wouter';
 import React from 'react';
-import { MarkdownRender } from '@/components/MarkdownRender';
+import { Skeleton } from '@/components/ui/skeleton';
+
+const MarkdownRender = React.lazy(() =>
+    import('@/components/MarkdownRender').then((module) => ({ default: module.MarkdownRender }))
+);
 
 const LIST: BlogPost[] = blogData.sort((a, b) => {
     return Number.parseInt(a.index) - Number.parseInt(b.index);
 });
-
-// const indexString = (idx: number): string => {
-//     return idx.toString().padStart(4, '0');
-// };
 
 export const BlogPagePanel = () => {
     // const blogPageInfo: BlogPost = useLoaderData() as BlogPost;
@@ -20,7 +20,6 @@ export const BlogPagePanel = () => {
     const markdownUrl = new URL(`../assets/markdown/${metadata.markdown}`, import.meta.url).href;
 
     const [markdownData, setMarkdownData] = React.useState('');
-    // const deferredMarkdownData = React.useDeferredValue('Loading');
 
     React.useEffect(() => {
         fetch(markdownUrl).then((res) => {
@@ -30,7 +29,15 @@ export const BlogPagePanel = () => {
 
     return (
         <div className='mx-16 my-4'>
-            <MarkdownRender>{markdownData}</MarkdownRender>
+            <React.Suspense
+                fallback={
+                    <>
+                        <Skeleton />
+                        <Skeleton />
+                    </>
+                }>
+                <MarkdownRender>{markdownData}</MarkdownRender>
+            </React.Suspense>
         </div>
     );
 };

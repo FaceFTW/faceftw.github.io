@@ -1,12 +1,20 @@
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter';
 import remarkGfm from 'remark-gfm';
 import ReactMarkdown from 'react-markdown';
 import { darcula } from 'react-syntax-highlighter/dist/esm/styles/prism';
-import remarkImages from 'remark-images';
 import { cn } from '@/lib/utils';
 import type React from 'react';
 import { Separator } from './ui/separator';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from './ui/table';
+import java from 'react-syntax-highlighter/dist/esm/languages/prism/java';
+import bash from 'react-syntax-highlighter/dist/esm/languages/prism/bash';
+import csharp from 'react-syntax-highlighter/dist/esm/languages/prism/csharp';
+import rust from 'react-syntax-highlighter/dist/esm/languages/prism/rust';
+
+SyntaxHighlighter.registerLanguage('java', java);
+SyntaxHighlighter.registerLanguage('bash', bash);
+SyntaxHighlighter.registerLanguage('csharp', csharp);
+SyntaxHighlighter.registerLanguage('rust', rust);
 
 export const MarkdownRender = ({ children }: { children: string | null | undefined }) => {
     return (
@@ -145,18 +153,15 @@ export const MarkdownRender = ({ children }: { children: string | null | undefin
                         return <Separator className={cn('mb-4', className)} {...rest} />;
                     },
                     img(props) {
-                        const { src, className, ...rest } = props;
+                        const { src, alt, className, ...rest } = props;
                         const href = new URL(`../assets/markdown/${src}` ?? '', import.meta.url).href;
-                        // biome-ignore lint/a11y/useAltText: <explanation>
-                        return <img src={href} className={cn('mb-4', 'mx-auto', className)} {...rest} />;
+                        // biome-ignore lint/a11y/useAltText: lazy
+                        return <img src={href} alt={alt} className={cn('mb-4', 'mx-auto', className)} {...rest} />;
                     },
                     table(props) {
                         const { children, className, ...rest } = props;
-
                         return (
-                            <Table
-                                className={cn('table-auto', 'border-neutral-500', 'mx-auto', 'mb-4', className)}
-                                {...rest}>
+                            <Table className={cn('table-auto', 'mx-auto', 'mb-4', className)} {...rest}>
                                 {children}
                             </Table>
                         );
