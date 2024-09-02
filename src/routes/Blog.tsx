@@ -1,6 +1,7 @@
 import type { BlogPost } from '@/DataTypes';
 import blogData from '../assets/markdown/blog_list.json';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import {Link} from 'wouter';
 
 const BlogEntry = ({ blogData }: { blogData: BlogPost }) => {
     return (
@@ -27,7 +28,9 @@ export const BlogPanel = () => {
                     return Number.parseInt(b.index) - Number.parseInt(a.index);
                 })
                 .map((page) => (
-                    <BlogEntry blogData={page} key={page.index} />
+                    <Link to={`/blog/${page.index}`} key={page.index}>
+                        <BlogEntry blogData={page} />
+                    </Link>
                 ))}
         </div>
     );

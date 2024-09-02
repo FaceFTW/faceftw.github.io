@@ -15,9 +15,9 @@ const LIST: BlogPost[] = blogData.sort((a, b) => {
 export const BlogPagePanel = () => {
     // const blogPageInfo: BlogPost = useLoaderData() as BlogPost;
     const params = useParams();
-    const blogIndex = Number.parseInt(params.postId as string) - 1;
-    const metadata = LIST[blogIndex];
-    const markdownUrl = new URL(`../assets/markdown/${metadata.markdown}`, import.meta.url).href;
+    const metadata = LIST.find((post) => Number.parseInt(params.postId ?? '-1') === Number.parseInt(post.index));
+    const markdownUrl = new URL(`../assets/markdown/${metadata ? metadata.markdown : 'NotFound.md'}`, import.meta.url)
+        .href;
 
     const [markdownData, setMarkdownData] = React.useState('');
 
