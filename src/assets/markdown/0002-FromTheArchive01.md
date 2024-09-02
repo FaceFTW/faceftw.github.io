@@ -1,6 +1,10 @@
 <!--09-01-2024-->
 # From the Archives - Reasoning about Linter Design
-
+## header 2
+### header 3
+#### header 4
+##### header 5
+###### header 6
 This is a blogified form of the design journals I wrote for [DesignLint](https://github.com/FaceFTW/DesignLint), a Java Linter project I worked on with others for the Software Design and Software Construction and Evolution (aka. Software Refactoring) courses at Rose-Hulman as a student. The content here mainly talks about designing specific lints and some other design decisions made related to designing the actual framework and linter application. Compared to my teammates, I chose to structure my journal by features I worked on rather than what I did each day since it was easier to understand what I'm doing over the span of a few days rather than singular days.
 
 This can be viewed on the project wiki along with the other design journals of my group members on the project repository [here](https://github.com/FaceFTW/DesignLint/wiki/%5BARCHIVE%5D-Old-Journal-Entries). I've also taken the liberty to indicate places where link rot or other missing resources occur.
