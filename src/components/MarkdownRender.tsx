@@ -2,8 +2,11 @@ import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import remarkGfm from 'remark-gfm';
 import ReactMarkdown from 'react-markdown';
 import { darcula } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import remarkImages from 'remark-images';
 import { cn } from '@/lib/utils';
 import type React from 'react';
+import { Separator } from './ui/separator';
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from './ui/table';
 
 export const MarkdownRender = ({ children }: { children: string | null | undefined }) => {
     return (
@@ -135,6 +138,67 @@ export const MarkdownRender = ({ children }: { children: string | null | undefin
                             <p className={cn('mb-4', 'leading-relaxed', className)} {...rest}>
                                 {children}
                             </p>
+                        );
+                    },
+                    hr(props) {
+                        const { className, ...rest } = props;
+                        return <Separator className={cn('mb-4', className)} {...rest} />;
+                    },
+                    img(props) {
+                        const { src, className, ...rest } = props;
+                        const href = new URL(`../assets/markdown/${src}` ?? '', import.meta.url).href;
+                        // biome-ignore lint/a11y/useAltText: <explanation>
+                        return <img src={href} className={cn('mb-4', 'mx-auto', className)} {...rest} />;
+                    },
+                    table(props) {
+                        const { children, className, ...rest } = props;
+
+                        return (
+                            <Table
+                                className={cn('table-auto', 'border-neutral-500', 'mx-auto', 'mb-4', className)}
+                                {...rest}>
+                                {children}
+                            </Table>
+                        );
+                    },
+                    thead(props) {
+                        const { children, className, ...rest } = props;
+                        return (
+                            <TableHeader className={cn(className)} {...rest}>
+                                {children}
+                            </TableHeader>
+                        );
+                    },
+                    tbody(props) {
+                        const { children, className, ...rest } = props;
+                        return (
+                            <TableBody className={cn(className)} {...rest}>
+                                {children}
+                            </TableBody>
+                        );
+                    },
+                    tr(props) {
+                        const { children, className, ...rest } = props;
+                        return (
+                            <TableRow className={cn(className)} {...rest}>
+                                {children}
+                            </TableRow>
+                        );
+                    },
+                    td(props) {
+                        const { children, className, ...rest } = props;
+                        return (
+                            <TableCell className={cn(className)} {...rest}>
+                                {children}
+                            </TableCell>
+                        );
+                    },
+                    th(props) {
+                        const { children, className, ...rest } = props;
+                        return (
+                            <TableHead className={cn(className)} {...rest}>
+                                <strong>{children}</strong>
+                            </TableHead>
                         );
                     },
                 }}>

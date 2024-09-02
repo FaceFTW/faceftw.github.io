@@ -1,17 +1,15 @@
-<!--09-01-2024-->
 # From the Archives - Reasoning about Linter Design
-## header 2
-### header 3
-#### header 4
-##### header 5
-###### header 6
+
 This is a blogified form of the design journals I wrote for [DesignLint](https://github.com/FaceFTW/DesignLint), a Java Linter project I worked on with others for the Software Design and Software Construction and Evolution (aka. Software Refactoring) courses at Rose-Hulman as a student. The content here mainly talks about designing specific lints and some other design decisions made related to designing the actual framework and linter application. Compared to my teammates, I chose to structure my journal by features I worked on rather than what I did each day since it was easier to understand what I'm doing over the span of a few days rather than singular days.
 
 This can be viewed on the project wiki along with the other design journals of my group members on the project repository [here](https://github.com/FaceFTW/DesignLint/wiki/%5BARCHIVE%5D-Old-Journal-Entries). I've also taken the liberty to indicate places where link rot or other missing resources occur.
 
 __Additional NOTE: While I strive to be accurate with these blog posts, I have chosed to not correct any specific errors in content in this post. This is a preservation decision and also a laziness decision.__
 
-===
+__*NOTE: Use of information in this post or the associated project code should be cited properly. Failure to do so would be considered plagarism in (primarily) academic contexts. I do not condone cheating or academic dishonesty.*__
+
+---
+
 ## 2/2/22 - 2/8/22 (Architecture Specification)
 
 This is an aggregate entry that discusses most of the design decisions decided (in conjunction with other group members) as well as other relevant planning details
@@ -201,7 +199,7 @@ This is great! ASM already does the work needed to separate throws declarations 
 
 While the analyzer is going to be implemented as a `DomainAnalyzer` in the context of the architecture, there needs to be a way to test the singluar unit of exception analysis against various cases. Moreover, I've generated the following cases that should either be compliant or non-compliant with the linter's rules:
 
-![All the test cases](./exceptionstyleexamples.png)
+![All the test cases](./0002/0002/exceptionstyleexamples.png)
 
 In practice, these method names are really excessive, but they effectively describe what each example is supposed to represent. Overall, there are 7 types of speicific violations that this linter will support, which are defined in an enum of`ExceptionThrownAnalyzer.java`:
 
@@ -239,7 +237,7 @@ Class coupling by definition is pretty straightforward: the more dependendent a 
 
 Another thing to consider is what type of unique classes to include in the coupling count. A good reason for this consideration is because the use of fundamental classes (such as those defining primitive classes) could inflate those numbers to indicate that the class or module is less maintainable than it actually is. [Visual Studio's Code Metrics](https://docs.microsoft.com/en-us/visualstudio/code-quality/code-metrics-class-coupling?view=vs-2022) doesn't include C# primitive types such as `string`, `int`, `boolean`, however it does count those provided by the .NET framework.
 
-![An example](./seeminglyhighcouplingexample.png)
+![An example](./0002/seeminglyhighcouplingexample.png)
 
 Here is an example of some code metrics against my (admittedly overkill) implementation of the original Shopping Cart homework assignment (which was written as a microservice API in C#). Visual Studio 2022 evaluates the entire project to have a class coupling of 75, with the the `StoreController` being the class with the highest coupling of 43. Initially, seeing these numbers and knowing the base definition of class coupling, it was pretty shocking and I even documented this in that assignment's engineering notebook, but I investigated to ensure that I was actually writing good software. In fact the answer was pretty transparent when looking at the class coupling count for the fields in `StoreController`: you can see that `HttpClient` and `_dbContext` each have a class coupling of one. While I expect the `ApiDbContext` object `_dbContext` to increase the class coupling inherently by being in the design, `HttpClient` is part of the ASP.NET framework yet is still counted by the code metrics. Furthermore, you can notice that the `_badDiscountCounter` which is of type `Dictionary<string,int>` only has a class coupling of one, given that the generic type parameters are both primitive.
 
@@ -362,7 +360,7 @@ There are many ways to remedy this, such as adding the `-cp` argument to the Jav
 
 Below is an updated class diagram focused mainly on the presentation layer and the prominent parts of the domain layer. The data source layer is noted but not fully elaborated as it is not entirely relevant to how the presentation layer functions.
 
-![presentationlayer](./PresentationLayer.png)
+![presentationlayer](./0002/PresentationLayer.png)
 
 Overall it is a very light facade-like design that follows many of the principles of the Three Layers architecture. However, I chose a separation between the presentation layer and a bootstrap class because of the following reasons:
 
@@ -382,14 +380,14 @@ This entry discusses the ideas on how I plan to implement the final feature I ha
 
 THe primary purpose of the strategy is to allow for a class to select algorithms dynamically at runtime based on some concrete stategy object implementing a strategy interface.
 
-| ![basic strategy pattern](./BasicStrategy.png) |
-|:------------------------------------------------:|
+| ![basic strategy pattern](./0002/BasicStrategy.png) |
+|:----------------------------------------------:|
 
 The above UML class diagram depicts a very simple strategy pattern with two possible concrete versions of the abstract `strategyMethod()` that is called in `SomeObject`'s `doSomethingUsingStrategy()`. The strategy for SomeObject is determined upon construction and composes the strategy as a field that is typed by `StrategyType`. Therefore by polymorphism, because all concrete methods implement `StrategyType`, `SomeObject` will always be able to execute `strategy.strategyMethod()` due to this constraint required for implementing an interface.
 
 However, strategy pattern can be used multiple times, whether it be the same or different types of strategies. Consider the following class diagrams:
 
-| ![multi-strategy1](./MultiStrategyType.png) | ![multi-strategy2](./MultiSameStrategyType.png) |
+| ![multi-strategy1](./0002/MultiStrategyType.png) | ![multi-strategy2](./0002/MultiSameStrategyType.png) |
 |:-------------------------------------------:|:-----------------------------------------------:|
 
 Both UML diagrams demonstrate a strategy pattern inherently, but the left diagram composes different types of strategies and the right diagram composes multiple of the same types of strategies. These properties are not mutually exclusive, therefore we should probably split the search of the necessary information as follows:
@@ -407,7 +405,7 @@ This seems pretty robust for determining what is a strategy pattern, except ther
 
 Suppose we have the following UML Class diagram:
 
-![final class](./StrategyMethodCallsOnly.png)
+![final class](./0002/StrategyMethodCallsOnly.png)
 
 Given that this is a `final` class, there are couple of interesting attributes that it will exhibit. The private constructor and static instatiation by the VM means that it is not good practice to let such an object have fields, thus this practice is done for utility classes that have methods that should not be overidden. In order for any method in this class to run, they are `static`ly declared and therfore must operate based on the parameter inputs it receives. But the question now becomes if the method _uses a `StrategyType` object_ as one of its parameters (among others), is that still implementing the strategy pattern?
 
@@ -419,11 +417,11 @@ I assert that while not always used (and alternative implementations acheiving t
 
 Enums are very interesting in Java given they can effectively operate as classes. Consider the following enum:
 
-![enumexample](./ExampleEnum.png)
+![enumexample](./0002/ExampleEnum.png)
 
 If you notice the abstract override of `toString()` in `ExampleEnumWithAbstractMethod`, this is actually allowed, but required every value in the enum to implement its own version. But now the question becomes how does Java compiles this? Well, it does it similar to this:
 
-![enumdecomp](./ExampleEnumAsStrategy.png)
+![enumdecomp](./0002/ExampleEnumAsStrategy.png)
 
 Java won't use the exact naming scheme, but it definitely complies it this way. In fact it seems all enums are compiled this way. In the `ExceptionThownAnalyzer`, I created the following enum within the `ExceptionThrownAnalyzer` class:
 
@@ -487,7 +485,7 @@ Java won't use the exact naming scheme, but it definitely complies it this way. 
 
 I ran it through ASM and analyzed the debug results, leaving me with pretty good confirmation of how I suspect it works:
 
-![decomp](./enum_decomp.png)
+![decomp](./0002/enum_decomp.png)
 
 While not explicitly clear just from the list unless you analyze the `ClassNode` objects, the only base class (i.e. the only class without `$#` append) does have both the `ACC_ENUM` (`0x4000`) and `ACC_INTERFACE` (`0x0400`) access flags, while the others have only the `ACC_ENUM` flag, therefore indicating this is all related to the enum. Even the declared methods in the interface class have the `ACC_ABSTRACT` access flag, therefore recreating the exact pattern structure.
 
