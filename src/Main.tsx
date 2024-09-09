@@ -155,7 +155,7 @@ const SiteRouter = () => {
                         <BlogPagePanel />
                     </SuspenseRoute>
                 </Route>
-                <Route path=''>
+                <Route path='/funny'>
                     <SuspenseRoute>
                         <Error404Panel />
                     </SuspenseRoute>
