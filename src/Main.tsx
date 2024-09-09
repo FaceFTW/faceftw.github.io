@@ -7,7 +7,7 @@ import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import React from 'react';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import ReactDOM from 'react-dom/client';
-import { Route, Switch, Link, useLocation } from 'wouter';
+import { Route, Switch, Link, useLocation, Router } from 'wouter';
 
 const HomePanel = React.lazy(() => import('@/routes/Home').then((module) => ({ default: module.HomePanel })));
 const ProjectsPanel = React.lazy(() =>
@@ -123,43 +123,45 @@ const SiteFooter = () => {
 
 const SiteRouter = () => {
     return (
-        <Switch>
-            <Route path='/'>
-                <SuspenseRoute>
-                    <HomePanel />
-                </SuspenseRoute>
-            </Route>
-            <Route path='/projects'>
-                <SuspenseRoute>
-                    <ProjectsPanel />
-                </SuspenseRoute>
-            </Route>
-            <Route path='/resume'>
-                <SuspenseRoute>
-                    <ResumePanel />
-                </SuspenseRoute>
-            </Route>
-            <Route path='/about'>
-                <SuspenseRoute>
-                    <AboutPanel />
-                </SuspenseRoute>
-            </Route>
-            <Route path='/blog'>
-                <SuspenseRoute>
-                    <BlogPanel />
-                </SuspenseRoute>
-            </Route>
-            <Route path='/blog/:postId'>
-                <SuspenseRoute>
-                    <BlogPagePanel />
-                </SuspenseRoute>
-            </Route>
-            <Route>
-                <SuspenseRoute>
-                    <Error404Panel />
-                </SuspenseRoute>
-            </Route>
-        </Switch>
+        <Router hook={useLocation}>
+            <Switch>
+                <Route path='/'>
+                    <SuspenseRoute>
+                        <HomePanel />
+                    </SuspenseRoute>
+                </Route>
+                <Route path='/projects'>
+                    <SuspenseRoute>
+                        <ProjectsPanel />
+                    </SuspenseRoute>
+                </Route>
+                <Route path='/resume'>
+                    <SuspenseRoute>
+                        <ResumePanel />
+                    </SuspenseRoute>
+                </Route>
+                <Route path='/about'>
+                    <SuspenseRoute>
+                        <AboutPanel />
+                    </SuspenseRoute>
+                </Route>
+                <Route path='/blog'>
+                    <SuspenseRoute>
+                        <BlogPanel />
+                    </SuspenseRoute>
+                </Route>
+                <Route path='/blog/:postId'>
+                    <SuspenseRoute>
+                        <BlogPagePanel />
+                    </SuspenseRoute>
+                </Route>
+                <Route path=''>
+                    <SuspenseRoute>
+                        <Error404Panel />
+                    </SuspenseRoute>
+                </Route>
+            </Switch>
+        </Router>
     );
 };
 
