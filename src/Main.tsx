@@ -7,7 +7,7 @@ import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import React from 'react';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import ReactDOM from 'react-dom/client';
-import { Route, Switch, Link, useLocation, Router } from 'wouter';
+import { Route, Switch, Link, useLocation, Router, useRoute } from 'wouter';
 
 const HomePanel = React.lazy(() => import('@/routes/Home').then((module) => ({ default: module.HomePanel })));
 const ProjectsPanel = React.lazy(() =>
@@ -123,7 +123,7 @@ const SiteFooter = () => {
 
 const SiteRouter = () => {
     return (
-        <Router hook={useLocation}>
+        <Router>
             <Switch>
                 <Route path='/'>
                     <SuspenseRoute>
