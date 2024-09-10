@@ -1,8 +1,9 @@
 import type { BlogPost } from '@/DataTypes';
 import blogData from '../assets/markdown/blog_list.json';
-import { useParams } from 'wouter';
+import { Link, useParams } from 'wouter';
 import React from 'react';
 import { Skeleton } from '@/components/ui/skeleton';
+import { LucideArrowLeft } from 'lucide-react';
 
 const MarkdownRender = React.lazy(() =>
     import('@/components/MarkdownRender').then((module) => ({ default: module.MarkdownRender }))
@@ -13,7 +14,6 @@ const LIST: BlogPost[] = blogData.sort((a, b) => {
 });
 
 export const BlogPagePanel = () => {
-    // const blogPageInfo: BlogPost = useLoaderData() as BlogPost;
     const params = useParams();
     const metadata = LIST.find((post) => Number.parseInt(params.postId ?? '-1') === Number.parseInt(post.index));
     const markdownUrl = new URL(`../assets/markdown/${metadata ? metadata.markdown : 'NotFound.md'}`, import.meta.url)
@@ -29,6 +29,15 @@ export const BlogPagePanel = () => {
 
     return (
         <div className='mx-16 my-4'>
+            <div className='flex flex-row space-x-2'>
+                <Link to='/blog'>
+                    <div className='flex flex-row space-x-2'>
+                        <LucideArrowLeft className='text-neutral-600 dark:text-neutral-500' />
+                        <p className='text-neutral-600 dark:text-neutral-500'>Back to the Main Page</p>
+                    </div>
+                </Link>
+            </div>
+
             <React.Suspense
                 fallback={
                     <>
