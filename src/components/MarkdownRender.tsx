@@ -154,7 +154,7 @@ export const MarkdownRender = ({ children }: { children: string | null | undefin
                     },
                     img(props) {
                         const { src, alt, className, ...rest } = props;
-                        const href = new URL(`assets/${src}` ?? '', import.meta.url).href;
+                        const href = new URL(`${src}` ?? '', import.meta.url).href;
                         // biome-ignore lint/a11y/useAltText: lazy
                         return <img src={href} alt={alt} className={cn('mb-4', 'mx-auto', className)} {...rest} />;
                     },
