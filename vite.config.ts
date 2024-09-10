@@ -15,14 +15,14 @@ export default defineConfig({
         rollupOptions: {
             output: {
                 compact: true,
-                assetFileNames: (asset) => {
-                    if (
-                        asset.source.includes('/src/assets/markdown') &&
-                        ['png', 'jpg', 'webp', 'gif', 'svg'].findIndex(asset.name.split('.').pop()) !== -1
-                    ) {
-                    }
-                    return;
-                },
+                // assetFileNames: (asset) => {
+                //     if (
+                //         asset.source.includes('/src/assets/markdown') &&
+                //         ['png', 'jpg', 'webp', 'gif', 'svg'].findIndex(asset.name.split('.').pop()) !== -1
+                //     ) {
+                //     }
+                //     return;
+                // },
             },
         },
     },
