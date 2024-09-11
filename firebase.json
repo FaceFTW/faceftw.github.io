@@ -27,6 +27,13 @@
 				"source": "/blog/*",
 				"destination": "/index.html"
 			}
+		],
+		"redirects":[
+			{
+				"regex":"/assets/assets/(.*)",
+				"destination":"/assets/:1",
+				"type":"301"
+			}
 		]
 	}
 }
