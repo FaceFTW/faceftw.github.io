@@ -31,7 +31,8 @@
 		"redirects":[
 			{
 				"regex":"/assets/assets/(.*)",
-				"destination":"/assets/:1"
+				"destination":"/assets/:1",
+				"type":"301"
 			}
 		]
 	}
