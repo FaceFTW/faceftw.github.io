@@ -12,26 +12,26 @@ import fs from 'node:fs/promises';
 //This feels like it could be done within the lifecycle of the build process but I'd
 //rather not waste brain cells trying to understand Javascript compilation processes
 
-// const postProcessMarkdownLinks = () => {
-//     return {
-//         name: 'rollup-plugin-post-process-markdown-links',
-//         closeBundle: (): Promise<void> => {
-//             fs.opendir('dist/assets').then((dir) => {
-//                 dir.read().then((ent) => {
-//                     if (ent.name.endsWith('.md')) {
-//                         fs.readFile(`${ent.parentPath}/${ent.name}`).then((buffer) => {
-//                             const updated = buffer.toString().replace('/assets/markdown', '');
-//                             fs.writeFile(`${ent.parentPath}/${ent.name}`, updated).then(() => {
-//                                 return;
-//                             });
-//                         });
-//                     }
-//                 });
-//             });
-//             return Promise.resolve();
-//         },
-//     };
-// };
+const postProcessMarkdownLinks = () => {
+    return {
+        name: 'rollup-plugin-post-process-markdown-links',
+        closeBundle: (): Promise<void> => {
+            fs.opendir('dist/assets').then((dir) => {
+                dir.read().then((ent) => {
+                    if (ent.name.endsWith('.md')) {
+                        fs.readFile(`${ent.parentPath}/${ent.name}`).then((buffer) => {
+                            const updated = buffer.toString().replace('/assets', '');
+                            fs.writeFile(`${ent.parentPath}/${ent.name}`, updated).then(() => {
+                                return;
+                            });
+                        });
+                    }
+                });
+            });
+            return Promise.resolve();
+        },
+    };
+};
 
 // https://vitejs.dev/config/
 /**@type {import('vite'.UserConfig)} */
@@ -42,7 +42,7 @@ export default defineConfig({
             build: true,
             outputDir: '.vite-inspect',
         }),
-        // postProcessMarkdownLinks(),
+        postProcessMarkdownLinks(),
     ],
     resolve: {
         alias: {
