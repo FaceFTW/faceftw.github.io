@@ -10,11 +10,13 @@ import java from 'react-syntax-highlighter/dist/esm/languages/prism/java';
 import bash from 'react-syntax-highlighter/dist/esm/languages/prism/bash';
 import csharp from 'react-syntax-highlighter/dist/esm/languages/prism/csharp';
 import rust from 'react-syntax-highlighter/dist/esm/languages/prism/rust';
+import perl from 'react-syntax-highlighter/dist/esm/languages/prism/perl';
 
 SyntaxHighlighter.registerLanguage('java', java);
 SyntaxHighlighter.registerLanguage('bash', bash);
 SyntaxHighlighter.registerLanguage('csharp', csharp);
 SyntaxHighlighter.registerLanguage('rust', rust);
+SyntaxHighlighter.registerLanguage('perl',perl)
 
 export const MarkdownRender = ({ children }: { children: string | null | undefined }) => {
     return (
