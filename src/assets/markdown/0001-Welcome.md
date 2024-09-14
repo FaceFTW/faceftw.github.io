@@ -5,3 +5,11 @@ Welcome to the first "blog" post I've created. It's not the usual kind of blog t
 Again, I'm writing on my own time and with my own passion, so I don't know where this will go. If this gets really popular, I'll consider adding ways to support me as a way to incentivize continuing this work. Who knows. The future is uncertain.
 
 Aside from this welcome, the inagural blog post will be based on some design journals I wrote for a project while in College making a Java linter (which is open source but I would not recommend using it compared to established tools!). It's something I think shows a lot of how I think and reason about things and has some interesting surface-level insights about program analysis. Should you read it? _I'd like you to but it's your choice._
+
+## Why the name "ref_cycle"
+
+Reference cycles are a "construct" (for lack of a better term) where pointers/objects in memory are self-referential in a consistent chain. [Rust has an entire thing about using reference cycles and how it could leak memory](https://doc.rust-lang.org/book/ch15-06-reference-cycles.html), and recursive data structures will often use them by design.
+
+I often find that whenever I work on anything (personal, professional, or sh*ts and giggles), I always do a ton of research. I'm the kind of person who will have 200 chrome tabs open and will cast wide nets during research; A good number of times it narrows down into a concrete set of sources/information, some of which I already had open. This constant "cycle" of gathering and refining "references" to information I use is also how I organize my thoughts in my mess of a head.
+
+So not just a programming pun, it does have some relevant meaning to me. At least it's better than just calling it "Face's Blog".
