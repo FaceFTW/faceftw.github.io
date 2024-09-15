@@ -1,5 +1,5 @@
 # Talking Cows, Perls, and Terminals
-### A really obscure rabbit hole to recreate an old piece of software
+<p style=""> A really obscure rabbit hole to recreate an old piece of software</p>
 
 I've been working on a project called [shell-toy](https://github.com/FaceFTW/shell-toy) that intends to replace the `cowsay | fortune` calls my shell init scripts make. Aside from performance improvements, I also added work to inline the actual "cows" and "fortunes" in the executables to make them easily transferrable across machines. Those features are not the main focus of this post, and you can always take a look at the code for yourself.
 
@@ -15,7 +15,11 @@ This is a long post because you would not believe the amount of things one has t
 	- [Escape Hatches (But Not Really)](#escape-hatches-but-not-really)
 	- [Implementing a Talking Cow](#implementing-a-talking-cow)
 		- [`impl` Part 1 - Lexing Cows](#impl-part-1---lexing-cows)
-
+		- [`impl` Part 2: Interpreting Cow "Speak"](#impl-part-2-interpreting-cow-speak)
+			- [(Saving the) Environment](#saving-the-environment)
+			- [Coloring the World](#coloring-the-world)
+		- [The Dust Settles](#the-dust-settles)
+	- [The Final Result (Batteries Required)](#the-final-result-batteries-required)
 
 ## What is Cowsay Actually?
 
@@ -29,11 +33,7 @@ I use it because it makes me feel cool.
 
 Whenever you want to describe a programming language syntax, it is often done in [Backus-Naur Form (or BNF)](https://en.wikipedia.org/wiki/Backus%E2%80%93Naur_form). It's a way of describing syntax in a form of "grammar" similar to a programming language (wow very meta!). The IEEE uses an augmented form of this called [Augmented Backus-Naur Form (ABNF)](https://en.wikipedia.org/wiki/Augmented_Backus%E2%80%93Naur_form) to describe protocol structure and messaging, and they can be drawn into nice little diagrams.
 
-However, BNF/ABNF is a very "literal" definition, and it can be a pain to write. The [Rust Reference](https://doc.rust-lang.org/stable/reference/introduction.html) uses a much more looser method by defining a more specific and concise grammar. I'd rather not have to write and verify BNF (especially since I'm a bit rusty with that), so I'm going to follow their examples.
-
----
-
-Since Cowsay is written in Perl and cow files are just perl scripts, I could start by writing a parser for Perl scripts, use that output as an "intermediate representation" (IR), then convert the IR to a string that the terminal will use. So let's do a quick google search...
+Since Cowsay is written in Perl and cow files are just Perl scripts, I could start by writing a parser for Perl scripts, use that output as an "intermediate representation" (IR), then convert the IR to a string that the terminal will use. So let's do a quick google search...
 
 ![google is your friend?](./goggle%20search.png)
 
@@ -294,4 +294,310 @@ It's fairly readable, but here's a rundown:
   - The second one also looks for 4 characters but that are prefixed by `\u`.
 - The `alt((parser,parser,...))` method is how to do composition in a "branching" manner. It will try the parsers in the specified order and return the `IResult<I,O,E>` of the first successful parse, or the errors if none of the parsers were successful.
 
-I'm not going to break down each and every parser; the [source code](https://github.com/FaceFTW/shell-toy/blob/main/src/parser.rs) is available for viewing to see other things like creating variable bindings (see the `var_binding()` function)
+I'm not going to break down each and every parser; the [source code](https://github.com/FaceFTW/shell-toy/blob/main/src/parser.rs) is available for viewing to see other things like creating variable bindings (see the `var_binding()` function). The one thing I do want to show is the benefits of using parser combinators:
+
+```rust
+pub fn cow_parser(input: &str) -> IResult<&str, TerminalCharacter> {
+    alt((
+        comments,
+        perl_junk,
+        placeholders,
+        var_binding,
+        bound_var_call,
+        spaces_and_lines,
+        misc_escapes,
+        colors_256,
+        truecolor,
+        unicode_char,
+        escaped_char,
+        map(take(1 as usize), |c: &str| {
+            //TODO I don't like this
+            TerminalCharacter::UnicodeCharacter(c.chars().into_iter().next().unwrap())
+        }),
+    ))(input)
+}
+```
+
+I love how easy and clear it makes this entire process; There are clear, identifiable rules and there is no giant `if/else` tree to traverse to find a bug. During development when there was something wrong it was easy to tell if it was a lexer or interpreter issue because if it was the lexer, I can identify the bad parser and fix it. No hours of debugging, just 10-15 minutes. Beautiful.
+
+So now an IR exists and the means to create it, but it is time to create the second part of the puzzle: interpretation.
+
+### `impl` Part 2: Interpreting Cow "Speak"
+
+Well, not actual cow language, but that's beyond the point.
+
+First, it is important to discuss how the parser should be implemented; it's honestly trivial given Rust's `match` statements which allow easy and safe identification of the various IR forms defined in the lexer. Here is some rough psuedocode of what the interpreter function looks like:
+
+```rust
+fn interpreter(
+    parsed_chars: &[TerminalCharacter],
+) -> String {
+    let mut cow_string = String::new();
+    for term_char in parsed_chars {
+        match term_char {
+            TerminalCharacter::<variant> => {
+                //Generate respective output OR update internal state
+            }
+            //...
+        }
+    }
+
+    cow_string
+}
+```
+
+If you noticed, I mentioned something about updating internal state. This part is a bit complicated; I'm being vague here because it's not all the kind of information that a traditional compiler/interpreter might store; there isn't any information about defined types, functions, or scoping here. Let's do a recap some of the observations made earlier that would require "state" when looking at the cow files:
+
+- It is possible change the color of text in the terminal, and _it persists after triggering_.
+- It is possible have variable bindings that can be referenced in interpolated strings*
+
+Let's break down these into respective problems
+
+#### (Saving the) Environment
+When I took a class on functional programming and learned Scheme/Racket (shout-out to Buffalo), I made my own Scheme-like interpreter in Racket (though it was really done in a Chez Scheme like environment, that's beside the point). Like any interpreter, the idea of how to store/reference variables (and closures for that matter) was an important topic; The solution for variables in Scheme (the key thing that needs to be stored) was a tree-like data structure called an ["environment"](https://docs.scheme.org/schintro/schintro_121.html). Luckily, there is no need for the recursive level because I am going to impose a restriction on variable values that _there is no recursive level references_. This means the following would not parse and intentionally throw an error:
+```perl
+$a = "test";
+$b = "test$a"; #This fails in the interpreter
+```
+
+Looking at the IR definitions, variable bindings have two "data pieces": a `String` (the name) and a `Vec<TerminalCharacter>` (the value of the variable). If the interpreter identifies a variable binding, it can just _"register the binding"_ in it's internal state. I represent this as a `HashMap<String,Vec<TerminalCharacter>>` like below:
+
+```rust
+//Inside interpreter function
+let mut environment: HashMap<String, Vec<TerminalCharacter>> = HashMap::new();
+
+// Inside match statement(this will make sense later)
+TerminalCharacter::VarBinding(name, val) => {
+    environment.insert(name.to_string(), val.to_vec());
+}
+
+//Also inside match statement
+//Since binding values are stored as IR, do a recursive parse
+//keep this in mind with the next section
+TerminalCharacter::BoundVarCall(binding) => {
+    let binding_val = environment
+        .get(binding)
+        .expect("Could not find a binding with the specified name");
+    cow_string =
+        cow_string + interpreter(&binding_val).as_str();
+}
+```
+
+That is one problem solved, let's get to the next one.
+
+#### Coloring the World
+
+Adding color to terminal text isn't hard, there are many crates that provide that functionality. I personally chose [`owo_colors`](https://docs.rs/owo-colors/latest/owo_colors/) in this case, which provides a `Style` struct that you can apply to string types. So surely just adding a mutable `Style` to the interpreter state is fine:
+
+```rust
+//inside interpreter body:
+let mut current_style= owo_colors::Style::new().default_color().on_default_color();
+
+//Inside Match statement:
+TerminalCharacter::Space => {
+    cow_string = cow_string + format!("{}", " ".style(current_style.inner)).as_str()
+}
+TerminalCharacter::DefaultForegroundColor => current_style = current_style.default_color(),
+TerminalCharacter::DefaultBackgroundColor => current_style = current_style.on_default_color(),
+TerminalCharacter::TerminalForegroundColor256(color) => {
+    current_style = current_style.color(XtermColors::from(*color))
+}
+TerminalCharacter::TerminalForegroundColorTruecolor(red, green, blue) => {
+    current_style current_style.truecolor(*red, *green, *blue)
+}
+TerminalCharacter::TerminalBackgroundColor256(color) => {
+    current_style = current_style.on_color(XtermColors::from(*color))
+}
+TerminalCharacter::TerminalBackgroundColorTruecolor(red, green, blue) => {
+    current_style = current_style.on_truecolor(*red, *green, *blue);
+}
+TerminalCharacter::UnicodeCharacter(uchar) => {
+    cow_string = cow_string + format!("{}", uchar.style(current_style.inner)).as_str()
+}
+//...
+```
+But now there is a bug at the variable reference interpretation code:
+```rust
+TerminalCharacter::BoundVarCall(binding) => {
+    let binding_val = environment
+        .get(binding)
+        .expect("Could not find a binding with the specified name");
+    cow_string =
+        cow_string + interpreter(&binding_val).as_str();
+}
+```
+The core of the problem is that _state was not being transferred to recursive interpreter calls_. The easiest solution would be to pass the `Style` struct as a mutable reference to the interpreter function. It wouldn't break any of the Rust borrow checker rules for references and solves the problem:
+```rust
+//spoiler alert, this won't work
+fn interpreter(
+    parsed_chars: &[TerminalCharacter],
+    current_style: &mut Style
+) -> String {
+    let mut cow_string = String::new();
+    for term_char in parsed_chars {
+        match term_char {
+            //...
+            TerminalCharacter::BoundVarCall(binding) => {
+                let binding_val = environment
+                    .get(binding)
+                    .expect("Could not find a binding with the specified name");
+                cow_string =
+                    cow_string + interpreter(&binding_val, current_style).as_str();
+            }
+			//...
+        }
+    }
+
+    cow_string
+}
+```
+
+As I spoiled earlier, this doesn't compile. It is not because the Style object can't be passed down the recursive stack, rather it is because of _the type checker not liking the return types of the methods on the `OwoColorize` trait, which is used to modify the `Style` struct_. Well, a bit more complicated than that.
+
+Let's look at the function definitions for these functions:
+```rust
+fn color<Color: DynColor>(
+    &self,
+    color: Color,
+) -> FgDynColorDisplay<'_, Color, Self>
+
+source
+fn on_color<Color: DynColor>(
+    &self,
+    color: Color,
+) -> BgDynColorDisplay<'_, Color, Self>
+```
+_Editor's Note (aka. Me): I might get the explanation part here wrong because I couldn't exactly figure out if this is the real issue, but the solution is correct (because it works). Feel free to contact me and I'll update this with a better explanation or corrections if I'm wrong. I'm only human after all._
+
+That... looks painful to dig through. Looking at the docs for `owo_colors`, these return types are generic structs that are wrappers around `T`; In this case, it is the struct that implements the `OwoColorize` trait, and using the context of `Style`, so `T: Style` is a fair assessment. There is no direct implementation of the `From` or `Into` traits (Rust's type casting traits), so it is not possible to coerce a mutable reference of a `Style` struct into any of these return types; These methods also don't mutate the `Style` and like a well-designed API there is no ability to just reach in to internal state.
+
+So what's the solution? If you can't beat'em, join'em.
+
+Instead of passing the `Style` struct directly, pass it in a wrapper similar to the functions in `OwoColorize` trait. And since there is no need to be as flexible given the internal nature of this crate, no design of trait interfaces, just doing a direct implementation to the struct is fine:
+
+```rust
+//Wrapper type to contain the Style struct so it can be passed recursively
+struct StyleBuffer {
+    inner: Style,
+}
+
+impl StyleBuffer {
+    pub fn new() -> Self {
+        Self {
+            inner: owo_colors::Style::new().default_color().on_default_color(),
+        }
+    }
+
+    pub fn default_color(&mut self) {
+        self.inner = self.inner.default_color()	//No reference, direct value set
+    }
+
+	//other "wrapper methods" from OwoColorize that are used
+}
+
+//Now this compiles
+fn interpreter(
+    parsed_chars: &[TerminalCharacter],
+    current_style: &mut StyleBuffer
+) -> String {
+    let mut cow_string = String::new();
+    for term_char in parsed_chars {
+        match term_char {
+            //...
+            TerminalCharacter::BoundVarCall(binding) => {
+                let binding_val = environment
+                    .get(binding)
+                    .expect("Could not find a binding with the specified name");
+                cow_string =
+                    cow_string + interpreter(&binding_val, current_style).as_str();
+            }
+			//...
+        }
+    }
+
+    cow_string
+}
+```
+And it compiles!. Let's take a step back and look at the final interpreter now.
+
+### The Dust Settles
+
+This is the final version of the interpreter (as of this writing). Some names and
+ things might look different depending on updates to `shell-toy`, but overall the core ideas should still be there:
+```rust
+fn derive_cow_str(
+    parsed_chars: &[TerminalCharacter],
+    current_style: &mut StyleBuffer,
+    cow_variant: &CowVariant,
+) -> String {
+    let mut environment: HashMap<String, Vec<TerminalCharacter>> = HashMap::new();
+
+    let mut cow_started = false;
+    //TODO Determine if we should pre-allocate the memory with an "estimate" for performance
+    let mut cow_string = String::new();
+    for term_char in parsed_chars {
+        match term_char {
+            TerminalCharacter::Space => {
+                cow_string = cow_string + format!("{}", " ".style(current_style.inner)).as_str()
+            }
+            TerminalCharacter::DefaultForegroundColor => current_style.default_color(),
+            TerminalCharacter::DefaultBackgroundColor => current_style.on_default_color(),
+            TerminalCharacter::TerminalForegroundColor256(color) => {
+                current_style.color(XtermColors::from(*color))
+            }
+            TerminalCharacter::TerminalForegroundColorTruecolor(red, green, blue) => {
+                current_style.truecolor(*red, *green, *blue)
+            }
+            TerminalCharacter::TerminalBackgroundColor256(color) => {
+                current_style.on_color(XtermColors::from(*color))
+            }
+            TerminalCharacter::TerminalBackgroundColorTruecolor(red, green, blue) => {
+                current_style.on_truecolor(*red, *green, *blue);
+            }
+            TerminalCharacter::UnicodeCharacter(uchar) => {
+                cow_string = cow_string + format!("{}", uchar.style(current_style.inner)).as_str()
+            }
+            TerminalCharacter::ThoughtPlaceholder => cow_string = cow_string + "\\",
+            TerminalCharacter::EyePlaceholder => {
+                cow_string = cow_string + cow_variant.get_eyes().as_str()
+            }
+            TerminalCharacter::TonguePlaceholder => {
+                cow_string = cow_string + cow_variant.get_toungue().as_str()
+            }
+            TerminalCharacter::Newline => {
+                if cow_started {
+                    cow_string = cow_string + "\n";
+                }
+            }
+            TerminalCharacter::Comment => (),
+            TerminalCharacter::VarBinding(name, val) => {
+                environment.insert(name.to_string(), val.to_vec());
+            }
+            TerminalCharacter::BoundVarCall(binding) => {
+                let binding_val = environment
+                    .get(binding)
+                    .expect("Could not find a binding with the specified name");
+                cow_string =
+                    cow_string + derive_cow_str(&binding_val, current_style, cow_variant).as_str();
+            }
+            TerminalCharacter::CowStart => cow_started = true,
+            TerminalCharacter::EscapedUnicodeCharacter(character) => {
+                cow_string = cow_string + character.to_string().as_str();
+            }
+        }
+    }
+
+    cow_string
+}
+```
+
+Some extra tidbits like the explicit recognition of the "start" of a cow file or the `cow_variant` parameter were added to address bugs or to add new features. This post is already really long and I don't want to get into the weeds more than I have to.
+
+All this interpreter does is create the string that should be printed to `stdout` (which is expected to be a terminal). The main function of `shell-toy` does some argument processing and other pre-lexing/interpreting tasks before calling the lexer and interpreter in sequence, in which the output simply goes through Rust's `println!()` macro. Compared to a real compiler/interpreter, it's just a really lightweight [domain-specific language](https://en.wikipedia.org/wiki/Domain-specific_language) interpreter for a silly little project that I should not have spent that much time on.
+
+## The Final Result (Batteries Required)
+![yaaay](./demo.gif)
+
+_Pardon the glitchy drawing, I can confirm this is an issue with the terminal recorder I used and not what it looks like._
+
+Thanks for reading! Stay tuned for the next post where I might do something even more complicated and maybe even more ridiculous.
