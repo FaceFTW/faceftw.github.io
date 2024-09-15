@@ -11,18 +11,21 @@ import bash from 'react-syntax-highlighter/dist/esm/languages/prism/bash';
 import csharp from 'react-syntax-highlighter/dist/esm/languages/prism/csharp';
 import rust from 'react-syntax-highlighter/dist/esm/languages/prism/rust';
 import perl from 'react-syntax-highlighter/dist/esm/languages/prism/perl';
+import asciidoc from 'react-syntax-highlighter/dist/cjs/languages/prism/asciidoc';
 
 SyntaxHighlighter.registerLanguage('java', java);
 SyntaxHighlighter.registerLanguage('bash', bash);
 SyntaxHighlighter.registerLanguage('csharp', csharp);
 SyntaxHighlighter.registerLanguage('rust', rust);
-SyntaxHighlighter.registerLanguage('perl',perl)
+SyntaxHighlighter.registerLanguage('perl', perl);
+SyntaxHighlighter.registerLanguage('asciidoc', asciidoc);
 
 export const MarkdownRender = ({ children }: { children: string | null | undefined }) => {
     return (
-        <div>
+        <article className='overflow-x-auto text-wrap'>
             <ReactMarkdown
-                className={' p-4 '}
+                // biome-ignore lint/nursery/useSortedClasses: <explanation>
+                className='p-4'
                 remarkPlugins={[remarkGfm]}
                 components={{
                     code(props) {
@@ -145,7 +148,9 @@ export const MarkdownRender = ({ children }: { children: string | null | undefin
                     p(props) {
                         const { children, className, ...rest } = props;
                         return (
-                            <p className={cn('mb-4', 'leading-relaxed', className)} {...rest}>
+                            <p
+                                className={cn('mb-4', 'leading-relaxed', 'text-wrap', 'overflow-auto', className)}
+                                {...rest}>
                                 {children}
                             </p>
                         );
@@ -211,6 +216,6 @@ export const MarkdownRender = ({ children }: { children: string | null | undefin
                 }}>
                 {children}
             </ReactMarkdown>
-        </div>
+        </article>
     );
 };

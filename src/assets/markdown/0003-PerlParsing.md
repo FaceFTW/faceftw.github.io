@@ -1,8 +1,7 @@
 # Talking Cows, Perls, and Terminals
-<p style=""> A really obscure rabbit hole to recreate an old piece of software</p>
+_A really obscure set of rabbit holes to recreate an old piece of software_
 
 I've been working on a project called [shell-toy](https://github.com/FaceFTW/shell-toy) that intends to replace the `cowsay | fortune` calls my shell init scripts make. Aside from performance improvements, I also added work to inline the actual "cows" and "fortunes" in the executables to make them easily transferrable across machines. Those features are not the main focus of this post, and you can always take a look at the code for yourself.
-
 The main focus is about reading the Perl files and rendering them properly in terminals.
 
 This is a long post because you would not believe the amount of things one has to do to make drawings in terminals look good (not even artistically speaking). Not all posts on `ref_cycle` are going to be like this but as the first "official" post I think it deserves to be long.
@@ -156,10 +155,6 @@ Woah, that is radically different from the other examples. One of the core obser
 
 I'm not as versed in the history of old computer terminals and their designs; Being born 20+ years after their introduction doesn't help with that. But I can at least talk about [terminal emulation](https://en.wikipedia.org/wiki/Terminal_emulator) which is what all those funny `\e` and `\N` things represent.
 
-Basically,
-
-___TODO___ Add filler description
-
 Like before, let's find a good reference for all the commands. And sure enough someone on the internet created this [nice cheat sheet](https://gist.github.com/ConnerWill/d4b6c776b509add763e17f9f113fd25b) with a good chunk of resources. Here is a brief summary of the information needed to begin implementation:
 
 - `\e[` indicates the start of the "escape sequence" and simulates `ESC` key presses on the old consoles.
@@ -183,7 +178,7 @@ There is now enough analysis of how a cow file is defined to move on to the next
 
 Here is a rough implementation diagram of the interpreter. You'll notice it's much simpler compared to other interpreters and compilers because by cutting out noise like multi-file parsing and binary linkage:
 
-```
+```asciidoc
                 +----------+                +--------------+
                 |          | Intermediate   |              |
                 |  Lexer   | Representation |  Interpreter |
@@ -230,7 +225,7 @@ It's not very complicated, and it enumerates every "instruction" the parser will
 
 There is this very convenient Rust crate called [nom](https://github.com/rust-bakery/nom) that creates [_parser combinators_](https://en.wikipedia.org/wiki/Parser_combinator) which are very efficient. The idea here is to create smaller parser then use composition to create the full parser. For example, here is a rough diagram of the parsers created for this project:
 
-```
+```asciidoc
                                                  +------------+
                                               +->| Spaces     |
                         +------------------+  |  +------------+
@@ -600,4 +595,4 @@ All this interpreter does is create the string that should be printed to `stdout
 
 _Pardon the glitchy drawing, I can confirm this is an issue with the terminal recorder I used and not what it looks like._
 
-Thanks for reading! Stay tuned for the next post where I might do something even more complicated and maybe even more ridiculous.
+Thanks for reading! Stay tuned in like 3 months for the next post where I might do something even more complicated and maybe even more ridiculous.
