@@ -25,7 +25,7 @@ export const MarkdownRender = ({ children }: { children: string | null | undefin
         <article className='overflow-x-auto text-wrap'>
             <ReactMarkdown
                 // biome-ignore lint/nursery/useSortedClasses: <explanation>
-                className='p-4'
+                className='p-4 w-max'
                 remarkPlugins={[remarkGfm]}
                 components={{
                     code(props) {
