@@ -22,10 +22,10 @@ SyntaxHighlighter.registerLanguage('asciidoc', asciidoc);
 
 export const MarkdownRender = ({ children }: { children: string | null | undefined }) => {
     return (
-        <article className='overflow-x-auto text-wrap'>
+        <article>
             <ReactMarkdown
                 // biome-ignore lint/nursery/useSortedClasses: <explanation>
-                className='p-4 w-max'
+                className='p-4'
                 remarkPlugins={[remarkGfm]}
                 components={{
                     code(props) {
@@ -148,9 +148,7 @@ export const MarkdownRender = ({ children }: { children: string | null | undefin
                     p(props) {
                         const { children, className, ...rest } = props;
                         return (
-                            <p
-                                className={cn('mb-4', 'leading-relaxed', 'text-wrap', 'overflow-auto', className)}
-                                {...rest}>
+                            <p className={cn('mb-4', 'leading-relaxed', className)} {...rest}>
                                 {children}
                             </p>
                         );
