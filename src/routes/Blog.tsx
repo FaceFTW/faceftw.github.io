@@ -25,9 +25,14 @@ export const BlogPanel = () => {
             <h1 className='mt-4 text-4xl'>
                 <pre>ref_cycle</pre>
             </h1>
-			<h2 className='mt-2 mb-4 text-2xl text-neutral-600 dark:text-neutral-400'>
-				AKA: Core Dumping my Brain on the Internet
-			</h2>
+            <h2 className='mt-2 mb-4 text-2xl text-neutral-600 dark:text-neutral-400'>
+                AKA: Core Dumping my Brain on the Internet
+            </h2>
+
+            <p className='mb-4 text-lg'>
+                NOTE: The experience of the blog on mobile is still not optimal. I'm working on a different rendering
+                solution that will improve the experience in the future
+            </p>
             {blogPages
                 .sort((a, b) => {
                     return Number.parseInt(b.index) - Number.parseInt(a.index);
