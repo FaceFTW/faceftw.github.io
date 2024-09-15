@@ -24,7 +24,6 @@ export const MarkdownRender = ({ children }: { children: string | null | undefin
     return (
         <article>
             <ReactMarkdown
-                // biome-ignore lint/nursery/useSortedClasses: <explanation>
                 className='p-4'
                 remarkPlugins={[remarkGfm]}
                 components={{
@@ -32,16 +31,22 @@ export const MarkdownRender = ({ children }: { children: string | null | undefin
                         const { children, className, node, ...rest } = props;
                         const match = /language-(\w+)/.exec(className || '');
                         return match ? (
-                            <SyntaxHighlighter PreTag='div' language={match[1]} style={darcula}>
-                                {String(children).replace(/\n$/, '')}
-                            </SyntaxHighlighter>
+                            <div className='m-4'>
+                                <SyntaxHighlighter
+                                    PreTag='div'
+                                    useInlineStyles={true}
+                                    language={match[1]}
+                                    style={darcula}>
+                                    {String(children).replace(/\n$/, '')}
+                                </SyntaxHighlighter>
+                            </div>
                         ) : (
                             <code
                                 {...rest}
                                 className={cn(
                                     'bg-neutral-300',
                                     'dark:bg-neutral-700',
-                                    'text-wrap',
+                                    'overflow-x-scroll',
                                     'rounded-lg',
                                     'px-1',
                                     'py-1',
