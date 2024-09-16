@@ -25,5 +25,13 @@
 			"seeminglyhighcouplingexample.png",
 			"StrategyMethodCallsOnly.png"
 		]
+	},
+	{
+		"title": "Talking Cows, Perls, and Terminals",
+		"index": "0003",
+		"markdown": "0003-PerlParsing.md",
+		"date": "09-17-2024",
+		"summary": "A really obscure set of rabbit holes to recreate an old piece of software",
+		"ext_resources": []
 	}
 ]

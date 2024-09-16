@@ -193,7 +193,7 @@ const HomeMainSection = () => {
 
 export const HomePanel = () => {
     const projects: Project[] = projectData.projectList;
-    const featured = [projects[14], projects[18], projects[7], projects[17], projects[20], projects[15]];
+    const featured = [projects[14], projects[22], projects[18], projects[7], projects[20], projects[21]];
 
     return (
         <div className='flex flex-col items-center'>

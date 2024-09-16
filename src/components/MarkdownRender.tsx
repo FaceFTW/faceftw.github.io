@@ -10,33 +10,43 @@ import java from 'react-syntax-highlighter/dist/esm/languages/prism/java';
 import bash from 'react-syntax-highlighter/dist/esm/languages/prism/bash';
 import csharp from 'react-syntax-highlighter/dist/esm/languages/prism/csharp';
 import rust from 'react-syntax-highlighter/dist/esm/languages/prism/rust';
+import perl from 'react-syntax-highlighter/dist/esm/languages/prism/perl';
+import asciidoc from 'react-syntax-highlighter/dist/cjs/languages/prism/asciidoc';
 
 SyntaxHighlighter.registerLanguage('java', java);
 SyntaxHighlighter.registerLanguage('bash', bash);
 SyntaxHighlighter.registerLanguage('csharp', csharp);
 SyntaxHighlighter.registerLanguage('rust', rust);
+SyntaxHighlighter.registerLanguage('perl', perl);
+SyntaxHighlighter.registerLanguage('asciidoc', asciidoc);
 
 export const MarkdownRender = ({ children }: { children: string | null | undefined }) => {
     return (
-        <div>
+        <article>
             <ReactMarkdown
-                className={' p-4 '}
+                className='p-4'
                 remarkPlugins={[remarkGfm]}
                 components={{
                     code(props) {
                         const { children, className, node, ...rest } = props;
                         const match = /language-(\w+)/.exec(className || '');
                         return match ? (
-                            <SyntaxHighlighter PreTag='div' language={match[1]} style={darcula}>
-                                {String(children).replace(/\n$/, '')}
-                            </SyntaxHighlighter>
+                            <div className='m-4'>
+                                <SyntaxHighlighter
+                                    PreTag='div'
+                                    useInlineStyles={true}
+                                    language={match[1]}
+                                    style={darcula}>
+                                    {String(children).replace(/\n$/, '')}
+                                </SyntaxHighlighter>
+                            </div>
                         ) : (
                             <code
                                 {...rest}
                                 className={cn(
                                     'bg-neutral-300',
                                     'dark:bg-neutral-700',
-                                    'text-wrap',
+                                    'overflow-x-scroll',
                                     'rounded-lg',
                                     'px-1',
                                     'py-1',
@@ -209,6 +219,6 @@ export const MarkdownRender = ({ children }: { children: string | null | undefin
                 }}>
                 {children}
             </ReactMarkdown>
-        </div>
+        </article>
     );
 };

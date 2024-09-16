@@ -464,6 +464,31 @@
 				"Personal Project",
 				"Open Source"
 			]
+		},
+		{
+			"projectId": 22,
+			"projectName": "shell-toy",
+			"projectDescription": "A \"cowsay|fortune\" implementation in Rust with performance, compatibility, and portability in mind",
+			"projectAsset": "shell-toy.gif",
+			"projectLinks": [
+				{
+					"linkType": "github",
+					"linkURL": "https://github.com/FaceFTW/shell-toy"
+				},
+				{
+					"linkType": "misc",
+					"linkURL": "https://faceftw.dev/blog/0003",
+					"linkDesc": "Blog Post"
+				}
+			],
+			"projectTags": [
+				"Rust",
+				"terminal",
+				"customization",
+				"Perl",
+				"Personal Project",
+				"Open Source"
+			]
 		}
 	]
 }
