@@ -31,11 +31,12 @@ export const MarkdownRender = ({ children }: { children: string | null | undefin
                         const { children, className, node, ...rest } = props;
                         const match = /language-(\w+)/.exec(className || '');
                         return match ? (
-                            <div className='m-4'>
+                            <div className='m-4 overflow-x-scroll'>
                                 <SyntaxHighlighter
                                     PreTag='div'
                                     useInlineStyles={true}
                                     language={match[1]}
+                                    wrapLongLines={true}
                                     style={darcula}>
                                     {String(children).replace(/\n$/, '')}
                                 </SyntaxHighlighter>
@@ -47,7 +48,7 @@ export const MarkdownRender = ({ children }: { children: string | null | undefin
                                     'bg-neutral-300',
                                     'dark:bg-neutral-700',
                                     'overflow-x-scroll',
-                                    'rounded-lg',
+                                    'rounded-xl',
                                     'px-1',
                                     'py-1',
                                     'leading-relaxed',
@@ -60,7 +61,7 @@ export const MarkdownRender = ({ children }: { children: string | null | undefin
                     h1(props) {
                         const { children, className, ...rest } = props;
                         return (
-                            <h1 className={cn('text-6xl', 'mb-4', className)} {...rest}>
+                            <h1 className={cn('text-3xl', 'xl:text-6xl', 'mb-4', className)} {...rest}>
                                 {children}
                             </h1>
                         );
@@ -68,7 +69,7 @@ export const MarkdownRender = ({ children }: { children: string | null | undefin
                     h2(props) {
                         const { children, className, ...rest } = props;
                         return (
-                            <h2 className={cn('text-5xl', 'mb-4', className)} {...rest}>
+                            <h2 className={cn('text-2xl', 'xl:text-5xl', 'mb-4', className)} {...rest}>
                                 {children}
                             </h2>
                         );
@@ -76,7 +77,7 @@ export const MarkdownRender = ({ children }: { children: string | null | undefin
                     h3(props) {
                         const { children, className, ...rest } = props;
                         return (
-                            <h3 className={cn('text-4xl', 'mb-4', className)} {...rest}>
+                            <h3 className={cn('text-xl', 'xl:text-4xl', 'mb-4', className)} {...rest}>
                                 {children}
                             </h3>
                         );
@@ -84,7 +85,7 @@ export const MarkdownRender = ({ children }: { children: string | null | undefin
                     h4(props) {
                         const { children, className, ...rest } = props;
                         return (
-                            <h4 className={cn('text-3xl', 'mb-4', className)} {...rest}>
+                            <h4 className={cn('text-xl', 'xl:text-3xl', 'mb-4', className)} {...rest}>
                                 {children}
                             </h4>
                         );
@@ -92,7 +93,7 @@ export const MarkdownRender = ({ children }: { children: string | null | undefin
                     h5(props) {
                         const { children, className, ...rest } = props;
                         return (
-                            <h5 className={cn('text-2xl', 'mb-4', className)} {...rest}>
+                            <h5 className={cn('text-md', 'xl:text-2xl', 'mb-4', className)} {...rest}>
                                 {children}
                             </h5>
                         );

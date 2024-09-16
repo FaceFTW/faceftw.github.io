@@ -21,7 +21,7 @@ export const BlogPanel = () => {
     const blogPages: BlogPost[] = blogData;
 
     return (
-        <div className='mx-16'>
+        <div className='mx-4 lg:mx-16'>
             <h1 className='mt-4 text-4xl'>
                 <pre>ref_cycle</pre>
             </h1>
