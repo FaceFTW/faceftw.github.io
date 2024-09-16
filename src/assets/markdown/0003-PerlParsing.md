@@ -1,7 +1,7 @@
 # Talking Cows, Perls, and Terminals
 _A really obscure set of rabbit holes to recreate an old piece of software_
 
-I've been working on a project called [shell-toy](https://github.com/FaceFTW/shell-toy) that intends to replace the `cowsay | fortune` calls my shell init scripts make. Aside from performance improvements, I also added work to inline the actual "cows" and "fortunes" in the executables to make them easily transferrable across machines. Those features are not the main focus of this post, and you can always take a look at the code for yourself.
+I've been working on a project called [shell-toy](https://github.com/FaceFTW/shell-toy) that intends to replace the `fortune | cowsay` calls my shell init scripts make. Aside from performance improvements, I also added work to inline the actual "cows" and "fortunes" in the executables to make them easily transferrable across machines. Those features are not the main focus of this post, and you can always take a look at the code for yourself.
 The main focus is about reading the Perl files and rendering them properly in terminals.
 
 This is a long post because you would not believe the amount of things one has to do to make drawings in terminals look good (not even artistically speaking). Not all posts on `ref_cycle` are going to be like this but as the first "official" post I think it deserves to be long.
