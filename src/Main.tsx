@@ -102,8 +102,7 @@ const SiteFooter = () => {
         <footer className='mx-auto mb-4 block w-[80%]'>
             <Card className='flex'>
                 <CardContent className='mx-auto mt-4 flex text-wrap'>
-                    <caption>
-                        <pre className='text-wrap'>
+                        <pre className='text-wrap text-center'>
                             Made by Alex &quot;FaceFTW&quot; Westerman &copy; 2021-{new Date().getFullYear()} All Rights
                             Reserved. {'\n'}
                             Source code for this website is licensed under the MIT License {'\n'}
@@ -114,7 +113,6 @@ const SiteFooter = () => {
                                 super secret link
                             </Link>
                         </pre>
-                    </caption>
                 </CardContent>
             </Card>
         </footer>
