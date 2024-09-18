@@ -3,7 +3,6 @@ import remarkGfm from 'remark-gfm';
 import ReactMarkdown from 'react-markdown';
 import { darcula } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import { cn } from '@/lib/utils';
-import type React from 'react';
 import { Separator } from './ui/separator';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from './ui/table';
 import java from 'react-syntax-highlighter/dist/esm/languages/prism/java';
@@ -22,21 +21,20 @@ SyntaxHighlighter.registerLanguage('asciidoc', asciidoc);
 
 export const MarkdownRender = ({ children }: { children: string | null | undefined }) => {
     return (
-        <article>
+        <article className=''>
             <ReactMarkdown
-                className='p-4'
+                className='w-[95%] px-0 py-4 lg:w-full lg:px-4'
                 remarkPlugins={[remarkGfm]}
                 components={{
                     code(props) {
                         const { children, className, node, ...rest } = props;
                         const match = /language-(\w+)/.exec(className || '');
                         return match ? (
-                            <div className='m-4 overflow-x-scroll'>
+                            <div className='my-4 w-[90vw] overflow-x-scroll lg:mx-8 lg:overflow-auto'>
                                 <SyntaxHighlighter
                                     PreTag='div'
                                     useInlineStyles={true}
                                     language={match[1]}
-                                    wrapLongLines={true}
                                     style={darcula}>
                                     {String(children).replace(/\n$/, '')}
                                 </SyntaxHighlighter>
@@ -47,11 +45,9 @@ export const MarkdownRender = ({ children }: { children: string | null | undefin
                                 className={cn(
                                     'bg-neutral-300',
                                     'dark:bg-neutral-700',
-                                    'overflow-x-scroll',
-                                    'rounded-xl',
+                                    'rounded-lg',
                                     'px-1',
-                                    'py-1',
-                                    'leading-relaxed',
+                                    'py-0.5',
                                     className
                                 )}>
                                 {children}
@@ -166,8 +162,18 @@ export const MarkdownRender = ({ children }: { children: string | null | undefin
                     img(props) {
                         const { src, alt, className, ...rest } = props;
                         const href = new URL(`${src}` ?? '', import.meta.url).href;
-                        // biome-ignore lint/a11y/useAltText: lazy
-                        return <img src={href} alt={alt} className={cn('mb-4', 'mx-auto', className)} {...rest} />;
+                        return (
+                            <div className='m-0 grid h-[100%] p-0'>
+                                {/* biome-ignore lint/a11y/useAltText: <explanation> */}
+                                <img
+                                    src={href}
+                                    alt={alt}
+                                    loading='lazy'
+                                    className={cn('mb-4', 'mx-auto', 'max-w-[100%]', 'max-h-[100vh]', className)}
+                                    {...rest}
+                                />
+                            </div>
+                        );
                     },
                     table(props) {
                         const { children, className, ...rest } = props;
