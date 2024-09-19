@@ -23,14 +23,14 @@ export const MarkdownRender = ({ children }: { children: string | null | undefin
     return (
         <article className=''>
             <ReactMarkdown
-                className='w-[95%] px-0 py-4 lg:w-full lg:px-4'
+                className='w-[95%] px-0 py-4 lg:w-[88vw] lg:px-4'
                 remarkPlugins={[remarkGfm]}
                 components={{
                     code(props) {
                         const { children, className, node, ...rest } = props;
                         const match = /language-(\w+)/.exec(className || '');
                         return match ? (
-                            <div className='my-4 w-[90vw] overflow-x-scroll lg:mx-8 lg:overflow-auto'>
+                            <div className='my-4 w-[95%] overflow-x-scroll lg:mx-8 lg:overflow-auto'>
                                 <SyntaxHighlighter
                                     PreTag='div'
                                     useInlineStyles={true}
