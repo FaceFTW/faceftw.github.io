@@ -3,7 +3,6 @@ import remarkGfm from 'remark-gfm';
 import ReactMarkdown from 'react-markdown';
 import { darcula } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import { cn } from '@/lib/utils';
-import type React from 'react';
 import { Separator } from './ui/separator';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from './ui/table';
 import java from 'react-syntax-highlighter/dist/esm/languages/prism/java';
@@ -22,16 +21,16 @@ SyntaxHighlighter.registerLanguage('asciidoc', asciidoc);
 
 export const MarkdownRender = ({ children }: { children: string | null | undefined }) => {
     return (
-        <article>
+        <article className=''>
             <ReactMarkdown
-                className='p-4'
+                className='w-[95%] px-0 py-4 lg:w-[88vw] lg:px-4'
                 remarkPlugins={[remarkGfm]}
                 components={{
                     code(props) {
                         const { children, className, node, ...rest } = props;
                         const match = /language-(\w+)/.exec(className || '');
                         return match ? (
-                            <div className='m-4'>
+                            <div className='my-4 w-[95%] overflow-x-scroll lg:mx-8 lg:overflow-auto'>
                                 <SyntaxHighlighter
                                     PreTag='div'
                                     useInlineStyles={true}
@@ -46,11 +45,9 @@ export const MarkdownRender = ({ children }: { children: string | null | undefin
                                 className={cn(
                                     'bg-neutral-300',
                                     'dark:bg-neutral-700',
-                                    'overflow-x-scroll',
                                     'rounded-lg',
                                     'px-1',
-                                    'py-1',
-                                    'leading-relaxed',
+                                    'py-0.5',
                                     className
                                 )}>
                                 {children}
@@ -60,7 +57,7 @@ export const MarkdownRender = ({ children }: { children: string | null | undefin
                     h1(props) {
                         const { children, className, ...rest } = props;
                         return (
-                            <h1 className={cn('text-6xl', 'mb-4', className)} {...rest}>
+                            <h1 className={cn('text-3xl', 'xl:text-6xl', 'mb-4', className)} {...rest}>
                                 {children}
                             </h1>
                         );
@@ -68,7 +65,7 @@ export const MarkdownRender = ({ children }: { children: string | null | undefin
                     h2(props) {
                         const { children, className, ...rest } = props;
                         return (
-                            <h2 className={cn('text-5xl', 'mb-4', className)} {...rest}>
+                            <h2 className={cn('text-2xl', 'xl:text-5xl', 'mb-4', className)} {...rest}>
                                 {children}
                             </h2>
                         );
@@ -76,7 +73,7 @@ export const MarkdownRender = ({ children }: { children: string | null | undefin
                     h3(props) {
                         const { children, className, ...rest } = props;
                         return (
-                            <h3 className={cn('text-4xl', 'mb-4', className)} {...rest}>
+                            <h3 className={cn('text-xl', 'xl:text-4xl', 'mb-4', className)} {...rest}>
                                 {children}
                             </h3>
                         );
@@ -84,7 +81,7 @@ export const MarkdownRender = ({ children }: { children: string | null | undefin
                     h4(props) {
                         const { children, className, ...rest } = props;
                         return (
-                            <h4 className={cn('text-3xl', 'mb-4', className)} {...rest}>
+                            <h4 className={cn('text-xl', 'xl:text-3xl', 'mb-4', className)} {...rest}>
                                 {children}
                             </h4>
                         );
@@ -92,7 +89,7 @@ export const MarkdownRender = ({ children }: { children: string | null | undefin
                     h5(props) {
                         const { children, className, ...rest } = props;
                         return (
-                            <h5 className={cn('text-2xl', 'mb-4', className)} {...rest}>
+                            <h5 className={cn('text-md', 'xl:text-2xl', 'mb-4', className)} {...rest}>
                                 {children}
                             </h5>
                         );
@@ -165,8 +162,18 @@ export const MarkdownRender = ({ children }: { children: string | null | undefin
                     img(props) {
                         const { src, alt, className, ...rest } = props;
                         const href = new URL(`${src}` ?? '', import.meta.url).href;
-                        // biome-ignore lint/a11y/useAltText: lazy
-                        return <img src={href} alt={alt} className={cn('mb-4', 'mx-auto', className)} {...rest} />;
+                        return (
+                            <div className='m-0 grid h-[100%] p-0'>
+                                {/* biome-ignore lint/a11y/useAltText: <explanation> */}
+                                <img
+                                    src={href}
+                                    alt={alt}
+                                    loading='lazy'
+                                    className={cn('mb-4', 'mx-auto', 'max-w-[100%]', 'max-h-[100vh]', className)}
+                                    {...rest}
+                                />
+                            </div>
+                        );
                     },
                     table(props) {
                         const { children, className, ...rest } = props;

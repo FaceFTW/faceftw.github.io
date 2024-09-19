@@ -102,8 +102,7 @@ const SiteFooter = () => {
         <footer className='mx-auto mb-4 block w-[80%]'>
             <Card className='flex'>
                 <CardContent className='mx-auto mt-4 flex text-wrap'>
-                    <caption>
-                        <pre className='text-wrap'>
+                        <pre className='text-wrap text-center'>
                             Made by Alex &quot;FaceFTW&quot; Westerman &copy; 2021-{new Date().getFullYear()} All Rights
                             Reserved. {'\n'}
                             Source code for this website is licensed under the MIT License {'\n'}
@@ -114,7 +113,6 @@ const SiteFooter = () => {
                                 super secret link
                             </Link>
                         </pre>
-                    </caption>
                 </CardContent>
             </Card>
         </footer>
@@ -203,7 +201,7 @@ const Layout = () => {
                     </Sheet>
                 </div>
                 <div className='w-full flex-1'>
-                    <span className='lg:text-xl xl:text-2xl'>Alex Westerman{titleMemo}</span>
+                    <span className='text-sm lg:text-xl xl:text-2xl'>Alex Westerman{titleMemo}</span>
                 </div>
                 <div className='flex pr-2'>
                     <Button variant='ghost' onClick={() => setDarkMode(!darkMode)} aria-label='Change Light/Dark Mode'>
@@ -212,10 +210,10 @@ const Layout = () => {
                     </Button>
                 </div>
             </header>
-            <div className='grid min-h-screen w-full md:grid-cols-[44px_1fr] xl:grid-cols-[64px_1fr]'>
+            <div className='grid min-h-screen w-full lg:grid-cols-[44px_1fr] xl:grid-cols-[64px_1fr]'>
                 <div className='hidden border-r bg-muted/40 md:block'>
                     {/* biome-ignore lint/nursery/useSortedClasses: lint broken? */}
-                    <div className='hidden md:flex md:flex-col md:h-[calc(100% - 44px)] md:max-h-[calc(100vh-44px)] md:gap-2'>
+                    <div className='hidden lg:flex lg:flex-col lg:h-[calc(100% - 44px)] lg:max-h-[calc(100vh-44px)] lg:gap-2'>
                         <div className='flex-1'>
                             <SidenavLinks />
                         </div>

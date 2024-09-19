@@ -28,7 +28,7 @@ export const BlogPagePanel = () => {
     }, [markdownUrl]);
 
     return (
-        <div className='mx-16 my-4'>
+        <div className='mx-4 my-4 lg:mx-16'>
             <div className='flex flex-row space-x-2'>
                 <Link to='/blog'>
                     <div className='flex flex-row space-x-2'>
