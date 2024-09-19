@@ -1,6 +1,5 @@
 import { defineConfig } from 'vite';
 // import type {OutputOptions} from 'vite'
-import Inspect from 'vite-plugin-inspect';
 import react from '@vitejs/plugin-react-swc';
 import path from 'node:path';
 import fs from 'node:fs/promises';
@@ -38,10 +37,6 @@ import fs from 'node:fs/promises';
 export default defineConfig({
     plugins: [
         react(),
-        Inspect({
-            build: true,
-            outputDir: '.vite-inspect',
-        }),
         // postProcessMarkdownLinks(),
     ],
     resolve: {
