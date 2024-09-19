@@ -161,7 +161,7 @@ export const MarkdownRender = ({ children }: { children: string | null | undefin
                     },
                     img(props) {
                         const { src, alt, className, ...rest } = props;
-                        const href = new URL(`${src}` ?? '', import.meta.url).href;
+                        const href = new URL(`${src}`, import.meta.url).href;
                         return (
                             <div className='m-0 grid h-[100%] p-0'>
                                 {/* biome-ignore lint/a11y/useAltText: <explanation> */}
