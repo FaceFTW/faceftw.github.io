@@ -6,20 +6,6 @@ The main focus is about reading the Perl files and rendering them properly in te
 
 This is a long post because you would not believe the amount of things one has to do to make drawings in terminals look good (not even artistically speaking). Not all posts on `ref_cycle` are going to be like this but as the first "official" post I think it deserves to be long.
 
-- [Talking Cows, Perls, and Terminals](#talking-cows-perls-and-terminals)
-		- [A really obscure rabbit hole to recreate an old piece of software](#a-really-obscure-rabbit-hole-to-recreate-an-old-piece-of-software)
-	- [What is Cowsay Actually?](#what-is-cowsay-actually)
-	- [The Rabbit Hole of Perl Syntax Parsing](#the-rabbit-hole-of-perl-syntax-parsing)
-	- [What is a Cow?](#what-is-a-cow)
-	- [Escape Hatches (But Not Really)](#escape-hatches-but-not-really)
-	- [Implementing a Talking Cow](#implementing-a-talking-cow)
-		- [`impl` Part 1 - Lexing Cows](#impl-part-1---lexing-cows)
-		- [`impl` Part 2: Interpreting Cow "Speak"](#impl-part-2-interpreting-cow-speak)
-			- [(Saving the) Environment](#saving-the-environment)
-			- [Coloring the World](#coloring-the-world)
-		- [The Dust Settles](#the-dust-settles)
-	- [The Final Result (Batteries Required)](#the-final-result-batteries-required)
-
 ## What is Cowsay Actually?
 
 Ironically, `cowsay` is actually just a Perl script. Originally written and maintained by [Tony Monroe](https://web.archive.org/web/20120225123719/http://www.nog.net/~tony/warez/cowsay.shtml) until it was transferred to [GitHub](https://github.com/cowsay-org/cowsay), its gained a couple of new features or so, but otherwise remained simple at its core.
