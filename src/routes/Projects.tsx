@@ -1,12 +1,20 @@
 import projectData from '@/assets/json/projects.json';
 import ProjectCard from '@/components/ProjectCard';
 import type { Project } from '@/DataTypes';
+import { Helmet } from 'react-helmet';
 
 export const ProjectsPanel = () => {
     const projects: Project[] = projectData.projectList;
 
     return (
         <div className='justify-content m-8 flex items-center'>
+            <Helmet>
+                <meta name='robots' content='noimageindex' />
+                <meta
+                    name='description'
+                    content='List of Projects made by Alex "FaceFTW" Westerman. From software to "hardware", there is "a little something for everyone".'
+                />
+            </Helmet>
             <div className='mx-auto' />
             <div className='grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-3'>
                 {projects.map((project) => (

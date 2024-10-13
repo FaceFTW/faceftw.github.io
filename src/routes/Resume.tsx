@@ -3,6 +3,7 @@ import type { Education, ProfessionalExperience, Skill } from '@/DataTypes';
 import resumeData from '@/assets/json/resume.json';
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/components/ui/accordion';
 import { Badge } from '@/components/ui/badge';
+import { Helmet } from 'react-helmet';
 
 // const Highlights = ({ highlights }: { highlights: ResumeHighlight[] }) => {
 // 	//This is kinda hacky, but I can't think of a better solution
@@ -168,6 +169,13 @@ export const ResumePanel = () => {
 
     return (
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }} className='m-4'>
+            <Helmet>
+                <meta name='robots' content='noimageindex' />
+                <meta
+                    name='description'
+                    content='Resume for Alex "FaceFTW" Westerman. Hit me up if you want to hire a software developer (I might say no).'
+                />
+            </Helmet>
             <div className='m-4'>
                 <h4 className='text-4xl underline'>Skills</h4>
                 <SkillSection skills={skills} />

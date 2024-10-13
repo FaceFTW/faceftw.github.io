@@ -20,6 +20,7 @@ import {
     AlertDialogContent,
     AlertDialogDescription,
 } from '@/components/ui/alert-dialog';
+import { Helmet } from 'react-helmet';
 
 const SocialSection = () => {
     const [gpgAlertWindow, setGpgAlertWindow] = React.useState(false);
@@ -112,7 +113,8 @@ const SocialSection = () => {
                                     size='icon'
                                     asChild
                                     // onClick={() => setGpgAlertWindow(true)}
-                                    disabled>
+                                    disabled
+                                >
                                     <Key className={iconSizeClass} />
                                 </Button>
                                 {/* </AlertDialogTrigger> */}
@@ -197,6 +199,13 @@ export const HomePanel = () => {
 
     return (
         <div className='flex flex-col items-center'>
+            <Helmet>
+                <meta name='robots' content='noimageindex' />
+                <meta
+                    name='description'
+                    content='Alex "FaceFTW" Westerman - Personal Website. Home of my portfolio and the "ref_cycle" blog that I occasionally post on.'
+                />
+            </Helmet>
             <HomeMainSection />
             <Separator className='my-4 w-[80%] border-2' />
             <section className='flex flex-col items-center'>
