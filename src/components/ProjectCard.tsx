@@ -1,6 +1,7 @@
+'use client'
 import { useInView } from 'framer-motion';
 import React from 'react';
-import type { Project } from '@/DataTypes';
+import type { Project } from '@/lib/types';
 import { Card, CardDescription, CardFooter, CardTitle, CardContent, CardHeader } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { TooltipTrigger, TooltipProvider, TooltipContent, Tooltip } from '@/components/ui/tooltip';

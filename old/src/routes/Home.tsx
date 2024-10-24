@@ -4,7 +4,7 @@ import type { Project } from '@/DataTypes';
 import projectData from '@/assets/json/projects.json';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import Autoplay from 'embla-carousel-autoplay';
-import { ProjectCarouselCard } from '@/components/ProjectCarouselCard';
+import { ProjectCarouselCard } from '../../../src/components/ProjectCarouselCard';
 import TypewriterComponent from 'typewriter-effect';
 import Pfp from '@/assets/img/pfp.webp';
 import gpgkey from '@/assets/json/gpg_key.json';

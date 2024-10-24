@@ -1,5 +1,5 @@
 import React from 'react';
-import type { Project } from '@/DataTypes';
+import type { Project } from '@/lib/types';
 import { useInView } from 'framer-motion';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
