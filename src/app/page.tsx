@@ -1,3 +1,4 @@
+'use client';
 import { motion } from 'framer-motion';
 import React from 'react';
 import type { Project } from '@/lib/types';
@@ -20,6 +21,7 @@ import {
     AlertDialogContent,
     AlertDialogDescription,
 } from '@/components/ui/alert-dialog';
+import Image from 'next/image';
 
 const SocialSection = () => {
     const [gpgAlertWindow, setGpgAlertWindow] = React.useState(false);
@@ -36,12 +38,14 @@ const SocialSection = () => {
 
     const iconSizeClass = 'h-4 w-4 md:h-10 md:w-10';
 
+    // <motion.div
+    //     className='flex flex-col items-center'
+    //     initial={{ opacity: 0 }}
+    //     animate={{ opacity: 1 }}
+    //     transition={{ duration: 2 }}>
+    // </motion.div>
     return (
-        // <motion.div
-        //     className='flex flex-col items-center'
-        //     initial={{ opacity: 0 }}
-        //     animate={{ opacity: 1 }}
-        //     transition={{ duration: 2 }}>
+        <>
             <h1 className='mt-8 mb-4 text-xl md:mt-0'>
                 <em>Links and Things</em>
             </h1>
@@ -112,7 +116,8 @@ const SocialSection = () => {
                                     size='icon'
                                     asChild
                                     // onClick={() => setGpgAlertWindow(true)}
-                                    disabled>
+                                    disabled
+                                >
                                     <Key className={iconSizeClass} />
                                 </Button>
                                 {/* </AlertDialogTrigger> */}
@@ -132,66 +137,67 @@ const SocialSection = () => {
                 </AlertDialog>
                 <div className='mx-auto' />
             </div>
-        // </motion.div>
+        </>
     );
 };
 
 const HomeMainSection = () => {
     return (
         <section>
-            <motion.div
+            {/* <motion.div
                 className='flex flex-col items-center'
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ duration: 2 }}>
-                <div className='mx-auto' />
-                <div className='flex flex-col lg:flex-row'>
-                    <div className='m-8'>
-                        <img
-                            src={Pfp}
-                            className='h-48 w-48 rounded-full border-8 transition-all hover:border-primary'
-                            alt='me :)'
-                        />
-                    </div>
-                    <div className='flex flex-col justify-center text-center md:text-left'>
-                        <h1 className='text-4xl md:text-8xl'>Alex is a </h1>
-                        <h1 className='text-4xl text-primary md:text-8xl'>
-                            <TypewriterComponent
-                                options={{
-                                    autoStart: true,
-                                    loop: true,
-                                }}
-                                onInit={(typewriter) => {
-                                    typewriter
-                                        .typeString('Software Engineer')
-                                        .pauseFor(3000)
-                                        .deleteAll()
-                                        .typeString('Hardware Tinkerer')
-                                        .pauseFor(3000)
-                                        .deleteAll()
-                                        .typeString('Power User')
-                                        .pauseFor(3000)
-                                        .deleteAll()
-                                        .typeString('Tech Enthusiast')
-                                        .pauseFor(3000)
-                                        .deleteAll()
-                                        .typeString('Problem Solver')
-                                        .pauseFor(3000)
-                                        .deleteAll()
-                                        .start();
-                                }}
-                            />
-                        </h1>
-                    </div>
+                transition={{ duration: 2 }}> */}
+
+            <div className='mx-auto' />
+            <div className='flex flex-col lg:flex-row'>
+                <div className='m-8'>
+                    <Image
+                        src={Pfp}
+                        className='h-48 w-48 rounded-full border-8 transition-all hover:border-primary'
+                        alt='me :)'
+                    />
                 </div>
-                <div className='mx-auto' />
-            </motion.div>
+                <div className='flex flex-col justify-center text-center md:text-left'>
+                    <h1 className='text-4xl md:text-8xl'>Alex is a </h1>
+                    <h1 className='text-4xl text-primary md:text-8xl'>
+                        <TypewriterComponent
+                            options={{
+                                autoStart: true,
+                                loop: true,
+                            }}
+                            onInit={(typewriter) => {
+                                typewriter
+                                    .typeString('Software Engineer')
+                                    .pauseFor(3000)
+                                    .deleteAll()
+                                    .typeString('Hardware Tinkerer')
+                                    .pauseFor(3000)
+                                    .deleteAll()
+                                    .typeString('Power User')
+                                    .pauseFor(3000)
+                                    .deleteAll()
+                                    .typeString('Tech Enthusiast')
+                                    .pauseFor(3000)
+                                    .deleteAll()
+                                    .typeString('Problem Solver')
+                                    .pauseFor(3000)
+                                    .deleteAll()
+                                    .start();
+                            }}
+                        />
+                    </h1>
+                </div>
+            </div>
+            <div className='mx-auto' />
+            {/* </motion.div> */}
             <SocialSection />
         </section>
     );
 };
 
-export const HomePanel = () => {
+export default function HomePanel() {
     const projects: Project[] = projectData.projectList;
     const featured = [projects[14], projects[22], projects[18], projects[7], projects[20], projects[21]];
 
@@ -222,4 +228,4 @@ export const HomePanel = () => {
             </section>
         </div>
     );
-};
+}
