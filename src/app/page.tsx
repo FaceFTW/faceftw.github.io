@@ -13,18 +13,18 @@ import { TooltipProvider, Tooltip, TooltipContent, TooltipTrigger } from '@/comp
 import { Button } from '@/components/ui/button';
 import { Github, Key, Linkedin, Mail, Twitter } from 'lucide-react';
 import { Separator } from '@radix-ui/react-separator';
-import {
-    AlertDialog,
-    AlertDialogFooter,
-    AlertDialogHeader,
-    AlertDialogAction,
-    AlertDialogContent,
-    AlertDialogDescription,
-} from '@/components/ui/alert-dialog';
+// import {
+//     AlertDialog,
+//     AlertDialogFooter,
+//     AlertDialogHeader,
+//     AlertDialogAction,
+//     AlertDialogContent,
+//     AlertDialogDescription,
+// } from '@/components/ui/alert-dialog';
 import Image from 'next/image';
 
 const SocialSection = () => {
-    const [gpgAlertWindow, setGpgAlertWindow] = React.useState(false);
+    // const [gpgAlertWindow, setGpgAlertWindow] = React.useState(false);
     // const copyGpgKey = () => {
     //     navigator.clipboard.writeText(gpgkey.pub_key);
     //     setGpgCopied(true);
@@ -105,36 +105,7 @@ const SocialSection = () => {
                         <TooltipContent>LinkedIn</TooltipContent>
                     </Tooltip>
                 </TooltipProvider>
-                <AlertDialog open={gpgAlertWindow} onOpenChange={setGpgAlertWindow}>
-                    <TooltipProvider>
-                        <Tooltip>
-                            <TooltipTrigger asChild>
-                                {/* <AlertDialogTrigger asChild> */}
-                                <Button
-                                    variant='link'
-                                    className={iconSizeClass}
-                                    size='icon'
-                                    asChild
-                                    // onClick={() => setGpgAlertWindow(true)}
-                                    disabled
-                                >
-                                    <Key className={iconSizeClass} />
-                                </Button>
-                                {/* </AlertDialogTrigger> */}
-                            </TooltipTrigger>
-                            <TooltipContent>GPG Public Key (Currently Broken)</TooltipContent>
-                        </Tooltip>
-                    </TooltipProvider>
-                    <AlertDialogContent>
-                        <AlertDialogHeader>GPG Public Key</AlertDialogHeader>
-                        <AlertDialogDescription>
-                            <pre>{gpgkey.pub_key}</pre>
-                        </AlertDialogDescription>
-                        <AlertDialogFooter>
-                            <AlertDialogAction onClick={() => setGpgAlertWindow(false)}>Close</AlertDialogAction>
-                        </AlertDialogFooter>
-                    </AlertDialogContent>
-                </AlertDialog>
+
                 <div className='mx-auto' />
             </div>
         </>

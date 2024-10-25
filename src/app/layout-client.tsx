@@ -1,5 +1,4 @@
 'use client';
-
 import type React from 'react';
 import { CircleUser, Home, Menu, MoonStar, Rss, ScrollText, SquareDashedBottomCode, Sun } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -21,74 +20,14 @@ import {
     SidebarTrigger,
     useSidebar,
 } from '@/components/ui/sidebar';
-const SidenavLinks = ({
-    showText = false,
-    closeSidebarTrigger = () => {
-        return;
-    },
-}: {
-    showText?: boolean;
-    closeSidebarTrigger?: () => void;
-}) => {
-    const sidebarNavItemClass =
-        'flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground';
-    const sidenavTextClass = showText ? 'visible' : 'sr-only';
-
-    const wrapWithToolTip = (elements: React.ReactNode, text: string) => {
-        return showText ? (
-            elements
-        ) : (
-            <TooltipProvider>
-                <Tooltip delayDuration={500}>
-                    <TooltipTrigger asChild>{elements}</TooltipTrigger>
-                    <TooltipContent>
-                        <p>{text}</p>
-                    </TooltipContent>
-                </Tooltip>
-            </TooltipProvider>
-        );
-    };
-
-    return (
-        <nav className='left-0 grid gap-2 md:font-medium md:text-lg xl:text-xl'>
-            {wrapWithToolTip(
-                <Link href='/' className={sidebarNavItemClass} onClick={closeSidebarTrigger}>
-                    <Home className='h-5 w-5 xl:h-10 xl:w-10' />
-                    <span className={sidenavTextClass}>Home</span>
-                </Link>,
-                'Home'
-            )}
-            {wrapWithToolTip(
-                <Link href='/projects' className={sidebarNavItemClass} onClick={closeSidebarTrigger}>
-                    <SquareDashedBottomCode className='h-5 w-5 xl:h-10 xl:w-10' />
-                    <span className={sidenavTextClass}>Projects</span>
-                </Link>,
-                'Projects'
-            )}
-            {wrapWithToolTip(
-                <Link href='/resume' className={sidebarNavItemClass} onClick={closeSidebarTrigger}>
-                    <ScrollText className='h-5 w-5 xl:h-10 xl:w-10' />
-                    <span className={sidenavTextClass}>Resume</span>
-                </Link>,
-                'Resume'
-            )}
-            {wrapWithToolTip(
-                <Link href='/blog' className={sidebarNavItemClass} onClick={closeSidebarTrigger}>
-                    <Rss className='h-5 w-5 xl:h-10 xl:w-10' />
-                    <span className={sidenavTextClass}>Blog (Under Construction)</span>
-                </Link>,
-                'Blog (Under Construction)'
-            )}
-            {wrapWithToolTip(
-                <Link href='/about' className={sidebarNavItemClass} onClick={closeSidebarTrigger}>
-                    <CircleUser className='h-5 w-5 xl:h-10 xl:w-10' />
-                    <span className={sidenavTextClass}>About</span>
-                </Link>,
-                'About'
-            )}
-        </nav>
-    );
-};
+import { useIsMobile } from '@/hooks/use-mobile';
+import {
+    NavigationMenu,
+    NavigationMenuLink,
+    NavigationMenuList,
+    navigationMenuTriggerStyle,
+} from '@/components/ui/navigation-menu';
+import { NavigationMenuItem } from '@radix-ui/react-navigation-menu';
 
 // Menu items.
 const items = [
@@ -142,34 +81,49 @@ const SiteFooter = () => {
 };
 
 const LayoutInternal = ({ children }: Readonly<{ children: React.ReactNode }>) => {
-    const { state, open, setOpen, openMobile, setOpenMobile, isMobile, toggleSidebar } = useSidebar();
+    // const { state, open, setOpen, openMobile, setOpenMobile, toggleSidebar } = useSidebar();
+    const isMobile = useIsMobile();
+
+    // const wrapWithToolTip = (elements: React.ReactNode, text: string) => {
+    //     return open ? (
+    //         elements
+    //     ) : (
+    //         <TooltipProvider key={text}>
+    //             <Tooltip delayDuration={500}>
+    //                 <TooltipTrigger asChild>{elements}</TooltipTrigger>
+    //                 <TooltipContent>
+    //                     <p>{text}</p>
+    //                 </TooltipContent>
+    //             </Tooltip>
+    //         </TooltipProvider>
+    //     );
+    // };
 
     return (
-        <div className='flex'>
-            <Sidebar collapsible='icon'>
-                <SidebarContent>
-                    <SidebarGroup>
-                        <SidebarMenu>
-                            {items.map((item) => (
-                                <SidebarMenuItem key={item.title}>
-                                    <SidebarMenuButton asChild>
-                                        <Link href={item.url}>
-                                            <item.icon className='h-5 w-5 xl:h-10 xl:w-10' />
-                                            <span>{item.title}</span>
-                                        </Link>
-                                    </SidebarMenuButton>
-                                </SidebarMenuItem>
-                            ))}
-                        </SidebarMenu>
-                    </SidebarGroup>
-                </SidebarContent>
-            </Sidebar>
-            <main className='flex flex-1 flex-col w-max'>
+        <div className='flex flex-grow'>
+            <main className='flex flex-1 flex-grow flex-col'>
                 <header className='flex h-[44px] items-center gap-2 border-b bg-muted/40 lg:gap-4 xl:h-[60px]'>
-                    <SidebarTrigger />
-                    <div className='w-full flex-1'>
+                    {/* {isMobile && (
+                        <Button variant='ghost' onClick={toggleSidebar}>
+                            <Menu />
+                        </Button>
+                    )} */}
+                    <div className='ml-2 w-full flex-1'>
                         <span className='text-sm lg:text-xl xl:text-2xl'>Alex Westerman</span>
                     </div>
+                    <NavigationMenu>
+                        <NavigationMenuList>
+                            {items.map((item) => (
+                                <NavigationMenuItem key={item.title}>
+                                    <Link href={item.url} legacyBehavior passHref>
+                                        <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                                            {item.title}
+                                        </NavigationMenuLink>
+                                    </Link>
+                                </NavigationMenuItem>
+                            ))}
+                        </NavigationMenuList>
+                    </NavigationMenu>
                     {/* <div className='flex pr-2'>
                                 <Button
                                     variant='ghost'

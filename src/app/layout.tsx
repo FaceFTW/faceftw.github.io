@@ -20,14 +20,7 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/comp
 // import ReactDOM from 'react-dom/client';
 // import { Route, Switch, Link, useLocation, Router, useRoute } from 'wouter';
 import Link from 'next/link';
-import {
-    Sidebar,
-    SidebarContent,
-    SidebarGroup,
-    SidebarProvider,
-    SidebarTrigger,
-    useSidebar,
-} from '@/components/ui/sidebar';
+
 import { Card, CardContent } from '@/components/ui/card';
 import LayoutSidebar from './layout-client';
 import ClientLayout from './layout-client';
@@ -134,9 +127,7 @@ export default function RootLayout({
     return (
         <html lang='en'>
             <body className={'antialiased'}>
-                <SidebarProvider>
-                    <ClientLayout>{children}</ClientLayout>
-                </SidebarProvider>
+                <ClientLayout>{children}</ClientLayout>
             </body>
         </html>
     );
