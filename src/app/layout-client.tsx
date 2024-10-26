@@ -3,23 +3,23 @@ import type React from 'react';
 import { CircleUser, Home, Menu, MoonStar, Rss, ScrollText, SquareDashedBottomCode, Sun } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+// import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 // import ReactDOM from 'react-dom/client';
 // import { Route, Switch, Link, useLocation, Router, useRoute } from 'wouter';
 import Link from 'next/link';
-import {
-    Sidebar,
-    SidebarContent,
-    SidebarGroup,
-    SidebarMenu,
-    SidebarMenuButton,
-    SidebarMenuItem,
-    SidebarProvider,
-    SidebarTrigger,
-    useSidebar,
-} from '@/components/ui/sidebar';
+// import {
+//     Sidebar,
+//     SidebarContent,
+//     SidebarGroup,
+//     SidebarMenu,
+//     SidebarMenuButton,
+//     SidebarMenuItem,
+//     SidebarProvider,
+//     SidebarTrigger,
+//     useSidebar,
+// } from '@/components/ui/sidebar';
 import { useIsMobile } from '@/hooks/use-mobile';
 import {
     NavigationMenu,
@@ -28,61 +28,12 @@ import {
     navigationMenuTriggerStyle,
 } from '@/components/ui/navigation-menu';
 import { NavigationMenuItem } from '@radix-ui/react-navigation-menu';
+import { MainNav } from '@/components/navbar';
 
-// Menu items.
-const items = [
-    {
-        title: 'Home',
-        url: '/',
-        icon: Home,
-    },
-    {
-        title: 'Projects',
-        url: '/projects',
-        icon: SquareDashedBottomCode,
-    },
-    {
-        title: 'Resume',
-        url: '/resume',
-        icon: ScrollText,
-    },
-    {
-        title: 'Blog',
-        url: '/blog',
-        icon: Rss,
-    },
-    {
-        title: 'About',
-        url: '/about',
-        icon: CircleUser,
-    },
-];
-
-const SiteFooter = () => {
-    return (
-        <footer className='mx-auto mb-4 block w-[80%]'>
-            <Card className='flex'>
-                <CardContent className='mx-auto mt-4 flex text-wrap'>
-                    <pre className='text-wrap text-center'>
-                        Made by Alex &quot;FaceFTW&quot; Westerman &copy; 2021-{new Date().getFullYear()} All Rights
-                        Reserved. {'\n'}
-                        Source code for this website is licensed under the MIT License {'\n'}
-                        All projects mentioned are subject to their specific licenses and copyrights as designated by
-                        their owners
-                        {'\n\n'}
-                        <Link href='/funny' className='text-gray-500 text-sm decoration-muted'>
-                            super secret link
-                        </Link>
-                    </pre>
-                </CardContent>
-            </Card>
-        </footer>
-    );
-};
 
 const LayoutInternal = ({ children }: Readonly<{ children: React.ReactNode }>) => {
     // const { state, open, setOpen, openMobile, setOpenMobile, toggleSidebar } = useSidebar();
-    const isMobile = useIsMobile();
+    // const isMobile = useIsMobile();
 
     // const wrapWithToolTip = (elements: React.ReactNode, text: string) => {
     //     return open ? (
@@ -111,7 +62,9 @@ const LayoutInternal = ({ children }: Readonly<{ children: React.ReactNode }>) =
                     <div className='ml-2 w-full flex-1'>
                         <span className='text-sm lg:text-xl xl:text-2xl'>Alex Westerman</span>
                     </div>
-                    <NavigationMenu>
+
+                    <MainNav />
+                    {/* <NavigationMenu>
                         <NavigationMenuList>
                             {items.map((item) => (
                                 <NavigationMenuItem key={item.title}>
@@ -123,7 +76,7 @@ const LayoutInternal = ({ children }: Readonly<{ children: React.ReactNode }>) =
                                 </NavigationMenuItem>
                             ))}
                         </NavigationMenuList>
-                    </NavigationMenu>
+                    </NavigationMenu> */}
                     {/* <div className='flex pr-2'>
                                 <Button
                                     variant='ghost'
@@ -135,9 +88,7 @@ const LayoutInternal = ({ children }: Readonly<{ children: React.ReactNode }>) =
                             </div> */}
                 </header>
                 {children}
-                <div className='flex items-center'>
-                    <SiteFooter />
-                </div>
+                <div className='flex items-center'>{/* <SiteFooter /> */}</div>
             </main>
         </div>
     );
