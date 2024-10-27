@@ -4,12 +4,9 @@ import * as React from 'react';
 import Link from 'next/link';
 import { useSelectedLayoutSegment } from 'next/navigation';
 
-// import { siteConfig } from '@/config/site';
 import { cn } from '@/lib/utils';
-// import { Icons } from '@/components/icons';
-
 import { useLockBody } from '@/hooks/use-lock-body';
-import { Menu, X } from 'lucide-react';
+import { CircleUser, Home, Menu, Rss, ScrollText, SquareDashedBottomCode, X } from 'lucide-react';
 import { Button } from './ui/button';
 import { NavigationMenu, NavigationMenuItem, NavigationMenuList } from './ui/navigation-menu';
 
@@ -18,22 +15,27 @@ const items = [
     {
         title: 'Home',
         url: '/',
+        icon: Home,
     },
     {
         title: 'Projects',
         url: '/projects',
+        icon: SquareDashedBottomCode,
     },
     {
         title: 'Resume',
         url: '/resume',
+        icon: ScrollText,
     },
     {
         title: 'Blog',
         url: '/blog',
+        icon: Rss,
     },
     {
         title: 'About',
         url: '/about',
+        icon: CircleUser,
     },
 ];
 
@@ -50,17 +52,18 @@ export function MobileNav({ children }: MobileNavProps) {
                 'slide-in-from-bottom-80 fixed inset-0 top-16 z-50 grid h-[calc(100vh-4rem)] animate-in grid-flow-row auto-rows-max overflow-auto p-6 pb-32 shadow-md md:hidden'
             )}>
             <div className='relative z-20 grid gap-6 rounded-md bg-popover p-4 text-popover-foreground shadow-md'>
-                <Link href='/' className='flex items-center space-x-2'>
+                {/* <Link href='/' className='flex items-center space-x-2'>
                     <Menu />
                     <span className='font-bold'>Alex Westerman</span>
-                </Link>
+                </Link> */}
                 <nav className='grid grid-flow-row auto-rows-max text-sm'>
                     {items.map((item) => (
                         <Link
                             key={item.title}
                             href={item.url}
-                            className='flex w-full items-center rounded-md p-2 font-medium text-sm hover:underline'>
-                            {item.title}
+                            className='flex w-full items-center gap-2 rounded-md p-2 font-medium text-sm hover:underline'>
+                            <item.icon />
+                            <span>{item.title}</span>
                         </Link>
                     ))}
                 </nav>
@@ -71,29 +74,30 @@ export function MobileNav({ children }: MobileNavProps) {
 }
 
 interface MainNavProps {
-    items?: { title: string; url: string }[];
     children?: React.ReactNode;
 }
 
-export function MainNav({ items, children }: MainNavProps) {
-    const segment = useSelectedLayoutSegment();
+export function MainNav({ children }: MainNavProps) {
+    // const segment = useSelectedLayoutSegment();
     const [showMobileMenu, setShowMobileMenu] = React.useState<boolean>(false);
 
     return (
         <div className='flex gap-6 md:gap-10'>
             <Link href='/' className='hidden items-center space-x-2 md:flex'>
-                {/* <Icons.logo /> */}
                 <span className='hidden font-bold sm:inline-block'>Alex Westerman</span>
             </Link>
-            <NavigationMenu>
-                <NavigationMenuList>
+            <NavigationMenu className='hidden md:flex'>
+                <NavigationMenuList className='gap-6 md:gap-10'>
                     {items?.map((item) => (
-                        <NavigationMenuItem key={item.title}>
+                        <NavigationMenuItem
+                            key={item.title}
+                            className='
+                        '>
                             <Link
                                 key={item.title}
                                 href={item.url}
                                 className={cn(
-                                    'flex items-center font-medium text-lg transition-colors hover:text-foreground/80 sm:text-sm'
+                                    'flex font-medium text-lg transition-colors hover:text-foreground/80 sm:text-sm'
                                     // item.url.startsWith(`/${segment}`) ? 'text-foreground' : 'text-foreground/60'
                                 )}>
                                 <span>{item.title}</span>
@@ -107,7 +111,7 @@ export function MainNav({ items, children }: MainNavProps) {
                 className='flex items-center space-x-2 md:hidden'
                 onClick={() => setShowMobileMenu(!showMobileMenu)}>
                 {showMobileMenu ? <X /> : <Menu />}
-                <span className='font-bold'>Menu</span>
+                <span className='font-bold'>Alex Westerman</span>
             </Button>
             {showMobileMenu && <MobileNav>{children}</MobileNav>}
         </div>

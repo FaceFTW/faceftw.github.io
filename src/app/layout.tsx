@@ -18,11 +18,10 @@ export default function RootLayout({
         <html lang='en'>
             <body className={'antialiased'}>
                 <div className='flex min-h-screen flex-col'>
-                    <header className='z-40 mx-auto bg-background'>
-                        <div className='flex h-10 items-center justify-between py-6 '>
-                            {/* <span className='text-sm lg:text-xl xl:text-2xl'>Alex Westerman</span> */}
-
+                    <header className='z-40 bg-background py-2 md:px-40 md:py-6'>
+                        <div className='flex h-10 flex-row justify-between '>
                             <MainNav />
+                            <span className='w-max-10' />
                         </div>
                     </header>
 
