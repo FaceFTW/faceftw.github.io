@@ -6,9 +6,10 @@ import { useSelectedLayoutSegment } from 'next/navigation';
 
 import { cn } from '@/lib/utils';
 import { useLockBody } from '@/hooks/use-lock-body';
-import { CircleUser, Home, Menu, Rss, ScrollText, SquareDashedBottomCode, X } from 'lucide-react';
+import { CircleUser, Home, Menu, MoonStar, Rss, ScrollText, SquareDashedBottomCode, Sun, X } from 'lucide-react';
 import { Button } from './ui/button';
 import { NavigationMenu, NavigationMenuItem, NavigationMenuList } from './ui/navigation-menu';
+import { useTheme } from 'next-themes';
 
 // Menu items.
 const items = [
@@ -80,6 +81,7 @@ interface MainNavProps {
 export function MainNav({ children }: MainNavProps) {
     // const segment = useSelectedLayoutSegment();
     const [showMobileMenu, setShowMobileMenu] = React.useState<boolean>(false);
+    const { resolvedTheme, setTheme } = useTheme();
 
     return (
         <div className='flex gap-6 md:gap-10'>
@@ -106,6 +108,15 @@ export function MainNav({ children }: MainNavProps) {
                     ))}
                 </NavigationMenuList>
             </NavigationMenu>
+            <div className='flex pr-2'>
+                <Button
+                    variant='link'
+                    onClick={() => setTheme(resolvedTheme === 'light' ? 'dark' : 'light')}
+                    aria-label='Change Light/Dark Mode'>
+                    {resolvedTheme === 'dark' && <MoonStar />}
+                    {resolvedTheme === 'light' && <Sun />}
+                </Button>
+            </div>
             <Button
                 variant='ghost'
                 className='flex items-center space-x-2 md:hidden'
