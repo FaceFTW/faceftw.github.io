@@ -1,3 +1,11 @@
+---
+title: "Talking Cows, Perls, and Terminals"
+excerpt: "A really obscure set of rabbit holes to recreate an old piece of software"
+coverImage: "/assets/blog/dynamic-routing/cover.jpg"
+date: "2020-03-16T05:35:07.322Z"
+author: Alex Westerman
+---
+
 # Talking Cows, Perls, and Terminals
 _A really obscure set of rabbit holes to recreate an old piece of software_
 

@@ -1,3 +1,12 @@
+---
+title: "Welcome to the Blog"
+excerpt: "hi guys consider subscribing to my yt channel pls thx"
+coverImage: "/assets/blog/dynamic-routing/cover.jpg"
+date: "2020-03-16T05:35:07.322Z"
+author: Alex Westerman
+---
+
+
 # Welcome to the Blog
 
 Welcome to the first "blog" post I've created. It's not the usual kind of blog that has an RSS feed (yet) and has no direct focus but I plan on *occasionally* venting thoughts or breakdown technical details of things I think are cool. While this could totally devolve into ramblings about __why [Rust](https://rust-lang.org) is a great language__ or other insane things like __Windows being a pretty ok developer platform__, it's too early to make a judgement on where this will go.

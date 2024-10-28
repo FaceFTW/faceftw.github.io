@@ -1,3 +1,11 @@
+---
+title: "From the Archives - Reasoning about Linter Design"
+excerpt: "A preview of my thought process with implementing program analysis tools circa 2022"
+coverImage: "/assets/blog/dynamic-routing/cover.jpg"
+date: "2020-03-16T05:35:07.322Z"
+author: Alex Westerman
+---
+
 # From the Archives - Reasoning about Linter Design
 
 This is a blogified form of the design journals I wrote for [DesignLint](https://github.com/FaceFTW/DesignLint), a Java Linter project I worked on with others for the Software Design and Software Construction and Evolution (aka. Software Refactoring) courses at Rose-Hulman as a student. The content here mainly talks about designing specific lints and some other design decisions made related to designing the actual framework and linter application. Compared to my teammates, I chose to structure my journal by features I worked on rather than what I did each day since it was easier to understand what I'm doing over the span of a few days rather than singular days.
