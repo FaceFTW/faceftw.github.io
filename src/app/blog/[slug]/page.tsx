@@ -98,7 +98,6 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
         title,
         openGraph: {
             title,
-            images: [post.ogImage.url],
         },
     };
 }
