@@ -5,25 +5,42 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '.
 import { codeToHtml } from 'shiki';
 import Image from 'next/image';
 
+import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { darcula } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import java from 'react-syntax-highlighter/dist/esm/languages/prism/java';
+import bash from 'react-syntax-highlighter/dist/esm/languages/prism/bash';
+import csharp from 'react-syntax-highlighter/dist/esm/languages/prism/csharp';
+import rust from 'react-syntax-highlighter/dist/esm/languages/prism/rust';
+import perl from 'react-syntax-highlighter/dist/esm/languages/prism/perl';
+import asciidoc from 'react-syntax-highlighter/dist/cjs/languages/prism/asciidoc';
+import DynImage from './components/dyn-image';
+
+SyntaxHighlighter.registerLanguage('java', java);
+SyntaxHighlighter.registerLanguage('bash', bash);
+SyntaxHighlighter.registerLanguage('csharp', csharp);
+SyntaxHighlighter.registerLanguage('rust', rust);
+SyntaxHighlighter.registerLanguage('perl', perl);
+SyntaxHighlighter.registerLanguage('asciidoc', asciidoc);
+
 export function useMDXComponents(components: MDXComponents): MDXComponents {
     return {
-        // code(props) {
-        //     const { children, className, node, ...rest } = props;
-        //     const match = /language-(\w+)/.exec(className || '');
-        //     return match ? (
-        //         <div className='my-4 w-[95%] overflow-x-scroll lg:mx-8 lg:overflow-auto'>
-        //             <SyntaxHighlighter PreTag='div' useInlineStyles={true} language={match[1]} style={darcula}>
-        //                 {String(children).replace(/\n$/, '')}
-        //             </SyntaxHighlighter>
-        //         </div>
-        //     ) : (
-        //         <code
-        //             {...rest}
-        //             className={cn('bg-neutral-300', 'dark:bg-neutral-700', 'rounded-lg', 'px-1', 'py-0.5', className)}>
-        //             {children}
-        //         </code>
-        //     );
-        // },
+        code(props) {
+            const { children, className, ...rest } = props;
+            const match = /language-(\w+)/.exec(className || '');
+            return match ? (
+                <div className='my-4 w-[95%] overflow-x-scroll lg:mx-8 lg:overflow-auto'>
+                    <SyntaxHighlighter PreTag='div' useInlineStyles={true} language={match[1]} style={darcula}>
+                        {String(children).replace(/\n$/, '')}
+                    </SyntaxHighlighter>
+                </div>
+            ) : (
+                <code
+                    {...rest}
+                    className={cn('bg-neutral-300', 'dark:bg-neutral-700', 'rounded-lg', 'px-1', 'py-0.5', className)}>
+                    {children}
+                </code>
+            );
+        },
         // code(props) {
         //     const { children, className, ...rest } = props;
         //     const match = /language-(\w+)/.exec(className || '');
@@ -121,6 +138,14 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
                 </ul>
             );
         },
+		li(props) {
+            const { children, className, ...rest } = props;
+            return (
+                <li className={cn('list-disc', 'ml-16', 'mb-4', 'leading-relaxed', className)} {...rest}>
+                    {children}
+                </li>
+            );
+		},
         blockquote(props) {
             const { children, className, ...rest } = props;
             return (
@@ -153,21 +178,26 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
             const { className, ...rest } = props;
             return <Separator className={cn('mb-4', className)} {...rest} />;
         },
-        img(props) {
-            const { src, alt, className } = props;
-            const href = new URL(`${src}`, import.meta.url).href;
-            return (
-                <div className='m-0 grid h-[100%] p-0'>
-                    <Image
-                        src={href}
-                        alt={alt ?? 'default'}
-                        // loading='lazy'
-                        className={cn('mb-4', 'mx-auto', 'max-w-[100%]', 'max-h-[100vh]', className)}
-                        // {...rest}
-                    />
-                </div>
-            );
-        },
+        // img(props) {
+        //     const { src, alt, className, ...rest } = props;
+        //     const href = new URL(`${src}`, import.meta.url).href;
+        //     return (
+        //         // <div className='m-0 grid h-[100%] p-0'>
+        //         //     <Image
+        //         //         src={href}
+        //         //         alt={alt ?? 'default'}
+        //         //         fill={true}
+        //         //         // loading='lazy'
+        //         //         className={cn('mb-4', 'mx-auto', 'max-w-[100%]', 'max-h-[100vh]', className)}
+        //         //         // {...rest}
+        //         //     />
+        //         // </div>
+        //         <figure>
+        //             <DynImage src={src ?? ''} alt={alt ?? ''} sizes='(min-width: 1024px) 80vw, 100vw' />
+        //             {alt && <figcaption>{alt}</figcaption>}
+        //         </figure>
+        //     );
+        // },
         table(props) {
             const { children, className, ...rest } = props;
             return (

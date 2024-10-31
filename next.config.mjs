@@ -1,10 +1,13 @@
 import createMDX from '@next/mdx';
 import remarkGfm from 'remark-gfm';
 import remarkFrontmatter from 'remark-frontmatter';
+import rehypeHighlight from 'rehype-highlight';
 import rehypeShiki from '@shikijs/rehype';
 import rehypeShikiFromHighlighter from '@shikijs/rehype';
 import { createdBundledHighlighter, createHighlighter, createHighlighterCoreSync } from 'shiki';
-import rehypeHighlight from 'rehype-highlight';
+// import rehypeHighlight from 'rehype-highlight';
+import rehypeStarryNight from 'rehype-starry-night';
+import rehypeMdxCodeProps from 'rehype-mdx-code-props';
 // const highlighter = createHighlighterCoreSync({
 //     themes: [import('shiki/themes/vitesse-light.mjs'), import('shiki/themes/vitesse-dark.mjs')],
 //     langs: [import('shiki/langs/java.mjs'), import('shiki/langs/rust.mjs')],
@@ -32,7 +35,9 @@ const withMDX = createMDX({
             //         },
             //     }
             // ),
-            rehypeHighlight,
+            // rehypeHighlight,
+            // rehypeMdxCodeProps,
+            // rehypeStarryNight,
         ],
     },
 });

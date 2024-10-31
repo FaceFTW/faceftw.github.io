@@ -3,11 +3,12 @@ import { useLayoutEffect, useState } from 'react';
 import { highlight } from '@/lib/shiki';
 import type { JSX } from 'react/jsx-runtime';
 
-export function CodeBlock({ initial }: { initial?: JSX.Element }) {
+export function CodeBlock({ initial, lang }: { initial?: JSX.Element; lang: string }) {
     const [nodes, setNodes] = useState(initial);
 
+
     useLayoutEffect(() => {
-        void highlight('console.log("Rendered on client")').then(setNodes);
+        void highlight(lang,'').then(setNodes);
     }, []);
 
     return nodes ?? <p>Loading...</p>;
