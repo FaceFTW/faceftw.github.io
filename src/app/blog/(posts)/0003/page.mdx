@@ -1,10 +1,11 @@
 ---
 title: "Talking Cows, Perls, and Terminals"
 excerpt: "A really obscure set of rabbit holes to recreate an old piece of software"
-coverImage: "/assets/blog/dynamic-routing/cover.jpg"
 date: "2020-03-16T05:35:07.322Z"
 author: Alex Westerman
 ---
+
+import Image from 'next/image';
 
 # Talking Cows, Perls, and Terminals
 _A really obscure set of rabbit holes to recreate an old piece of software_
@@ -28,7 +29,11 @@ Whenever you want to describe a programming language syntax, it is often done in
 
 Since Cowsay is written in Perl and cow files are just Perl scripts, I could start by writing a parser for Perl scripts, use that output as an "intermediate representation" (IR), then convert the IR to a string that the terminal will use. So let's do a quick google search...
 
-![google is your friend?](./goggle%20search.png)
+import googleSearch from './goggle-search.png';
+
+<div>
+<Image src={googleSearch} alt="google is your friend?" width={1005} height={773} className='mx-auto mb-4'/>
+</div>
 
 Uh-oh.
 
@@ -43,7 +48,11 @@ _Uh-oh._
 
 There was a reference to the [yacc (or GNU Bison)](https://www.gnu.org/software/bison/) definitions for Perl to potentially use as a starting point above, which can be derived into some BNF that can be used. Ok, *surely* the [grammar](https://github.com/Perl/perl5/blob/blead/perly.y) isn't that bad...
 
-![flashbanged by words](perly.png)
+import perly from './perly.png';
+
+<div>
+<Image src={perly} alt="flashbanged by words" width={406} height={213} className='mx-auto mb-4'/>
+</div>
 
 Yeah, I'm not reading all of that.
 
@@ -173,8 +182,11 @@ Like before, let's find a good reference for all the commands. And sure enough s
 - `\N` is likely to represent a sequence of unicode characters by `xterm`. It can be confirmed by looking at a utility like the character map in Windows (below). It can also be asserted the pattern of this structure is `\N{U+XXXX}`, where X is the 4-digit hexadecimal code for the unicode character.
   - ANSI standard also allows for a pattern like `\uXXXX`, but I have yet to see consistent usage in the field.
 
-![char map](./charmap.png)
+import charmap from './charmap.png';
 
+<div>
+<Image src={charmap} alt="char map" width={477} height={508} className='mx-auto mb-4'/>
+</div>
 
 There is now enough analysis of how a cow file is defined to move on to the next steps, [_**lexing**_](https://en.wikipedia.org/wiki/Lexical_analysis) and _**interpreting**_.
 
@@ -595,7 +607,11 @@ Some extra tidbits like the explicit recognition of the "start" of a cow file or
 All this interpreter does is create the string that should be printed to `stdout` (which is expected to be a terminal). The main function of `shell-toy` does some argument processing and other pre-lexing/interpreting tasks before calling the lexer and interpreter in sequence, in which the output simply goes through Rust's `println!()` macro. Compared to a real compiler/interpreter, it's just a really lightweight [domain-specific language](https://en.wikipedia.org/wiki/Domain-specific_language) interpreter for a silly little project that I should not have spent that much time on.
 
 ## The Final Result (Batteries Required)
-![yaaay](./demo.gif)
+import demo from './demo.gif'
+
+<div>
+<Image src={demo} alt="yaay" width={1028} height={804} className='mx-auto mb-4'/>
+</div>
 
 _Pardon the glitchy drawing, I can confirm this is an issue with the terminal recorder I used and not what it looks like._
 
