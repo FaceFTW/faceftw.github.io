@@ -35,7 +35,7 @@ const withMDX = createMDX({
             //         },
             //     }
             // ),
-            // rehypeHighlight,
+            rehypeHighlight,
             // rehypeMdxCodeProps,
             // rehypeStarryNight,
         ],
