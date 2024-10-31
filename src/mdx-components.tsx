@@ -7,7 +7,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     return {
         code(props) {
             const { children, className, ...rest } = props;
-            const match = /language-(\w+)/.exec(className || '');
+            const match = /language-(\w+)/.exec(className || '');	//ez check if we have a block or no
             return match ? (
                 <div className='hljs my-4 w-[95%] overflow-x-scroll lg:mx-8 lg:overflow-auto'>{children}</div>
             ) : (

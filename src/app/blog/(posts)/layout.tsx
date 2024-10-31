@@ -1,6 +1,6 @@
 import type React from 'react';
 
-import '@/lib/vs.css'
+import '@/lib/highlight-theme.css'
 
 
 export default function MdxLayout({ children }: { children: React.ReactNode }) {
