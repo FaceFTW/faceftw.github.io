@@ -48,10 +48,54 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 // };
 // import { HeroPost } from '@/app/_components/hero-post';
 // import { MoreStories } from '@/app/_components/more-stories';
-import { getAllPosts } from '@/lib/blog';
+// import { getAllPosts } from '@/lib/blog';
+
+// import type { Post } from '@/lib/types';
+// import fs from 'node:fs';
+// import matter from 'gray-matter';
+// import { join } from 'node:path';
+
+// const postsDirectory = join(process.cwd(), 'src/app/blog/(posts)');
+
+// // export function getPostDirs() {
+// //   return
+// // }
+
+// export function getPostById(id: string) {
+//     // console.log(id);
+//     //   const realMdx = id.replace(/\.md$/, "");
+//     const fullPath = join(postsDirectory, `${id}/page.mdx`);
+//     const fileContents = fs.readFileSync(fullPath, 'utf8');
+//     const { data } = matter(fileContents);
+
+//     return { ...data, slug: id } as Post;
+// }
+
+// export async function getAllPosts(): Promise<Post[]> {
+// 	'use server'
+//     const ids = fs.readdirSync(postsDirectory, { withFileTypes: true }).filter((item) => {
+//         // console.log(item);
+//         // console.log(item.isDirectory());
+
+//         !item.isFile();
+//     });
+//     console.log(ids);
+//     const posts = ids
+//         .map((id) => getPostById(id.name))
+//         // sort posts by date in descending order
+//         .sort((post1, post2) => (post1.date > post2.date ? -1 : 1));
+//     return posts;
+// }
+
+import { frontmatter as frontmatter1 } from '@/app/blog/(posts)/0001/page.mdx';
+import { frontmatter as frontmatter2 } from '@/app/blog/(posts)/0002/page.mdx';
+import { frontmatter as frontmatter3 } from '@/app/blog/(posts)/0003/page.mdx';
+import Link from 'next/link';
 
 export default function Index() {
-    const allPosts = getAllPosts();
+    const allPosts = [frontmatter1, frontmatter2, frontmatter3].sort((a, b) => (a.date > b.date ? -1 : 1));
+    // console.log(allPosts);
+    // console.log(allPosts);
 
     // const heroPost = allPosts[0];
 
@@ -60,16 +104,24 @@ export default function Index() {
     return (
         <main>
             <div className='container mx-auto px-5'>
+                <h1 className='mt-4 text-4xl'>
+                    <pre>ref_cycle</pre>
+                </h1>
+                <h2 className='mt-2 mb-4 text-2xl text-neutral-600 dark:text-neutral-400'>
+                    AKA: Core Dumping my Brain on the Internet
+                </h2>
                 {allPosts.map((post) => (
-                    <Card className='my-4' key={post.title}>
-                        <CardHeader>
-                            <CardTitle>{post.title}</CardTitle>
-                            <CardDescription>{post.date}</CardDescription>
-                        </CardHeader>
-                        <CardContent>
-                            <p>{post.excerpt}</p>
-                        </CardContent>
-                    </Card>
+                    <Link href={`/blog/${post.slug}`} key={post.title}>
+                        <Card className='my-4'>
+                            <CardHeader>
+                                <CardTitle>{post.title}</CardTitle>
+                                <CardDescription>{post.date}</CardDescription>
+                            </CardHeader>
+                            <CardContent>
+                                <p>{post.excerpt}</p>
+                            </CardContent>
+                        </Card>
+                    </Link>
                 ))}
                 {/* <HeroPost
                     title={heroPost.title}
