@@ -91,9 +91,13 @@ import { frontmatter as frontmatter1 } from '@/app/blog/(posts)/0001/page.mdx';
 import { frontmatter as frontmatter2 } from '@/app/blog/(posts)/0002/page.mdx';
 import { frontmatter as frontmatter3 } from '@/app/blog/(posts)/0003/page.mdx';
 import Link from 'next/link';
+import FormattedDate from '@/components/date';
+import { parseISO } from 'date-fns';
 
 export default function Index() {
-    const allPosts = [frontmatter1, frontmatter2, frontmatter3].sort((a, b) => (a.date > b.date ? -1 : 1));
+    const allPosts = [frontmatter1, frontmatter2, frontmatter3].sort((a, b) =>
+        parseISO(a.date) > parseISO(b.date) ? -1 : 1
+    );
     // console.log(allPosts);
     // console.log(allPosts);
 
@@ -115,7 +119,9 @@ export default function Index() {
                         <Card className='my-4'>
                             <CardHeader>
                                 <CardTitle>{post.title}</CardTitle>
-                                <CardDescription>{post.date}</CardDescription>
+                                <CardDescription>
+                                    <FormattedDate dateString={post.date} />
+                                </CardDescription>
                             </CardHeader>
                             <CardContent>
                                 <p>{post.excerpt}</p>
