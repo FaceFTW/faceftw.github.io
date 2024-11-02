@@ -29,6 +29,7 @@
 		}
 	},
 	"include": [
+		"**/*.mdx",
 		"next-env.d.ts",
 		"**/*.ts",
 		"**/*.tsx",
@@ -44,6 +45,5 @@
 			"remark-frontmatter-mdx",
 			"remark-gfm"
 		],
-
 	}
 }

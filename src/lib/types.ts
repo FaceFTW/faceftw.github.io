@@ -91,7 +91,3 @@ export type Post = {
   author: string;
   excerpt: string;
 };
-// export type Author = {
-//   name: string;
-//   picture: string;
-// };
