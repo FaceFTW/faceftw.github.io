@@ -1,13 +1,16 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import Link from 'next/link';
+import type { Metadata } from 'next';
+import FormattedDate from '@/components/date';
+import { parseISO } from 'date-fns';
+
+//NOTE: We expect import errors since TS LSP can't figure out the MDX Frontmatter exports which do exist
 //@ts-expect-error
 import { frontmatter as frontmatter1 } from '@/app/blog/(posts)/0001/page.mdx';
 //@ts-expect-error
 import { frontmatter as frontmatter2 } from '@/app/blog/(posts)/0002/page.mdx';
 //@ts-expect-error
 import { frontmatter as frontmatter3 } from '@/app/blog/(posts)/0003/page.mdx';
-import Link from 'next/link';
-import FormattedDate from '@/components/date';
-import { parseISO } from 'date-fns';
 
 export default function Index() {
     const allPosts = [frontmatter1, frontmatter2, frontmatter3].sort((a, b) =>
@@ -42,3 +45,7 @@ export default function Index() {
         </main>
     );
 }
+
+export const metadata: Metadata = {
+    title: "Blog - Alex's Website",
+};
