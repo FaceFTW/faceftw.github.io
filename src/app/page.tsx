@@ -2,13 +2,13 @@
 import { motion } from 'framer-motion';
 import React from 'react';
 import type { Project } from '@/lib/types';
-import projectData from '@/assets/json/projects.json';
+import projectData from '@/app/projects/projects.json';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import Autoplay from 'embla-carousel-autoplay';
 import { ProjectCarouselCard } from '@/components/ProjectCarouselCard';
 import TypewriterComponent from 'typewriter-effect';
 import Pfp from '@/assets/img/pfp.webp';
-import gpgkey from '@/assets/json/gpg_key.json';
+// import gpgkey from '@/assets/json/gpg_key.json';
 import { TooltipProvider, Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 import { Button } from '@/components/ui/button';
 import { Github, Key, Linkedin, Mail, Twitter } from 'lucide-react';

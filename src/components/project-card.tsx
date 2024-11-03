@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import { useInView } from 'framer-motion';
 import React from 'react';
 import type { Project } from '@/lib/types';
@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import { TooltipTrigger, TooltipProvider, TooltipContent, Tooltip } from '@/components/ui/tooltip';
 import { AppWindow, Code2, Link } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
+import Image from 'next/image';
 
 //TODO For future me: image transition props
 // 	sx={{
@@ -24,9 +25,7 @@ import { Badge } from '@/components/ui/badge';
 
 const ProjectCard = ({ project }: { project: Project }) => {
     // const [cardExpanded, setCardExpanded] = React.useState(false);
-    const imgAsset = project.projectAsset
-        ? new URL(`../assets/img/${project.projectAsset}`, import.meta.url).href
-        : new URL('../assets/img/no_asset.webp', import.meta.url).href;
+    const imgAsset = project.projectAsset ? `/img/${project.projectAsset}` : '/img/no_asset.webp';
 
     const githubLink = project.projectLinks.find((link) => link.linkType === 'github');
     const demoLink = project.projectLinks.find((link) => link.linkType === 'demo');
@@ -47,7 +46,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
                         return <Badge key={tag}>{tag}</Badge>;
                     })}
                 </div>
-                <img src={imgAsset} className='h-[250px] w-[400px] object-contain' alt={project.projectName} />
+                <Image src={imgAsset} className='h-[250px] w-[400px] object-contain' alt={project.projectName} />
             </CardContent>
             <div className='my-auto' />
             <CardFooter className='flex gap-4'>

@@ -1,5 +1,5 @@
-import projectData from '@/assets/json/projects.json';
-import ProjectCard from '@/components/ProjectCard';
+import projectData from '@/app/projects/projects.json';
+import ProjectCard from '@/components/project-card';
 import type { Project } from '@/lib/types';
 import type { Metadata } from 'next';
 

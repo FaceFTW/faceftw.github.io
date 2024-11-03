@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import type { Education, ProfessionalExperience, Skill } from '@/lib/types';
-import resumeData from '@/assets/json/resume.json';
+import resumeData from '@/app/resume/resume.json';
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/components/ui/accordion';
 import { Badge } from '@/components/ui/badge';
 import type { Metadata } from 'next';
