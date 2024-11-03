@@ -25,9 +25,9 @@ import { Badge } from '@/components/ui/badge';
 // 	</CardMedia>
 
 export const ProjectCarouselCard = ({ project }: { project: Project }) => {
-    const imgAsset = project.projectAsset
-        ? new URL(`../assets/img/${project.projectAsset}`, import.meta.url).href
-        : new URL('../assets/img/no_asset.webp', import.meta.url).href;
+    const imgAsset = project.projectAsset ? `/img/${project.projectAsset}` : '/img/no_asset.webp';
+    const width = project.assetWidth ?? 0;
+    const height = project.assetHeight ?? 0;
 
     const githubLink = project.projectLinks.find((link) => link.linkType === 'github');
     const demoLink = project.projectLinks.find((link) => link.linkType === 'demo');
@@ -45,6 +45,8 @@ export const ProjectCarouselCard = ({ project }: { project: Project }) => {
                 <div className='flex flex-col-reverse lg:flex-row-reverse'>
                     <img
                         src={imgAsset}
+                        width={width}
+                        height={height}
                         className='h-[125px] object-contain md:h-[250px] md:w-[400px]'
                         alt={project.projectName}
                     />

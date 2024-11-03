@@ -1,41 +1,19 @@
 'use client';
-import { motion } from 'framer-motion';
 import React from 'react';
 import type { Project } from '@/lib/types';
 import projectData from '@/app/projects/projects.json';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import Autoplay from 'embla-carousel-autoplay';
-import { ProjectCarouselCard } from '@/components/ProjectCarouselCard';
+import { ProjectCarouselCard } from '@/components/card-carousel';
 import TypewriterComponent from 'typewriter-effect';
-import Pfp from '@/assets/img/pfp.webp';
-// import gpgkey from '@/assets/json/gpg_key.json';
+import Pfp from '@/app/pfp.webp';
 import { TooltipProvider, Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 import { Button } from '@/components/ui/button';
-import { Github, Key, Linkedin, Mail, Twitter } from 'lucide-react';
+import { Github, Linkedin, Mail, Twitter } from 'lucide-react';
 import { Separator } from '@radix-ui/react-separator';
-// import {
-//     AlertDialog,
-//     AlertDialogFooter,
-//     AlertDialogHeader,
-//     AlertDialogAction,
-//     AlertDialogContent,
-//     AlertDialogDescription,
-// } from '@/components/ui/alert-dialog';
 import Image from 'next/image';
 
 const SocialSection = () => {
-    // const [gpgAlertWindow, setGpgAlertWindow] = React.useState(false);
-    // const copyGpgKey = () => {
-    //     navigator.clipboard.writeText(gpgkey.pub_key);
-    //     setGpgCopied(true);
-    //     setTimeout(() => {
-    //         setGpgCopied(false);
-    //     }, 5000);
-    // };
-    // const gpgTooltip = React.useMemo(() => {
-    //     return gpgCopied ? 'Copied!' : 'GPG Public Key (Click to Copy)';
-    // }, [gpgCopied]);
-
     const iconSizeClass = 'h-4 w-4 md:h-10 md:w-10';
 
     // <motion.div
@@ -170,7 +148,7 @@ const HomeMainSection = () => {
 
 export default function HomePanel() {
     const projects: Project[] = projectData.projectList;
-    const featured = [projects[14], projects[22], projects[18], projects[7], projects[20], projects[21]];
+    const featured = [projects[11], projects[18], projects[14], projects[5], projects[16], projects[17]];
 
     return (
         <div className='flex flex-col items-center'>

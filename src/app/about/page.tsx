@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import workspaceImage from '@/assets/img/workspace.webp';
-import setupImage from '@/assets/img/setupv2.webp';
+// import workspaceImage from '@/assets/img/workspace.webp';
+// import setupImage from '@/assets/img/setupv2.webp';
 import type { Metadata } from 'next';
 // const workspaceImage = new URL('@/assets/img/workspace.webp', import.meta.url).href;
 // const setupImage = new URL('@/assets/img/setupv2.webp', import.meta.url).href;
@@ -46,14 +46,18 @@ export default function AboutPage() {
                 </div>
                 <div className='m-4 flex flex-col'>
                     <Image
-                        src={workspaceImage}
+                        src={'/img/workspace.webp'}
                         alt='workspace'
+                        width={5472}
+                        height={3080}
                         className='w-[100%] object-contain'
                         // duration={500}
                     />
                     <Image
-                        src={setupImage}
+                        src={'/img/setupv2.webp'}
                         alt='setup'
+                        width={1600}
+                        height={1600}
                         className='mt-4 h-[500px] object-contain'
                         // duration={500}
                     />
