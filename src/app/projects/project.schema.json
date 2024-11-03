@@ -27,6 +27,14 @@
 						"type": "string",
 						"format": ""
 					},
+					"assetWidth": {
+						"description": "Width of the asset",
+						"type": "integer"
+					},
+					"assetHeight": {
+						"description": "Height of the asset",
+						"type": "integer"
+					},
 					"projectLinks": {
 						"description": "Array of objects with various links. Each object has a link type (predefined) and a link",
 						"type": "array",
@@ -34,7 +42,6 @@
 							"type": "object",
 							"$ref": "#/$defs/projectLink"
 						},
-						"minItems": 1,
 						"uniqueItems": true
 					},
 					"projectTags": {

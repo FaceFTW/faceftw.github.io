@@ -26,6 +26,8 @@ export interface Project {
     projectName: string;
     projectDescription: string;
     projectAsset?: string;
+	assetHeight?:number;
+	assetWidth?:number;
     projectLinks: ProjectLink[];
     projectTags: string[];
 }

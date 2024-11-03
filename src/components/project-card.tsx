@@ -26,6 +26,8 @@ import Image from 'next/image';
 const ProjectCard = ({ project }: { project: Project }) => {
     // const [cardExpanded, setCardExpanded] = React.useState(false);
     const imgAsset = project.projectAsset ? `/img/${project.projectAsset}` : '/img/no_asset.webp';
+    const width = project.assetWidth ?? 0;
+    const height = project.assetHeight ?? 0;
 
     const githubLink = project.projectLinks.find((link) => link.linkType === 'github');
     const demoLink = project.projectLinks.find((link) => link.linkType === 'demo');
@@ -46,7 +48,13 @@ const ProjectCard = ({ project }: { project: Project }) => {
                         return <Badge key={tag}>{tag}</Badge>;
                     })}
                 </div>
-                <Image src={imgAsset} className='h-[250px] w-[400px] object-contain' alt={project.projectName} />
+                <Image
+                    src={imgAsset}
+                    width={width}
+                    height={height}
+                    className='h-[250px] w-[400px] object-contain'
+                    alt={project.projectName}
+                />
             </CardContent>
             <div className='my-auto' />
             <CardFooter className='flex gap-4'>
