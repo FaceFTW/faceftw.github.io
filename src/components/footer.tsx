@@ -3,7 +3,7 @@ import { Card, CardContent } from '@/components/ui/card';
 
 export default function SiteFooter() {
     return (
-        <footer className='mx-auto mb-4 block w-[80%]'>
+        <footer className='mx-auto mb-4 block'>
             <Card className='flex'>
                 <CardContent className='mx-auto mt-4 flex text-wrap'>
                     <pre className='text-wrap text-center'>

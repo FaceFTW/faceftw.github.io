@@ -37,7 +37,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
     const _isInView = useInView(cardRef);
 
     return (
-        <Card className='flex min-w-[325px] max-w-[400px] flex-col'>
+        <Card className='flex min-w-[325px] max-w-[450px] flex-col'>
             <CardHeader>
                 <CardTitle>{project.projectName}</CardTitle>
                 <CardDescription>{project.projectDescription}</CardDescription>

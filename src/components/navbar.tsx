@@ -108,13 +108,13 @@ export function MainNav({ children }: MainNavProps) {
                     ))}
                 </NavigationMenuList>
             </NavigationMenu>
-            <div className='flex pr-2'>
+            <div className='flex pr-2' suppressHydrationWarning={true}>
                 <Button
                     variant='link'
                     onClick={() => setTheme(resolvedTheme === 'light' ? 'dark' : 'light')}
                     aria-label='Change Light/Dark Mode'>
-                    {resolvedTheme === 'dark' && <MoonStar />}
-                    {resolvedTheme === 'light' && <Sun />}
+                    {resolvedTheme === 'dark' && <MoonStar suppressHydrationWarning={true} />}
+                    {resolvedTheme === 'light' && <Sun suppressHydrationWarning={true} />}
                 </Button>
             </div>
             <Button

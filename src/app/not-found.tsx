@@ -3,14 +3,14 @@ import Link from 'next/link';
 
 export default function NotFoundRoute() {
     const imageNum = Math.floor(Math.random() * 19);
-    const imageSrc = new URL(`../assets/img/404/err_${imageNum}.webp`, import.meta.url).href;
+    const imageSrc = `/img/404/err_${imageNum}.webp`;
     return (
         // <motion.div
         //     initial={{ opacity: 0 }}
         //     animate={{ opacity: 1 }}
         //     transition={{ duration: 0.5 }}
         //     className='flex flex-col text-center align-center'>
-        <div>
+        <div className='flex flex-col text-center align-center'>
             <h1 className='m-8 text-4xl'>Oops...</h1>
             <p>You seem to have navigated to a page that doesn&apos;t exist yet...</p>
             <p>
@@ -25,7 +25,7 @@ export default function NotFoundRoute() {
                 <img src={imageSrc} alt='404 funny' width={400} />
                 <div className='mx-auto' />
             </div>
-		</div>
+        </div>
         // </motion.div>
     );
 }
