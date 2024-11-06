@@ -2,7 +2,6 @@ import React from 'react';
 import type { Project } from '@/lib/types';
 import { useInView } from 'framer-motion';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { Button } from '@/components/ui/button';
 import { AppWindow, Code2, Link } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
@@ -72,35 +71,24 @@ export const ProjectCarouselCard = ({ project }: { project: Project }) => {
                     </Button>
                 )}
                 {demoLink && (
-                    <TooltipProvider>
-                        <Tooltip>
-                            <TooltipTrigger asChild>
-                                <Button
-                                    variant='link'
-                                    size='icon'
-                                    onClick={() => window.open(demoLink.linkURL)}
-                                    aria-label='Web Demo'>
-                                    <AppWindow className='h-8 w-8' />
-                                </Button>
-                            </TooltipTrigger>
-                            <TooltipContent>Application Demo</TooltipContent>
-                        </Tooltip>
-                    </TooltipProvider>
+                    <Button
+                        variant='outline'
+                        // size='icon'
+                        onClick={() => window.open(demoLink.linkURL)}
+                        aria-label='Web Demo'>
+                        <AppWindow className='h-8 w-8' />
+                        <span>Web Demo</span>
+                    </Button>
                 )}
                 {miscLink && (
-                    <TooltipProvider>
-                        <Tooltip>
-                            <TooltipTrigger asChild>
-                                <Button
-                                    variant='link'
-                                    onClick={() => window.open(miscLink.linkURL)}
-                                    aria-label='Other Link'>
-                                    <Link />
-                                </Button>
-                            </TooltipTrigger>
-                            <TooltipContent>{miscLink.linkDesc ?? 'Misc Link'}</TooltipContent>
-                        </Tooltip>
-                    </TooltipProvider>
+                    <Button
+                        variant='outline'
+                        // size='icon'
+                        onClick={() => window.open(miscLink.linkURL)}
+                        aria-label={miscLink.linkDesc ?? 'Misc Link'}>
+                        <Link className='h-8 w-8' />
+                        <span>{miscLink.linkDesc ?? 'Misc Link'}</span>
+                    </Button>
                 )}
             </CardFooter>
         </Card>

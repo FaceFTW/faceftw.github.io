@@ -4,7 +4,6 @@ import React from 'react';
 import type { Project } from '@/lib/types';
 import { Card, CardDescription, CardFooter, CardTitle, CardContent, CardHeader } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { TooltipTrigger, TooltipProvider, TooltipContent, Tooltip } from '@/components/ui/tooltip';
 import { AppWindow, Code2, Link } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import Image from 'next/image';
@@ -59,51 +58,34 @@ const ProjectCard = ({ project }: { project: Project }) => {
             <div className='my-auto' />
             <CardFooter className='flex gap-4'>
                 {githubLink && (
-                    <TooltipProvider>
-                        <Tooltip>
-                            <TooltipTrigger asChild>
-                                <Button
-                                    variant='link'
-                                    size='icon'
-                                    onClick={() => window.open(githubLink.linkURL)}
-                                    aria-label='GitHub Repository'>
-                                    <Code2 className='h-8 w-8' />
-                                </Button>
-                            </TooltipTrigger>
-                            <TooltipContent>Github Repo</TooltipContent>
-                        </Tooltip>
-                    </TooltipProvider>
+                    <Button
+                        variant='outline'
+                        // size='icon'
+                        onClick={() => window.open(githubLink.linkURL)}
+                        aria-label='GitHub Repository'>
+                        <Code2 className='h-8 w-8' />
+                        <span>Source Code</span>
+                    </Button>
                 )}
                 {demoLink && (
-                    <TooltipProvider>
-                        <Tooltip>
-                            <TooltipTrigger asChild>
-                                <Button
-                                    variant='link'
-                                    size='icon'
-                                    onClick={() => window.open(demoLink.linkURL)}
-                                    aria-label='Web Demo'>
-                                    <AppWindow className='h-8 w-8' />
-                                </Button>
-                            </TooltipTrigger>
-                            <TooltipContent>Application Demo</TooltipContent>
-                        </Tooltip>
-                    </TooltipProvider>
+                    <Button
+                        variant='outline'
+                        // size='icon'
+                        onClick={() => window.open(demoLink.linkURL)}
+                        aria-label='Web Demo'>
+                        <AppWindow className='h-8 w-8' />
+                        <span>Web Demo</span>
+                    </Button>
                 )}
                 {miscLink && (
-                    <TooltipProvider>
-                        <Tooltip>
-                            <TooltipTrigger asChild>
-                                <Button
-                                    variant='link'
-                                    onClick={() => window.open(miscLink.linkURL)}
-                                    aria-label='Other Link'>
-                                    <Link />
-                                </Button>
-                            </TooltipTrigger>
-                            <TooltipContent>{miscLink.linkDesc ?? 'Misc Link'}</TooltipContent>
-                        </Tooltip>
-                    </TooltipProvider>
+                    <Button
+                        variant='outline'
+                        // size='icon'
+                        onClick={() => window.open(miscLink.linkURL)}
+                        aria-label={miscLink.linkDesc ?? 'Misc Link'}>
+                        <Link className='h-8 w-8' />
+                        <span>{miscLink.linkDesc ?? 'Misc Link'}</span>
+                    </Button>
                 )}
                 <span className='w-full' />
             </CardFooter>
