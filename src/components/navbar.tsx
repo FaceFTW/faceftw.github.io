@@ -42,26 +42,24 @@ const items = [
 
 interface MobileNavProps {
     children?: React.ReactNode;
+    closeFn: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export function MobileNav({ children }: MobileNavProps) {
+export function MobileNav({ children, closeFn }: MobileNavProps) {
     useLockBody();
 
     return (
         <div
             className={cn(
-                'slide-in-from-bottom-80 fixed inset-0 top-16 z-50 grid h-[calc(100vh-4rem)] animate-in grid-flow-row auto-rows-max overflow-auto p-6 pb-32 shadow-md md:hidden'
+                'slide-in-from-bottom-80 fixed inset-0 top-10 z-50 grid h-[calc(100vh-4rem)] animate-in grid-flow-row auto-rows-max overflow-auto p-6 pb-32 shadow-md md:hidden'
             )}>
-            <div className='relative z-20 grid gap-6 rounded-md bg-popover p-4 text-popover-foreground shadow-md'>
-                {/* <Link href='/' className='flex items-center space-x-2'>
-                    <Menu />
-                    <span className='font-bold'>Alex Westerman</span>
-                </Link> */}
+            <div className='relative z-20 grid gap-6 rounded-md bg-popover p-4 text-popover-foreground shadow-lg'>
                 <nav className='grid grid-flow-row auto-rows-max text-sm'>
                     {items.map((item) => (
                         <Link
                             key={item.title}
                             href={item.url}
+                            onClick={() => closeFn(false)}
                             className='flex w-full items-center gap-2 rounded-md p-2 font-medium text-sm hover:underline'>
                             <item.icon />
                             <span>{item.title}</span>
@@ -74,33 +72,30 @@ export function MobileNav({ children }: MobileNavProps) {
     );
 }
 
-interface MainNavProps {
-    children?: React.ReactNode;
-}
-
-export function MainNav({ children }: MainNavProps) {
+export function MainNav({ children }: { children?: React.ReactNode }) {
     // const segment = useSelectedLayoutSegment();
     const [showMobileMenu, setShowMobileMenu] = React.useState<boolean>(false);
     const { resolvedTheme, setTheme } = useTheme();
+    const [mounted, setMounted] = React.useState(false);
+
+    React.useEffect(() => {
+        setMounted(true);
+    }, []);
 
     return (
-        <div className='flex gap-6 md:gap-10'>
+        <div className='flex gap-16 md:gap-10'>
             <Link href='/' className='hidden items-center space-x-2 md:flex'>
                 <span className='hidden font-bold sm:inline-block'>Alex Westerman</span>
             </Link>
             <NavigationMenu className='hidden md:flex'>
                 <NavigationMenuList className='gap-6 md:gap-10'>
                     {items?.map((item) => (
-                        <NavigationMenuItem
-                            key={item.title}
-                            className='
-                        '>
+                        <NavigationMenuItem key={item.title} className=''>
                             <Link
                                 key={item.title}
                                 href={item.url}
                                 className={cn(
                                     'flex font-medium text-lg transition-colors hover:text-foreground/80 sm:text-sm'
-                                    // item.url.startsWith(`/${segment}`) ? 'text-foreground' : 'text-foreground/60'
                                 )}>
                                 <span>{item.title}</span>
                             </Link>
@@ -108,23 +103,26 @@ export function MainNav({ children }: MainNavProps) {
                     ))}
                 </NavigationMenuList>
             </NavigationMenu>
-            <div className='flex pr-2' suppressHydrationWarning={true}>
-                <Button
-                    variant='link'
-                    onClick={() => setTheme(resolvedTheme === 'light' ? 'dark' : 'light')}
-                    aria-label='Change Light/Dark Mode'>
-                    {resolvedTheme === 'dark' && <MoonStar suppressHydrationWarning={true} />}
-                    {resolvedTheme === 'light' && <Sun suppressHydrationWarning={true} />}
-                </Button>
-            </div>
             <Button
                 variant='ghost'
-                className='flex items-center space-x-2 md:hidden'
+                className='ml-4 flex items-center space-x-2 md:hidden'
                 onClick={() => setShowMobileMenu(!showMobileMenu)}>
                 {showMobileMenu ? <X /> : <Menu />}
                 <span className='font-bold'>Alex Westerman</span>
             </Button>
-            {showMobileMenu && <MobileNav>{children}</MobileNav>}
+            {showMobileMenu && <MobileNav closeFn={setShowMobileMenu}>{children}</MobileNav>}
+            <span className='flex-grow' />
+            <div className='flex pr-2'>
+                {mounted && (
+                    <Button
+                        variant='link'
+                        onClick={() => setTheme(resolvedTheme === 'light' ? 'dark' : 'light')}
+                        aria-label='Change Light/Dark Mode'>
+                        {resolvedTheme === 'dark' && <MoonStar />}
+                        {resolvedTheme === 'light' && <Sun />}
+                    </Button>
+                )}
+            </div>
         </div>
     );
 }

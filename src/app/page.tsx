@@ -23,7 +23,7 @@ const SocialSection = () => {
     //     transition={{ duration: 2 }}>
     // </motion.div>
     return (
-        <>
+        <div>
             <h1 className='mt-8 mb-4 text-xl md:mt-0'>
                 <em>Links and Things</em>
             </h1>
@@ -86,7 +86,7 @@ const SocialSection = () => {
 
                 <div className='mx-auto' />
             </div>
-        </>
+        </div>
     );
 };
 

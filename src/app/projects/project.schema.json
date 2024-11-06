@@ -86,45 +86,27 @@
 					"type": "string"
 				},
 				"linkDesc": {
-					"description": "Description for Misc.Links",
+					"description": "Description for MiscLinks",
 					"type": "string"
 				}
 			},
 			"required": [
-				"linkType"
+				"linkType",
+				"linkURL"
 			],
 			"if": {
 				"properties": {
 					"linkType": {
 						"enum": [
-							"text"
+							"misc"
 						]
 					}
 				}
 			},
 			"then": {
 				"required": [
-					"text"
+					"linkDesc"
 				]
-			},
-			"else": {
-				"required": [
-					"linkURL"
-				],
-				"if": {
-					"properties": {
-						"linkType": {
-							"enum": [
-								"misc"
-							]
-						}
-					}
-				},
-				"then": {
-					"required": [
-						"linkDesc"
-					]
-				}
 			}
 		}
 	}

@@ -62,20 +62,14 @@ export const ProjectCarouselCard = ({ project }: { project: Project }) => {
             </CardContent>
             <CardFooter className='flex gap-4'>
                 {githubLink && (
-                    <TooltipProvider>
-                        <Tooltip>
-                            <TooltipTrigger asChild>
-                                <Button
-                                    variant='link'
-                                    size='icon'
-                                    onClick={() => window.open(githubLink.linkURL)}
-                                    aria-label='GitHub Repository'>
-                                    <Code2 className='h-8 w-8' />
-                                </Button>
-                            </TooltipTrigger>
-                            <TooltipContent>Github Repo</TooltipContent>
-                        </Tooltip>
-                    </TooltipProvider>
+                    <Button
+                        variant='outline'
+                        // size='icon'
+                        onClick={() => window.open(githubLink.linkURL)}
+                        aria-label='GitHub Repository'>
+                        <Code2 className='h-8 w-8' />
+                        <span>Source Code</span>
+                    </Button>
                 )}
                 {demoLink && (
                     <TooltipProvider>
