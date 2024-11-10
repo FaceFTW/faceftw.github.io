@@ -1,19 +1,11 @@
-import { motion } from 'framer-motion';
 import Image from 'next/image';
-// import workspaceImage from '@/assets/img/workspace.webp';
-// import setupImage from '@/assets/img/setupv2.webp';
 import type { Metadata } from 'next';
-// const workspaceImage = new URL('@/assets/img/workspace.webp', import.meta.url).href;
-// const setupImage = new URL('@/assets/img/setupv2.webp', import.meta.url).href;
+import setupV2 from "./setupv2.webp";
+import workspace from "./workspace.webp";
+
 
 export default function AboutPage() {
     return (
-        // <motion.div
-        // 	initial={{ opacity: 0 }}
-        // 	animate={{ opacity: 1 }}
-        // 	transition={{ duration: 0.5 }}
-        // 	className="flex flex-col"
-        // >
         <div>
             <h1 className='m-4 text-4xl'>Hi! My name is Alex</h1>
             <div className='m-5 flex flex-col md:flex-row'>
@@ -46,25 +38,22 @@ export default function AboutPage() {
                 </div>
                 <div className='m-4 flex flex-col'>
                     <Image
-                        src={'/img/workspace.webp'}
+                        src={workspace}
                         alt='workspace'
                         width={5472}
                         height={3080}
                         className='w-[100%] object-contain'
-                        // duration={500}
                     />
                     <Image
-                        src={'/img/setupv2.webp'}
+                        src={setupV2}
                         alt='setup'
                         width={1600}
                         height={1600}
                         className='mt-4 h-[500px] object-contain'
-                        // duration={500}
                     />
                 </div>
             </div>
         </div>
-        // </motion.div>
     );
 }
 
