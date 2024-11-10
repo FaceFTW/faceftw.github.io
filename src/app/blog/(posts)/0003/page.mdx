@@ -211,7 +211,7 @@ First, let's make it easier for us to operate on the cow file and do some [_lexi
 
 In order to do that, an [_intermediate representation (IR)_](https://en.wikipedia.org/wiki/Intermediate_representation) is needed. It doesn't have to be anything sophisticated, it just has to be something that allows us to uniquely identify fragments in a meaningful way. It also don't need a sophisticated tree-like structure; In reality this IR is just a level of abstraction over "machine code" which is _imperative_ and just a list of commands; these are printing a character, changing the color of the terminal text, and some minor control flow.
 
-Let's enumerate them as a Rust enum, which is actually really useful given it can encode special state in "variants" and
+Let's enumerate them as a Rust enum, which is actually really useful given it can encode special state in "variants":
 
 ```rust
 // latest version can be found here:
