@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion';
 import type { Education, ProfessionalExperience, Skill } from '@/lib/types';
 import resumeData from '@/app/resume/resume.json';
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/components/ui/accordion';
@@ -167,17 +166,10 @@ const ExperienceSection = ({ experience }: { experience: ProfessionalExperience[
 
 export default function ResumePanel() {
     const skills: Skill[] = resumeData.skills;
-    // const skillCategories: SkillCategory[] = resumeData.skillCategories;
     const education: Education[] = resumeData.education;
     const experience: ProfessionalExperience[] = resumeData.experience;
 
     return (
-        // <motion.div
-        // 	initial={{ opacity: 0 }}
-        // 	animate={{ opacity: 1 }}
-        // 	transition={{ duration: 0.5 }}
-        // 	className="m-4"
-        // >
         <>
             <div className='m-4'>
                 <h4 className='text-4xl underline'>Skills</h4>
@@ -192,6 +184,5 @@ export default function ResumePanel() {
                 <ExperienceSection experience={experience} />
             </div>
         </>
-        // </motion.div>
     );
 }
