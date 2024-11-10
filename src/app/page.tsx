@@ -5,7 +5,6 @@ import projectData from '@/app/projects/projects.json';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import Autoplay from 'embla-carousel-autoplay';
 import { ProjectCarouselCard } from '@/components/card-carousel';
-import TypewriterComponent from 'typewriter-effect';
 import Pfp from '@/app/pfp.webp';
 import { TooltipProvider, Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 import { Button } from '@/components/ui/button';
@@ -14,133 +13,96 @@ import { Separator } from '@radix-ui/react-separator';
 import Image from 'next/image';
 
 const SocialSection = () => {
-    const iconSizeClass = 'h-4 w-4 md:h-10 md:w-10';
+    const iconSizeClass = 'h-6 w-6 md:h-10 md:w-10';
 
-    // <motion.div
-    //     className='flex flex-col items-center'
-    //     initial={{ opacity: 0 }}
-    //     animate={{ opacity: 1 }}
-    //     transition={{ duration: 2 }}>
-    // </motion.div>
     return (
-        <div>
-            <h1 className='mt-8 mb-4 text-xl md:mt-0'>
-                <em>Links and Things</em>
-            </h1>
-            <div className='flex flex-row items-center gap-8'>
-                <div className='md:mx-auto' />
-                <TooltipProvider>
-                    <Tooltip>
-                        <TooltipTrigger asChild>
-                            <Button
-                                variant='link'
-                                className={iconSizeClass}
-                                size='icon'
-                                asChild
-                                onClick={() => window.open('https://twitter.com/_FaceFTW')}>
-                                <Twitter className={iconSizeClass} />
-                            </Button>
-                        </TooltipTrigger>
-                        <TooltipContent>X (Formerly known as Twitter)</TooltipContent>
-                    </Tooltip>
-                    <Tooltip>
-                        <TooltipTrigger asChild>
-                            <Button
-                                variant='link'
-                                className={iconSizeClass}
-                                size='icon'
-                                asChild
-                                onClick={() => window.open('https://github.com/FaceFTW')}>
-                                <Github className={iconSizeClass} />
-                            </Button>
-                        </TooltipTrigger>
-                        <TooltipContent>GitHub</TooltipContent>
-                    </Tooltip>
-                    <Tooltip>
-                        <TooltipTrigger asChild>
-                            <Button
-                                variant='link'
-                                className={iconSizeClass}
-                                size='icon'
-                                asChild
-                                onClick={() => window.open('mailto:alex@faceftw.dev')}>
-                                <Mail className={iconSizeClass} />
-                            </Button>
-                        </TooltipTrigger>
-                        <TooltipContent>Email</TooltipContent>
-                    </Tooltip>
-                    <Tooltip>
-                        <TooltipTrigger asChild>
-                            <Button
-                                variant='link'
-                                className={iconSizeClass}
-                                size='icon'
-                                asChild
-                                onClick={() => window.open('https://www.linkedin.com/in/faceftw')}>
-                                <Linkedin className={iconSizeClass} />
-                            </Button>
-                        </TooltipTrigger>
-                        <TooltipContent>LinkedIn</TooltipContent>
-                    </Tooltip>
-                </TooltipProvider>
+        <div className='flex flex-row items-center gap-8'>
+            <div className='mx-auto' />
+            <TooltipProvider>
+                <Tooltip>
+                    <TooltipTrigger asChild>
+                        <Button
+                            variant='link'
+                            className={iconSizeClass}
+                            size='icon'
+                            asChild
+                            onClick={() => window.open('https://twitter.com/_FaceFTW')}>
+                            <Twitter className={iconSizeClass} />
+                        </Button>
+                    </TooltipTrigger>
+                    <TooltipContent>X (Formerly known as Twitter)</TooltipContent>
+                </Tooltip>
+                <Tooltip>
+                    <TooltipTrigger asChild>
+                        <Button
+                            variant='link'
+                            className={iconSizeClass}
+                            size='icon'
+                            asChild
+                            onClick={() => window.open('https://github.com/FaceFTW')}>
+                            <Github className={iconSizeClass} />
+                        </Button>
+                    </TooltipTrigger>
+                    <TooltipContent>GitHub</TooltipContent>
+                </Tooltip>
+                <Tooltip>
+                    <TooltipTrigger asChild>
+                        <Button
+                            variant='link'
+                            className={iconSizeClass}
+                            size='icon'
+                            asChild
+                            onClick={() => window.open('mailto:alex@faceftw.dev')}>
+                            <Mail className={iconSizeClass} />
+                        </Button>
+                    </TooltipTrigger>
+                    <TooltipContent>Email</TooltipContent>
+                </Tooltip>
+                <Tooltip>
+                    <TooltipTrigger asChild>
+                        <Button
+                            variant='link'
+                            className={iconSizeClass}
+                            size='icon'
+                            asChild
+                            onClick={() => window.open('https://www.linkedin.com/in/faceftw')}>
+                            <Linkedin className={iconSizeClass} />
+                        </Button>
+                    </TooltipTrigger>
+                    <TooltipContent>LinkedIn</TooltipContent>
+                </Tooltip>
+            </TooltipProvider>
 
-                <div className='mx-auto' />
-            </div>
+            <div className='mx-auto' />
         </div>
     );
 };
 
 const HomeMainSection = () => {
     return (
-        <section>
-            {/* <motion.div
-                className='flex flex-col items-center'
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 2 }}> */}
-
-            <div className='mx-auto' />
-            <div className='flex flex-col lg:flex-row'>
-                <div className='m-8'>
-                    <Image
-                        src={Pfp}
-                        className='h-48 w-48 rounded-full border-8 transition-all hover:border-primary'
-                        alt='me :)'
-                    />
-                </div>
-                <div className='flex flex-col justify-center text-center md:text-left'>
-                    <h1 className='text-4xl md:text-8xl'>Alex is a </h1>
-                    <h1 className='text-4xl text-primary md:text-8xl'>
-                        <TypewriterComponent
-                            options={{
-                                autoStart: true,
-                                loop: true,
-                            }}
-                            onInit={(typewriter) => {
-                                typewriter
-                                    .typeString('Software Engineer')
-                                    .pauseFor(3000)
-                                    .deleteAll()
-                                    .typeString('Hardware Tinkerer')
-                                    .pauseFor(3000)
-                                    .deleteAll()
-                                    .typeString('Power User')
-                                    .pauseFor(3000)
-                                    .deleteAll()
-                                    .typeString('Tech Enthusiast')
-                                    .pauseFor(3000)
-                                    .deleteAll()
-                                    .typeString('Problem Solver')
-                                    .pauseFor(3000)
-                                    .deleteAll()
-                                    .start();
-                            }}
+        <section className='flex w-full flex-col'>
+            <div className='flex w-full'>
+                <div className='mx-auto flex min-w-[60%] flex-col lg:flex-row'>
+                    <div className='mx-auto my-8 flex min-w-fit xl:mx-8'>
+                        <Image
+                            src={Pfp}
+                            className='h-48 w-48 rounded-full border-8 transition-all hover:border-primary'
+                            alt='me :)'
                         />
-                    </h1>
+                    </div>
+                    <div className='mb-8 self-center'>
+                        <h1 className='animated-gradient mx-auto bg-gradient-one delay-500 lg:mx-0 dark:bg-gradient-one-dark'>
+                            Software Engineer;
+                        </h1>
+                        <h1 className='animated-gradient mx-auto bg-gradient-two delay-1000 lg:mx-0 dark:bg-gradient-two-dark'>
+                            Power User;
+                        </h1>
+                        <h1 className='animated-gradient mx-auto bg-gradient-three lg:mx-0 dark:bg-gradient-three-dark'>
+                            Problem Solver;
+                        </h1>
+                    </div>
                 </div>
             </div>
-            <div className='mx-auto' />
-            {/* </motion.div> */}
             <SocialSection />
         </section>
     );

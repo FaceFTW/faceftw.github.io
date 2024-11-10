@@ -1,27 +1,9 @@
 import React from 'react';
 import type { Project } from '@/lib/types';
-import { useInView } from 'framer-motion';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { AppWindow, Code2, Link } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
-
-//TODO for future me, transition code for cards
-// 	sx={{
-// 		maxWidth: 400,
-// 		minWidth: 325,
-// 		maxHeight: 500,
-// 		minHeight: 500,
-// 		display: 'flex',
-// 		flexDirection: 'column',
-
-// 		transition: 'all 0.5s ease',
-// 		opacity: isInView ? 1 : 0,
-// 		transform: isInView ? 'none' : 'translateY(50px)',
-// 	}}>
-// 	<CardMedia>
-// 		<Image src={imgAsset} duration={500} style={{ height: '250px', width: '400px', objectFit: 'contain' }} />
-// 	</CardMedia>
 
 export const ProjectCarouselCard = ({ project }: { project: Project }) => {
     const imgAsset = project.projectAsset ? `/img/${project.projectAsset}` : '/img/no_asset.webp';
@@ -31,8 +13,6 @@ export const ProjectCarouselCard = ({ project }: { project: Project }) => {
     const githubLink = project.projectLinks.find((link) => link.linkType === 'github');
     const demoLink = project.projectLinks.find((link) => link.linkType === 'demo');
     const miscLink = project.projectLinks.find((link) => link.linkType === 'misc');
-    const cardRef = React.useRef<HTMLDivElement>(null);
-    const _isInView = useInView(cardRef);
 
     return (
         <Card className='flex min-w-[200px] flex-col'>

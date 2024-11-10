@@ -68,5 +68,18 @@
   body {
     @apply bg-background text-foreground;
   }
+  h1{
+	@apply text-2xl md:text-4xl lg:text-6xl;
+  }
+}
+
+@layer components{
+
+  .animated-gradient{
+	@apply animate-gradient-trans;
+	@apply [background-size:200%];
+	@apply [animation-fill-mode:forwards];
+	@apply w-fit
+  }
 }
 
