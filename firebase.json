@@ -1,39 +1,10 @@
 {
 	"hosting": {
-		"public": "dist",
+		"public": "out",
 		"ignore": [
 			"firebase.json",
 			"**/.*",
 			"**/node_modules/**"
-		],
-		"rewrites": [
-			{
-				"source": "/projects",
-				"destination": "/index.html"
-			},
-			{
-				"source": "/resume",
-				"destination": "/index.html"
-			},
-			{
-				"source": "/about",
-				"destination": "/index.html"
-			},
-			{
-				"source": "/blog",
-				"destination": "/index.html"
-			},
-			{
-				"source": "/blog/*",
-				"destination": "/index.html"
-			}
-		],
-		"redirects":[
-			{
-				"regex":"/assets/assets/(.*)",
-				"destination":"/assets/:1",
-				"type":"301"
-			}
 		]
 	}
 }

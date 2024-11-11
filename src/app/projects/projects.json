@@ -1,0 +1,445 @@
+{
+	"$schema": "./project.schema.json",
+	"projectList": [
+		{
+			"projectId": 0,
+			"projectName": "Armanipulator",
+			"projectDescription": "Rudimentary Robotic Arm Utilizing Pneumatic Leverage and Extensible Arduino Firmware",
+			"projectAsset": "armanipulator.webp",
+			"assetHeight": 295,
+			"assetWidth": 294,
+			"projectLinks": [
+				{
+					"linkType": "github",
+					"linkURL": "https://github.com/FaceFTW/Armanipulator"
+				}
+			],
+			"projectTags": [
+				"C++",
+				"Hardware",
+				"Arduino",
+				"Stepper Motor HAL",
+				"School Project",
+				"Open Source"
+			]
+		},
+		{
+			"projectId": 1,
+			"projectName": "UberUnit",
+			"projectDescription": "A consolidated, lightweight unit converter built for user convenience, with Firebase Integration for History and User Favorites",
+			"projectAsset": "uberunit.webp",
+			"assetHeight": 382,
+			"assetWidth": 624,
+			"projectLinks": [
+				{
+					"linkType": "github",
+					"linkURL": "https://github.com/FaceFTW/UberUnit"
+				}
+			],
+			"projectTags": [
+				"HTML5",
+				"Sass",
+				"TypeScript",
+				"Angular",
+				"Firebase",
+				"Bootstrap",
+				"School Project",
+				"Open-Source"
+			]
+		},
+		{
+			"projectId": 2,
+			"projectName": "*Creative Name Here* Architecture",
+			"projectDescription": "16-bit RISC Architecture With a Flexible Assembly Dialect and Efficient Performance. Includes Assembler written in C#",
+			"projectAsset": "cnhasm-noarch.webp",
+			"assetHeight": 583,
+			"assetWidth": 696,
+			"projectLinks": [
+				{
+					"linkType": "github",
+					"linkURL": "https://github.com/FaceFTW/cnhasm-noarch"
+				}
+			],
+			"projectTags": [
+				"SystemVerilog",
+				"Assembly (Custom)",
+				"Computer Architecture",
+				"School Project",
+				"C#",
+				".NET Core 3.1",
+				"Open Source"
+			]
+		},
+		{
+			"projectId": 3,
+			"projectName": "Joust (Remake)",
+			"projectDescription": "Remake of the 1982 Arcade Classic <em>Joust</em> by Williams Electronics in Java",
+			"projectAsset": "joust.webp",
+			"assetHeight": 892,
+			"assetWidth": 786,
+			"projectLinks": [],
+			"projectTags": [
+				"Java",
+				"JavaFX",
+				"School Project"
+			]
+		},
+		{
+			"projectId": 4,
+			"projectName": "-STRIVE- Stats",
+			"projectDescription": "Web-Based Match Data Tracker for GUILTY GEAR -STRIVE-",
+			"projectAsset": "strivestats.webp",
+			"assetHeight": 941,
+			"assetWidth": 1854,
+			"projectLinks": [
+				{
+					"linkType": "github",
+					"linkURL": "https://github.com/FaceFTW/strive-stats"
+				}
+			],
+			"projectTags": [
+				"TypeScript",
+				"CSS 3",
+				"React",
+				"MUI",
+				"Firebase",
+				"School Project",
+				"Open Source"
+			]
+		},
+		{
+			"projectId": 5,
+			"projectName": "DesignLint",
+			"projectDescription": "A Relatively Simple Java Linter Wtih Style/OOP Principle Violations and Design Pattern Detection",
+			"projectLinks": [
+				{
+					"linkType": "github",
+					"linkURL": "https://github.com/FaceFTW/DesignLint"
+				}
+			],
+			"projectAsset": "designlint.webp",
+			"assetHeight": 1044,
+			"assetWidth": 910,
+			"projectTags": [
+				"Java",
+				"Maven",
+				"OW2 ASM",
+				"JUnit",
+				"JVM Bytecode",
+				"School Project",
+				"Open Source"
+			]
+		},
+		{
+			"projectId": 6,
+			"projectName": "OpenCryptoBench",
+			"projectDescription": "Rudimentary Cryptograhy Algorithm Benchmark Written in Java (Like *really* basic)",
+			"projectAsset": "no_asset.webp",
+			"assetHeight": 300,
+			"assetWidth": 500,
+			"projectLinks": [
+				{
+					"linkType": "github",
+					"linkURL": "https://github.com/FaceFTW/OpenCryptoBench"
+				}
+			],
+			"projectTags": [
+				"Java",
+				"Bouncy Castle",
+				"Personal Project",
+				"Open Source"
+			]
+		},
+		{
+			"projectId": 7,
+			"projectName": "Team Thunderbirds ECE160 Robot",
+			"projectDescription": "Specialized Arduino Firmware to Remotely Operate a Robot for Rose-Hulman's Annual ECE160 Competition for Freshman",
+			"projectAsset": "ece160.webp",
+			"assetHeight": 3024,
+			"assetWidth": 4032,
+			"projectLinks": [
+				{
+					"linkType": "github",
+					"linkURL": "https://github.com/Thunderbirds-ECE160/Final-Robot"
+				}
+			],
+			"projectTags": [
+				"C",
+				"C++",
+				"Hardware",
+				"Arduino",
+				"Stepper Motor HAL",
+				"PS2 Controller HAL",
+				"School Project",
+				"Open Source"
+			]
+		},
+		{
+			"projectId": 8,
+			"projectName": "Scavlander's Gamepad",
+			"projectDescription": "Attempt at a \"Apocalypse\"-styled Gamepad powered by the TI MSP432 Launchpad with CC2650 Boosterpack",
+			"projectAsset": "scavlander.webp",
+			"assetHeight": 768,
+			"assetWidth": 1024,
+			"projectLinks": [
+				{
+					"linkType": "github",
+					"linkURL": "https://github.com/FaceFTW/scavlanders-gamepad"
+				}
+			],
+			"projectTags": [
+				"C",
+				"Hardware",
+				"TI MSP432",
+				"TI-RTOS",
+				"CC2650 Bluetooth Stack",
+				"School Project",
+				"Open Source"
+			]
+		},
+		{
+			"projectId": 9,
+			"projectName": "AVeraCoolRPG",
+			"projectDescription": "A Discord Bot for playing a really basic RPG with SQL Server Data Storage",
+			"projectAsset": "rpgbot.webp",
+			"assetHeight": 355,
+			"assetWidth": 455,
+			"projectLinks": [
+				{
+					"linkType": "github",
+					"linkURL": "https://github.com/jthorp07/rpgbot"
+				}
+			],
+			"projectTags": [
+				"Node.JS 16",
+				"T-SQL",
+				"PowerShell",
+				"mssql",
+				"Newtonsoft Json.NET",
+				"SqlServer PowerShell Module",
+				"Discord Bot",
+				"Discord.JS",
+				"School Project"
+			]
+		},
+		{
+			"projectId": 10,
+			"projectName": "PSTweetTemplate",
+			"projectDescription": "A Powershell Module for Automatically sending out tweets based on a template using BluebirdPS",
+			"projectAsset": "no_asset.webp",
+			"assetHeight": 300,
+			"assetWidth": 500,
+			"projectLinks": [
+				{
+					"linkType": "github",
+					"linkURL": "https://github.com/FaceFTW/PSTweetTemplate"
+				}
+			],
+			"projectTags": [
+				"PowerShell",
+				"X (Formerly Known as Twitter)",
+				"BluebirdPS",
+				"Personal Project",
+				"Open Source"
+			]
+		},
+		{
+			"projectId": 11,
+			"projectName": "rust-pipes",
+			"projectDescription": "A Rust-based remake of the 3D Pipes screensaver\nDesigned for cross-platform deploy and reproducible patterns.",
+			"projectAsset": "3dpipes.webp",
+			"assetHeight": 403,
+			"assetWidth": 644,
+			"projectLinks": [
+				{
+					"linkType": "github",
+					"linkURL": "https://github.com/FaceFTW/gl-pipes"
+				},
+				{
+					"linkType": "demo",
+					"linkURL": "https://pipes.faceftw.dev"
+				}
+			],
+			"projectTags": [
+				"Rust",
+				"OpenGL",
+				"three-d",
+				"WASM",
+				"Personal Project",
+				"Open Source"
+			]
+		},
+		{
+			"projectId": 12,
+			"projectName": "Dotfiles",
+			"projectDescription": "A collection of scripts/configs I use for development",
+			"projectAsset": "dotfiles.webp",
+			"assetHeight": 738,
+			"assetWidth": 955,
+			"projectLinks": [
+				{
+					"linkType": "github",
+					"linkURL": "https://github.com/FaceFTW/dotfiles"
+				}
+			],
+			"projectTags": [
+				"PowerShell",
+				"ZSH",
+				"VimScript",
+				"Chezmoi",
+				"Personal Project",
+				"Open Source"
+			]
+		},
+		{
+			"projectId": 13,
+			"projectName": "JFTP \"Scuffed\" Edition",
+			"projectDescription": "A \"Scuffed\" and \"Updated\" version of the JFTP project, originally from SourceForge",
+			"projectLinks": [
+				{
+					"linkType": "github",
+					"linkURL": "https://github.com/FaceFTW/jftp-scuffed"
+				}
+			],
+			"projectAsset": "jftp.webp",
+			"assetHeight": 178,
+			"assetWidth": 534,
+			"projectTags": [
+				"Java",
+				"School Project",
+				"Open Source"
+			]
+		},
+		{
+			"projectId": 14,
+			"projectName": "RetireSimple",
+			"projectDescription": "Open-Source Retirement Modeling Solution Designed for Extensibility",
+			"projectLinks": [
+				{
+					"linkType": "github",
+					"linkURL": "https://github.com/RetireSimple/RetireSimple"
+				}
+			],
+			"projectAsset": "retiresimple.webp",
+			"assetHeight": 520,
+			"assetWidth": 939,
+			"projectTags": [
+				"C#",
+				".NET 6",
+				"TypeScript",
+				"ASP.NET Core 6",
+				"Entity Framework 6",
+				"Math.NET",
+				"React",
+				"MUI",
+				"Electron",
+				"School Project",
+				"Open Source"
+			]
+		},
+		{
+			"projectId": 15,
+			"projectName": "Settlers of Catan",
+			"projectDescription": "A Java Implementation of the Settlers of Catan with focuses on QA and Testing",
+			"projectLinks": [
+				{
+					"linkType": "github",
+					"linkURL": "https://github.com/FaceFTW/settlers-of-catan"
+				}
+			],
+			"projectAsset": "settlers.webp",
+			"assetHeight": 683,
+			"assetWidth": 1075,
+			"projectTags": [
+				"Java",
+				"JavaFX",
+				"JUnit",
+				"School Project",
+				"Open Source"
+			]
+		},
+		{
+			"projectId": 16,
+			"projectName": "xv6 Signals",
+			"projectDescription": "A fork of xv6 with added support for rudimentary signal handling",
+			"projectLinks": [
+				{
+					"linkType": "github",
+					"linkURL": "https://github.com/FaceFTW/xv6-signals"
+				}
+			],
+			"projectAsset": "xv6.webp",
+			"assetHeight": 459,
+			"assetWidth": 718,
+			"projectTags": [
+				"C",
+				"xv6",
+				"ARM",
+				"Computer Architecture",
+				"Kernel Programming",
+				"School Project",
+				"Open Source"
+			]
+		},
+		{
+			"projectId": 17,
+			"projectName": "Portfolio Website",
+			"assetHeight": 1048,
+			"assetWidth": 1936,
+			"projectDescription": "This website, updated 4 times, each time redesigned to be slimmer + more performant",
+			"projectAsset": "portfolionew.webp",
+			"projectLinks": [
+				{
+					"linkType": "github",
+					"linkURL": "https://github.com/FaceFTW/FaceFTW.github.io"
+				}
+			],
+			"projectTags": [
+				"HTML5",
+				"Sass",
+				"Typescript",
+				"JSON Schema",
+				"Angular",
+				"Angular Material",
+				"TypeScript",
+				"MUI",
+				"React",
+				"react-router",
+				"shadcn/ui",
+				"TailwindCSS",
+				"Framer Motion",
+				"Next.JS",
+				"School Project",
+				"Personal Project",
+				"Open Source"
+			]
+		},
+		{
+			"projectId": 18,
+			"projectName": "shell-toy",
+			"projectDescription": "A \"cowsay|fortune\" implementation in Rust with performance, compatibility, and portability in mind",
+			"projectAsset": "shell-toy.gif",
+			"assetHeight": 804,
+			"assetWidth": 1028,
+			"projectLinks": [
+				{
+					"linkType": "github",
+					"linkURL": "https://github.com/FaceFTW/shell-toy"
+				},
+				{
+					"linkType": "misc",
+					"linkURL": "https://faceftw.dev/blog/0003",
+					"linkDesc": "Blog Post"
+				}
+			],
+			"projectTags": [
+				"Rust",
+				"terminal",
+				"customization",
+				"Perl",
+				"Personal Project",
+				"Open Source"
+			]
+		}
+	]
+}
