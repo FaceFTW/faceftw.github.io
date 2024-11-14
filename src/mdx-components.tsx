@@ -18,10 +18,6 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
                 </code>
             );
         },
-        // pre(props) {
-        //     const { children, className, ...rest } = props;
-        //     <pre className='hljs my-4 w-[95%] overflow-x-scroll lg:mx-8 lg:overflow-auto'>{children}</pre>;
-        // },
         h1(props) {
             const { children, className, ...rest } = props;
             return (
@@ -90,7 +86,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         ul(props) {
             const { children, className, ...rest } = props;
             return (
-                <ul className={cn('list-outside', 'indent-4','ml-8', 'mb-4', 'leading-relaxed', className)} {...rest}>
+                <ul className={cn('list-outside', 'indent-4', 'ml-8', 'mb-4', 'leading-relaxed', className)} {...rest}>
                     {children}
                 </ul>
             );
