@@ -23,12 +23,17 @@ jobs:
         run: npm install --frozen-lockfile
       - name: Run Build
         run: npm run build
-      - name: Deploy to Firebase Hosting (Preview)
-        uses: FirebaseExtended/action-hosting-deploy@v0
+      - uses: cloudflare/wrangler-action@v3
         with:
-          repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_PORTFOLIO_WEB_1CC78 }}'
-          projectId: portfolio-web-1cc78
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy out --project-name=$${{ secrets.CLOUDFLARE_PROJECT_NAME }}
+      # - name: Deploy to Firebase Hosting (Preview)
+      #   uses: FirebaseExtended/action-hosting-deploy@v0
+      #   with:
+      #     repoToken: '${{ secrets.GITHUB_TOKEN }}'
+      #     firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_PORTFOLIO_WEB_1CC78 }}'
+      #     projectId: portfolio-web-1cc78
 
   release:
     name: Deploy
@@ -47,23 +52,21 @@ jobs:
         run: npm install --frozen-lockfile
       - name: Run Build
         run: npm run build
-      - uses: cloudflare/pages-action@v1
+      - uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          projectName: ${{ secrets.CLOUDFLARE_PROJECT_NAME}}
-          directory: out
-          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
-      # - name: Deploy to Firebase
-      #   uses: FirebaseExtended/action-hosting-deploy@v0
+          command: pages deploy out --project-name=$${{ secrets.CLOUDFLARE_PROJECT_NAME }}
+      # - uses: cloudflare/pages-action@v1
       #   with:
-      #     repoToken: '${{ secrets.GITHUB_TOKEN }}'
-      #     firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_PORTFOLIO_WEB_1CC78 }}'
-      #     projectId: portfolio-web-1cc78
-      #     channelId: live
-      # - uses: actions/upload-pages-artifact@v3
-      #   with:
-      #     path: out
+      #     apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      #     accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+      #     projectName: ${{ secrets.CLOUDFLARE_PROJECT_NAME}}
+      #     directory: out
+      #     gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: out
 
   github-pages:
     name: GitHub Pages
