@@ -6,7 +6,8 @@
 		"dev": "next dev",
 		"build": "next build -d",
 		"start": "next start",
-		"lint": "next lint"
+		"lint": "next lint",
+		"postbuild": "next-sitemap"
 	},
 	"dependencies": {
 		"@radix-ui/react-accordion": "^1.2.1",
@@ -45,6 +46,7 @@
 		"@types/node": "^20",
 		"@types/react": "^18",
 		"@types/react-dom": "^18",
+		"next-sitemap": "^4.2.3",
 		"postcss": "^8",
 		"tailwindcss": "^3.4.1",
 		"typescript": "^5"
