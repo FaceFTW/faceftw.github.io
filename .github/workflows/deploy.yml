@@ -27,13 +27,7 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy out --project-name=$${{ secrets.CLOUDFLARE_PROJECT_NAME }}
-      # - name: Deploy to Firebase Hosting (Preview)
-      #   uses: FirebaseExtended/action-hosting-deploy@v0
-      #   with:
-      #     repoToken: '${{ secrets.GITHUB_TOKEN }}'
-      #     firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_PORTFOLIO_WEB_1CC78 }}'
-      #     projectId: portfolio-web-1cc78
+          command: pages deploy out --project-name=${{ secrets.CLOUDFLARE_PROJECT_NAME }}
 
   release:
     name: Deploy
@@ -57,13 +51,6 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           command: pages deploy out --project-name=$${{ secrets.CLOUDFLARE_PROJECT_NAME }}
-      # - uses: cloudflare/pages-action@v1
-      #   with:
-      #     apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-      #     accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-      #     projectName: ${{ secrets.CLOUDFLARE_PROJECT_NAME}}
-      #     directory: out
-      #     gitHubToken: ${{ secrets.GITHUB_TOKEN }}
       - uses: actions/upload-pages-artifact@v3
         with:
           path: out
