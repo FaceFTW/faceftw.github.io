@@ -11,9 +11,11 @@ import { frontmatter as frontmatter1 } from '@/app/blog/(posts)/0001/page.mdx';
 import { frontmatter as frontmatter2 } from '@/app/blog/(posts)/0002/page.mdx';
 //@ts-expect-error
 import { frontmatter as frontmatter3 } from '@/app/blog/(posts)/0003/page.mdx';
+//@ts-expect-error
+import { frontmatter as frontmatter4 } from '@/app/blog/(posts)/0004/page.mdx';
 
 export default function Index() {
-    const allPosts = [frontmatter1, frontmatter2, frontmatter3].sort((a, b) =>
+    const allPosts = [frontmatter1, frontmatter2, frontmatter3, frontmatter4].sort((a, b) =>
         parseISO(a.date) > parseISO(b.date) ? -1 : 1
     );
 
