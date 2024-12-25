@@ -12,35 +12,123 @@ import Image from 'next/image';
 
 _A history of this website and anecdotes of the pains of modern web development_
 
-Recently, I upgraded this entire website with yet another fresh coat of paint. Originally started as a project for a introductory web development course during college, I kept adding to it and improving it to do something new: code-less additions of new projects, refining visuals for mobile, supporting _this very blog_. But each time I had to make a "radical change" like the ones I mentioned it always involved migrating to the next big thing. It's been over 3 years of this site being upgrade and with the creation of this blog (`ref_cycle`) I thought it would be an interesting retrospective in terms of what was great about certain revisions, and what could be better (both design and my experience with the tools I used).
-
-Since the Git repository of the website is public (since it started as a GitHub pages project), I'll be linking to commits that one
+Recently, I upgraded this entire website with yet another fresh coat of paint. Originally started as a project for an introductory web development course during college, I kept adding to it and improving it to do something new: code-less additions of new projects, refining visuals for mobile, supporting _this very blog_. But each time I had to make a "radical change" like the ones I mentioned it always involved migrating to the next big thing. It's been over 3 years of this site being upgrade and with the creation of this blog (`ref_cycle`) I thought it would be an interesting retrospective in terms of what was great about certain revisions, and what could be better (both design and my experience with the tools I used).
 
 So sit back and get your snack of choice, time for another trip back in time.
 
+> EDITORS NOTE (aka me)
+> This article has been in the work for a while now, and while I would love to try and update the old sites to newer versions of the frameworks to see how I was bad at web development previously it would take a lot longer.
+>
+> The section where I talk about bundle sizes and profiling page loading is not going to reflect the latest versions of the mentioned frameworks and should be taken with healthy skepticism. But you should be doing that with most information on the internet anyway right?
 
+## In the Beginning, There was Hypertext
 
-## Humble Beginnings
-commit [`f2c6164e`](https://github.com/FaceFTW/faceftw.github.io/tree/f2c6164efe66bbb86e2bd40d45e9ba52592dfbf3)
+This website first started as most websites did back in the early days of the web: pure HTML, CSS, and a sprinkle of JS.
+
 
 // Insert humble_beginnings.jpg here
 
 This site is actually not that bad from the looks of it. Aside from the raw HTML that makes the code look scary, there is a lot to like visually. At this stage of the site, there was not much stuff I wanted to show; I didn't have many projects to show and also thought writing for fun was cringe (the irony). The main purpose was to effectively serve as a "second" resume for people to look at, especially as a demonstration of skill.
 
-//insert resume/projects pages w/ captions
-
-This version of the site used [Bootstrap (4?)](https://getbootstrap.com/) with a dark theme from [Bootswatch](https://bootswatch.com/), which I like and dislike (compared to [Tailwind](https://tailwindcss.com/) which I discuss later). Bootstrap is great with things like simple layouts and defining things like the cards for projects. For the most part, it's also fairly quick to setup, just include the Bootstrap CSS bundle as a `link` tag and you are basically off to the races. The only major thing is that when you need to deviate from the standard `container` and other elements you have to start writing more of your own CSS, which increases some confusion on what is from Bootstrap and what I wrote. (Tailwind does solve this problem somewhat, I'll also discuss this later).
-
-### What was wrong with this then?
+This version of the site used [Bootstrap (4?)](https://getbootstrap.com/) with a dark theme from [Bootswatch](https://bootswatch.com/), which I like and dislike (compared to [Tailwind](https://tailwindcss.com/)). Bootstrap is great with things like simple layouts and defining things like the cards for projects. For the most part, it's also fairly quick to set up, just include the Bootstrap CSS bundle as a `link` tag, and you are basically off to the races. The only major thing is that when you need to deviate from the standard `container` and other elements you have to start writing more of your own CSS, which increases some confusion on what is from Bootstrap and what I wrote (Tailwind does solve this problem somewhat with its configuration system but not a perfect solution).
 
 At this time, I started taking on more projects, courses at college, and internships. Plus, HTML is the kind of language where you always feel like you want to write _less of it_. I mean, use inspect element on a modern webpage and you'll see an absurd number of `div`s and nesting. I'd rather not spend time maintaining that if I could.
 
 Luckily, this was around the time I started to learn my first web framework.
 
-## V2 - The Angular Revision
-
-commit [``]()
 
 //Insert V2 Homepage here
 
-The first web framework I learned was [Angular](https://angular.dev) (not the really old AngularJS), the web framework from Google. Compared to the raw HTML/CSS/JS combination that I started with, Angular is what I consider to be an "augmentation" of the paradigm. With the [component model](https://angular.dev/essentials/components), first-class support for [Material Design](https://m3.material.io/), and easier reactive programming, it became the first choice for some of the projects I did in the same web design course.
+The first web framework I learned was [Angular](https://angular.dev) (not the ancient AngularJS), the web framework from Google. Compared to the raw HTML/CSS/JS combination that I started with, Angular is what I consider to be an "augmentation" of the paradigm. With the [component model](https://angular.dev/essentials/components), first-class support for [Material Design](https://m3.material.io/), and easier reactive programming via [RxJS and observer patterns](https://rxjs.dev), it became the first choice for some of the projects I did in the same web design course.
+
+Overall, this isn't a terrible website. Some of the elements are not well formatted, but I see that as more of my lack of thinking about "aesthetics" and more "it works". I even added a system with JSON and [JSON Schema](https://json-schema.org/) (for IDE validation) to serve as a static data for my projects list and resume. For my first foray into Angular (for a project outside the primary use cases), it's not a bad site. _But hindsight is 20/20 and there were some glaring issues_.
+
+
+
+// Insert V3 Homepage Here
+
+After learning [React](https://react.dev) from an internship and liking it a lot I made the decision to rewrite the entire site (again). I _**love**_ React (after hating it initially). It's a much nicer framework that strips out many of the things that I wasn't using in Angular and focuses purely on the concept of components from a functional perspective; It changes perspective with thinking more about "how does this piece work with respect to the whole design" rather than "I have these templates that change with user interaction". Sure, you need to add packages for more common features like static routing, but I personally prefer having a small "core of functionality" to build and compose with. This philosophy is also why I migrated from [MUI](https://mui.com/) (the Material Design framework for React) to [shadcn/ui](https://ui.shadcn.com/), [react-router](https://reactrouter.com/) to [wouter](https://github.com/molefrog/wouter), and cut NPM packages where possible over the year-or-so of developing the website. I thought this would be the last "migration"
+
+However, starting the blog became an impetus for considering a different solution. There were a set of _fundamental_ problems that were not easily solvable without doing a complete migration to a different solution.
+
+## The "Next" Big Thing
+
+I was skeptical about migrating to [Next.js](https://nextjs.org) initially as I thought it was fairly heavy-handed like Angular would be but with React flavoring. But the option to be flexible between [server-side rendering (SSR)](https://nextjs.org/docs/pages/building-your-application/rendering/server-side-rendering) or [static site generation (SSG)](https://nextjs.org/docs/pages/building-your-application/rendering/static-site-generation) was really appealing for my use case. Plus there were ways to improve blog writing by using [MDX] plugins; this system was a pain to configure until I realized I was missing [Tailwind Typography](https://github.com/tailwindlabs/tailwindcss-typography) to merge with the Tailwind styling I've been using prior.
+
+Because Next.js uses SSR as the basis for its framework, it meant having to worry about [React Server Components](https://react.dev/reference/rsc/server-components). These are really cool because depending on how you choose to bundle/deploy your project the result of compilation differs; static data can be "pre-rendered" into the resulting bundle (which requires only minimum client-side JS for interactivity) while dynamic data can be rendered after fetching on the server and just give the client the rendering work. Given that all the resources of this site are available by compile-time, this means _significantly slimmer bundles and faster rendering_ while still preserving the design and feel of the site. I am actually glad that I made this transition despite all the hair-pulling I did.
+
+//Insert commit history bit here
+
+## The issues with the older versions
+
+First, I want to clarify that _these are not bad frameworks, just they don't work well for this kind of "effectively static" website_. All I really pay for is a domain from Cloudflare, and host using their [Pages](https://pages.cloudflare.com/) (at the free tier); There isn't any login middleware, CRM, backend database, nothing. Just statically hosted HTML, CSS, and JS.
+
+> EDITORS NOTE (aka me):
+> This website's hosting method changed over the years. First it was GitHub Pages, then I purchased a domain from Google Domains (now defunct and run by SquareSpace) and used that system. Then I started to use [Firebase](https://firebase.google.com) for hosting until I moved my domain to Cloudflare and set up the Cloudflare Pages project.
+>
+> A brief explanation of the reasoning is that while every service I used was free (except the domain registration obviously) GitHub Pages and Firebase Hosting is somewhat restrictive in their functionality. With Cloudflare, I'm able to handle how my site is hosted at a much deeper level and get stronger analytical insights into request usages. Plus there are other benefits like [Rules](https://developers.cloudflare.com/rules/) which can help with blocking annoying bots that try to scrape the site for vulnerabilities (this is more of an analytics issue).
+
+
+
+Let's look at how a webpage is loaded and rendered (in a semi-reductive manner). I'm skipping things like [DNS Resolution](https://www.cloudflare.com/learning/dns/what-is-dns/) and [TLS](https://en.wikipedia.org/wiki/Transport_Layer_Security); The point I'm trying to illustrate is more about how the client (a.k.a. the browser) processes information. [MDN has a great article explaining everything in greater detail ](https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work) and is great documentation to read when learning how to make faster websites. Overall, the process is broken down into a few steps:
+
+1. The HTML is sent from the server to the client
+2. The client **parses** the HTML
+   1. If there is a `<link>` or `<script>` tag, a request is sent to fetch the resource. [This is usually blocking in the parsing of a webpage](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script#notes)
+   2. Assets like `<img>` or `<video>` tags are usually requested asynchronously; These requests do not block parsing but does block rendering.
+3. Using the parsed data and fetched resources, the client begins **rendering** the HTML on the screen. This includes calculating styles, element sizes, etc.
+4. After rendering, JavaScript is executed on the rendered page.
+
+
+
+
+Angular is a very heavy-handed solution for something as simple as a static portfolio site: no dynamic data sources, no API requests, just a bit of JS for routing and interactivity. React at its core is small, but the reliance on [JSX](https://react.dev/learn/writing-markup-with-jsx) usually causes the UI to load after the minified JS is fetched by the browser. Even with lazy-loading components and routes there is still the notion of a "critical path" or sequence of requests that must occur for the page to load and then render.
+
+First things first, bundle sizes should be looked at to see "how heavy" the website is to download and then potentially load.  (excludes resources like images)
+
+Here is the Angular bundle,
+
+```
+Initial Chunk Files           | Names         |  Raw Size | Estimated Transfer Size
+main.5d615bb339b9470b.js      | main          | 631.47 kB |               141.73 kB
+styles.3792df0daddea44e.css   | styles        | 235.83 kB |                30.05 kB
+polyfills.f902bb51b2ac1766.js | polyfills     |  33.07 kB |                10.65 kB
+runtime.332e9e9b7bbd6596.js   | runtime       |   1.04 kB |               599 bytes
+
+                              | Initial Total | 901.42 kB |               183.02 kB
+
+Warning: bundle initial exceeded maximum budget. Budget 500.00 kB was not met by 401.42 kB with a total of 901.42 kB.
+```
+
+The React version of this site is not much better. Because I used [Vite](https://vite.dev/) instead of [webpack](https://webpack.js.org/) the results look different but provide the same information.
+
+```
+vite v5.4.6 building for production...
+✓ 3422 modules transformed.
+dist/index.html                                 0.52 kB │ gzip:  0.35 kB
+dist/assets/Picture1.webp                       5.21 kB
+<... a bunch of images ...>
+dist/assets/err_5.webp                          5.67 kB
+dist/assets/hero.webp                         462.21 kB
+dist/assets/index.css                          27.48 kB │ gzip:  6.02 kB
+dist/assets/arrow-left-wd6aoGpn.js              0.33 kB │ gzip:  0.26 kB
+dist/assets/index-Dsn0k6dh.js                   0.41 kB │ gzip:  0.29 kB
+dist/assets/err_9-CMtuSuMJ.js                   0.58 kB │ gzip:  0.21 kB
+dist/assets/badge-5ai2lK9d.js                   0.71 kB │ gzip:  0.37 kB
+dist/assets/blog_list-C1rE-FtA.js               0.91 kB │ gzip:  0.49 kB
+dist/assets/Blog-BKOfLdQ0.js                    1.00 kB │ gzip:  0.54 kB
+dist/assets/Error404-CJ55vSE8.js                1.67 kB │ gzip:  0.70 kB
+dist/assets/About-DfBpW-C4.js                   2.51 kB │ gzip:  1.25 kB
+dist/assets/Projects-CaBAu5Yl.js                7.76 kB │ gzip:  4.35 kB
+dist/assets/BlogPage-D7PpiPg1.js                7.84 kB │ gzip:  3.84 kB
+dist/assets/xv6-BmNTcSDr.js                    15.30 kB │ gzip:  6.89 kB
+dist/assets/Resume-Bscw4k5W.js                 15.82 kB │ gzip:  5.82 kB
+dist/assets/Home-DkVT_end.js                   79.40 kB │ gzip: 32.98 kB
+dist/assets/proxy-C197JKuH.js                 110.38 kB │ gzip: 36.15 kB
+dist/assets/MarkdownRender-jXc2DL1j.js        236.53 kB │ gzip: 75.11 kB
+dist/assets/index-CCNu7cRr.js                 251.26 kB │ gzip: 83.46 kB
+✓ built in 6.70s
+
+```
+
+This is a lot of data for a very lightweight site. Sure, it contains all the data for every page on the site and all of JS needed to supply the interactivity but the metrics and the warning indicate otherwise. The first interesting metric is the difference between the _Raw Size_ and _Estimated Transfer Size_. While modern servers and browsers have [compression for HTTP requests/responses](https://developer.mozilla.org/en-US/docs/Web/HTTP/Compression) with nominal overhead, the disparity in the reduced transfer size indicates that _there is a lot of duplicate code and data being transferred_. It also implies that there could be a lot less JavaScript being run on the clients but the [transpilation](https://stackoverflow.com/questions/48414941/what-is-transpiler-and-what-is-exactly-work-of-transpiler) process couldn't optimize it that well.
