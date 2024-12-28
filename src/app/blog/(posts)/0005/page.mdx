@@ -1,9 +1,9 @@
 ---
 title: "From the Archives - Why I revised this Website 4 Times"
 excerpt: "A history of this website and anecdotes of the pains of modern web development"
-date: "2024-11-25"
+date: "2024-12-28"
 author: Alex Westerman
-slug: '0004'
+slug: '0005'
 ---
 
 import Image from 'next/image';
@@ -19,7 +19,7 @@ So sit back and get your snack of choice, time for another trip back in time.
 > EDITORS NOTE (aka me)
 > This article has been in the work for a while now, and while I would love to try and update the old sites to newer versions of the frameworks to see how I was bad at web development previously it would take a lot longer. It's also been through much restructuring in an attempt to be more "palatable" for people who don't have ADHD like me.
 >
-> The section where I talk about bundle sizes and profiling page loading is not going to reflect the latest versions of the mentioned frameworks and should be taken with healthy skepticism. But you should be doing that with most information on the internet anyway right?
+> The section talking about bundle sizes and profiling page loading is not going to reflect the latest versions of the mentioned frameworks and should be taken with healthy skepticism. But you should be doing that with most information on the internet anyway right?
 
 ## A Walk Down Memory Lane
 
@@ -39,7 +39,7 @@ Luckily, this was around the time I started to learn my first web framework.
 
 //Insert V2 Homepage here
 
-The first web framework I learned was [Angular](https://angular.dev) (not the ancient AngularJS), the web framework from Google. Compared to the raw HTML/CSS/JS combination that I started with, Angular is what I consider to be an "augmentation" of the paradigm. With the [component model](https://angular.dev/essentials/components), first-class support for [Material Design](https://m3.material.io/), and easier reactive programming via [RxJS and observer patterns](https://rxjs.dev), it became the first choice for some of the projects I did in the same web design course.
+The first web framework I learned was [Angular](https://angular.dev) (not the ancient AngularJS), the web framework from Google. Compared to the raw HTML/CSS/JS combination that this website started with, Angular is what I consider to be an "augmentation" of the paradigm. With the [component model](https://angular.dev/essentials/components), first-class support for [Material Design](https://m3.material.io/), and easier reactive programming via [RxJS and observer patterns](https://rxjs.dev), it became the first choice for some of the projects I did in the same web design course.
 
 Overall, this isn't a terrible website. Some of the elements are not well formatted, but I see that as more of my lack of thinking about "aesthetics" and more "it works". I even added a system with JSON and [JSON Schema](https://json-schema.org/) (for IDE validation) to serve as a static data for my projects list and resume. For my first foray into Angular (for a project outside the primary use cases), it's not a bad site. _But hindsight is 20/20 and there were some glaring issues_.
 
@@ -47,13 +47,13 @@ Overall, this isn't a terrible website. Some of the elements are not well format
 
 // Insert V3 Homepage Here
 
-After learning [React](https://react.dev) from an internship and liking it a lot I made the decision to rewrite the entire site (again). I _**love**_ React (after hating it initially). It's a much nicer framework that strips out many of the things that I wasn't using in Angular and focuses purely on the concept of components from a functional perspective; It changes perspective with thinking more about "how does this piece work with respect to the whole design" rather than "I have these templates that change with user interaction". Sure, you need to add packages for more common features like static routing, but I personally prefer having a small "core of functionality" to build and compose with. This philosophy is also why I migrated from [MUI](https://mui.com/) (the Material Design framework for React) to [shadcn/ui](https://ui.shadcn.com/), [react-router](https://reactrouter.com/) to [wouter](https://github.com/molefrog/wouter), and cut NPM packages where possible over the year-or-so of developing the website. I thought this would be the last "migration"
+After learning [React](https://react.dev) from an internship and liking it a lot, I made the decision to rewrite the entire site (again). I _**love**_ React (after hating it initially). It's a much nicer framework that strips out many of the things that I wasn't using in Angular and focuses purely on the concept of components from a functional perspective; It changes perspective with thinking more about "how does this piece work with respect to the whole design" rather than "I have these templates that change with user interaction". Sure, you need to add packages for more common features like static routing, but I personally prefer having a small "core of functionality" to build and compose with. This philosophy is also why I migrated from [MUI](https://mui.com/) (the Material Design framework for React) to [shadcn/ui](https://ui.shadcn.com/), [react-router](https://reactrouter.com/) to [wouter](https://github.com/molefrog/wouter), and cut NPM packages where possible over the year-or-so of developing the website. I thought this would be the last "migration"
 
 However, starting the blog became an impetus for considering a different solution. There were a set of _fundamental_ problems that were not easily solvable without doing a complete migration to a different solution.
 
 ## The "Next" Big Thing
 
-I was skeptical about migrating to [Next.js](https://nextjs.org) initially as I thought it was fairly heavy-handed like Angular would be but with React flavoring. But the option to be flexible between [server-side rendering (SSR)](https://nextjs.org/docs/pages/building-your-application/rendering/server-side-rendering) or [static site generation (SSG)](https://nextjs.org/docs/pages/building-your-application/rendering/static-site-generation) was really appealing for my use case. Plus there were ways to improve blog writing by using [MDX] plugins; this system was a pain to configure until I realized I was missing [Tailwind Typography](https://github.com/tailwindlabs/tailwindcss-typography) to merge with the Tailwind styling I've been using prior.
+I was skeptical about migrating to [Next.js](https://nextjs.org) initially as I thought it was fairly heavy-handed like Angular would be but with React flavoring. But the option to be flexible between [server-side rendering (SSR)](https://nextjs.org/docs/pages/building-your-application/rendering/server-side-rendering) or [static site generation (SSG)](https://nextjs.org/docs/pages/building-your-application/rendering/static-site-generation) was really appealing for my use case. Plus there were ways to improve blog writing by using [MDX] plugins; this system was a pain to configure until I realized [Tailwind Typography](https://github.com/tailwindlabs/tailwindcss-typography) was missing in order to merge with the Tailwind styling I've been using prior.
 
 A quick overview of what SSR/SSG is for those who don't want to click the reference links, it's a different paradigm for web applications on how the server and client interact. Here is a rough flow diagram made by yours truly explaining the difference:
 
@@ -117,7 +117,7 @@ There are a couple of key differences (that are subtle in this representation to
 3. SSG is very similar to SSR except there is _usually_ no preprocessing from the server and no API requests from the client, hence the _static_ in the acronym. Resources are generated at compile-time and simply sent by the server under this model.
     - The diagram points to which stages are generally ignored under an SSG model.
 
-Because Next.js uses SSR as the basis for its framework, it meant having to worry about [React Server Components](https://react.dev/reference/rsc/server-components). These are really cool because depending on how you choose to bundle/deploy your project the result of compilation differs; static data can be "pre-rendered" into the resulting bundle (which requires only minimum client-side JS for interactivity) while dynamic data can be rendered after fetching on the server and just give the client the rendering work. Given that all the resources of this site are available by compile-time, this means _significantly slimmer bundles and faster rendering_ while still preserving the design and feel of the site. I am actually glad that I made this transition despite all the hair-pulling I did.
+Because Next.js uses SSR as the basis for its framework, it meant having to worry about [React Server Components](https://react.dev/reference/rsc/server-components). These are really cool because depending on how you choose to bundle/deploy your project the result of compilation differs; static data can be "pre-rendered" into the resulting bundle (which requires only minimum client-side JS for interactivity) while dynamic data can be rendered after fetching on the server and just give the client the rendering work. Given that all the resources of this site are available by compile-time, this means _significantly slimmer bundles and faster rendering_ while still preserving the design and feel of the site. I am actually glad that I made this transition despite all the hair-pulling.
 
 //Insert commit history bit here
 
@@ -130,18 +130,17 @@ First, I want to clarify that _these are not bad frameworks, just they don't wor
 >
 > A brief explanation of the reasoning is that while every service I used was free (except the domain registration obviously) GitHub Pages and Firebase Hosting is somewhat restrictive in their functionality. With Cloudflare, I'm able to handle how my site is hosted at a much deeper level and get stronger analytical insights into request usages. Plus there are other benefits like [Rules](https://developers.cloudflare.com/rules/) which can help with blocking annoying bots that try to scrape the site for vulnerabilities (this is more of an analytics issue).
 
-For this analysis, I will ignore the pure HTML and Angular versions of the site since they have other problems that make it an unequal comparison (for example, the Angular version has no code-splitting). Using the SSR/SSG vs CSR explanation from the previous section, here are a few areas that the migration from pure React to Next.js showed improvements in:
+This analysis will ignore the pure HTML and Angular versions of the site since they have other problems that make it an unequal comparison (for example, the Angular version has no code-splitting). Using the SSR/SSG vs CSR explanation from the previous section, here are a few areas that the migration from pure React to Next.js showed improvements in:
 
 - HTML/CSS/JS File Sizes
 - First Load JS Size
+- Web Metrics (i.e. [Lighthouse](https://developer.chrome.com/docs/lighthouse))
 - Page Loading Time
-
 
 These are all related metrics but for different parts of the web page loading process from start to end. First, the reduced size of the HTML, CSS and JS provide a decrease in transfer time overall, and smaller JS by extension means less code that needs to be run on first load.
 
 
-The React version of this site is not much better. Because I used [Vite](https://vite.dev/) instead of [webpack](https://webpack.js.org/) the results look different but provide the same information.
-
+Here is the rough bundle sizing for the pure React version of the site:
 ```
 vite v5.4.6 building for production...
 ✓ 3422 modules transformed.
@@ -168,8 +167,45 @@ dist/assets/proxy-C197JKuH.js                 110.38 kB │ gzip: 36.15 kB
 dist/assets/MarkdownRender-jXc2DL1j.js        236.53 kB │ gzip: 75.11 kB
 dist/assets/index-CCNu7cRr.js                 251.26 kB │ gzip: 83.46 kB
 ✓ built in 6.70s
+```
+For reference, the `index-**.js` file is loaded by all pages, and other JS files are loaded depending on the route chosen. One of the "heavier" pages in this version is the actual blog pages themselves, since they use the `MarkdownRender-**.js` and also request the original markdown files; this comes close to 500KB of JavaScript, with minimal HTML. Links to other parts of the website simply request the other JavaScript bundles required for that route and re-render/load that page as needed, no additional HTML is ever sent by the server to the client. In fact, client-side React basically has a single HTML page that usually looks like this since it generates/renders the page after JS loading:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<link rel="icon" href="favicon.ico" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Alex Westerman's Portfolio</title>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto" />
+  <script type="module" crossorigin src="/assets/index-CCNu7cRr.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index.css">
+</head>
+<body>
+	<div id="root"></div>
+</body>
+</html>
 
 ```
+Using this last bit of JavaScript at the end of the "main" React file, it shows React uses that `div` with `id=root` to render the entire website under it:
+
+```tsx
+//Main.tsx
+
+// ...
+// Layout component definition + routing things
+// ...
+
+const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
+root.render(
+    <React.StrictMode>
+        <Layout />
+    </React.StrictMode>
+);
+```
+
+That's enough of the pure React size analysis, time for the Next.js sizes. Since there is a different bundler used (`next` which uses things like [SWC](https://swc.rs/)), the structure of the files is significantly different, but the build logs instead break down the total size of resources needed to load a specific route (excluding images). A much nicer way to analyze sizes instead of having to profile things and remember how React works.
 
 ```
 Route (app)                              Size     First Load JS
@@ -190,51 +226,46 @@ Route (app)                              Size     First Load JS
   └ other shared chunks (total)          1.98 kB
 ```
 
+The first load JS is reduced by around 60% for _all pages_. If a page has specific JS that it needs for components like the collapsible sections in the resume or the carousels on the main page, it's added to that page's specific JS, sometimes even as part of the HTML. Not only that, the use of SSG means that each blog page being pre-rendered removes 230KB of extra JS _and_ inlines the generated HTML so it's immediately rendered by the browser. This can be verified by looking at the generated HTML for a blog page.
+
+//insert blog screenshot here
+
+Now, just because there is less JavaScript being processed on page load does not mean that the page loads faster; poorly optimized code is still poorly optimized even if it is smaller. This is where time metrics can be used for certain points of the web page being loaded. I won't go into significant detail in this post, but I recommend reading the [Chrome Developer docs](https://developer.chrome.com/docs/lighthouse/overview), the [web.dev section](https://web.dev/explore/learn-core-web-vitals) on Core Web Vitals, and the [web-vitals NPM package README](https://github.com/GoogleChrome/web-vitals) for more detailed information (in fact they helped me write this article). This [Cloudflare article](https://www.cloudflare.com/learning/performance/how-dcl-and-fcp-affect-seo/) also adds a metric not covered by the other docs and provides some motivation for it. Here are the metrics I want to focus on and why I care:
+
+- DCL (`DOMContentLoaded`) - Indicates HTML is finished loading and serves as the start mark for JS loading
+- FCP (First Contentful Paint) - Indicates the first partial render of the page visible to the user
+- LCP (Largest Contentful Paint) - Indicates the largest partial render of the page visible to the user. This is something the user would see and assume the page is loaded.
+- L (Page Loaded Marker) - Indicates when on-load JS is run
+
+Using the performance tab in the Chromium browser DevTools (I use Microsoft Edge despite not using any AI features, but this applies to most Chrome-based browsers) and loaded each page using a 4G network throttling setting to make the impact of resource size more apparent given the localized hosting used for testing. Here are the metrics for the pure React site:
+
+//Insert pure react profile here
+
+Given the knowledge about how the pure React page loads, it's no surprise that the DCL and L metrics occur with nearly any delay. FCP occurring almost immediately after L is likely due to some usage of [React Suspense](https://18.react.dev/reference/react/Suspense) and the "fallback" UI being shown while the actual page is loading. What really sticks out is LCP occurring around 800ms after FCP, with the actual metric being 1.6 seconds. While [this is within the recommended metric for the value in general](https://web.dev/articles/lcp), there is a major problem demonstrated in this: the heavy reliance on JavaScript to actually render the markup. Consider an imaginary browser which is great at parsing and rendering HTML but terrible at running JavaScript; Under this kind of browser the website would render much slower because of this "critical path" requiring the JavaScript to be processed. Plus, with JavaScript and CSS usually fetched asynchronously as HTML is parsed means that there is time blocking the start of rendering; the HTML might be finished parsing and ready to render but the JS/CSS hasn't been fully received.
+
+Time for the Next.js metrics, which look much better:
+
+//insert Next.js profile here
+
+The final metric mark (L) is around 500ms faster (than LCP in the older version) and is actually the last thing that occurs; given the shift to using HTML over JS for page content. Also, DCL happens much earlier, and is then proceeded by FCP and LCP within 250ms (FP indicates first paint but in this case it's relatively empty). Here is a zoom-in on that section specifically:
+
+//insert nextjs dcl-l screenshot
+
+Already, looking at the different rendering frames it is clear that as the page is loading there is much more content already rendered compared to the pure React version. Plus, the time between the FCP and LCP is 100ms compared to the ~600ms originally, which is a massive improvement despite the L point being further down the line.
+
+Overall, the metrics show massive improvements. The move to more static-like resources instead of relying on React and JavaScript to render the page is a great move for a site that doesn't require dynamic data like this one.
+
+## Conclusions
+
+The moral of the story here is something that I find to be lacking sometimes in more professional contexts:
+
+_**Meeting a speed requirement doesn't mean you shouldn't optimize further.**_
+
+In this age of massive websites that feel like they get slower and slower and hog more and more resources it's a breath of fresh air when you find a site that just loads in a _snap_. Especially with [Electron](https://www.electronjs.org/) becoming the massive cross-platform basis for many apps and running full browser engines just to load what might be a simple native app, the masses are settling for slower and slower software. And AI models being integrated into applications that don't need it exacerbate this problem by increasing memory requirements.
+
+I'm starting to rant, and many other people have talked about [the enshittification of the internet](https://open.substack.com/pub/garymarcus/p/the-imminent-enshittification-of?utm_campaign=post&utm_medium=email) already. As someone who didn't grow up with strong computers and did things to squeeze every ounce of performance out of the magic sand we tricked into thinking, _I refuse to remain complacent and will optimize things if I can_.
 
 
+Thanks for reading! Next in line are potential rants about Python, AI, or maybe I'll take 6 months to learn OpenGL from scratch (not through an engine). I don't know, I've got to get back to playing the [Indiana Jones game](https://store.steampowered.com/app/2677660/Indiana_Jones_and_the_Great_Circle/).
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-Let's look at how a webpage is loaded and rendered (in a semi-reductive manner). I'm skipping things like [DNS Resolution](https://www.cloudflare.com/learning/dns/what-is-dns/) and [TLS](https://en.wikipedia.org/wiki/Transport_Layer_Security); The point I'm trying to illustrate is more about how the client (a.k.a. the browser) processes information. [MDN has a great article explaining everything in greater detail ](https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work) and is great documentation to read when learning how to make faster websites. Overall, the process is broken down into a few steps:
-
-1. The HTML is sent from the server to the client
-2. The client **parses** the HTML
-   1. If there is a `<link>` or `<script>` tag, a request is sent to fetch the resource. [This is usually blocking in the parsing of a webpage](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script#notes)
-   2. Assets like `<img>` or `<video>` tags are usually requested asynchronously; These requests do not block parsing but does block rendering.
-3. Using the parsed data and fetched resources, the client begins **rendering** the HTML on the screen. This includes calculating styles, element sizes, etc.
-4. After rendering, JavaScript is executed on the rendered page.
-
-
-
-
-Angular is a very heavy-handed solution for something as simple as a static portfolio site: no dynamic data sources, no API requests, just a bit of JS for routing and interactivity. React at its core is small, but the reliance on [JSX](https://react.dev/learn/writing-markup-with-jsx) usually causes the UI to load after the minified JS is fetched by the browser. Even with lazy-loading components and routes there is still the notion of a "critical path" or sequence of requests that must occur for the page to load and then render.
-
-First things first, bundle sizes should be looked at to see "how heavy" the website is to download and then potentially load.  (excludes resources like images)
-
-Here is the Angular bundle,
-
-```
-Initial Chunk Files           | Names         |  Raw Size | Estimated Transfer Size
-main.5d615bb339b9470b.js      | main          | 631.47 kB |               141.73 kB
-styles.3792df0daddea44e.css   | styles        | 235.83 kB |                30.05 kB
-polyfills.f902bb51b2ac1766.js | polyfills     |  33.07 kB |                10.65 kB
-runtime.332e9e9b7bbd6596.js   | runtime       |   1.04 kB |               599 bytes
-
-                              | Initial Total | 901.42 kB |               183.02 kB
-
-Warning: bundle initial exceeded maximum budget. Budget 500.00 kB was not met by 401.42 kB with a total of 901.42 kB.
-```
-
-
-This is a lot of data for a very lightweight site. Sure, it contains all the data for every page on the site and all of JS needed to supply the interactivity but the metrics and the warning indicate otherwise. The first interesting metric is the difference between the _Raw Size_ and _Estimated Transfer Size_. While modern servers and browsers have [compression for HTTP requests/responses](https://developer.mozilla.org/en-US/docs/Web/HTTP/Compression) with nominal overhead, the disparity in the reduced transfer size indicates that _there is a lot of duplicate code and data being transferred_. It also implies that there could be a lot less JavaScript being run on the clients but the [transpilation](https://stackoverflow.com/questions/48414941/what-is-transpiler-and-what-is-exactly-work-of-transpiler) process couldn't optimize it that well.
