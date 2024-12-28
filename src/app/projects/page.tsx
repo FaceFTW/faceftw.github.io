@@ -10,7 +10,7 @@ export default function ProjectsPanel() {
         <div>
 			<h1 className='text-2xl'>Projects</h1>
             <div className='justify-content m-4 flex items-center'>
-                <div className='grid flex-grow grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3'>
+                <div className='grid flex-grow grid-cols-1 gap-4 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3'>
                     {projects.map((project) => (
                         <ProjectCard project={project} key={project.projectName} />
                     ))}
