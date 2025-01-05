@@ -1,16 +1,20 @@
 'use client';
-import React from 'react';
-import type { Project } from '@/lib/types';
-import projectData from '@/app/projects/projects.json';
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
-import Autoplay from 'embla-carousel-autoplay';
-import { ProjectCarouselCard } from '@/components/card-carousel';
 import Pfp from '@/app/pfp.webp';
-import { TooltipProvider, Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
+import projectData from '@/app/projects/projects.json';
+import { ProjectCarouselCard } from '@/components/card-carousel';
+import Bluesky from '@/components/icon/bluesky';
+import Github from '@/components/icon/github';
+import Linkedin from '@/components/icon/linkedin';
+import Twitter from '@/components/icon/twitter';
 import { Button } from '@/components/ui/button';
-import { Github, Linkedin, Mail, Twitter } from 'lucide-react';
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
+import type { Project } from '@/lib/types';
 import { Separator } from '@radix-ui/react-separator';
+import Autoplay from 'embla-carousel-autoplay';
+import { Mail } from 'lucide-react';
 import Image from 'next/image';
+import React from 'react';
 
 const SocialSection = () => {
     const iconSizeClass = 'h-6 w-6 md:h-10 md:w-10';
@@ -31,6 +35,19 @@ const SocialSection = () => {
                         </Button>
                     </TooltipTrigger>
                     <TooltipContent>X (Formerly known as Twitter)</TooltipContent>
+                </Tooltip>
+                <Tooltip>
+                    <TooltipTrigger asChild>
+                        <Button
+                            variant='link'
+                            className={iconSizeClass}
+                            size='icon'
+                            asChild
+                            onClick={() => window.open('https://bsky.app/profile/faceftw.dev')}>
+                            <Bluesky className={iconSizeClass} />
+                        </Button>
+                    </TooltipTrigger>
+                    <TooltipContent>Bluesky</TooltipContent>
                 </Tooltip>
                 <Tooltip>
                     <TooltipTrigger asChild>
