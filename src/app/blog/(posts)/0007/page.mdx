@@ -1,0 +1,32 @@
+---
+title: "Making a \"SHUT UP Device\""
+excerpt: "Solving a niche problem with embedded Rust + Arduino"
+date: "2024-12-29"
+author: Alex Westerman
+slug: '0007'
+---
+
+import Image from 'next/image';
+
+# Making a "SHUT UP Device"
+
+_Solving a niche problem with embedded Rust + Arduino_
+
+I have a problem. My brother is a night owl who plays League of Legends with his friends, at hours that I need to sleep. In the house, his computer is situated in a very open area of the house where sound easily travels, and there is no place else for him to use for such activities. Even if the internet is shut off, he is smart enough to use a mobile hotspot. And his busy schedule already makes it difficult to schedule time for him to "unwind" with friends.
+
+Being an engineer, I like to try and solve problems, sometimes in stupid ways. As someone with a dedicated shelf with old microcontrollers and CPUs lying around, I became inspired to make a really simple noise meter that can be placed near the source of noise you want to be quiet; If you get too loud, lights and a buzzer trigger. Even my brother was OK with testing out something like this, so I got to work.
+
+This is an overview of how the project operates, both on a hardware and software level. Admittedly, the hardware section is going to be less detailed given I'm not an electrical engineer and hated physics, so take it with a grain of salt and feel free to contact me if you have corrections.
+
+## Feeling the (Analog Wave)
+
+One of the core components of this project is a microphone. Since the use case for this microphone is purely for measurement, there is no need to have anything fancy or worry about audio fidelity and noise reduction (as much). I had this [Microphone breakout board with a MAX-9814 amplifier](https://www.adafruit.com/product/1713) in my box of parts, so I picked it up and started looking at datasheets and code examples.
+
+//Insert mic image
+//Credit: Adafruit, link - https://www.adafruit.com/product/1713
+
+This type of microphone is called an [Electret microphone](), which
+
+## Working with Embedded Rust
+
+While I've worked with [Arduino]() and bare-metal C in the past for a high-school senior project and during my short stint studying Computer engineering in college, embedded Rust was something that I wanted to tackle. In summary, my experience with [`no-std` Rust](https://docs.rust-embedded.org/book/intro/no-std.html) was not that much different from the embedded C I've used previously; Working with the same basic restrictions but having the Rust safety guarantees made most of the code straightforward. Not having to worry about the microcontroller-specific code with the [`embedded-hal` crate ecosystem]() and [Rahix's `avr-hal`]() was also similar to the Arduino "standard library" or using any MCU [Hardware Abstraction Layer (HAL)]() written in C, just read datasheets and
