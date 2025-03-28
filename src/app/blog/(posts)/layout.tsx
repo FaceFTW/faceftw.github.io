@@ -16,7 +16,7 @@ export default function MdxLayout({ children }: { children: React.ReactNode }) {
                     </div>
                 </Link>
             </div>
-            <article className='prose prose-green dark:prose-invert block flex-grow'>{children}</article>
+            <article className='prose prose-green dark:prose-invert block grow'>{children}</article>
         </div>
     );
 }
