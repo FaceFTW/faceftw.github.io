@@ -1,7 +1,7 @@
 ---
 title: "Making a \"SHUT UP Device\""
 excerpt: "Solving a niche problem with embedded Rust + Arduino"
-date: "2025-03-28"
+date: "2025-03-29"
 author: Alex Westerman
 slug: '0007'
 ---
@@ -20,7 +20,7 @@ This is a multipart post of how the project operates, both on a hardware and sof
 
 So, how does one measure how loud a sound is?
 
-## Feeling the (Analog Wave)
+## Feeling the (Analog) Wave
 
 One of the core components of this project is a microphone. Since the use case for this microphone is purely for measurement, there is no need to have anything fancy or worry about audio fidelity and noise reduction (as much). I had this [Microphone breakout board with a MAX-9814 amplifier](https://www.adafruit.com/product/1713) in my box of parts, so I picked it up and started looking at datasheets and code examples.
 
@@ -104,11 +104,11 @@ void loop(){
 
 The key problem here is that the tone function is _blocking_. The processor isn't doing anything else except waiting to toggle the buzzer signal. And because no other operations can happen, the device is not as reactive as before given the reactive use case of the buzzer. This is where some low-level programming comes in clutch.
 
-It is important to remember that not all microcontrollers are made equal, and are often ["single-core"](https://en.wikipedia.org/wiki/Single-core) systems. While multitasking and higher-abstraction parallelism like [threads](https://en.wikipedia.org/wiki/Multithreading_(computer_architecture)) are technically possible (see literally any 1990s computer), it requires a good amount of resources like disk storage and RAM; resources that this project _doesn't have_, Instead of trying to implement these things, the solution is to use a couple of features built-in to many microcontrollers and processors: [software interrupts](https://en.wikipedia.org/wiki/Interrupt#Software_interrupts) and [timers](https://ece353.engr.wisc.edu/timers/timers/). While each processor may have a different implementation of these _peripherals_, the general concept driving their functionality is usually consistent. As a reminder, any specific details will be referring to the [ATMEGA328p](https://ww1.microchip.com/downloads/en/DeviceDoc/ATmega48A-PA-88A-PA-168A-PA-328-P-DS-DS40002061A.pdf), which is the processor for the [Arduino Uno R3](https://store.arduino.cc/products/arduino-uno-rev3).
+It is important to remember that not all microcontrollers are made equal, and are often ["single-core"](https://en.wikipedia.org/wiki/Single-core) systems. While multitasking and higher-abstraction parallelism like [threads](https://en.wikipedia.org/wiki/Multithreading_(computer_architecture)) are technically possible (see literally any 1990s computer), it requires a good amount of resources like disk storage and RAM; resources that this project _doesn't have_, Instead of trying to implement these things, the solution is to use a couple of features built-in to many microcontrollers and processors: [interrupts](https://en.wikipedia.org/wiki/Interrupt) and [timers](https://ece353.engr.wisc.edu/timers/timers/). While each processor may have a different implementation of these _peripherals_, the general concept driving their functionality is usually consistent. As a reminder, any specific details will be referring to the [ATMEGA328p](https://ww1.microchip.com/downloads/en/DeviceDoc/ATmega48A-PA-88A-PA-168A-PA-328-P-DS-DS40002061A.pdf), which is the processor for the [Arduino Uno R3](https://store.arduino.cc/products/arduino-uno-rev3).
 
 ## HEY YOU, STOP WHAT YOU ARE DOING!
 
-Software interrupts at a high level are used to redirect program flow temporarily to a predefined routine upon receiving a signal, effectively _interrupting_ the main program to do something. Interrupt routines are very fast and used in larger numbers on modern processors to notify when a "slow" operations such as disk I/O and networking is finished. Interrupts in general can be _masked_, so only certain signals are allowed to alter program flow when needed, or disabled outright if the program does not need such processing.
+Interrupts at a high level are used to redirect program flow temporarily to a predefined routine upon receiving a signal, effectively _interrupting_ the main program to do something. Interrupt routines are very fast and used in larger numbers on modern processors to notify when a "slow" operations such as disk I/O and networking is finished. Interrupts in general can be _masked_, so only certain signals are allowed to alter program flow when needed, or disabled outright if the program does not need such processing.
 
 Skipping a bunch of basic computer architecture, interrupts work by manipulating the [program counter (PC) register](https://en.wikipedia.org/wiki/Program_counter) based on the triggered interrupt (assuming it is enabled). When the interrupt is triggered, the current value of the PC is stored in a reserved register, and is changed to the address of the respective [interrupt handler/interrupt service routine (ISR)](https://en.wikipedia.org/wiki/Interrupt_handler); On AVR and some other architectures, these "vectors" are predefined and baked into the chip design, with the compiler having some hints on where to place the specific assembly. There is a lot of nuance to writing a good handler, but a rule of thumb especially for architectures like AVR which have rudimentary interrupt handling is to keep it light. For example, here is the actual interrupt handler (in Rust) and the respective AVR assembly:
 
@@ -168,7 +168,7 @@ Using the prescaler, there is now greater control for the precision of the timer
 import prescalerClockSeq from './prescale_clock_diagram.webp';
 
 <div className="text-center">
-<Image src={prescalerBlock} alt="" width={1217} height={626} className='mx-auto mb-4'/>
+<Image src={prescalerClockSeq} alt="" width={1217} height={626} className='mx-auto mb-4'/>
 <em>Clock signal graph for a timer with prescale. Assumes 4 divisions.</em>
 </div>
 
@@ -183,7 +183,7 @@ import clockReset from './clock_reset.webp';
 
 > #### What about PWM?
 >
-> Those who know about this stuff may have asked this question when reading the previous sections. Well... this is basically [pulse width modulation (PWM)](https://docs.arduino.cc/learn/microcontrollers/analog-output/) but with extra steps. The `arduino-hal` crate defines PWM functionality using a timer abstraction. Even the Arduino PWM uses (effectively) the same timers under the hood [when looking at their core library]().
+> Those who know about this stuff may have asked this question when reading the previous sections. Well... this is basically half duty cycle [pulse width modulation (PWM)](https://docs.arduino.cc/learn/microcontrollers/analog-output/) but with extra steps. The `arduino-hal` crate defines PWM functionality using a timer abstraction. Even the Arduino PWM uses (effectively) the same timers under the hood [when looking at their core library](https://github.com/arduino/ArduinoCore-avr/blob/c8c514c9a19602542bc32c7033f48fecbbda4401/cores/arduino/wiring_analog.c#L96).
 >
 > The main reason to not use PWM is that it works based on a _fixed signal frequency_ and _variable duty cycles_. Since the tone works with a square wave which has _variable frequency_ and _fixed (50%) duty cycle_, PWM wouldn't really solve the issue here. Referring back to the Arduino core library, their implementation of the [`tone()´ function also does not use PWM](https://github.com/arduino/ArduinoCore-avr/blob/master/cores/arduino/Tone.cpp).
 
@@ -192,7 +192,7 @@ import clockReset from './clock_reset.webp';
 
 This post was extremely jam-packed with information, and nice drawings that I made using my new [reMarkable Paper Pro](https://remarkable.com/store/remarkable-paper/pro) (not sponsored) I bought for my birthday. This project has been in the works for over 3 months, not because I was lazy, but rather the fact that physical electronics projects can get very complex. I didn't think I needed to learn that much about audio engineering just to measure sound, guess I was pretty naïve about that.
 
-The next post will focus primarily on making the display work in the project. Yes, a small display. It is definitely not necessary if it was a MVP for a corporate project, but it's my project. I make the rules. I'm doing it my way. With Blackjack. And Hookers.
+The next post will focus primarily on making the display work in the project. Yes, a small display. It is definitely not necessary if it was a MVP for a corporate project, but it's my project. I make the rules. I'm doing it my way.
 
 No confirmed timeline, other than "it's ready when it's ready". I will say that there are going to be some fun diagrams that I have to draw, but hopefully I don't take forever on those.
 
