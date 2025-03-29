@@ -111,7 +111,7 @@ export function MainNav({ children }: { children?: React.ReactNode }) {
                 <span className='font-bold'>Alex Westerman</span>
             </Button>
             {showMobileMenu && <MobileNav closeFn={setShowMobileMenu}>{children}</MobileNav>}
-            <span className='flex-grow' />
+            <span className='grow' />
             <div className='flex pr-2'>
                 {mounted && (
                     <Button
