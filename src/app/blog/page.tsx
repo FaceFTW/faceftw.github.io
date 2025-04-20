@@ -40,6 +40,43 @@ export default function Index() {
                 <h2 className='mt-2 mb-4 text-2xl text-neutral-600 dark:text-neutral-400'>
                     AKA: Core Dumping my Brain on the Internet
                 </h2>
+                <p
+                    className='prose prose-green dark:prose-invert inline-flex lg:flex'
+                    xmlnscc='http://creativecommons.org/ns#'
+                    xmlnsdct='http://purl.org/dc/terms/'>
+                    <span property='dct:title' className='mr-1'>
+                        ref_cycle{' '}
+                    </span>{' '}
+                    is licensed under{' '}
+                    <a
+                        href='https://creativecommons.org/licenses/by-nc-sa/4.0'
+                        target='_blank'
+                        rel='license noopener noreferrer'
+						className='inline md:inline-flex ml-1'>
+                        CC BY-NC-SA 4.0
+                        <img
+                            className='not-prose my-0 ml-[3px] h-[22px] align-bottom'
+                            src='https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1'
+                            alt=''
+                        />
+                        <img
+                            className='not-prose my-0 ml-[3px] h-[22px] align-bottom'
+                            src='https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1'
+                            alt=''
+                        />
+                        <img
+                            className='not-prose my-0 ml-[3px] h-[22px] align-bottom'
+                            src='https://mirrors.creativecommons.org/presskit/icons/nc.svg?ref=chooser-v1'
+                            alt=''
+                        />
+                        <img
+                            className='not-prose my-0 ml-[3px] h-[22px] align-bottom'
+                            src='https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1'
+                            alt=''
+                        />
+                    </a>
+                </p>
+
                 {allPosts.map((post) => (
                     <Link href={`/blog/${post.slug}`} key={post.title}>
                         <Card className='my-4'>
