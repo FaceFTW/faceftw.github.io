@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { useSelectedLayoutSegment } from 'next/navigation';
 
 import { cn } from '@/lib/utils';
-import { useLockBody } from '@/hooks/use-lock-body';
+import { useLockBody } from '@/lib/use-lock-body';
 import { CircleUser, Home, Menu, MoonStar, Rss, ScrollText, SquareDashedBottomCode, Sun, X } from 'lucide-react';
 import { Button } from './ui/button';
 import { NavigationMenu, NavigationMenuItem, NavigationMenuList } from './ui/navigation-menu';

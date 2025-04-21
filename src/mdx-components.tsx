@@ -75,8 +75,6 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
             return (
                 <a
                     className={cn(
-                        'text-blue-600',
-                        'dark:text-blue-500',
                         'hover:underline',
                         'mb-4',
                         'leading-relaxed',
