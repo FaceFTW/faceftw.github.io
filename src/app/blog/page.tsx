@@ -20,6 +20,11 @@ import { frontmatter as frontmatter6 } from '@/app/blog/(posts)/0006/page.mdx';
 //@ts-expect-error
 import { frontmatter as frontmatter7 } from '@/app/blog/(posts)/0007/page.mdx';
 
+const cc_xmlns = {
+    'xmlns:cc': 'http://creativecommons.org/ns#',
+    'xmlns:dct': 'http://purl.org/dc/terms/',
+};
+
 export default function Index() {
     const allPosts = [
         frontmatter1,
@@ -40,10 +45,7 @@ export default function Index() {
                 <h2 className='mt-2 mb-4 text-2xl text-neutral-600 dark:text-neutral-400'>
                     AKA: Core Dumping my Brain on the Internet
                 </h2>
-                <p
-                    className='prose prose-green dark:prose-invert inline-flex lg:flex'
-                    xmlnscc='http://creativecommons.org/ns#'
-                    xmlnsdct='http://purl.org/dc/terms/'>
+                <p className='prose prose-green dark:prose-invert inline-flex lg:flex' {...cc_xmlns}>
                     <span property='dct:title' className='mr-1'>
                         ref_cycle{' '}
                     </span>{' '}

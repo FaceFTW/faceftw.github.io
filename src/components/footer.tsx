@@ -1,6 +1,11 @@
 import Link from 'next/link';
 import { Card, CardContent } from '@/components/ui/card';
 
+const cc_xmlns = {
+    'xmlns:cc': 'http://creativecommons.org/ns#',
+    'xmlns:dct': 'http://purl.org/dc/terms/',
+};
+
 export default function SiteFooter() {
     return (
         <footer className='mx-auto mb-4 block'>
@@ -10,10 +15,7 @@ export default function SiteFooter() {
                         Made by Alex &quot;FaceFTW&quot; Westerman &copy; 2021-{new Date().getFullYear()} All Rights
                         Reserved. {'\n'}
                         Source code for this website is licensed under the MIT License {'\n'}
-                        <p
-                            className='prose prose-green dark:prose-invert inline text-wrap'
-                            xmlnscc='http://creativecommons.org/ns#'
-                            xmlnsdct='http://purl.org/dc/terms/'>
+                        <p className='prose prose-green dark:prose-invert inline text-wrap' {...cc_xmlns}>
                             <span property='dct:title' className=''>
                                 The content of the "ref_cycle" blog
                             </span>{' '}
