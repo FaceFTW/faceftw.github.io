@@ -3,6 +3,8 @@ import remarkGfm from 'remark-gfm';
 import remarkFrontmatter from 'remark-frontmatter';
 import remarkMdxFrontmatter from 'remark-mdx-frontmatter';
 import rehypeHighlight from 'rehype-highlight';
+import withPlugins from 'next-compose-plugins';
+import withBundleAnalyzer from '@next/bundle-analyzer';
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -18,4 +20,7 @@ const withMDX = createMDX({
     },
 });
 
-export default withMDX(nextConfig);
+export default withPlugins(
+    [[withBundleAnalyzer({ enabled: process.env.NODE_ENV === 'development', openAnalyzer: false })], [withMDX]],
+    nextConfig
+);
