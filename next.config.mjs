@@ -11,6 +11,18 @@ const nextConfig = {
     output: 'export',
     images: { unoptimized: true },
     pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
+    reactStrictMode: true,
+    webpack: (config, { dev, isServer }) => {
+        if (!dev && !isServer) {
+            Object.assign(config.resolve.alias, {
+                'react/jsx-runtime.js': 'preact/compat/jsx-runtime',
+                react: 'preact/compat',
+                'react-dom/test-utils': 'preact/test-utils',
+                'react-dom': 'preact/compat',
+            });
+        }
+        return config;
+    },
 };
 
 const withMDX = createMDX({
@@ -21,6 +33,6 @@ const withMDX = createMDX({
 });
 
 export default withPlugins(
-    [[withBundleAnalyzer({ enabled: process.env.NODE_ENV === 'development', openAnalyzer: false })], [withMDX]],
+    [[withBundleAnalyzer({ enabled: process.env.ANALYZE === 'true', openAnalyzer: false })], [withMDX]],
     nextConfig
 );
