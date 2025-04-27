@@ -1,5 +1,6 @@
 ---
 import {MoonStar, Sun} from 'lucide-react';
+import {Button} from './ui/button';
 ---
 
 <style>
@@ -50,6 +51,10 @@ import {MoonStar, Sun} from 'lucide-react';
 </script>
 
 <button id='themeToggle'>
-	<MoonStar class='moon' />
-	<Sun class='sun' />
+	<div class='hidden dark:block'>
+		<MoonStar class='hidden dark:block' />
+	</div>
+	<div class='block dark:hidden'>
+		<Sun class='block dark:hidden' />
+	</div>
 </button>

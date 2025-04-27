@@ -1,14 +1,8 @@
 ---
-import {cn} from '@/lib/utils';
 import ThemeIcon from './ThemeIcon.astro';
-import {
-	CircleUser,
-	Home,
-	Rss,
-	ScrollText,
-	SquareDashedBottomCode,
-} from 'lucide-react';
-import {NavigationMenu, NavigationMenuItem, NavigationMenuList} from '@/components/ui/navigation-menu';
+import {CircleUser, Home, Rss, ScrollText, SquareDashedBottomCode} from 'lucide-react';
+import {AstroNavMenu} from './AstroNavMenu';
+import "@/styles/global.css"
 
 const items = [
 	{
@@ -43,23 +37,7 @@ const items = [
 	<a href='/' class='hidden items-center space-x-2 md:flex'>
 		<span class='hidden font-bold sm:inline-block'>Alex Westerman</span>
 	</a>
-	<NavigationMenu class='md:flex'>
-		<NavigationMenuList class='gap-6 md:gap-10'>
-			{
-				items?.map((item) => (
-					<NavigationMenuItem key={item.title} class=''>
-						<a
-							href={item.url}
-							class={cn(
-								'flex font-medium text-lg transition-colors hover:text-foreground/80 sm:text-sm',
-							)}>
-							<span>{item.title}</span>
-						</a>
-					</NavigationMenuItem>
-				))
-			}
-		</NavigationMenuList>
-	</NavigationMenu>
+	<AstroNavMenu items={items} />
 	<!-- <Button
 		variant='ghost'
 		class='ml-4 flex items-center space-x-2 md:hidden'

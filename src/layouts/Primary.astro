@@ -1,13 +1,12 @@
 ---
 import {cn} from '@/lib/utils';
-import '../styles/global.css';
+import '@/styles/global.css';
 import SiteFooter from '../components/SiteFooter.astro';
 import MainNav from '@/components/MainNav.astro';
 ---
 
 <html lang='en'>
 	<body class='antialiased'>
-		<!-- <ThemeProvider attribute='class'> -->
 		<div class='flex min-h-screen flex-col'>
 			<header class='z-40 bg-background py-2 md:px-40 md:py-6'>
 				<div class='flex h-10 flex-row justify-between'>
@@ -23,6 +22,5 @@ import MainNav from '@/components/MainNav.astro';
 				</div>
 			</main>
 		</div>
-		<!-- </ThemeProvider> -->
 	</body>
 </html>
