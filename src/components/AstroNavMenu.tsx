@@ -4,7 +4,7 @@ import { cn } from '@/lib/utils';
 import { useLockBody } from '@/lib/use-lock-body';
 import { Button } from './ui/button';
 import { Menu, X } from 'lucide-react';
-import "@/styles/global.css"
+import "@/styles/globals.css"
 
 interface Props {
     items: {
