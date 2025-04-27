@@ -1,0 +1,28 @@
+---
+import {cn} from '@/lib/utils';
+import '../styles/global.css';
+import SiteFooter from '../components/SiteFooter.astro';
+import MainNav from '@/components/MainNav.astro';
+---
+
+<html lang='en'>
+	<body class='antialiased'>
+		<!-- <ThemeProvider attribute='class'> -->
+		<div class='flex min-h-screen flex-col'>
+			<header class='z-40 bg-background py-2 md:px-40 md:py-6'>
+				<div class='flex h-10 flex-row justify-between'>
+					<MainNav />
+					<span class='w-max-10'></span>
+				</div>
+			</header>
+
+			<main class='container mx-auto flex flex-col md:w-[80%]'>
+				<div class='container mx-auto px-5'><slot name='main' /></div>
+				<div class='flex items-center'>
+					<SiteFooter />
+				</div>
+			</main>
+		</div>
+		<!-- </ThemeProvider> -->
+	</body>
+</html>

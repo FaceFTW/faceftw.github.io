@@ -1,0 +1,75 @@
+---
+import {cn} from '@/lib/utils';
+import ThemeIcon from './ThemeIcon.astro';
+import {
+	CircleUser,
+	Home,
+	Rss,
+	ScrollText,
+	SquareDashedBottomCode,
+} from 'lucide-react';
+import {NavigationMenu, NavigationMenuItem, NavigationMenuList} from '@/components/ui/navigation-menu';
+
+const items = [
+	{
+		title: 'Home',
+		url: '/',
+		icon: Home,
+	},
+	{
+		title: 'Projects',
+		url: '/projects',
+		icon: SquareDashedBottomCode,
+	},
+	{
+		title: 'Resume',
+		url: '/resume',
+		icon: ScrollText,
+	},
+	{
+		title: 'Blog',
+		url: '/blog',
+		icon: Rss,
+	},
+	{
+		title: 'About',
+		url: '/about',
+		icon: CircleUser,
+	},
+];
+---
+
+<div class='flex gap-16 md:gap-10'>
+	<a href='/' class='hidden items-center space-x-2 md:flex'>
+		<span class='hidden font-bold sm:inline-block'>Alex Westerman</span>
+	</a>
+	<NavigationMenu class='md:flex'>
+		<NavigationMenuList class='gap-6 md:gap-10'>
+			{
+				items?.map((item) => (
+					<NavigationMenuItem key={item.title} class=''>
+						<a
+							href={item.url}
+							class={cn(
+								'flex font-medium text-lg transition-colors hover:text-foreground/80 sm:text-sm',
+							)}>
+							<span>{item.title}</span>
+						</a>
+					</NavigationMenuItem>
+				))
+			}
+		</NavigationMenuList>
+	</NavigationMenu>
+	<!-- <Button
+		variant='ghost'
+		class='ml-4 flex items-center space-x-2 md:hidden'
+		onClick={() => setShowMobileMenu(!showMobileMenu)}>
+		{showMobileMenu ? <X /> : <Menu />}
+		<span class='font-bold'>Alex Westerman</span>
+	</Button> -->
+	<!-- {showMobileMenu && <MobileNav closeFn={setShowMobileMenu}>{children}</MobileNav>} -->
+	<span class='grow'></span>
+	<div class='flex pr-2'>
+		<ThemeIcon />
+	</div>
+</div>
