@@ -1,49 +1,13 @@
 {
-	"compilerOptions": {
-		"target": "ES2017",
-		"lib": [
-			"dom",
-			"dom.iterable",
-			"esnext"
-		],
-		"allowJs": true,
-		"skipLibCheck": true,
-		"strict": true,
-		"noEmit": true,
-		"esModuleInterop": true,
-		"module": "esnext",
-		"moduleResolution": "bundler",
-		"resolveJsonModule": true,
-		"isolatedModules": true,
-		"jsx": "preserve",
-		"incremental": true,
-		"plugins": [
-			{
-				"name": "next"
-			}
-		],
-		"paths": {
-			"@/*": [
-				"./src/*"
-			]
-		}
-	},
-	"include": [
-		"**/*.mdx",
-		"next-env.d.ts",
-		"**/*.ts",
-		"**/*.tsx",
-		".next/types/**/*.ts",
-		"next.config.mjs"
-	],
-	"exclude": [
-		"node_modules"
-	],
-	"mdx": {
-		"plugins": [
-			"remark-frontmatter",
-			"remark-frontmatter-mdx",
-			"remark-gfm"
-		],
-	}
+  "extends": "astro/tsconfigs/strict",
+  "include": [".astro/types.d.ts", "**/*"],
+  "exclude": ["dist"],
+  "compilerOptions": {
+  "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ]
+    }
+  }
 }
