@@ -1,0 +1,105 @@
+---
+import EducationAccordion from '@/components/EducationAccordion';
+import ExperienceAccordion from '@/components/ExperienceAccordion';
+import SkillsSection from '@/components/SkillsSection.astro';
+import Primary from '@/layouts/Primary.astro';
+
+export const metadata: Metadata = {
+	title: "Resume - Alex's Website",
+};
+
+// const Highlights = ({ highlights }: { highlights: ResumeHighlight[] }) => {
+// 	//This is kinda hacky, but I can't think of a better solution
+// 	const resolveIcon = (iconName: string) => {
+// 		switch (iconName) {
+// 			case 'fa-book':
+// 				return <FaBook />;
+// 			case 'fa-github':
+// 				return <FaGithub />;
+// 			case 'fa-heart':
+// 				return <FaHeart />;
+// 		}
+// 	};
+
+// 	return (
+// 		<Grid container spacing={3} sx={{ padding: { sm: '2rem 5rem' } }} alignItems='stretch'>
+// 			{highlights.map((highlight, index) => (
+// 				<Grid item xs={12} lg={4} key={index} sx={{ display: 'flex' }}>
+// 					<Paper
+// 						elevation={3}
+// 						sx={{
+// 							display: 'flex',
+// 							justifyContent: 'center',
+// 							padding: '1rem',
+// 							flexGrow: 1,
+// 						}}>
+// 						<Box>
+// 							<Icon sx={{ display: 'block', fontSize: '80px', marginRight: '1rem' }}>
+// 								{resolveIcon(highlight.icon)}
+// 							</Icon>
+// 						</Box>
+// 						<Box>
+// 							<Typography variant='h4'>{highlight.stat}</Typography>
+// 							<Typography variant='h6'>{highlight.statDescription}</Typography>
+// 						</Box>
+// 					</Paper>
+// 				</Grid>
+// 			))}
+// 		</Grid>
+// 	);
+// };
+
+// const SkillSection = ({ skills }: { skills: Skill[] }) => {
+//     return (
+//         <div className='mb-4 space-x-1 space-y-2 '>
+//             {skills.map((skill) => {
+//                 let skill_class = '';
+//                 switch (skill.years) {
+//                     case 1:
+//                         skill_class = 'text-md my-auto';
+//                         break;
+//                     case 2:
+//                         skill_class = 'text-lg my-auto';
+//                         break;
+//                     case 3:
+//                         skill_class = 'text-xl my-auto';
+//                         break;
+//                     case 4:
+//                         skill_class = 'text-2xl my-auto';
+//                         break;
+//                     case 5:
+//                         skill_class = 'text-3xl my-auto';
+//                         break;
+//                     case 6:
+//                         skill_class = 'text-4xl my-auto';
+//                         break;
+//                     default:
+//                         ('');
+//                 }
+
+//                 return (
+//                     <Badge key={skill.name} className={skill_class}>
+//                         {skill.name}
+//                     </Badge>
+//                 );
+//             })}
+//         </div>
+//     );
+// };
+
+---
+
+<Primary>
+	<div class='m-4'>
+		<h4 class='text-4xl underline'>Skills</h4>
+		<SkillsSection />
+	</div>
+	<div class='m-4'>
+		<h4 class='text-4xl underline'>Education</h4>
+		<EducationAccordion client:load/>
+	</div>
+	<div class='m-4'>
+		<h4 class='text-4xl underline'>Experience</h4>
+		<ExperienceAccordion client:load/>
+	</div>
+</Primary>
