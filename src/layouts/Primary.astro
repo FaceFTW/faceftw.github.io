@@ -3,9 +3,19 @@ import {cn} from '@/lib/utils';
 import '@/styles/globals.css';
 import SiteFooter from '../components/SiteFooter.astro';
 import MainNav from '@/components/MainNav.astro';
+import {Tooltips} from 'astro-tooltips'
+interface Props {
+	title?: string;
+}
+
+const {title} = Astro.props;
 ---
 
 <html lang='en'>
+	<head>
+		<title>{title ? `${title} - Alex's Website` : "Alex's Website"}</title>
+		<Tooltips/>
+	</head>
 	<body class='antialiased'>
 		<div class='flex min-h-screen flex-col'>
 			<header class='z-40 bg-background py-2 md:px-40 md:py-6'>
@@ -16,7 +26,7 @@ import MainNav from '@/components/MainNav.astro';
 			</header>
 
 			<main class='container mx-auto flex flex-col md:w-[80%]'>
-				<div class='container mx-auto px-5'><slot/></div>
+				<div class='container mx-auto px-5'><slot /></div>
 				<div class='flex items-center'>
 					<SiteFooter />
 				</div>
