@@ -1,0 +1,133 @@
+---
+import {Mail} from '@lucide/astro';
+import {Twitter, Linkedin, Github, Bluesky} from './ExtraIcons';
+import {Button} from './ui/button';
+
+const iconSizeClass = 'h-10 w-10 md:h-10 md:w-10';
+const buttonClass =
+	" m-0 p-0 text-primary underline-offset-4 hover:underline size-10 sm:h-10 sm:w-10 inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive";
+const toolTipClass = 'w-max absolute top-0 left-0 bg-primary p-[5px] border-4 bold';
+---
+
+<div class='flex flex-row items-center gap-8'>
+	<div class='mx-auto'></div>
+	<button class={buttonClass} id='twitter_btn' aria-describedby='twitter_tooltip'>
+		<Twitter className={iconSizeClass} size=40 />
+	</button>
+	<div class={toolTipClass} id='twitter_tooltip' role='tooltip'>Twitter</div>
+	<!-- <Button
+		client:visible
+		variant='link'
+		className={iconSizeClass}
+		id='bsky_btn'
+		aria-describedby='bsky_tooltip'
+		size='icon'
+		asChild
+		onClick={() => window.open('https://bsky.app/profile/faceftw.dev')}>
+		<Bluesky className={iconSizeClass} />
+	</Button>
+	<div class={toolTipClass} id='bsky_tooltip' role='tooltip'>Bluesky</div>
+	<Button
+		client:visible
+		variant='link'
+		className={iconSizeClass}
+		id='github_btn'
+		aria-describedby='github_tooltip'
+		size='icon'
+		asChild
+		onClick={() => window.open('https://github.com/FaceFTW')}>
+		<Github className={iconSizeClass} />
+	</Button>
+	<div class={toolTipClass} id='github_tooltip' role='tooltip'>Github</div>
+	<Button
+		client:visible
+		variant='link'
+		className={iconSizeClass}
+		id='mailto_btn'
+		aria-describedby='mailto_tooltip'
+		size='icon'
+		asChild
+		onClick={() => window.open('mailto:alex@faceftw.dev')}>
+		<Mail className={iconSizeClass} />
+	</Button>
+	<div class={toolTipClass} id='mailto_tooltip' role='tooltip'></div>
+	<Button
+		client:visible
+		variant='link'
+		className={iconSizeClass}
+		id='linkedin_btn'
+		aria-describedby='linkedin_tooltip'
+		size='icon'
+		asChild
+		onClick={() => window.open('https://www.linkedin.com/in/faceftw')}>
+		<Linkedin className={iconSizeClass} />
+	</Button>
+	<div class={toolTipClass} id='linkedin_tooltip' role='tooltip'>Linkedin</div> -->
+	<div class='mx-auto'></div>
+</div>
+
+<!--Do all the tooltip stuff _after_ the component loads -->
+<script>
+	import {
+		computePosition,
+		flip,
+		shift,
+		// type ReferenceElement,
+		// type FloatingElement,
+	} from '@floating-ui/dom';
+
+	function update(btn, tt) {
+		computePosition(btn, tt, {
+			placement: 'bottom',
+			middleware: [flip(), shift({padding: 5})],
+		}).then(({x, y}) => {
+			Object.assign(tt.style, {
+				left: `${x}px`,
+				top: `${y}px`,
+			});
+		});
+	}
+
+	function showTooltip(btn, tt) {
+		tt.style.display = 'block';
+		update(btn, tt);
+	}
+
+	function hideTooltip(tt) {
+		tt.style.display = 'none';
+	}
+
+	const twtBtn = document.querySelector('#twitter_btn');
+	const twtTt = document.querySelector('#twitter_tooltip');
+	twtBtn.addEventListener('click', () => window.open('https://twitter.com/_FaceFTW'));
+
+	const bskyBtn = document.querySelector('#bsky_btn');
+	const bskyTt = document.querySelector('#bsky_tooltip');
+	const ghBtn = document.querySelector('#github_btn');
+	const ghTt = document.querySelector('#github_tooltip');
+	const mBtn = document.querySelector('#mailto_btn');
+	const mTt = document.querySelector('#mailto_tooltip');
+	const liBtn = document.querySelector('#linkedin_btn');
+	const liTt = document.querySelector('#linkedin_tooltip');
+
+	//This is some of the worst typescript stuff I've violated probably
+	let arr = [
+		{btn: twtBtn, tt: twtTt},
+		{btn: bskyBtn, tt: bskyTt},
+		{btn: ghBtn, tt: ghTt},
+		{btn: mBtn, tt: mTt},
+		{btn: liBtn, tt: liTt},
+	];
+	arr.forEach(({btn, tt}) => {
+		[
+			{event: 'mouseenter', callback: () => showTooltip(btn, tt)},
+			{event: 'mouseleave', callback: () => hideTooltip(tt)},
+			{event: 'focus', callback: () => showTooltip(btn, tt)},
+			{event: 'blur', callback: () => hideTooltip(tt)},
+		].forEach(({event, callback}) => {
+			if (btn !== null) {
+				btn.addEventListener(event, callback);
+			}
+		});
+	});
+</script>
