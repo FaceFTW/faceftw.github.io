@@ -1,10 +1,38 @@
 ---
-// import EducationAccordion from '@/components/EducationAccordion.tsx';
-// import SocialSection from '@/components/SocialSection.tsx';
 import SocialSection from '@/components/SocialSection.astro';
 import Primary from '@/layouts/Primary.astro';
+import {Image} from 'astro:assets';
+import Pfp from '@/images/pfp.webp';
 ---
 
 <Primary>
-	<SocialSection />
+	<section class='flex w-full flex-col'>
+		<div class='flex w-full'>
+			<div class='mx-auto flex min-w-[60%] flex-col lg:flex-row'>
+				<div class='mx-auto my-8 flex min-w-fit xl:mx-8'>
+					<Image
+						src={Pfp}
+						class='h-48 w-48 rounded-full border-8 transition-all hover:border-primary'
+						alt='me :)'
+					/>
+				</div>
+				<div class='mb-8 self-center'>
+					<h1
+						class='animated-gradient mx-auto bg-gradient-one delay-500 lg:mx-0 dark:bg-gradient-one-dark'>
+						Software Engineer;
+					</h1>
+					<h1
+						class='animated-gradient mx-auto bg-gradient-two delay-1000 lg:mx-0 dark:bg-gradient-two-dark'>
+						Power User;
+					</h1>
+					<h1
+						class='animated-gradient mx-auto bg-gradient-three lg:mx-0 dark:bg-gradient-three-dark'>
+						Problem Solver;
+					</h1>
+				</div>
+			</div>
+		</div>
+		<SocialSection />
+	</section>
+	<div class='h-24'></div>
 </Primary>
