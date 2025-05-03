@@ -3,7 +3,6 @@ import {cn} from '@/lib/utils';
 import '@/styles/globals.css';
 import SiteFooter from '../components/SiteFooter.astro';
 import MainNav from '@/components/MainNav.astro';
-import {Tooltips} from 'astro-tooltips'
 // biome-ignore lint/correctness/noUnusedVariables: <explanation>
 interface Props {
 	title?: string;
@@ -16,7 +15,6 @@ const {title} = Astro.props;
 <html lang='en'>
 	<head>
 		<title>{title ? `${title} - Alex's Website` : "Alex's Website"}</title>
-		<Tooltips/>
 	</head>
 	<body class='antialiased'>
 		<div class='flex min-h-screen flex-col'>

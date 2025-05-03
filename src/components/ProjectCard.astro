@@ -1,4 +1,4 @@
-<!-- ---
+---
 import type {Project} from '@/lib/types';
 import {
 	Card,
@@ -26,7 +26,7 @@ const demoLink = project.projectLinks.find((link) => link.linkType === 'demo');
 const miscLink = project.projectLinks.find((link) => link.linkType === 'misc');
 ---
 
-<Card class='flex min-w-[325px] max-w-[450px] flex-col'>
+<Card className='flex min-w-[325px] max-w-[450px] flex-col'>
 	<CardHeader>
 		<CardTitle>{project.projectName}</CardTitle>
 		<CardDescription>{project.projectDescription}</CardDescription>
@@ -48,7 +48,7 @@ const miscLink = project.projectLinks.find((link) => link.linkType === 'misc');
 		/>
 	</CardContent>
 	<div class='my-auto'></div>
-	<CardFooter class='flex gap-4'>
+	<CardFooter className='flex gap-4'>
 		{
 			githubLink && (
 				<Button
@@ -87,4 +87,4 @@ const miscLink = project.projectLinks.find((link) => link.linkType === 'misc');
 		}
 		<span class='w-full'></span>
 	</CardFooter>
-</Card> -->
+</Card>

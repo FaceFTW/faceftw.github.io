@@ -127,5 +127,25 @@
 		"formatter": {
 			"indentStyle": "tab"
 		}
-	}
+	},
+	"overrides": [
+		{
+			"include": [
+				"*.svelte",
+				"*.astro",
+				"*.vue"
+			],
+			"linter": {
+				"rules": {
+					"style": {
+						"useConst": "off",
+						"useImportType": "off"
+					},
+					"correctness": {
+						"noUnusedVariables": "info"
+					}
+				}
+			}
+		}
+	]
 }

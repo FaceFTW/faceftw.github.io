@@ -1,7 +1,6 @@
 ---
 import {Mail} from '@lucide/astro';
 import {Twitter, Linkedin, Github, Bluesky} from './ExtraIcons';
-import {Button} from './ui/button';
 
 const iconSizeClass = 'size-10';
 const buttonClass =
@@ -37,14 +36,7 @@ const toolTipClass =
 
 <!--Do all the tooltip stuff _after_ the component loads -->
 <script>
-	import {
-		computePosition,
-		flip,
-		shift,
-		type ReferenceElement,
-		// type ReferenceElement,
-		// type FloatingElement,
-	} from '@floating-ui/dom';
+	import {computePosition, flip, shift, type ReferenceElement} from '@floating-ui/dom';
 
 	function update(btn: ReferenceElement, tt: HTMLElement) {
 		computePosition(btn, tt, {
@@ -58,35 +50,35 @@ const toolTipClass =
 		});
 	}
 
-	function showTooltip(btn: Element | null, tt: Element | null) {
+	function showTooltip(btn: HTMLElement | null, tt: HTMLElement | null) {
 		// tt.style.display = 'block';
 		tt!.style.opacity = '100%';
 		update(btn!, tt!);
 	}
 
-	function hideTooltip(tt: Element | null) {
+	function hideTooltip(tt: HTMLElement | null) {
 		// tt.style.display = 'none';
-		tt.style.opacity = '0%';
+		tt!.style.opacity = '0%';
 	}
 
-	const twtBtn = document.querySelector('#twitter_btn');
-	const twtTt = document.querySelector('#twitter_tooltip');
+	const twtBtn: HTMLElement | null = document.querySelector('#twitter_btn');
+	const twtTt: HTMLElement | null = document.querySelector('#twitter_tooltip');
 	twtBtn?.addEventListener('click', () => window.open('https://twitter.com/_FaceFTW'));
 
-	const bskyBtn = document.querySelector('#bsky_btn');
-	const bskyTt = document.querySelector('#bsky_tooltip');
+	const bskyBtn: HTMLElement | null = document.querySelector('#bsky_btn');
+	const bskyTt: HTMLElement | null = document.querySelector('#bsky_tooltip');
 	bskyBtn?.addEventListener('click', () => window.open('https://bsky.app/profile/faceftw.dev'));
 
-	const ghBtn = document.querySelector('#github_btn');
-	const ghTt = document.querySelector('#github_tooltip');
+	const ghBtn: HTMLElement | null = document.querySelector('#github_btn');
+	const ghTt: HTMLElement | null = document.querySelector('#github_tooltip');
 	ghBtn?.addEventListener('click', () => window.open('https://github.com/FaceFTW'));
 
-	const mBtn = document.querySelector('#mailto_btn');
-	const mTt = document.querySelector('#mailto_tooltip');
+	const mBtn: HTMLElement | null = document.querySelector('#mailto_btn');
+	const mTt: HTMLElement | null = document.querySelector('#mailto_tooltip');
 	mBtn?.addEventListener('click', () => window.open('https://bsky.app/profile/faceftw.dev'));
 
-	const liBtn = document.querySelector('#linkedin_btn');
-	const liTt = document.querySelector('#linkedin_tooltip');
+	const liBtn: HTMLElement | null = document.querySelector('#linkedin_btn');
+	const liTt: HTMLElement | null = document.querySelector('#linkedin_tooltip');
 	liBtn?.addEventListener('click', () => window.open('https://www.linkedin.com/in/faceftw'));
 
 	//This is some of the worst typescript stuff I've violated probably

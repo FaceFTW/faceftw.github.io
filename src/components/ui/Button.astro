@@ -1,8 +1,11 @@
 ---
-
-interface Props{
-
+interface Props {
+	class?: string;
 }
 
-const {} = Astro.props;
+const {class: className} = Astro.props;
 ---
+
+<button class:list={[className]}>
+	<slot />
+</button>
