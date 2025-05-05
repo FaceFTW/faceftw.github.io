@@ -1,8 +1,7 @@
 ---
 import ThemeIcon from './ThemeIcon.astro';
-import {CircleUser, Home, Rss, ScrollText, SquareDashedBottomCode} from 'lucide-react';
-import {AstroNavMenu} from './AstroNavMenu';
-import "@/styles/globals.css"
+import {CircleUser, Home, Rss, ScrollText, SquareDashedBottomCode} from '@lucide/astro';
+import '@/styles/globals.css';
 
 const items = [
 	{
@@ -37,7 +36,30 @@ const items = [
 	<a href='/' class='hidden items-center space-x-2 md:flex'>
 		<span class='hidden font-bold sm:inline-block'>Alex Westerman</span>
 	</a>
-	<AstroNavMenu items={items} />
+	<nav
+		class='md:flex group/navigation-menu relative flex max-w-max flex-1 items-center justify-center'>
+		<ul class='gap-6 md:gap-10 group flex flex-1 list-none items-center justify-center'>
+			{
+				items?.map((item) => (
+					<li class='relative'>
+						<a
+							href={item.url}
+							class='flex font-medium text-lg transition-colors hover:text-foreground/80 sm:text-sm'>
+							<span>{item.title}</span>
+						</a>
+					</li>
+				))
+			}
+		</ul>
+	</nav>
+	<!-- <Button
+		variant='ghost'
+		className='ml-4 flex items-center space-x-2 md:hidden'
+		onClick={() => setShowMobileMenu(!showMobileMenu)}>
+		{showMobileMenu ? <X /> : <Menu />}
+		<span className='font-bold'>Alex Westerman</span>
+	</Button> -->
+	<!-- {showMobileMenu && <MobileNav closeFn={setShowMobileMenu} items={items} />} -->
 	<!-- <Button
 		variant='ghost'
 		class='ml-4 flex items-center space-x-2 md:hidden'
@@ -47,7 +69,5 @@ const items = [
 	</Button> -->
 	<!-- {showMobileMenu && <MobileNav closeFn={setShowMobileMenu}>{children}</MobileNav>} -->
 	<span class='grow'></span>
-	<div class='flex pr-2'>
-		<ThemeIcon />
-	</div>
+	<ThemeIcon />
 </div>

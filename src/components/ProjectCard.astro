@@ -8,12 +8,12 @@ import {
 	CardContent,
 	CardHeader,
 } from '@/components/ui/card';
-import {Button} from '@/components/ui/button';
-import {AppWindow, Code2, Link} from 'lucide-react';
+import Button from '@/components/Button.astro';
+import {AppWindow, CodeXml, Link} from '@lucide/astro';
 import {Badge} from '@/components/ui/badge';
 import {Image} from 'astro:assets';
 
-interface Props{
+interface Props {
 	project: Project;
 }
 const {project} = Astro.props;
@@ -24,13 +24,21 @@ const height = project.assetHeight ?? 0;
 const githubLink = project.projectLinks.find((link) => link.linkType === 'github');
 const demoLink = project.projectLinks.find((link) => link.linkType === 'demo');
 const miscLink = project.projectLinks.find((link) => link.linkType === 'misc');
+
+const ghButtonId = `gh_${project.projectName}`;
+const demoButtonId = `demo_${project.projectName}`;
+const miscButtonId = `misc_${project.projectName}`;
 ---
 
-<Card className='flex min-w-[325px] max-w-[450px] flex-col'>
-	<CardHeader>
-		<CardTitle>{project.projectName}</CardTitle>
+<div
+	class='flex min-w-[325px] max-w-[450px] flex-col bg-card text-card-foreground gap-6 rounded-xl border py-6 shadow-sm'
+	data-slot='card'>
+	<div
+		class='@container/card-header grid auto-rows-min grid-rows-[auto_auto] items-start gap-1.5 px-6 has-data-[slot=card-action]:grid-cols-[1fr_auto] [.border-b]:pb-6'
+		data-slot='card-header'>
+		<div class='leading-none font-semibold' data-slot='card-title'>{project.projectName}</div>
 		<CardDescription>{project.projectDescription}</CardDescription>
-	</CardHeader>
+	</div>
 	<CardContent>
 		<div class='mb-4 space-x-1'>
 			{
@@ -54,9 +62,10 @@ const miscLink = project.projectLinks.find((link) => link.linkType === 'misc');
 				<Button
 					variant='outline'
 					size='icon'
+					id={ghButtonId}
 					onClick={() => window.open(githubLink.linkURL)}
 					aria-label='GitHub Repository'>
-					<Code2 class='h-8 w-8' />
+					<CodeXml class='h-8 w-8' />
 					<span>Source Code</span>
 				</Button>
 			)
@@ -66,6 +75,7 @@ const miscLink = project.projectLinks.find((link) => link.linkType === 'misc');
 				<Button
 					variant='outline'
 					size='icon'
+					id={demoButtonId}
 					onClick={() => window.open(demoLink.linkURL)}
 					aria-label='Web Demo'>
 					<AppWindow class='h-8 w-8' />
@@ -78,6 +88,7 @@ const miscLink = project.projectLinks.find((link) => link.linkType === 'misc');
 				<Button
 					variant='outline'
 					size='icon'
+					id={miscButtonId}
 					onClick={() => window.open(miscLink.linkURL)}
 					aria-label={miscLink.linkDesc ?? 'Misc Link'}>
 					<Link class='h-8 w-8' />
@@ -87,4 +98,8 @@ const miscLink = project.projectLinks.find((link) => link.linkType === 'misc');
 		}
 		<span class='w-full'></span>
 	</CardFooter>
-</Card>
+</div>
+
+<script>
+	document.getElementById();
+</script>

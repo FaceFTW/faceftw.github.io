@@ -3,6 +3,12 @@ import EducationAccordion from '@/components/EducationAccordion';
 import ExperienceAccordion from '@/components/ExperienceAccordion';
 import SkillsSection from '@/components/SkillsSection.astro';
 import Primary from '@/layouts/Primary.astro';
+import type {Skill} from '@/lib/types';
+import resumeData from '@/content/resume.json';
+import Badge from '@/components/Badge.astro';
+
+// biome-ignore lint/correctness/noUnusedVariables: <explanation>
+const skills: Skill[] = resumeData.skills;
 
 // const Highlights = ({ highlights }: { highlights: ResumeHighlight[] }) => {
 // 	//This is kinda hacky, but I can't think of a better solution
@@ -46,10 +52,40 @@ import Primary from '@/layouts/Primary.astro';
 // };
 ---
 
-<Primary title="Resume">
+<Primary title='Resume'>
 	<div class='m-4'>
 		<h4 class='text-4xl underline'>Skills</h4>
-		<SkillsSection />
+		<div class='mb-4 space-x-1 space-y-2'>
+			{
+				skills.map((skill) => {
+					let skill_class = '';
+					switch (skill.years) {
+						case 1:
+							skill_class = 'text-md my-auto';
+							break;
+						case 2:
+							skill_class = 'text-lg my-auto';
+							break;
+						case 3:
+							skill_class = 'text-xl my-auto';
+							break;
+						case 4:
+							skill_class = 'text-2xl my-auto';
+							break;
+						case 5:
+							skill_class = 'text-3xl my-auto';
+							break;
+						case 6:
+							skill_class = 'text-4xl my-auto';
+							break;
+						default:
+							'';
+					}
+
+					return <Badge class={skill_class} text={skill.name} />;
+				})
+			}
+		</div>
 	</div>
 	<div class='m-4'>
 		<h4 class='text-4xl underline'>Education</h4>
