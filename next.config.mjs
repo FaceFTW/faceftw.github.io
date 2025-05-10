@@ -21,6 +21,6 @@ const withMDX = createMDX({
 });
 
 export default withPlugins(
-    [[withBundleAnalyzer({ enabled: process.env.NODE_ENV === 'development', openAnalyzer: false })], [withMDX]],
+    [[withBundleAnalyzer({ enabled: process.env.ANALYZE==='true', openAnalyzer: false })], [withMDX]],
     nextConfig
 );
