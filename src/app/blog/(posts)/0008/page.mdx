@@ -84,18 +84,22 @@ import segBlock from './seg_block.webp';
 
 Even when working in the smaller [address space](https://en.wikipedia.org/wiki/Address_space) under the pages, that is still 1024 pixels that need to be managed and can't really be connected en-masse to the microcontroller. Plus, a page in this case is a smaller contiguous block of RAM which can be mapped to the physical pixels in different ways. It's not dissimilar to how a multidimensional array can be represented in different ways while maintaining a flat-array footprint in C:
 
+import flatArray from './flat_array.webp';
 
-
-
-
-
+<div className="text-center">
+<Image src={flatArray} alt="" width={531} height={251} className='mx-auto mb-4'/>
+<em>Explanation between multi-dimensional array vs flat array structures. Notice how the flat array saves space.</em>
+</div>
 
 Again, all of this functionality is abstracted by the display controller, what matters is what possible address mappings are available. In this case the three modes are page addressing, horizontal addressing, and vertical addressing. Depending on what is being drawn, a different addressing mode would allow for more _efficient_ interaction by requiring less data commands sent to the display peripheral. For example, Drawing a horizontal line is effectively more efficient using horizontal addressing than vertical addressing; Under vertical addressing, the same byte sequence would need to be drawn 8 times instead of a single sequence horizontally. However, drawing complicated shapes like letters make more sense when using vertical addressing since it would be more "information dense" (i.e. it uses fewer bytes to represent the same information). Given that vertical addressing sticks within the boundaries of a page, it means that each byte written represents a vertical "slice" of a character and there is no need to send any "cursor change" commands.
 
+import verticalRepr from './vertical_repr.webp';
 
+<div className="text-center">
+<Image src={verticalRepr} alt="" width={439} height={128} className='mx-auto mb-4'/>
+<em>Representation of a capital 'G'. Note the endianess of the diagram is reversed.</em>
+</div>
 
-
-//Insert example vertical representation
 
 To efficiently display characters without doing too much math, a constant table containing the respective byte sequences for each character is added to the project. In a sense, this is creating a simple [bitmap font](https://en.wikipedia.org/wiki/Computer_font#BITMAP) which can easily be indexed against [ASCII Codes](https://en.wikipedia.org/wiki/ASCII); by default strings are already stored in an encoding that extends ASCII so minimal effort is needed to perform the mapping. Each character is sized at 5x7 pixels, which means the last row of each character can be reserved as a built-in space and align with the row count of memory pages. To save space on the limited memory, unused symbols and the [control codes](https://en.wikipedia.org/wiki/Control_character) can be removed and a little bit of math can still provide a one-to-one mapping for alphanumeric characters:
 
@@ -130,7 +134,9 @@ With all the information about how the display (controller) works, it is now tim
 
 [Inter-Inter Circuit Communication (shortened to I2C and stylized as I²C)](https://en.wikipedia.org/wiki/I%C2%B2C) is a specification for bidirectional signaling between multiple complex integrated circuits over two wires: "Serial Data (SDA)" and a "Serial Clock Signal (SCL)". Also documented as the _Two-Wire (Serial) Interface or TWI_ in microcontrollers like the [ATMEGA328P](https://ww1.microchip.com/downloads/en/DeviceDoc/ATmega48A-PA-88A-PA-168A-PA-328-P-DS-DS40002061A.pdf) used in the project, it was developed by Phillips Semiconductors (now owned by NXP) as a way to communicate between many processors, microcontrollers, and the like. As a standard, it boasts an impressive amount of flexibility in configuration, supporting up to 127 uniquely addressed devices and multiple controllers on the same bus. I wouldn't be surprised if a computer uses them for different peripherals.
 
-Given it has been a while since I touched I²C communications (because I haven't done embedded for a couple of years), I decided to do the most reasonable thing and read the official specification of the standard, which is provided by [NXP for free online](https://www.nxp.com/docs/en/user-guide/UM10204.pdf). While it contains a boat load of information that isn't fully relevant to this project such as multi-controller arbitration or ultra-fast mode (a very cool name :P), the core information about how communication between controllers and targets is there. _For this overview, I plan on skipping over details like electrical specifications and fault handling while making the examples related to communicating with the display controller. This is not to say generic implementations and details aren't important, and when doing something like designing a multipurpose microcontroller this information is absolutely necessary!_
+Given it has been a while since I touched I²C communications (because I haven't done embedded for a couple of years), I decided to do the most reasonable thing and read the official specification of the standard, which is provided by [NXP for free online](https://www.nxp.com/docs/en/user-guide/UM10204.pdf). While it contains a boat load of information that isn't fully relevant to this project such as multi-controller arbitration or ultra-fast mode (a very cool name :P), the core information about how communication between controllers and targets is there.
+
+>For this overview, I plan on skipping over details like electrical specifications and fault handling while making the examples related to communicating with the display controller. This is not to say generic implementations and details aren't important, and when doing something like designing a multipurpose microcontroller this information is absolutely necessary!
 
 ### "Instant" Messaging over Wires
 
@@ -148,20 +154,30 @@ Within each transaction, messages are sent in 1 byte (8 bits) "packets", with ea
 import ackBits from './ack_bits.webp';
 
 <div className="text-center">
-<Image src={} alt="" width={680} height={196} className='mx-auto mb-4'/>
+<Image src={ackBits} alt="" width={680} height={196} className='mx-auto mb-4'/>
 <em>An Example Message with Acknowledge Bit - Source: I²C Specification</em>
 </div>
 
 At the beginning of each transaction, the first byte sent over the bus is the 7-bit address of the target peripheral to communicate with plus a _read-write (R/W) bit_ indicating the direction information is sent on the bus (read means target to controller, write is the opposite). While reading from a device is the only way to interact with certain peripherals, the plan is to only write to the display controller, so all future examples will assume a controller-target communication scheme and thus the R/W bit will be `0` due to it being active low. Given the I²C address of the controller being `0x3C`, the first byte of each transaction would actually be `0x78` since the 7-bit address uses the _most significant bits (MSB)_ of said byte.
 
+import addressStruct from './address_struct.webp';
 
-
+<div className="text-center">
+<Image src={addressStruct} alt="" width={356} height={119} className='mx-auto mb-4'/>
+<em>Structure of the I²C address message</em>
+</div>
 
 
 After the transaction is established and the first message is acknowledged by the controller, a _control byte_ is sent by the controller, followed by a number of _data bytes_ (not documented but up to 16 based on code I've tested). The control byte is basically empty but is otherwise important since because the 7th MSB serves as the D/C signal mentioned earlier. However, this makes the code a lot easier by knowing that `0x00` will have the following bytes be treated as commands, whereas `0x40` indicates the following bytes are for writing to the graphics memory.
 Putting it all together, these are the example transactions to display a capital 'A' on the second line:
 
-//Insert transactions here
+
+import transactions from './transactions.webp';
+
+<div className="text-center">
+<Image src={transactions} alt="" width={574} height={296} className='mx-auto mb-4'/>
+<em>I²C Transactions to display a captial 'A' on the second line. ACK bits are indicated separately since they come from the display controller.</em>
+</div>
 
 ## Writing it in code
 What if I said that there was no need to learn half of this information. Well it's kinda true. Many [hardware abstraction layers (HALs)](https://en.wikipedia.org/wiki/Hardware_abstraction) for devices that support I²C usually create a simplified software interface to perform I²C operations on the controller side; The [Arduino Core Library](linkhttps://github.com/arduino/ArduinoCore-avr) in C and the [avr-hal crate](https://github.com/Rahix/avr-hal) used in the project abstract all of the I²C signaling specifics to the transaction level as discussed previously. Obviously, mileage will vary depending on the project, but any good programmer can wrangle bytes to make things work in places they shouldn't. Like [running DOOM on everything in existence](https://www.reddit.com/r/itrunsdoom/). Although admittedly that is a bit cooler than this.
