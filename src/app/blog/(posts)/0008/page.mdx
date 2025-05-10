@@ -8,7 +8,7 @@ slug: '0008'
 
 import Image from 'next/image';
 
-# Shut Up Device - Part 2
+# "SHUT UP Device" - Part 2
 
 _Now it's time to display things_
 
@@ -31,7 +31,7 @@ import blockDiagram from './block_diagram.webp';
 
 <div className="text-center">
 <Image src={blockDiagram} alt="" width={812} height={707} className='mx-auto mb-4'/>
-<em>Block Diagram of the SSD1306 - Source: SSD1306 Datasheet</em>
+<em>Block Diagram of the SSD1306 - Source: [SSD1306 Datasheet](https://cdn-shop.adafruit.com/datasheets/SSD1306.pdf)</em>
 </div>
 
 
@@ -43,7 +43,7 @@ import commandTables from './command_tables.webp';
 
 <div className="text-center">
 <Image src={commandTables} alt="" width={812} height={534} className='mx-auto mb-4'/>
-<em>Some Example Tables Documenting Commands- Source: SSD1306 Datasheet</em>
+<em>Some Example Tables Documenting Commands- Source: [SSD1306 Datasheet](https://cdn-shop.adafruit.com/datasheets/SSD1306.pdf)</em>
 </div>
 
 There are a good chunk of commands, but most of these are only relevant when initializing the display on power up, such as changing how the RAM is mapped to the physical pixels (via the internal drivers). Depending on how processor code is written, an "initialization command list" can be created to ensure a consistent live configuration of the display is preserved whenever the device is powered on. Having this also allows enforcement of certain semantics when writing to the display (more on that in a bit), which ensures a consistent internal state on initialization.
@@ -79,7 +79,7 @@ import segBlock from './seg_block.webp';
 
 <div className="text-center">
 <Image src={segBlock} alt="" width={708} height={265} className='mx-auto mb-4'/>
-<em>What the Graphics RAM looks like - Source: SSD1306 Datasheet</em>
+<em>What the Graphics RAM looks like - Source: [SSD1306 Datasheet](https://cdn-shop.adafruit.com/datasheets/SSD1306.pdf)</em>
 </div>
 
 Even when working in the smaller [address space](https://en.wikipedia.org/wiki/Address_space) under the pages, that is still 1024 pixels that need to be managed and can't really be connected en-masse to the microcontroller. Plus, a page in this case is a smaller contiguous block of RAM which can be mapped to the physical pixels in different ways. It's not dissimilar to how a multidimensional array can be represented in different ways while maintaining a flat-array footprint in C:
@@ -146,7 +146,7 @@ import startStop from './start_stop.webp';
 
 <div className="text-center">
 <Image src={startStop} alt="" width={541} height={164} className='mx-auto mb-4'/>
-<em>Start and Stop Signal Diagrams - Source: I²C Specification</em>
+<em>Start and Stop Signal Diagrams - Source: [I²C Specification](https://www.nxp.com/docs/en/user-guide/UM10204.pdf)</em>
 </div>
 
 Within each transaction, messages are sent in 1 byte (8 bits) "packets", with each packet being followed by an _acknowledge bit_ before the next byte is sent. This acknowledge works similarly to how a start/stop condition is detected, making it clear when a target (or the controller if it is reading from a target) is ready for the next byte.
@@ -155,7 +155,7 @@ import ackBits from './ack_bits.webp';
 
 <div className="text-center">
 <Image src={ackBits} alt="" width={680} height={196} className='mx-auto mb-4'/>
-<em>An Example Message with Acknowledge Bit - Source: I²C Specification</em>
+<em>An Example Message with Acknowledge Bit - Source: [I²C Specification](https://www.nxp.com/docs/en/user-guide/UM10204.pdf)</em>
 </div>
 
 At the beginning of each transaction, the first byte sent over the bus is the 7-bit address of the target peripheral to communicate with plus a _read-write (R/W) bit_ indicating the direction information is sent on the bus (read means target to controller, write is the opposite). While reading from a device is the only way to interact with certain peripherals, the plan is to only write to the display controller, so all future examples will assume a controller-target communication scheme and thus the R/W bit will be `0` due to it being active low. Given the I²C address of the controller being `0x3C`, the first byte of each transaction would actually be `0x78` since the 7-bit address uses the _most significant bits (MSB)_ of said byte.
@@ -194,15 +194,15 @@ let mut i2c = arduino_hal::I2c::new(
 ```
 
 I won't go into too much depth here about what this does under the hood, but I want to point out a couple of interesting factoids:
-The 400k value defines the bit rate of the I²C bus (or effectively the frequency of SCL). Something I glossed over previously, but some I²C implementations can support up to 10 MBits/sec, a.k.a. "ultra-fast mode" (very cool name). Either way, this is "fast mode" and is 4x faster than the basic 100Kbit/sec "normal mode." See section 3.1.1 of the spec.
-Despite being a digital bus, _analog pins are used as SDA/SCL_. This is part of the electrical specification details that I skipped, but "logic high" and "logic low" signals are based off of a percentage of a reference voltage; More specifically, logic high is minimum 70% of the reference voltage, logic low is maximum 30% of said voltage, the remaining zone is effectively "floating" or undefined. See section 3.1.2 of the spec.
+
+- The 400k value defines the bit rate of the I²C bus (or effectively the frequency of SCL). Something I glossed over previously, but some I²C implementations can support up to 10 MBits/sec, a.k.a. "ultra-fast mode" (very cool name). Either way, this is "fast mode" and is 4x faster than the basic 100Kbit/sec "normal mode." See section 3.1.1 of the spec.
+- Despite being a digital bus, _analog pins are used as SDA/SCL_. This is part of the electrical specification details that I skipped, but "logic high" and "logic low" signals are based off of a percentage of a reference voltage; More specifically, logic high is minimum 70% of the reference voltage, logic low is maximum 30% of said voltage, the remaining zone is effectively "floating" or undefined. See section 3.1.2 of the spec.
 
 The actual struct representing the display in the code is "light" in stored data: just the position of the "cursor" as mentioned earlier. Most of the functionality is with the associated methods with the struct, which always take a mutable borrowed `I2c` instance as a parameter. This has to do with _lifetime checking_ and _ownership_ rules that make Rust as a language "safe" (with some asterisks); By limiting access to memory and checking the validity of memory reads and writes, it allows elimination of entire bug classes such as [use-after-frees](https://cwe.mitre.org/data/definitions/416.html), [buffer overflows](https://cwe.mitre.org/data/definitions/120.html), and more. As a result, certain "C-like" paradigms such as global variables/memory regions which are useful in embedded contexts given they can help encode microcontroller register/bus state in a shareable manner are much harder to use since such access is inherently "unsafe". This will be discussed a lot more in the last part of this series, but some tidbits are important to acknowledge now to help with understanding the design decisions made.
 
 Before anything can be written on the display, the display configuration needs to be completed to ensure a _synchronized state_. This is conveniently done in the `new()` function:
 
 ```rust
-
 impl SSD1306Display {
     pub fn new(wire: &mut arduino_hal::I2c) -> Result<Self, Error> {
         #[rustfmt::skip]

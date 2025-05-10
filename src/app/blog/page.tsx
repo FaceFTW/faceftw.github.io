@@ -19,6 +19,8 @@ import { frontmatter as frontmatter5 } from '@/app/blog/(posts)/0005/page.mdx';
 import { frontmatter as frontmatter6 } from '@/app/blog/(posts)/0006/page.mdx';
 //@ts-expect-error
 import { frontmatter as frontmatter7 } from '@/app/blog/(posts)/0007/page.mdx';
+//@ts-expect-error
+import { frontmatter as frontmatter8 } from '@/app/blog/(posts)/0008/page.mdx';
 
 const cc_xmlns = {
     'xmlns:cc': 'http://creativecommons.org/ns#',
@@ -34,6 +36,7 @@ export default function Index() {
         frontmatter5,
         frontmatter6,
         frontmatter7,
+        frontmatter8,
     ].sort((a, b) => (parseISO(a.date) > parseISO(b.date) ? -1 : 1));
 
     return (
