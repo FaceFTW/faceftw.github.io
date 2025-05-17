@@ -165,7 +165,7 @@
   }
   /* For using Shiki Styles */
   html.dark .shiki,
-  html.dark .shiki span{
+  html.dark .shiki span {
     color: var(--shiki-dark) !important;
     background-color: var(--shiki-dark-bg) !important;
     /* Optional, if you also want font styles */
@@ -173,5 +173,11 @@
     font-weight: var(--shiki-dark-font-weight) !important;
     text-decoration: var(--shiki-dark-text-decoration) !important;
   }
+  /* Removes Backticks from code blocks */
+  code::before,
+  code::after {
+    display: none;
+  }
+
 }
 

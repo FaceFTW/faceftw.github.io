@@ -7,14 +7,12 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     return {
         code(props) {
             const { children, className, ...rest } = props;
-
             return (
                 <code {...rest} className={cn('rounded-lg', 'px-1', 'py-0.5', className)}>
                     {children}
                 </code>
             );
         },
-
         h1(props) {
             const { children, className, ...rest } = props;
             return (
