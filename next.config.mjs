@@ -27,7 +27,6 @@ const withMDX = createMDX({
                     },
                 },
             ],
-			// rehypeStringify
         ],
     },
 });

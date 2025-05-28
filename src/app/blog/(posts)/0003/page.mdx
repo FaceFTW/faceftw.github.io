@@ -11,22 +11,23 @@ import Image from 'next/image';
 # Talking Cows, Perls, and Terminals
 _A really obscure set of rabbit holes to recreate an old piece of software_
 
-I've been working on a project called [shell-toy](https://github.com/FaceFTW/shell-toy) that intends to replace the `fortune | cowsay` calls my shell init scripts make. Aside from performance improvements, I also added work to inline the actual "cows" and "fortunes" in the executables to make them easily transferrable across machines. Those features are not the main focus of this post, and you can always take a look at the code for yourself.
+I've been working on a project called [shell-toy](https://github.com/FaceFTW/shell-toy) that intends to replace the `fortune | cowsay` calls my shell init scripts make. Aside from performance improvements, I also added work to inline the actual "cows" and "fortunes" in the executables to make them easily transferrable across machines. Those features are not the main focus of this post, and the code is fully open source for anyone to take a peek.
+
 The main focus is about reading the Perl files and rendering them properly in terminals.
 
-This is a long post because you would not believe the amount of things one has to do to make drawings in terminals look good (not even artistically speaking). Not all posts on `ref_cycle` are going to be like this but as the first "official" post I think it deserves to be long.
+This is a long post because of the amount of things one has to do to make drawings in terminals look good (not even artistically speaking). Not all posts on `ref_cycle` are going to be like this but as the first "official" post I think it deserves to be long.
 
 ## What is Cowsay Actually?
 
 Ironically, `cowsay` is actually just a Perl script. Originally written and maintained by [Tony Monroe](https://web.archive.org/web/20120225123719/http://www.nog.net/~tony/warez/cowsay.shtml) until it was transferred to [GitHub](https://github.com/cowsay-org/cowsay), its gained a couple of new features or so, but otherwise remained simple at its core.
 
-`cowsay` is quite a unique niche in the developer/sysadmin world, you might see it on [r/unixporn](reddit.com/r/unixporn) or someone's shell startup as a nice little flair. Projects such as [pokemonsay](https://github.com/possatti/pokemonsay) have created a way to generate sprites from official renders but still use `cowsay` underneath.
+`cowsay` is quite a unique niche in the developer/sysadmin world, seen on [r/unixporn](reddit.com/r/unixporn) or someone's shell startup as a nice little flair. Projects such as [pokemonsay](https://github.com/possatti/pokemonsay) have created a way to generate sprites from official renders but still use `cowsay` underneath.
 
 I use it because it makes me feel cool.
 
 ## The Rabbit Hole of Perl Syntax Parsing
 
-Whenever you want to describe a programming language syntax, it is often done in [Backus-Naur Form (or BNF)](https://en.wikipedia.org/wiki/Backus%E2%80%93Naur_form). It's a way of describing syntax in a form of "grammar" similar to a programming language (wow very meta!). The IEEE uses an augmented form of this called [Augmented Backus-Naur Form (ABNF)](https://en.wikipedia.org/wiki/Augmented_Backus%E2%80%93Naur_form) to describe protocol structure and messaging, and they can be drawn into nice little diagrams.
+When trying to describe a programming language syntax, it is often done in [Backus-Naur Form (or BNF)](https://en.wikipedia.org/wiki/Backus%E2%80%93Naur_form). It's a way of describing syntax in a form of "grammar" similar to a programming language (wow very meta!). The IEEE uses an augmented form of this called [Augmented Backus-Naur Form (ABNF)](https://en.wikipedia.org/wiki/Augmented_Backus%E2%80%93Naur_form) to describe protocol structure and messaging, and they can be drawn into nice little diagrams.
 
 Since Cowsay is written in Perl and cow files are just Perl scripts, I could start by writing a parser for Perl scripts, use that output as an "intermediate representation" (IR), then convert the IR to a string that the terminal will use. So let's do a quick google search...
 
@@ -120,7 +121,7 @@ EOC
 
 Ok this is fine, most of the notes currently still hold up, just need to add some more things to keep in mind:
 - Comments start with `#` in these scripts
-- You can create variable definitions and reference them with interpolation in `$the_cow`. Some elaboration on that:
+- variable definitions can be created and referenced with interpolation in `$the_cow`. Some elaboration on that:
   - The name of the variable is prefixed with `$`. I will make some inferred rules about names to make work easier further down the line and restrict them to only contain alphanumeric characters.
   - The value of the variable is specified on the right hand side (RHS) of the `=`, and is an interpolated string surrounded in double-quotes and terminated afterward with a semi-colon. Because it is interpolated, _any data that would be considered valid cow data here can be placed in the _.
   - Throughout the remainder of this post, I will be referring to this as a _**binding**_ for a variable, based on the idea of [free and bound variables](https://en.wikipedia.org/wiki/Free_variables_and_bound_variables). It will become more clear why I use this terminology later
@@ -193,7 +194,7 @@ There is now enough analysis of how a cow file is defined to move on to the next
 
 ## Implementing a Talking Cow
 
-Here is a rough implementation diagram of the interpreter. You'll notice it's much simpler compared to other interpreters and compilers because by cutting out noise like multi-file parsing and binary linkage:
+Here is a rough implementation diagram of the interpreter. It's much simpler compared to other interpreters and compilers because by cutting out noise like multi-file parsing and binary linkage:
 
 ```asciidoc
                 +----------+                +--------------+
@@ -358,7 +359,7 @@ fn interpreter(
 }
 ```
 
-If you noticed, I mentioned something about updating internal state. This part is a bit complicated; I'm being vague here because it's not all the kind of information that a traditional compiler/interpreter might store; there isn't any information about defined types, functions, or scoping here. Let's do a recap some of the observations made earlier that would require "state" when looking at the cow files:
+I mentioned something about updating internal state. This part is a bit complicated; I'm being vague here because it's not all the kind of information that a traditional compiler/interpreter might store; there isn't any information about defined types, functions, or scoping here. Let's do a recap some of the observations made earlier that would require "state" when looking at the cow files:
 
 - It is possible change the color of text in the terminal, and _it persists after triggering_.
 - It is possible have variable bindings that can be referenced in interpolated strings*
@@ -399,7 +400,7 @@ That is one problem solved, let's get to the next one.
 
 #### Coloring the World
 
-Adding color to terminal text isn't hard, there are many crates that provide that functionality. I personally chose [`owo_colors`](https://docs.rs/owo-colors/latest/owo_colors/) in this case, which provides a `Style` struct that you can apply to string types. So surely just adding a mutable `Style` to the interpreter state is fine:
+Adding color to terminal text isn't hard, there are many crates that provide that functionality. I personally chose [`owo_colors`](https://docs.rs/owo-colors/latest/owo_colors/) in this case, which provides a `Style` struct that can be applied to string types. So surely just adding a mutable `Style` to the interpreter state is fine:
 
 ```rust
 //inside interpreter body:
@@ -617,3 +618,108 @@ import demo from './demo.gif'
 _Pardon the glitchy drawing, I can confirm this is an issue with the terminal recorder I used and not what it looks like._
 
 Thanks for reading! Stay tuned in like 3 months for the next post where I might do something even more complicated and maybe even more ridiculous.
+
+## Errata (From 6-x-25)
+
+Future Alex here. As a project, `shell-toy` has undergone some maintenance but overall has remained the same since this post was written. However, as of version 0.7.0 and up, there has been a significant rewrite of the parser to fix a deep-rooted bug related to parsing of comments. I _could_ just release the new version and leave this post to decay, but I felt it was necessary to give a brief explanation of the differences in the new parser. Plus the original article has some fixes with passive voice but that's for the linguist nerds to notice.
+
+To summarize the issue, there exists a parser combinator specifically for Perl comments, which start with a `#` and end with a newline. However, the way the sub-parser was used meant that in cases where comments should _not_ be parsed like in the actual picture representation, it treated certain sequences erroneously as a comment when semantically it should be something else. This was the most apparent in the cowfile displaying the [Aperture Science logo from Portal (a.k.a. `aperture.cow`)](logo link):
+
+//Insert malformed aperture logo
+
+One of the difficulties with the `nom` crate is that it is intentionally bare-bones. Aside from some of the gripes I had with the error handling system (such as no easy way to propogate parser errors in `map()` parsers), part of the solution I tried with `nom` just _didn't work_. And I could not figure out why looking at it from a black box. Again, it is a widely downloaded crate for a reason, but I needed something different. So I _rewrote*_ the entire parser.
+For the rewrite, I used [`winnow`](link) which is actually a fork of `nom`, but with API differences and built-in debugging features. In fact, `winnow`'s debugging is really cool since all that is needed is passing a Cargo feature flag:
+
+//Insert winnow debug
+
+Most of the core parsers remained the same, except for the main "cow string". Instead of trying to parse everything at the same semantic level, a separate parser is used to identify the delimiters of the string (such as `$the_cow =<<EOC;`) and use the respective sub-parsers that are valid within that scope to return a token list. That looks something like this (in psuedo-code since the actual one is a bit long):
+
+```rust
+fn cow_string<'a, E: ParserError<InputStream<'a>> + AddContext<InputStream<'a>, StrContext>>(
+    input: &mut InputStream<'a>,
+) -> ParserResult<Vec<TerminalCharacter>, E> {
+    preceded(
+        start_sequences,
+        repeat_till(
+            1..,
+            alt((
+                spaces_and_lines,
+                placeholders,
+                term_color,
+                unicode_char,
+                escaped_char,
+                bound_var_call,
+                take(1 as usize).map(|c: &str| {
+                    TerminalCharacter::UnicodeCharacter(c.chars().into_iter().next().unwrap())
+                }),
+            )),
+            end_sequences,
+        ),
+    )
+    .map(|(mut chars, _): (Vec<TerminalCharacter>, _)| {
+        chars.insert(0usize, TerminalCharacter::CowStart);
+        chars
+    })
+    .parse_next(input)
+}
+```
+
+This makes the top-level parser much cleaner, with the exception of needing to return in `Vec`s due to the new main string parser:
+
+```rust
+fn cow_parser<'a, E: ParserError<InputStream<'a>> + AddContext<InputStream<'a>, StrContext>>(
+    input: &mut InputStream<'a>,
+) -> ParserResult<Vec<TerminalCharacter>, E> {
+    alt((
+        comments.map(|comment| vec![comment]),
+        spaces_and_lines.map(|whitespace| vec![whitespace]),
+        perl_junk.map(|junk| vec![junk]),
+        cow_string,
+        var_binding.map(|binding| vec![binding]),
+    ))
+    .parse_next(input)
+}
+```
+
+One significant difference between `nom` and `winnow` is how to iterate over the input. In the original implemenation, `nom` has a predefined system for having an iterative parser, which I composed a `scan()` iterator over to track some nuances with when to interpret new lines. For better or worse, `winnow` doesn't really have that kind of default implementation (that I could fine), but the pieces to create a custom iterator (i.e. one that implements Rusts's [`Iterator` trait](rustdoc)) are there. Given the extra state management that was already required (that I will not detail but the code is there), this makes more sense to allow for a consolidated interface to interact with the parser,
+To create an implementation of `Iterator`, the only required function to implement is `next()`. This returns an `Option<Self::Item>` using the associated type defined with the `Iterator` trait. The fun catch is because the parsers now return `Vec<TerminalCharacter>`, the iterator should actually have the associated type of `TerminalCharacter` and act as if [`flatten()`](rustdoc) was applied to the iterator. And this gets really interesting when realizing that struct members can't define _trait bounds as their type without using dynamic dispatch (the `dyn` keyword, which requires heap usage)_. This is a _worse_ solution since it means `Box`ing things that in reality don't need it. A "hack" is to use the structs defined in `std::iter` that are returned when composing iterators since it would allow for the type system to identify the correct implementation of `next()` to use, but there is a problem...
+
+```rust
+// Rust Playground Link:
+// https://play.rust-lang.org/?version=stable&mode=debug&edition=2024&gist=643450d365c439970b0d4c6674db6e3d
+
+struct ParserIter<'a, P> {
+    inner: std::iter::Filter< std::slice::Iter<'a,&'a str>, P>,
+}
+
+impl<'a, P> ParserIter<'a, P>
+where
+    P: FnMut(&str) -> bool,
+{
+    pub fn new(inner: std::slice::Iter<'a, &'a str>) -> Self {
+        Self {
+            inner: inner.filter(|x| x != "1"),
+        }
+    }
+}
+
+impl<'a, P> Iterator for ParserIter<'a, P>
+where
+    P: FnMut(&str) -> bool,
+{
+    type Item = &'a str;
+
+    fn next(&mut self)->Option<Self::Item> {
+        self.inner.next()
+    }
+}
+
+fn main() {
+    let slice = ["0", "1", "2", "3"].as_slice().into_iter();
+
+    let mut iter = ParserIter::new(slice);
+}
+
+```
+
+The core issue here relates to  is that the iterator structs that have a predicate generic type like [`std::iter::Scan`](rustdoc) or [`std::iter::Filter`](rustdoc) are bounded by some variation of the [`FnMut`](rustdoc) trait.
