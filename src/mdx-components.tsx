@@ -2,6 +2,48 @@ import type { MDXComponents } from 'mdx/types';
 import { cn } from '@/lib/utils';
 import { Separator } from '@/components/ui/separator';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import type React from 'react';
+import { isValidElement } from 'react';
+
+//The following is from https://github.com/lhansford/react-to-text/blob/main/src/index.tsx
+// biome-ignore lint/suspicious/noExplicitAny: from original source
+export type ResolverMap = Map<string | React.JSXElementConstructor<any>, (props: any) => string>;
+
+function reactToText(node: React.ReactNode | object, resolvers?: ResolverMap): string {
+    if (typeof node === 'string' || typeof node === 'number' || typeof node === 'boolean') {
+        return node.toString();
+    }
+    if (!node) {
+        return '';
+    }
+    if (Array.isArray(node)) {
+        return node.map((entry) => reactToText(entry, resolvers)).join('');
+    }
+
+    const [nodeType, nodeProps] = isValidElement(node) ? [node.type, node.props] : [null, null];
+    // check if custom resolver is available
+    if (nodeType && resolvers?.has(nodeType)) {
+        // biome-ignore lint/style/noNonNullAssertion: from original source
+        const resolver = resolvers.get(nodeType)!;
+        return resolver(nodeProps);
+    }
+
+    // Because ReactNode includes {} in its union we need to jump through a few hoops.
+
+    // biome-ignore lint/suspicious/noExplicitAny: from original source
+            const props: { children?: React.ReactNode } = (node as any).props ? (node as any).props : {};
+
+    if (!props || !props.children) {
+        return '';
+    }
+
+    return reactToText(props.children, resolvers);
+}
+//End extracted text
+
+const toHtmlId = (input: string) => {
+    return input.replace(/[\s\(\)\"\'\<\>\?\.\,\:\;\[\]\{\}\=\+\_\\\/\?]/g, '-').toLowerCase();
+};
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
     return {
@@ -15,8 +57,12 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         },
         h1(props) {
             const { children, className, ...rest } = props;
+
             return (
-                <h1 className={cn('text-3xl', 'xl:text-6xl', 'mb-4', className)} {...rest}>
+                <h1
+                    id={toHtmlId(reactToText(children))}
+                    className={cn('text-3xl', 'xl:text-6xl', 'mb-4', className)}
+                    {...rest}>
                     {children}
                 </h1>
             );
@@ -24,7 +70,10 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         h2(props) {
             const { children, className, ...rest } = props;
             return (
-                <h2 className={cn('text-2xl', 'xl:text-5xl', 'mb-4', className)} {...rest}>
+                <h2
+                    id={toHtmlId(reactToText(children))}
+                    className={cn('text-2xl', 'xl:text-5xl', 'mb-4', className)}
+                    {...rest}>
                     {children}
                 </h2>
             );
@@ -32,7 +81,10 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         h3(props) {
             const { children, className, ...rest } = props;
             return (
-                <h3 className={cn('text-xl', 'xl:text-4xl', 'mb-4', className)} {...rest}>
+                <h3
+                    id={toHtmlId(reactToText(children))}
+                    className={cn('text-xl', 'xl:text-4xl', 'mb-4', className)}
+                    {...rest}>
                     {children}
                 </h3>
             );
@@ -40,7 +92,10 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         h4(props) {
             const { children, className, ...rest } = props;
             return (
-                <h4 className={cn('text-xl', 'xl:text-3xl', 'mb-4', className)} {...rest}>
+                <h4
+                    id={toHtmlId(reactToText(children))}
+                    className={cn('text-xl', 'xl:text-3xl', 'mb-4', className)}
+                    {...rest}>
                     {children}
                 </h4>
             );
@@ -48,7 +103,10 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         h5(props) {
             const { children, className, ...rest } = props;
             return (
-                <h5 className={cn('text-md', 'xl:text-2xl', 'mb-4', className)} {...rest}>
+                <h5
+                    id={toHtmlId(reactToText(children))}
+                    className={cn('text-md', 'xl:text-2xl', 'mb-4', className)}
+                    {...rest}>
                     {children}
                 </h5>
             );
@@ -56,7 +114,10 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         h6(props) {
             const { children, className, ...rest } = props;
             return (
-                <h6 className={cn('text-xl', 'underline', 'mb-4', className)} {...rest}>
+                <h6
+                    id={toHtmlId(reactToText(children))}
+                    className={cn('text-xl', 'underline', 'mb-4', className)}
+                    {...rest}>
                     {children}
                 </h6>
             );
