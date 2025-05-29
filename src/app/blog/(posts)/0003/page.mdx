@@ -31,7 +31,7 @@ When trying to describe a programming language syntax, it is often done in [Back
 
 Since Cowsay is written in Perl and cow files are just Perl scripts, I could start by writing a parser for Perl scripts, use that output as an "intermediate representation" (IR), then convert the IR to a string that the terminal will use. So let's do a quick google search...
 
-import googleSearch from './goggle-search.png';
+import googleSearch from './goggle-search.webp';
 
 <div>
 <Image src={googleSearch} alt="google is your friend?" width={1005} height={773} className='mx-auto mb-4'/>
@@ -50,7 +50,7 @@ _Uh-oh._
 
 There was a reference to the [yacc (or GNU Bison)](https://www.gnu.org/software/bison/) definitions for Perl to potentially use as a starting point above, which can be derived into some BNF that can be used. Ok, *surely* the [grammar](https://github.com/Perl/perl5/blob/blead/perly.y) isn't that bad...
 
-import perly from './perly.png';
+import perly from './perly.webp';
 
 <div>
 <Image src={perly} alt="flashbanged by words" width={406} height={213} className='mx-auto mb-4'/>
@@ -184,7 +184,7 @@ Like before, let's find a good reference for all the commands. And sure enough s
 - `\N` is likely to represent a sequence of unicode characters by `xterm`. It can be confirmed by looking at a utility like the character map in Windows (below). It can also be asserted the pattern of this structure is `\N{U+XXXX}`, where X is the 4-digit hexadecimal code for the unicode character.
   - ANSI standard also allows for a pattern like `\uXXXX`, but I have yet to see consistent usage in the field.
 
-import charmap from './charmap.png';
+import charmap from './charmap.webp';
 
 <div>
 <Image src={charmap} alt="char map" width={477} height={508} className='mx-auto mb-4'/>
@@ -619,18 +619,31 @@ _Pardon the glitchy drawing, I can confirm this is an issue with the terminal re
 
 Thanks for reading! Stay tuned in like 3 months for the next post where I might do something even more complicated and maybe even more ridiculous.
 
-## Errata (From 6-x-25)
+## Errata
 
-Future Alex here. As a project, `shell-toy` has undergone some maintenance but overall has remained the same since this post was written. However, as of version 0.7.0 and up, there has been a significant rewrite of the parser to fix a deep-rooted bug related to parsing of comments. I _could_ just release the new version and leave this post to decay, but I felt it was necessary to give a brief explanation of the differences in the new parser. Plus the original article has some fixes with passive voice but that's for the linguist nerds to notice.
+_Published on 05-29-2025_
 
-To summarize the issue, there exists a parser combinator specifically for Perl comments, which start with a `#` and end with a newline. However, the way the sub-parser was used meant that in cases where comments should _not_ be parsed like in the actual picture representation, it treated certain sequences erroneously as a comment when semantically it should be something else. This was the most apparent in the cowfile displaying the [Aperture Science logo from Portal (a.k.a. `aperture.cow`)](logo link):
+Future Alex here. As a project, `shell-toy` has undergone some maintenance but overall has remained the same since this post was written. However, as of version 0.7.0 and up, there has been a significant rewrite of the parser to fix a deep-rooted bug related to parsing of comments. I _could_ just release the new version and leave this post to decay, but I felt it was necessary to give a brief explanation of the differences in the new parser. Plus the original post has some fixes with passive voice; That's for the linguist nerds to notice.
 
-//Insert malformed aperture logo
+To summarize the issue, there exists a parser combinator specifically for Perl comments, which start with a `#` and end with a newline. The way the sub-parser was used meant that in cases where comments should _not_ be parsed like in the actual picture representation, it treated certain sequences erroneously as a comment when semantically it should be something else. This was the most apparent in the cowfile displaying the [Aperture Science logo from Portal (a.k.a. `aperture.cow`)](https://en.m.wikipedia.org/wiki/File:Aperture_Science.svg):
+
+
+import malformedAperture from './malformed_aperture.webp';
+
+<div>
+<Image src={malformedAperture} alt="Portal 2 spoiler?" width={686} height={206} className='mx-auto mb-4'/>
+</div>
 
 One of the difficulties with the `nom` crate is that it is intentionally bare-bones. Aside from some of the gripes I had with the error handling system (such as no easy way to propogate parser errors in `map()` parsers), part of the solution I tried with `nom` just _didn't work_. And I could not figure out why looking at it from a black box. Again, it is a widely downloaded crate for a reason, but I needed something different. So I _rewrote*_ the entire parser.
-For the rewrite, I used [`winnow`](link) which is actually a fork of `nom`, but with API differences and built-in debugging features. In fact, `winnow`'s debugging is really cool since all that is needed is passing a Cargo feature flag:
 
-//Insert winnow debug
+For the rewrite, I used [`winnow`](https://crates.io/crates/winnow) which is actually a fork of `nom`, but with API differences and built-in debugging features. In fact, `winnow`'s debugging is really cool since all that is needed is passing a Cargo feature flag:
+
+
+import winnowDbg from './winnow-dbg.webp';
+
+<div>
+<Image src={winnowDbg} alt="Example winnow debug output against the default cow" width={1084} height={601} className='mx-auto mb-4'/>
+</div>
 
 Most of the core parsers remained the same, except for the main "cow string". Instead of trying to parse everything at the same semantic level, a separate parser is used to identify the delimiters of the string (such as `$the_cow =<<EOC;`) and use the respective sub-parsers that are valid within that scope to return a token list. That looks something like this (in psuedo-code since the actual one is a bit long):
 
@@ -681,45 +694,172 @@ fn cow_parser<'a, E: ParserError<InputStream<'a>> + AddContext<InputStream<'a>, 
 }
 ```
 
-One significant difference between `nom` and `winnow` is how to iterate over the input. In the original implemenation, `nom` has a predefined system for having an iterative parser, which I composed a `scan()` iterator over to track some nuances with when to interpret new lines. For better or worse, `winnow` doesn't really have that kind of default implementation (that I could fine), but the pieces to create a custom iterator (i.e. one that implements Rusts's [`Iterator` trait](rustdoc)) are there. Given the extra state management that was already required (that I will not detail but the code is there), this makes more sense to allow for a consolidated interface to interact with the parser,
-To create an implementation of `Iterator`, the only required function to implement is `next()`. This returns an `Option<Self::Item>` using the associated type defined with the `Iterator` trait. The fun catch is because the parsers now return `Vec<TerminalCharacter>`, the iterator should actually have the associated type of `TerminalCharacter` and act as if [`flatten()`](rustdoc) was applied to the iterator. And this gets really interesting when realizing that struct members can't define _trait bounds as their type without using dynamic dispatch (the `dyn` keyword, which requires heap usage)_. This is a _worse_ solution since it means `Box`ing things that in reality don't need it. A "hack" is to use the structs defined in `std::iter` that are returned when composing iterators since it would allow for the type system to identify the correct implementation of `next()` to use, but there is a problem...
+One significant difference between `nom` and `winnow` is how to iterate over the input. In the original implementation, `nom` has a predefined system for having an iterative parser, which I composed a `scan()` iterator over to track some nuances with when to interpret new lines. For better or worse, `winnow` doesn't really have that kind of default implementation (that I could fine), but the pieces to create a custom iterator (i.e. one that implements Rusts's [`Iterator` trait](https://doc.rust-lang.org/std/iter/trait.Iterator.html)) are there. Given the extra state management that was already required (that I will not detail but the code is there), this makes more sense to allow for a consolidated interface to interact with the parser,
+To create an implementation of `Iterator`, the only required function to implement is `next()`. This returns an `Option<Self::Item>` using the associated type defined with the `Iterator` trait. The fun catch is because the parsers now return `Vec<TerminalCharacter>`, the iterator should actually have the associated type of `TerminalCharacter` and act as if [`flatten()`](https://doc.rust-lang.org/std/iter/trait.Iterator.html#method.flatten) was applied to the iterator. And this gets really interesting when realizing that struct members can't define _trait bounds as their type without using dynamic dispatch (the `dyn` keyword, which requires heap usage)_. This is a _worse_ solution since it means `Box`ing things that in reality don't need it. A "hack" is to use the structs defined in `std::iter` that are returned when composing iterators since it would allow for the type system to identify the correct implementation of `next()` to use, but there is a problem...
+
+> ***Editor's Note:*** This next section is diving into territory that I might get wrong. As always, corrections are always welcome. Also, there may be other issues with at least the below example but the underlying point I'm trying to make should still stand.
 
 ```rust
+// This code does not compile
 // Rust Playground Link:
-// https://play.rust-lang.org/?version=stable&mode=debug&edition=2024&gist=643450d365c439970b0d4c6674db6e3d
+// https://play.rust-lang.org/?version=stable&mode=debug&edition=2024&gist=428811cd1bfa1ca98c64e4a5caf23fed
 
 struct ParserIter<'a, P> {
-    inner: std::iter::Filter< std::slice::Iter<'a,&'a str>, P>,
+    inner: std::iter::Filter<std::slice::Iter<'a, String>, P>,
 }
 
 impl<'a, P> ParserIter<'a, P>
 where
-    P: FnMut(&str) -> bool,
+    P: FnMut(&String) -> bool,
 {
-    pub fn new(inner: std::slice::Iter<'a, &'a str>) -> Self {
+    pub fn new(inner: std::slice::Iter<'a, String>) -> Self {
         Self {
-            inner: inner.filter(|x| x != "1"),
+            inner: inner.filter(|x: String| x.as_str() != "1"),
         }
     }
 }
 
 impl<'a, P> Iterator for ParserIter<'a, P>
 where
-    P: FnMut(&str) -> bool,
+    P: FnMut(&String) -> bool,
 {
-    type Item = &'a str;
+    type Item = String;
 
-    fn next(&mut self)->Option<Self::Item> {
+    fn next(&mut self) -> Option<Self::Item> {
         self.inner.next()
     }
 }
 
 fn main() {
-    let slice = ["0", "1", "2", "3"].as_slice().into_iter();
+    let slice = [
+        String::from("0"),
+        String::from("1"),
+        String::from("2"),
+        String::from("3"),
+    ]
+    .as_slice()
+    .into_iter();
 
     let mut iter = ParserIter::new(slice);
 }
-
 ```
 
-The core issue here relates to  is that the iterator structs that have a predicate generic type like [`std::iter::Scan`](rustdoc) or [`std::iter::Filter`](rustdoc) are bounded by some variation of the [`FnMut`](rustdoc) trait.
+The core issue here (from my understanding) relates to how closures in Rust are interpreted as types. The Rust Reference actually has a pretty [informative section about how closures actually work and it's interesting](https://doc.rust-lang.org/reference/types/closure.html): they are basically structs that implement one of the `Fn` traits. Based on the reference, here is what the closure used in `filter` above looks like as a "type" (I did this by hand):
+
+```rust
+let x = |y: &str| y != "1";
+
+//This means x has roughly this type:
+struct Closure<'a> {
+	y: &'a str;
+}
+
+impl FnOnce<()> for Closure{
+	type Output = bool;
+	extern "rust-call" fn call_once(self, args: ()) -> bool {
+		self.y != "1"
+	}
+}
+```
+
+Because each closure effectively has some anonymous type representing it, there is no direct way to say that a struct _has_ a specific closure type. The name of the struct above is just an example and would be replaced by a compiler-generated name. It is also the reason that higher-order functions in Rust always use generics based around the `Fn` traits (aside from compatibility with named functions): there is no way to identify the closure's underlying type.
+
+> ***Editor's Note:*** This ends the section that requires fact checking.
+
+Now there are probably correct ways to get around this. I couldn't think of them, and honestly that is fine for now. The "hack" (or proper solution if it actually is) is to _eagerly collect the filtered inner iterator into a `Vec`, then store the `std::vec::IntoIter` struct created by `Vec.into_iter()`_.
+
+```rust
+// This code compiles but sucks monkey balls
+// Rust Playground:
+// https://play.rust-lang.org/?version=stable&mode=debug&edition=2024&gist=82f66e624f0bf4205ac1cd77c508941b
+struct ParserIter {
+    inner: std::vec::IntoIter<String>,
+}
+
+impl ParserIter {
+    pub fn new(inner: std::slice::Iter<'_, String>) -> Self {
+        let filtered: Vec<String> = inner
+            .filter(|x| x.as_str() != "1")
+            .map(|x| x.to_owned())
+            .collect();
+        Self {
+            inner: filtered.into_iter(),
+        }
+    }
+}
+
+impl Iterator for ParserIter {
+    type Item = String;
+
+    fn next(&mut self) -> Option<Self::Item> {
+        self.inner.next()
+    }
+}
+
+fn main() {
+    let slice = [
+        String::from("0"),
+        String::from("1"),
+        String::from("2"),
+        String::from("3"),
+    ];
+
+    let iter = slice.as_slice().into_iter();
+
+    #[allow(unused_variables)]
+    let iter = ParserIter::new(iter);
+}
+```
+
+This is a ___terrible___ solution. I admit this and take all the blame. It does a reallocation and effectively does a second iteration over the same data, overall increasing the iterator's algorithmic complexity to at least O(N²). But this solution works because the filter closure defined in the actual `ParserIterator` implementation relies on capturing mutable references to the iterator's internal state members:
+
+```rust
+impl<'i> Iterator for ParserIterator<'i> {
+    type Item = TerminalCharacter;
+
+    fn next(&mut self) -> Option<Self::Item> {
+        match self.parsed_iter {
+            Some(ref mut iter) => match (iter).next() {
+				//Cut for size
+            },
+            None => {
+                match cow_parser::<ContextError>.parse_next(&mut self.stream) {
+                    Ok(parsed) => {
+                        let iter = parsed.into_iter().filter(|parsed| match parsed {
+                            TerminalCharacter::Newline => {
+                                if self.prev_new_line {
+                                    false
+                                } else {
+                                    self.prev_new_line = self.cow_started;
+                                    true
+                                }
+                            }
+                            TerminalCharacter::Comment => true, //Should not alter newline state since it's not interpreted
+                            TerminalCharacter::CowStart => {
+                                self.cow_started = true;
+                                true
+                            }
+                            _ => {
+                                self.prev_new_line = false;
+                                true
+                            }
+                        });
+
+                        //Cut out the hack description
+                        let filtered: Vec<TerminalCharacter> = iter.collect();
+
+                        self.parsed_iter = Some(filtered.into_iter());
+
+                        self.next()
+                    }
+                    Err(_parse_err) => None,
+                }
+            }
+        }
+    }
+}
+```
+
+This "side-effecting" iteration is important because it allows preservation of semantics as different branches of the parser are reached and certain tokens are processed. In theory, some optimizations could be done by changing under the hood to process the full input immediately then just iterate over that, but it removes the "laziness" of the iterator by forcing a bunch of work upfront then just looping over those results. This solution is "semi-lazy" by only doing this whole song and dance when whatever the parser returned so far has been processed, which is generally better to have even if the actual implementation uses it eagerly. Something something optimization and hot/cold paths or whatever. I don't know.
+
+Long story short, Rust is interesting and cool and I still like it because I learn programming language theory somehow whenever I find some weird wall that exists.
