@@ -29,9 +29,8 @@ function reactToText(node: React.ReactNode | object, resolvers?: ResolverMap): s
     }
 
     // Because ReactNode includes {} in its union we need to jump through a few hoops.
-
     // biome-ignore lint/suspicious/noExplicitAny: from original source
-            const props: { children?: React.ReactNode } = (node as any).props ? (node as any).props : {};
+    const props: { children?: React.ReactNode } = (node as any).props ? (node as any).props : {};
 
     if (!props || !props.children) {
         return '';
