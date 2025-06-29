@@ -3,38 +3,19 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build -d",
-    "start": "next start",
-    "lint": "next lint",
-    "postbuild": "next-sitemap"
+    "serve": "ELEVENTY_ENV=development eleventy --serve",
+    "build": "ELEVENTY_ENV=production eleventy"
   },
   "dependencies": {
-    "@radix-ui/react-accordion": "1.2.11",
-    "@radix-ui/react-navigation-menu": "1.2.13",
-    "@radix-ui/react-separator": "1.1.7",
-    "@radix-ui/react-slot": "1.2.3",
-    "@radix-ui/react-tooltip": "1.2.7",
-    "class-variance-authority": "0.7.1",
-    "clsx": "2.1.1",
-    "date-fns": "4.1.0",
-    "embla-carousel-autoplay": "8.6.0",
-    "embla-carousel-react": "8.6.0",
-    "gray-matter": "4.0.3",
-    "lucide-react": "0.511.0",
-    "next": "15.3.3",
-    "next-themes": "0.4.6",
-    "react": "19.1.0",
-    "react-dom": "19.1.0",
+
     "tailwind-merge": "3.3.0",
-    "tw-animate-css": "1.3.2"
+    "tw-animate-css": "1.3.2",
+		"@11ty/eleventy": "3.1.2"
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
     "@mdx-js/loader": "3.1.0",
-    "@mdx-js/react": "3.1.0",
-    "@next/bundle-analyzer": "15.3.3",
-    "@next/mdx": "15.3.3",
+		"@11ty/eleventy-plugin-webc": "0.11.2",
     "@shikijs/rehype": "3.4.2",
     "@shikijs/themes": "3.4.2",
     "@tailwindcss/postcss": "4.1.8",
