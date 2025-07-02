@@ -28,7 +28,7 @@ export default async function (eleventyConfig) {
     // https://www.11ty.dev/docs/watch-serve/#add-your-own-watch-targets
 
     // Watch CSS files
-    // eleventyConfig.addWatchTarget("css/**/*.css");
+    eleventyConfig.addWatchTarget("**/*.css");
     // Watch images for the image pipeline.
     // eleventyConfig.addWatchTarget("content/**/*.{svg,webp,png,jpg,jpeg,gif}");
 

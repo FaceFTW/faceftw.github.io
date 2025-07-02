@@ -1,0 +1,31 @@
+{
+	"header": {
+		"logo": "/assets/images/logos/logo-wordmark-blue.png",
+		"logo_alt": "",
+		"logo_url": "/",
+		"background_color": "#ffffff",
+		"color": "#393939",
+		"links": [
+			{
+				"link": "/projects",
+				"text": "Projects"
+			},
+			{
+				"link": "/resume",
+				"text": "Resume"
+			},
+			{
+				"link": "/blog",
+				"text": "Blog"
+			},
+			{
+				"link": "/about",
+				"text": "About"
+			},
+			{
+				"link": "/feed.xml",
+				"text": "RSS Feed"
+			}
+		]
+	}
+}

@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "serve": "eleventy --serve",
-    "build": "eleventy"
+		"css-dev":"postcss -i src/main.css -o dist/main.css --watch",
+		"build": "eleventy"
   },
   "dependencies": {
 
