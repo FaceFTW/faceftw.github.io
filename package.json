@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "ELEVENTY_ENV=development eleventy --serve",
-    "build": "ELEVENTY_ENV=production eleventy"
+    "serve": "eleventy --serve",
+    "build": "eleventy"
   },
   "dependencies": {
 
@@ -15,7 +15,9 @@
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
     "@mdx-js/loader": "3.1.0",
-		"@11ty/eleventy-plugin-webc": "0.11.2",
+		"@11ty/eleventy-navigation": "^0.3",
+		"@11ty/eleventy-plugin-rss": "^2",
+		"@11ty/eleventy-img": "^6",
     "@shikijs/rehype": "3.4.2",
     "@shikijs/themes": "3.4.2",
     "@tailwindcss/postcss": "4.1.8",

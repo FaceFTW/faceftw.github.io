@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en" suppresshydrationwarning>
+    <head>
+        <title>{{ title }}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="/assets/main.css"/>
+        <script>
+            // Remove this script if you don"t need the dark mode toggle On page load or when changing themes, best to add inline in
+            // `head` to avoid FOUC
+            if (
+                localStorage.theme === "dark" ||
+                (!("theme" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches)
+            ) {
+                document
+                    .documentElement
+                    .classList
+                    .add("dark")
+            } else {
+                document
+                    .documentElement
+                    .classList
+                    .remove("dark")
+            }
+            const toggleDarkMode = function () {
+                if (document
+                        .documentElement
+                        .classList
+                        .contains("dark")) {
+                    document
+                        .documentElement
+                        .classList
+                        .remove("dark");
+                    localStorage.theme = "light";
+                } else {
+                    document
+                        .documentElement
+                        .classList
+                        .add("dark")
+                    localStorage
+                    .theme = "dark"
+            }
+        };
+        {# const forgetPref = function () {
+            localStorage
+                .removeItem("theme")
+                window
+                .location
+                .reload()
+        } #}
+        </script>
+    </head>
+    <body class="antialiased rubik.className">
+        <div classname="flex min-h-screen flex-col">
+            <header classname="z-40 bg-background py-2 md:px-40 md:py-6">
+                <div classname="flex h-10 flex-row justify-between ">
+                    <span classname="w-max-10"/>
+                </div>
+            </header>
+            <main classname="container mx-auto flex flex-col md:w-[80%]">
+                <div classname="container mx-auto px-5">{{ content | safe }}</div>
+                <div
+                    classname="flex items-center">{# <SiteFooter/> #}
+                </div>
+            </main>
+        </div>
+    </body>
+</html>
