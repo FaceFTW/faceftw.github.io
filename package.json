@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "serve": "eleventy --serve",
-		"css-dev":"postcss -i src/main.css -o dist/main.css --watch",
+		"css-dev":"tailwindcss -i src/main.css -o dist/assets/main.css --watch",
 		"build": "eleventy"
   },
   "dependencies": {
@@ -23,6 +23,7 @@
     "@shikijs/themes": "3.4.2",
     "@tailwindcss/postcss": "4.1.8",
     "@tailwindcss/typography": "0.5.16",
+		"@tailwindcss/cli":"4.1.11",
     "@types/mdx": "2.0.13",
     "@types/node": "22.15.26",
     "@types/react": "19.1.6",

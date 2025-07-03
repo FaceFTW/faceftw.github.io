@@ -10,11 +10,11 @@ import ShikiPlugin from './src/libs/ShikiPlugin.mjs';
 /** @param {import("@11ty/eleventy").UserConfig} eleventyConfig */
 export default async function (eleventyConfig) {
     // Drafts, see also _data/eleventyDataSchema.js
-    eleventyConfig.addPreprocessor('drafts', '*', (data, content) => {
-        if (data.draft && process.env.ELEVENTY_RUN_MODE === 'build') {
-            return false;
-        }
-    });
+    // eleventyConfig.addPreprocessor('drafts', '*', (data, content) => {
+    //     if (data.draft && process.env.ELEVENTY_RUN_MODE === 'build') {
+    //         return false;
+    //     }
+    // });
 
     // Copy the contents of the `public` folder to the output folder
     // For example, `./public/css/` ends up in `_site/css/`
@@ -41,13 +41,13 @@ export default async function (eleventyConfig) {
         bundleHtmlContentFromSelector: 'style',
     });
 
-    // Bundle <script> content and adds a {% js %} paired shortcode
-    eleventyConfig.addBundle('js', {
-        toFileDirectory: 'dist',
-        // Add all <script> content to the `js` bundle (use <script eleventy:ignore> to opt-out)
-        // Supported selectors: https://www.npmjs.com/package/posthtml-match-helper
-        bundleHtmlContentFromSelector: 'script',
-    });
+    // // Bundle <script> content and adds a {% js %} paired shortcode
+    // eleventyConfig.addBundle('js', {
+    //     toFileDirectory: 'dist',
+    //     // Add all <script> content to the `js` bundle (use <script eleventy:ignore> to opt-out)
+    //     // Supported selectors: https://www.npmjs.com/package/posthtml-match-helper
+    //     bundleHtmlContentFromSelector: 'script',
+    // });
 
     // Official plugins
     // eleventyConfig.addPlugin(pluginSyntaxHighlight, {

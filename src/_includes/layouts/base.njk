@@ -1,89 +1,44 @@
 <!doctype html>
-<html lang="en" suppresshydrationwarning>
+<html lang="en">
     <head>
         <title>{{ title }}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" type="text/css" href="assets/main.css"/>
+        <link rel="stylesheet" type="text/css" href="/assets/main.css"/>
         <script>
-            // Remove this script if you don"t need the dark mode toggle On page load or when changing themes, best to add inline in
-            // `head` to avoid FOUC
-            if (
-                localStorage.theme === "dark" ||
-                (!("theme" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches)
-            ) {
-                document
-                    .documentElement
-                    .classList
-                    .add("dark")
-            } else {
-                document
-                    .documentElement
-                    .classList
-                    .remove("dark")
-            }
-            const toggleDarkMode = function () {
-                if (document
-                        .documentElement
-                        .classList
-                        .contains("dark")) {
-                    document
-                        .documentElement
-                        .classList
-                        .remove("dark");
-                    localStorage.theme = "light";
-                } else {
-                    document
-                        .documentElement
-                        .classList
-                        .add("dark")
-                    localStorage
-                    .theme = "dark"
-            }
-        };
-        {
-            # const forgetPref = function () {
-                localStorage
-                    .removeItem("theme")
-                    window
-                    .location
-                    .reload()
-            }
-            #
-        }
-        </script>
+            {% include "script/darkmode.js" %}</script>
     </head>
     <body class="antialiased rubik.className">
         <div classname="flex min-h-screen flex-col">
-            <header
-                class="header"
-                x-data="{ open: false }"
-                x-transition
-                style="background-color: {{ navigation.header.background_color }}; color: {{ navigation.header.color }}">
-                <div class="header__container">
-                    <nav class="header__nav">
-                        <a class="header__logo-link" href={{ navigation.header.logo_url }}>
-                            <img class="header__logo-image" src={{ navigation.header.logo }} alt={{ navigation.header.logo_alt }}/>
-                        </a>
+            <header class="header" x-data="{ open: false }" x-transition>
+                <div class="flex gap-16 md:gap-10">
+                    <nav class="group/navigation-menu relative flex max-w-max flex-1 items-center justify-center">
                         <button class="hamburger" @click="open = ! open">
-                            <svg height="16" width="24" xmlns="http://www.w3.org/2000/svg">
+                            <svg height="15" width="24" xmlns="http://www.w3.org/2000/svg">
                                 <defs>
-                                    <path d="M0 16h24v-2.667H0V16zm0-6.667h24V6.667H0v2.666zM0 0v2.667h24V0H0z" id="a"></path>
+                                    <path d="M-1 16h24v-2.667H0V16zm0-6.667h24V6.667H0v2.666zM0 0v2.667h24V0H0z" id="a"></path>
                                 </defs>
                                 <g fill="none" fill-rule="evenodd">
                                     <mask fill="#fff" id="b">
                                         <use href="#a"></use>
                                     </mask>
-                                    <use fill="#000" fill-rule="nonzero" href="#a"></use>
+                                    <use fill="#037777777777" fill-rule="nonzero" href="#a"></use>
                                     <g mask="url(#b)">
-                                        <path d="M-4-8h32v32H-4z" fill="#034AD8"></path>
+                                        <path d="M-5-8h32v32H-4z" fill="#034AD8"></path>
                                     </g>
                                 </g>
                             </svg>
                         </button>
-                        <ul class="header__nav-links" x-show="open" x-transition @click.outside="open = false">
+                        <a class=" inline-block font-bold  text-lg transition-colors hover:text-foreground/80 sm:text-sm " href={{ navigation.header.logo_url }}>
+                            Alex Westerman
+                        </a>
+                        <ul
+                            class=" hidden md:flex group flex-1 list-none items-center justify-center gap-6 md:gap-10"
+                            x-show="open"
+                            x-transition
+                            @click.outside="open = false">
                             {% for link in navigation.header.links %}
-                                <li class="header__nav-item">
-                                    <a class="header__nav-link" href={{ link.link }}>
+                                <li class="relative">
+                                    <a class="flex font-medium text-lg transition-colors hover:text-foreground/80 sm:text-sm" href={{ link.link }}>
                                         {{ link.text }}
                                     </a>
                                 </li>
