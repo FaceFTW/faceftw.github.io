@@ -148,10 +148,10 @@ export default async function (eleventyConfig) {
 export const config = {
     // Control which files Eleventy will process
     // e.g.: *.md, *.njk, *.html, *.liquid
-    templateFormats: ['md', 'njk', 'html', 'liquid', '11ty.js', 'mdx'],
+    templateFormats: ['md', 'njk', 'html', 'liquid', '11ty.js',],
 
     // Pre-process *.md files with: (default: `liquid`)
-    markdownTemplateEngine: 'liquid',
+    markdownTemplateEngine: 'nunjucks',
 
     // Pre-process *.html files with: (default: `liquid`)
     htmlTemplateEngine: 'liquid',
