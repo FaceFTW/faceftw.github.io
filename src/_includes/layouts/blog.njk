@@ -1,0 +1,46 @@
+---
+layout: layouts/base.njk
+---
+
+<div className='flex flex-col justify-center'>
+    <div className='mb-4 flex flex-row'>
+        <a href='/blog'>
+            <div className='flex flex-row space-x-2'>
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="lucide lucide-arrow-left text-neutral-600 dark:text-neutral-500"
+                    aria-hidden="true">
+                    <path d="m12 19-7-7 7-7"></path>
+                    <path d="M19 12H5"></path>
+                </svg>
+                <p className='text-neutral-600 dark:text-neutral-500'>Back to the Main Page</p>
+            </div>
+        </a>
+    </div>
+    <article className='prose prose-green dark:prose-invert block grow lg:max-w-[125ch]'>{{ content | safe }}</article>
+    <br/>
+    <em
+        className='prose prose-green dark:prose-invert mb-8 inline-flex self-center lg:flex'
+        xmlns:cc='http://creativecommons.org/ns#'
+        xmlns:dct='http://purl.org/dc/terms/'>
+        <span property='dct:title' className='mr-1'>
+            This post of ref_cycle&nbsp;
+        </span>
+        is licensed under&nbsp;
+        <a
+            href='https://creativecommons.org/licenses/by-nc-sa/4.0'
+            target='_blank'
+            rel='license noopener noreferrer'
+            className='ml-1 inline'>
+            CC BY-NC-SA 4.0
+        </a>
+    </em>
+</div>

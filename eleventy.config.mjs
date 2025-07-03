@@ -28,7 +28,7 @@ export default async function (eleventyConfig) {
     // https://www.11ty.dev/docs/watch-serve/#add-your-own-watch-targets
 
     // Watch CSS files
-    eleventyConfig.addWatchTarget("**/*.css");
+    eleventyConfig.addWatchTarget('**/*.css');
     // Watch images for the image pipeline.
     // eleventyConfig.addWatchTarget("content/**/*.{svg,webp,png,jpg,jpeg,gif}");
 
@@ -88,6 +88,20 @@ export default async function (eleventyConfig) {
     // 	}
     // });
 
+    eleventyConfig.addExtension('mdx', {
+        compile: async (str, inputPath) => {
+            const { default: mdxContent } = await evaluate(str, {
+                ...runtime,
+                baseUrl: pathToFileURL(inputPath),
+            });
+
+            return async function (data) {
+                let res = await mdxContent(data);
+                return renderToStaticMarkup(res);
+            };
+        },
+    });
+
     // Image optimization: https://www.11ty.dev/docs/plugins/image/#eleventy-transform
     eleventyConfig.addPlugin(eleventyImageTransformPlugin, {
         // Output formats for each image.
@@ -134,7 +148,7 @@ export default async function (eleventyConfig) {
 export const config = {
     // Control which files Eleventy will process
     // e.g.: *.md, *.njk, *.html, *.liquid
-    templateFormats: ['md', 'njk', 'html', 'liquid', '11ty.js'],
+    templateFormats: ['md', 'njk', 'html', 'liquid', '11ty.js', 'mdx'],
 
     // Pre-process *.md files with: (default: `liquid`)
     markdownTemplateEngine: 'liquid',
