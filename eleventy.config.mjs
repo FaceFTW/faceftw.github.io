@@ -88,19 +88,19 @@ export default async function (eleventyConfig) {
     // 	}
     // });
 
-    eleventyConfig.addExtension('mdx', {
-        compile: async (str, inputPath) => {
-            const { default: mdxContent } = await evaluate(str, {
-                ...runtime,
-                baseUrl: pathToFileURL(inputPath),
-            });
+    // eleventyConfig.addExtension('mdx', {
+    //     compile: async (str, inputPath) => {
+    //         const { default: mdxContent } = await evaluate(str, {
+    //             ...runtime,
+    //             baseUrl: pathToFileURL(inputPath),
+    //         });
 
-            return async function (data) {
-                let res = await mdxContent(data);
-                return renderToStaticMarkup(res);
-            };
-        },
-    });
+    //         return async function (data) {
+    //             let res = await mdxContent(data);
+    //             return renderToStaticMarkup(res);
+    //         };
+    //     },
+    // });
 
     // Image optimization: https://www.11ty.dev/docs/plugins/image/#eleventy-transform
     eleventyConfig.addPlugin(eleventyImageTransformPlugin, {
@@ -148,20 +148,22 @@ export default async function (eleventyConfig) {
 export const config = {
     // Control which files Eleventy will process
     // e.g.: *.md, *.njk, *.html, *.liquid
-    templateFormats: ['md', 'njk', 'html', 'liquid', '11ty.js',],
+    templateFormats: ['md', 'njk', 'html', 'liquid', '11ty.js'],
 
     // Pre-process *.md files with: (default: `liquid`)
     markdownTemplateEngine: 'nunjucks',
 
     // Pre-process *.html files with: (default: `liquid`)
-    htmlTemplateEngine: 'liquid',
+    htmlTemplateEngine: 'nunjucks',
 
     // These are all optional:
     dir: {
         input: 'src', // default: "."
         includes: '_includes', // default: "_includes" (`input` relative)
         data: '_data', // default: "_data" (`input` relative)
+
         output: 'dist',
+
     },
 
     // -----------------------------------------------------------------

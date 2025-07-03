@@ -1,0 +1,194 @@
+---
+
+---
+
+<div
+    data-slot="card"
+    class="bg-card text-card-foreground gap-6 rounded-xl border py-6 shadow-sm flex min-w-[200px] flex-col">
+    <div
+        data-slot="card-header"
+        class="@container/card-header grid auto-rows-min grid-rows-[auto_auto] items-start gap-1.5 px-6
+            has-data-[slot=card-action]:grid-cols-[1fr_auto] [.border-b]:pb-6">
+        <div data-slot="card-title" class="leading-none font-semibold">Portfolio Website</div>
+        <div data-slot="card-description" class="text-muted-foreground text-sm text-wrap"></div>
+    </div>
+    <div data-slot="card-content" class="px-6">
+        <div class="flex flex-col-reverse lg:flex-row-reverse"><img
+                src="/img/portfolionew.webp"
+                width="1936"
+                height="1048"
+                class="h-[125px] object-contain md:h-[250px] md:w-[400px]"
+                alt="Portfolio Website">
+            <div class="mb-4 space-x-1">
+                <p>
+                    <em>Tags:</em>
+                </p>
+				{% for tag in project.tags %}
+                <span
+                    data-slot="badge"
+                    class="inline-flex items-center justify-center rounded-md border px-2 py-0.5 text-xs font-medium w-fit whitespace-nowrap
+                        shrink-0 [&amp;>svg]:size-3 gap-1 [&amp;>svg]:pointer-events-none focus-visible:border-ring focus-visible:ring-ring/50
+                        focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40
+                        aria-invalid:border-destructive transition-[color,box-shadow] overflow-hidden border-transparent bg-primary
+                        text-primary-foreground [a&amp;]:hover:bg-primary/90">
+                    HTML5</span>
+                <span
+                    data-slot="badge"
+                    class="inline-flex items-center justify-center rounded-md border px-2 py-0.5 text-xs font-medium w-fit whitespace-nowrap
+                        shrink-0 [&amp;>svg]:size-3 gap-1 [&amp;>svg]:pointer-events-none focus-visible:border-ring focus-visible:ring-ring/50
+                        focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40
+                        aria-invalid:border-destructive transition-[color,box-shadow] overflow-hidden border-transparent bg-primary
+                        text-primary-foreground [a&amp;]:hover:bg-primary/90">
+                    Sass</span>
+                <span
+                    data-slot="badge"
+                    class="inline-flex items-center justify-center rounded-md border px-2 py-0.5 text-xs font-medium w-fit whitespace-nowrap
+                        shrink-0 [&amp;>svg]:size-3 gap-1 [&amp;>svg]:pointer-events-none focus-visible:border-ring focus-visible:ring-ring/50
+                        focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40
+                        aria-invalid:border-destructive transition-[color,box-shadow] overflow-hidden border-transparent bg-primary
+                        text-primary-foreground [a&amp;]:hover:bg-primary/90">
+                    Typescript</span>
+                <span
+                    data-slot="badge"
+                    class="inline-flex items-center justify-center rounded-md border px-2 py-0.5 text-xs font-medium w-fit whitespace-nowrap
+                        shrink-0 [&amp;>svg]:size-3 gap-1 [&amp;>svg]:pointer-events-none focus-visible:border-ring focus-visible:ring-ring/50
+                        focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40
+                        aria-invalid:border-destructive transition-[color,box-shadow] overflow-hidden border-transparent bg-primary
+                        text-primary-foreground [a&amp;]:hover:bg-primary/90">
+                    JSON Schema</span>
+                <span
+                    data-slot="badge"
+                    class="inline-flex items-center justify-center rounded-md border px-2 py-0.5 text-xs font-medium w-fit whitespace-nowrap
+                        shrink-0 [&amp;>svg]:size-3 gap-1 [&amp;>svg]:pointer-events-none focus-visible:border-ring focus-visible:ring-ring/50
+                        focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40
+                        aria-invalid:border-destructive transition-[color,box-shadow] overflow-hidden border-transparent bg-primary
+                        text-primary-foreground [a&amp;]:hover:bg-primary/90">
+                    Angular</span>
+                <span
+                    data-slot="badge"
+                    class="inline-flex items-center justify-center rounded-md border px-2 py-0.5 text-xs font-medium w-fit whitespace-nowrap
+                        shrink-0 [&amp;>svg]:size-3 gap-1 [&amp;>svg]:pointer-events-none focus-visible:border-ring focus-visible:ring-ring/50
+                        focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40
+                        aria-invalid:border-destructive transition-[color,box-shadow] overflow-hidden border-transparent bg-primary
+                        text-primary-foreground [a&amp;]:hover:bg-primary/90">
+                    Angular Material</span>
+                <span
+                    data-slot="badge"
+                    class="inline-flex items-center justify-center rounded-md border px-2 py-0.5 text-xs font-medium w-fit whitespace-nowrap
+                        shrink-0 [&amp;>svg]:size-3 gap-1 [&amp;>svg]:pointer-events-none focus-visible:border-ring focus-visible:ring-ring/50
+                        focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40
+                        aria-invalid:border-destructive transition-[color,box-shadow] overflow-hidden border-transparent bg-primary
+                        text-primary-foreground [a&amp;]:hover:bg-primary/90">
+                    TypeScript</span>
+                <span
+                    data-slot="badge"
+                    class="inline-flex items-center justify-center rounded-md border px-2 py-0.5 text-xs font-medium w-fit whitespace-nowrap
+                        shrink-0 [&amp;>svg]:size-3 gap-1 [&amp;>svg]:pointer-events-none focus-visible:border-ring focus-visible:ring-ring/50
+                        focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40
+                        aria-invalid:border-destructive transition-[color,box-shadow] overflow-hidden border-transparent bg-primary
+                        text-primary-foreground [a&amp;]:hover:bg-primary/90">
+                    MUI</span>
+                <span
+                    data-slot="badge"
+                    class="inline-flex items-center justify-center rounded-md border px-2 py-0.5 text-xs font-medium w-fit whitespace-nowrap
+                        shrink-0 [&amp;>svg]:size-3 gap-1 [&amp;>svg]:pointer-events-none focus-visible:border-ring focus-visible:ring-ring/50
+                        focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40
+                        aria-invalid:border-destructive transition-[color,box-shadow] overflow-hidden border-transparent bg-primary
+                        text-primary-foreground [a&amp;]:hover:bg-primary/90">
+                    React</span>
+                <span
+                    data-slot="badge"
+                    class="inline-flex items-center justify-center rounded-md border px-2 py-0.5 text-xs font-medium w-fit whitespace-nowrap
+                        shrink-0 [&amp;>svg]:size-3 gap-1 [&amp;>svg]:pointer-events-none focus-visible:border-ring focus-visible:ring-ring/50
+                        focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40
+                        aria-invalid:border-destructive transition-[color,box-shadow] overflow-hidden border-transparent bg-primary
+                        text-primary-foreground [a&amp;]:hover:bg-primary/90">
+                    react-router</span>
+                <span
+                    data-slot="badge"
+                    class="inline-flex items-center justify-center rounded-md border px-2 py-0.5 text-xs font-medium w-fit whitespace-nowrap
+                        shrink-0 [&amp;>svg]:size-3 gap-1 [&amp;>svg]:pointer-events-none focus-visible:border-ring focus-visible:ring-ring/50
+                        focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40
+                        aria-invalid:border-destructive transition-[color,box-shadow] overflow-hidden border-transparent bg-primary
+                        text-primary-foreground [a&amp;]:hover:bg-primary/90">
+                    shadcn/ui</span>
+                <span
+                    data-slot="badge"
+                    class="inline-flex items-center justify-center rounded-md border px-2 py-0.5 text-xs font-medium w-fit whitespace-nowrap
+                        shrink-0 [&amp;>svg]:size-3 gap-1 [&amp;>svg]:pointer-events-none focus-visible:border-ring focus-visible:ring-ring/50
+                        focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40
+                        aria-invalid:border-destructive transition-[color,box-shadow] overflow-hidden border-transparent bg-primary
+                        text-primary-foreground [a&amp;]:hover:bg-primary/90">
+                    TailwindCSS</span>
+                <span
+                    data-slot="badge"
+                    class="inline-flex items-center justify-center rounded-md border px-2 py-0.5 text-xs font-medium w-fit whitespace-nowrap
+                        shrink-0 [&amp;>svg]:size-3 gap-1 [&amp;>svg]:pointer-events-none focus-visible:border-ring focus-visible:ring-ring/50
+                        focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40
+                        aria-invalid:border-destructive transition-[color,box-shadow] overflow-hidden border-transparent bg-primary
+                        text-primary-foreground [a&amp;]:hover:bg-primary/90">
+                    Framer Motion</span>
+                <span
+                    data-slot="badge"
+                    class="inline-flex items-center justify-center rounded-md border px-2 py-0.5 text-xs font-medium w-fit whitespace-nowrap
+                        shrink-0 [&amp;>svg]:size-3 gap-1 [&amp;>svg]:pointer-events-none focus-visible:border-ring focus-visible:ring-ring/50
+                        focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40
+                        aria-invalid:border-destructive transition-[color,box-shadow] overflow-hidden border-transparent bg-primary
+                        text-primary-foreground [a&amp;]:hover:bg-primary/90">
+                    Next.JS</span>
+                <span
+                    data-slot="badge"
+                    class="inline-flex items-center justify-center rounded-md border px-2 py-0.5 text-xs font-medium w-fit whitespace-nowrap
+                        shrink-0 [&amp;>svg]:size-3 gap-1 [&amp;>svg]:pointer-events-none focus-visible:border-ring focus-visible:ring-ring/50
+                        focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40
+                        aria-invalid:border-destructive transition-[color,box-shadow] overflow-hidden border-transparent bg-primary
+                        text-primary-foreground [a&amp;]:hover:bg-primary/90">
+                    School Project</span>
+                <span
+                    data-slot="badge"
+                    class="inline-flex items-center justify-center rounded-md border px-2 py-0.5 text-xs font-medium w-fit whitespace-nowrap
+                        shrink-0 [&amp;>svg]:size-3 gap-1 [&amp;>svg]:pointer-events-none focus-visible:border-ring focus-visible:ring-ring/50
+                        focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40
+                        aria-invalid:border-destructive transition-[color,box-shadow] overflow-hidden border-transparent bg-primary
+                        text-primary-foreground [a&amp;]:hover:bg-primary/90">
+                    Personal Project</span>
+                <span
+                    data-slot="badge"
+                    class="inline-flex items-center justify-center rounded-md border px-2 py-0.5 text-xs font-medium w-fit whitespace-nowrap
+                        shrink-0 [&amp;>svg]:size-3 gap-1 [&amp;>svg]:pointer-events-none focus-visible:border-ring focus-visible:ring-ring/50
+                        focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40
+                        aria-invalid:border-destructive transition-[color,box-shadow] overflow-hidden border-transparent bg-primary
+                        text-primary-foreground [a&amp;]:hover:bg-primary/90">
+                    Open Source</span>
+            </div>
+        </div>
+    </div>
+    <div data-slot="card-footer" class="items-center px-6 [.border-t]:pt-6 flex gap-4">
+        <button
+            data-slot="button"
+            class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all
+                disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg:not([class*='size-'])]:size-4
+                shrink-0 [&amp;_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]
+                aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive border
+                bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input
+                dark:hover:bg-input/50 h-9 px-4 py-2 has-[>svg]:px-3"
+            aria-label="GitHub Repository">
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewbox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-code-xml h-8 w-8"
+                aria-hidden="true">
+                <path d="m18 16 4-4-4-4"></path>
+                <path d="m6 8-4 4 4 4"></path>
+                <path d="m14.5 4-5 16"></path>
+            </svg>
+            <span>Source Code</span>
+        </button>
+    </div>
