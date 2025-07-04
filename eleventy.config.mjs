@@ -16,21 +16,18 @@ export default async function (eleventyConfig) {
     //     }
     // });
 
-    // Copy the contents of the `public` folder to the output folder
-    // For example, `./public/css/` ends up in `_site/css/`
     eleventyConfig
         .addPassthroughCopy({
             './public/': '/',
+            './src/assets/fonts': 'assets/fonts',
         })
         .addPassthroughCopy('./content/feed/pretty-atom-feed.xsl');
 
     // Run Eleventy when these files change:
     // https://www.11ty.dev/docs/watch-serve/#add-your-own-watch-targets
 
-    // Watch CSS files
     eleventyConfig.addWatchTarget('**/*.css');
-    // Watch images for the image pipeline.
-    // eleventyConfig.addWatchTarget("content/**/*.{svg,webp,png,jpg,jpeg,gif}");
+    eleventyConfig.addWatchTarget('**/*.{svg,webp,png,jpg,jpeg,gif}');
 
     // Per-page bundles, see https://github.com/11ty/eleventy-plugin-bundle
     // Bundle <style> content and adds a {% css %} paired shortcode
@@ -40,14 +37,6 @@ export default async function (eleventyConfig) {
         // Supported selectors: https://www.npmjs.com/package/posthtml-match-helper
         bundleHtmlContentFromSelector: 'style',
     });
-
-    // // Bundle <script> content and adds a {% js %} paired shortcode
-    // eleventyConfig.addBundle('js', {
-    //     toFileDirectory: 'dist',
-    //     // Add all <script> content to the `js` bundle (use <script eleventy:ignore> to opt-out)
-    //     // Supported selectors: https://www.npmjs.com/package/posthtml-match-helper
-    //     bundleHtmlContentFromSelector: 'script',
-    // });
 
     // Official plugins
     // eleventyConfig.addPlugin(pluginSyntaxHighlight, {
@@ -163,7 +152,6 @@ export const config = {
         data: '_data', // default: "_data" (`input` relative)
 
         output: 'dist',
-
     },
 
     // -----------------------------------------------------------------

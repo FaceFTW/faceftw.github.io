@@ -105,12 +105,7 @@
 				},
 				"degree": {
 					"description": "The degree(s) and graduation class of the insitution/school",
-					"type": "array",
-					"items": {
-						"type": "string",
-						"minItems": 1,
-						"uniqueItems": true
-					}
+					"type": "string"
 				},
 				"degreeAddendum": {
 					"description": "Any other relevant information about your degree (i.e. Major change, adding minors, etc)",

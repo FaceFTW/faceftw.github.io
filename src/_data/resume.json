@@ -139,10 +139,10 @@
 	"education": [
 		{
 			"name": "Rose-Hulman Institute of Technology",
-			"graduationDate": "BS Software Engineering - Class of 2023 (Summer)",
-			"degree": [
+			"graduationDate": "Class of 2023 (Summer)",
+			"degree":
 				"Bachelors of Science - Software Engineering"
-			],
+			,
 			"degreeAddendum": "Originally Studied Computer Engineering until Spring 2021",
 			"relCoursework": [
 				"Intro to Computer Systems (CSSE132)",
@@ -161,9 +161,9 @@
 		},
 		{
 			"name": "Walt Whitman High School",
-			"degree": [
+			"degree":
 				"High School Diploma"
-			],
+			,
 			"degreeAddendum": "Maryland Seal of Bi-Literacy (Chinese)",
 			"graduationDate": "Class of 2019",
 			"gpa": {
@@ -181,7 +181,7 @@
 	"experience": [
 		{
 			"name": "Comcast",
-			"position": "Software Engineer II (Contractor)",
+			"position": "Software Engineer II",
 			"timeEmployed": "August 2023 - Present",
 			"location": "Washington, DC",
 			"responsibilities": [

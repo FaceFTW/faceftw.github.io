@@ -4,6 +4,22 @@
 
 @custom-variant dark (&:is(.dark *));
 
+@font-face {
+  font-family: 'Rubik';
+  font-style: normal;
+  font-weight: 300 900;
+  font-display: swap;
+  src: url("fonts/Rubik-VariableFont_wght.ttf") format('truetype');
+}
+
+@font-face {
+  font-family: 'Rubik';
+  font-style: italic;
+  font-weight: 300 900;
+  font-display: swap;
+  src: url("fonts/Rubik-Italic-VariableFont_wght.ttf") format('truetype');
+}
+
 :root {
   --background: hsl(0 0% 100%);
   --foreground: hsl(240 10% 3.9%);
@@ -97,6 +113,7 @@
   --color-sidebar-ring: var(--sidebar-ring);
   --animate-accordion-down: accordion-down 1s ease-out;
   --animate-accordion-up: accordion-up 1s ease-out;
+	--font-rubik: Rubik, sans-serif;
 
   @keyframes accordion-down {
     0% {
