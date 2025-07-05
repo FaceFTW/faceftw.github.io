@@ -1,11 +1,10 @@
 import { IdAttributePlugin, InputPathToUrlTransformPlugin, HtmlBasePlugin } from '@11ty/eleventy';
 // import { feedPlugin } from "@11ty/eleventy-plugin-rss";
-// import pluginSyntaxHighlight from "@11ty/eleventy-plugin-syntaxhighlight";
 import pluginNavigation from '@11ty/eleventy-navigation';
 import { eleventyImageTransformPlugin } from '@11ty/eleventy-img';
-
-// import pluginFilters from './_config/filters.js';
-import ShikiPlugin from './src/libs/ShikiPlugin.mjs';
+import mdItClass from './src/libs/mdItClass.mjs';
+import { fromHighlighter } from '@shikijs/markdown-it';
+import { createHighlighterCoreSync, createOnigurumaEngine } from 'shiki';
 
 /** @param {import("@11ty/eleventy").UserConfig} eleventyConfig */
 export default async function (eleventyConfig) {
@@ -77,19 +76,61 @@ export default async function (eleventyConfig) {
     // 	}
     // });
 
-    // eleventyConfig.addExtension('mdx', {
-    //     compile: async (str, inputPath) => {
-    //         const { default: mdxContent } = await evaluate(str, {
-    //             ...runtime,
-    //             baseUrl: pathToFileURL(inputPath),
-    //         });
+    eleventyConfig.amendLibrary('md', (mdLib) => {
+        //Initialize the Shiki Highliher
+        const highligher = createHighlighterCoreSync({
+            themes: [import('@shikijs/themes/vitesse-light'), import('@shikijs/themes/vitesse-dark')],
+            langs: [
+                import('@shikijs/langs/rust'),
+                import('@shikijs/langs/java'),
+                import('@shikijs/langs/perl'),
+                import('@shikijs/langs/asciidoc'),
+                import('@shikijs/langs/html'),
+                import('@shikijs/langs/tsx'),
+                import('@shikijs/langs/javascript'),
+                import('@shikijs/langs/typescript'),
+                import('@shikijs/langs/c'),
+                import('@shikijs/langs/css'),
+                import('@shikijs/langs/csharp'),
+                import('@shikijs/langs/shell'),
+            ],
+            engine: createOnigurumaEngine(() => import('shiki/wasm')),
+        });
 
-    //         return async function (data) {
-    //             let res = await mdxContent(data);
-    //             return renderToStaticMarkup(res);
-    //         };
-    //     },
-    // });
+        mdLib.use(mdItClass, {
+            h1: ['text-3xl', 'xl:text-6xl', 'mb-4'],
+            h2: ['text-2xl', 'xl:text-5xl', 'mb-4'],
+            h3: ['text-xl', 'xl:text-4xl', 'mb-4'],
+            h4: ['text-lg', 'xl:text-3xl', 'mb-4'],
+            h5: ['text-md', 'xl:text-2xl', 'font-bold', 'mb-4'],
+            h6: ['text-md', 'xl:text-xl', 'mb-4'],
+            a: ['hover:underline', 'mb-4', 'leading-relaxed'],
+            ul: ['list-outside', 'indent-4', 'ml-8', 'mb-4', 'leading-relaxed'],
+            li: ['indent-4', 'leading-relaxed'],
+            p: ['mb-4', 'leading-relaxed'],
+            blockquote: [
+                'border-l-8',
+                'border-l-neutral-400',
+                'dark:border-l-neutral-600',
+                'border-spacing-16',
+                'pl-4',
+                'text-neutral-600',
+                'dark:text-neutral-400',
+                'leading-relaxed',
+            ],
+            hr: ['mb-4'],
+            table: ['table-auto', 'mx-auto', 'mb-4'],
+        });
+
+        mdLib.use(
+            fromHighlighter(highligher, {
+                themes: {
+                    light: 'vitesse-light',
+                    dark: 'vitesse-dark',
+                },
+            })
+        );
+    });
 
     // Image optimization: https://www.11ty.dev/docs/plugins/image/#eleventy-transform
     eleventyConfig.addPlugin(eleventyImageTransformPlugin, {
