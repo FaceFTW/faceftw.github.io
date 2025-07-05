@@ -6,8 +6,6 @@ author: Alex Westerman
 slug: '0006'
 ---
 
-import Image from 'next/image';
-
 # Looking Forward - 2024 Edition
 
 _A reflection on the past year and what's next_
@@ -37,7 +35,7 @@ The one thing I do want to improve is to try and reduce my "analysis paralysis."
 
 ## The Future
 
-There are many things I want to try in 2025. I want to do more ~~stupid~~ niche projects just for the heck of it, try embedded Rust with a bunch of old Arduinos and ESP32s in my workspace, play more good games, the whole list. No one knows what the future will hold but all I know is that I will look forward and embrace what's next.
+There are many things I want to try in 2025. I want to do more ~~stupid~~ niche projects just for the heck of it, try embedded Rust with a bunch of old Arduino's and ESP32s in my workspace, play more good games, the whole list. No one knows what the future will hold but all I know is that I will look forward and embrace what's next.
 
 
 

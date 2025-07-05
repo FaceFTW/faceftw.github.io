@@ -6,8 +6,6 @@ author: Alex Westerman
 slug: '0003'
 ---
 
-import Image from 'next/image';
-
 # Talking Cows, Perls, and Terminals
 _A really obscure set of rabbit holes to recreate an old piece of software_
 
@@ -33,10 +31,9 @@ When trying to describe a programming language syntax, it is often done in [Back
 
 Since Cowsay is written in Perl and cow files are just Perl scripts, I could start by writing a parser for Perl scripts, use that output as an "intermediate representation" (IR), then convert the IR to a string that the terminal will use. So let's do a quick google search...
 
-import googleSearch from './goggle-search.webp';
 
 <div>
-<Image src={googleSearch} alt="google is your friend?" width={1005} height={773} className='mx-auto mb-4'/>
+<img src="./goggle-search.webp" alt="google is your friend?" width="1005" height="773" className='mx-auto mb-4'/>
 </div>
 
 Uh-oh.
@@ -52,10 +49,9 @@ _Uh-oh._
 
 There was a reference to the [yacc (or GNU Bison)](https://www.gnu.org/software/bison/) definitions for Perl to potentially use as a starting point above, which can be derived into some BNF that can be used. Ok, *surely* the [grammar](https://github.com/Perl/perl5/blob/blead/perly.y) isn't that bad...
 
-import perly from './perly.webp';
 
 <div>
-<Image src={perly} alt="flashbanged by words" width={406} height={213} className='mx-auto mb-4'/>
+<img src="./perly.webp" alt="flashbanged by words" width="406" height="213" className='mx-auto mb-4'/>
 </div>
 
 Yeah, I'm not reading all of that.
@@ -82,7 +78,7 @@ $the_cow = <<"EOC";
 EOC
 ```
 There is quite a bit of information from this that is useful:
-- Most of the Cow data is an interpolated string defined in a variable called `$the_cow`. It seems like the syntax `<<"EOC"` indicates that after the the line, the variable's declaration doesn't end until the token in quotes (`EOC`) is reached.
+- Most of the Cow data is an interpolated string defined in a variable called `$the_cow`. It seems like the syntax `<<"EOC"` indicates that after the line, the variable's declaration doesn't end until the token in quotes (`EOC`) is reached.
 - Because this is an interpolated string, there are placeholder variables (`$thoughts`, `$eyes`, `$tongue`) that are likely replaced by the main script based on options passed to it (i.e. `cowthink` changes the shape of the bubble and the `$thought` lines). It can be assumed these placeholders have "fixed" values.
 
 This is great! Surely this means this project is simple and not complicated at all right! But my very expensive piece of paper (aka my Bachelor's Degree in Software Engineering) tells me that a single use case is never enough. Luckily, other developers like to create cows, and have created ways to convert images into nice little pixel art displayed in the terminal, such as this [website by charc0al on GitHub](https://charc0al.github.io/cowsay-files/converter/). Here is one such example from that website:
@@ -125,7 +121,7 @@ Ok this is fine, most of the notes currently still hold up, just need to add som
 - Comments start with `#` in these scripts
 - variable definitions can be created and referenced with interpolation in `$the_cow`. Some elaboration on that:
   - The name of the variable is prefixed with `$`. I will make some inferred rules about names to make work easier further down the line and restrict them to only contain alphanumeric characters.
-  - The value of the variable is specified on the right hand side (RHS) of the `=`, and is an interpolated string surrounded in double-quotes and terminated afterward with a semi-colon. Because it is interpolated, _any data that would be considered valid cow data here can be placed in the _.
+  - The value of the variable is specified on the right-hand side (RHS) of the `=`, and is an interpolated string surrounded in double-quotes and terminated afterward with a semicolon. Because it is interpolated, _any data that would be considered valid cow data here can be placed in the _.
   - Throughout the remainder of this post, I will be referring to this as a _**binding**_ for a variable, based on the idea of [free and bound variables](https://en.wikipedia.org/wiki/Free_variables_and_bound_variables). It will become more clear why I use this terminology later
 - Only while parsing the interpolated string, variable bindings can be referenced just by using `$<name>` in the string.
   - An assumption will be made that `$thoughts`, `$eyes`, and `$tongue` are "reserved" like a type of keyword.
@@ -183,13 +179,12 @@ Like before, let's find a good reference for all the commands. And sure enough s
     - 8-bit (256-color): `\e[<38|48>;5;<8-bit-code>m`
     - 24-bit color (Truecolor): `\e[<38|48>;2;<8-bit-red>;<8-bit-green>;<8-bit-blue>m`
 
-- `\N` is likely to represent a sequence of unicode characters by `xterm`. It can be confirmed by looking at a utility like the character map in Windows (below). It can also be asserted the pattern of this structure is `\N{U+XXXX}`, where X is the 4-digit hexadecimal code for the unicode character.
+- `\N` is likely to represent a sequence of Unicode characters by `xterm`. It can be confirmed by looking at a utility like the character map on Windows (below). It can also be asserted the pattern of this structure is `\N{U+XXXX}`, where X is the 4-digit hexadecimal code for the Unicode character.
   - ANSI standard also allows for a pattern like `\uXXXX`, but I have yet to see consistent usage in the field.
 
-import charmap from './charmap.webp';
 
 <div>
-<Image src={charmap} alt="char map" width={477} height={508} className='mx-auto mb-4'/>
+<img src="./charmap.webp" alt="char map" width="477" height="508" className='mx-auto mb-4'/>
 </div>
 
 There is now enough analysis of how a cow file is defined to move on to the next steps, [_**lexing**_](https://en.wikipedia.org/wiki/Lexical_analysis) and _**interpreting**_.
@@ -198,7 +193,7 @@ There is now enough analysis of how a cow file is defined to move on to the next
 
 Here is a rough implementation diagram of the interpreter. It's much simpler compared to other interpreters and compilers because by cutting out noise like multi-file parsing and binary linkage:
 
-```asciidoc
+```text
                 +----------+                +--------------+
                 |          | Intermediate   |              |
                 |  Lexer   | Representation |  Interpreter |
@@ -245,7 +240,7 @@ It's not very complicated, and it enumerates every "instruction" the parser will
 
 There is this very convenient Rust crate called [nom](https://github.com/rust-bakery/nom) that creates [_parser combinators_](https://en.wikipedia.org/wiki/Parser_combinator) which are very efficient. The idea here is to create smaller parser then use composition to create the full parser. For example, here is a rough diagram of the parsers created for this project:
 
-```asciidoc
+```text
                                                  +------------+
                                               +->| Spaces     |
                         +------------------+  |  +------------+
@@ -280,7 +275,7 @@ There is this very convenient Rust crate called [nom](https://github.com/rust-ba
 
 Each parser is a simple function that takes an input string, and returns data in the form of `IResult<I,O,E>`, effectively, the remaining unparsed input, the captured output, and optionally an error if it happens. It's a wrapper around the standard Rust `Result<T,E>` that I and others love, but the extra addition allows us to iterate through the input until it's been fully consumed (more on that later).
 
-Here is an example for parsing the escaped unicode characters that was discussed earlier:
+Here is an example for parsing the escaped Unicode characters that was discussed earlier:
 ```rust
 fn unicode_char<'a, E: ParseError<&'a str>>(i: &'a str) -> IResult<&'a str, TerminalCharacter, E> {
     alt((
@@ -304,9 +299,9 @@ fn unicode_char<'a, E: ParseError<&'a str>>(i: &'a str) -> IResult<&'a str, Term
 ```
 
 It's fairly readable, but here's a rundown:
-- There are two parsers which look for different string patterns, which if it matches is passed through a function to put into IR that it just lexed/parsed a `UnicodeCharacter` with the respective character.
+- There are two parsers which look for different string patterns, which, if it matches is passed through a function to put into IR that it just lexed/parsed a `UnicodeCharacter` with the respective character.
   - The first one looks for 4 characters that are surrounded by the starting "tag" (or sequence) `\N{U+` and the ending "tag" `}`. The `tag()` defines a parser function that looks for an explicit string, while the `take(n)` consumes the next `n` characters.
-  - The second one also looks for 4 characters but that are prefixed by `\u`.
+  - The second one also looks for 4 characters, but that are prefixed by `\u`.
 - The `alt((parser,parser,...))` method is how to do composition in a "branching" manner. It will try the parsers in the specified order and return the `IResult<I,O,E>` of the first successful parse, or the errors if none of the parsers were successful.
 
 I'm not going to break down each and every parser; the [source code](https://github.com/FaceFTW/shell-toy/blob/main/src/parser.rs) is available for viewing to see other things like creating variable bindings (see the `var_binding()` function). The one thing I do want to show is the benefits of using parser combinators:
@@ -333,7 +328,7 @@ pub fn cow_parser(input: &str) -> IResult<&str, TerminalCharacter> {
 }
 ```
 
-I love how easy and clear it makes this entire process; There are clear, identifiable rules and there is no giant `if/else` tree to traverse to find a bug. During development when there was something wrong it was easy to tell if it was a lexer or interpreter issue because if it was the lexer, I can identify the bad parser and fix it. No hours of debugging, just 10-15 minutes. Beautiful.
+I love how easy and clear it makes this entire process; There are clear, identifiable rules and there is no giant `if/else` tree to traverse to find a bug. During development when there was something wrong it was easy to tell if it was a lexer or interpreter issue because if it was the lexer, I can identify the bad parser and fix it. No hours of debugging, just 10–15 minutes. Beautiful.
 
 So now an IR exists and the means to create it, but it is time to create the second part of the puzzle: interpretation.
 
@@ -341,7 +336,7 @@ So now an IR exists and the means to create it, but it is time to create the sec
 
 Well, not actual cow language, but that's beyond the point.
 
-First, it is important to discuss how the parser should be implemented; it's honestly trivial given Rust's `match` statements which allow easy and safe identification of the various IR forms defined in the lexer. Here is some rough psuedocode of what the interpreter function looks like:
+First, it is important to discuss how the parser should be implemented; it's honestly trivial given Rust's `match` statements which allow easy and safe identification of the various IR forms defined in the lexer. Here is some rough pseudocode of what the interpreter function looks like:
 
 ```rust
 fn interpreter(
@@ -364,7 +359,7 @@ fn interpreter(
 I mentioned something about updating internal state. This part is a bit complicated; I'm being vague here because it's not all the kind of information that a traditional compiler/interpreter might store; there isn't any information about defined types, functions, or scoping here. Let's do a recap some of the observations made earlier that would require "state" when looking at the cow files:
 
 - It is possible change the color of text in the terminal, and _it persists after triggering_.
-- It is possible have variable bindings that can be referenced in interpolated strings*
+- It is possible to have variable bindings that can be referenced in interpolated strings*
 
 Let's break down these into respective problems
 
@@ -375,7 +370,7 @@ $a = "test";
 $b = "test$a"; #This fails in the interpreter
 ```
 
-Looking at the IR definitions, variable bindings have two "data pieces": a `String` (the name) and a `Vec<TerminalCharacter>` (the value of the variable). If the interpreter identifies a variable binding, it can just _"register the binding"_ in it's internal state. I represent this as a `HashMap<String,Vec<TerminalCharacter>>` like below:
+Looking at the IR definitions, variable bindings have two "data pieces": a `String` (the name) and a `Vec<TerminalCharacter>` (the value of the variable). If the interpreter identifies a variable binding, it can just _"register the binding"_ in its internal state. I represent this as a `HashMap<String,Vec<TerminalCharacter>>` like below:
 
 ```rust
 //Inside interpreter function
@@ -482,7 +477,7 @@ fn on_color<Color: DynColor>(
     color: Color,
 ) -> BgDynColorDisplay<'_, Color, Self>
 ```
-_Editor's Note (aka. Me): I might get the explanation part here wrong because I couldn't exactly figure out if this is the real issue, but the solution is correct (because it works). Feel free to contact me and I'll update this with a better explanation or corrections if I'm wrong. I'm only human after all._
+_Editor's Note (aka. Me): I might get the explanation part here wrong because I couldn't exactly figure out if this is the real issue, but the solution is correct (because it works). Feel free to contact me, and I'll update this with a better explanation or corrections if I'm wrong. I'm only human after all._
 
 That... looks painful to dig through. Looking at the docs for `owo_colors`, these return types are generic structs that are wrappers around `T`; In this case, it is the struct that implements the `OwoColorize` trait, and using the context of `Style`, so `T: Style` is a fair assessment. There is no direct implementation of the `From` or `Into` traits (Rust's type casting traits), so it is not possible to coerce a mutable reference of a `Style` struct into any of these return types; These methods also don't mutate the `Style` and like a well-designed API there is no ability to just reach in to internal state.
 
@@ -606,15 +601,14 @@ fn derive_cow_str(
 }
 ```
 
-Some extra tidbits like the explicit recognition of the "start" of a cow file or the `cow_variant` parameter were added to address bugs or to add new features. This post is already really long and I don't want to get into the weeds more than I have to.
+Some extra tidbits like the explicit recognition of the "start" of a cow file or the `cow_variant` parameter were added to address bugs or to add new features. This post is already really long, and I don't want to get into the weeds more than I have to.
 
 All this interpreter does is create the string that should be printed to `stdout` (which is expected to be a terminal). The main function of `shell-toy` does some argument processing and other pre-lexing/interpreting tasks before calling the lexer and interpreter in sequence, in which the output simply goes through Rust's `println!()` macro. Compared to a real compiler/interpreter, it's just a really lightweight [domain-specific language](https://en.wikipedia.org/wiki/Domain-specific_language) interpreter for a silly little project that I should not have spent that much time on.
 
 ## The Final Result (Batteries Required)
-import demo from './demo.gif'
 
 <div>
-<Image src={demo} alt="yaay" width={1028} height={804} className='mx-auto mb-4'/>
+<img src="./demo.gif" alt="yaay" width="1028" height="804" className='mx-auto mb-4'/>
 </div>
 
 _Pardon the glitchy drawing, I can confirm this is an issue with the terminal recorder I used and not what it looks like._
@@ -625,29 +619,27 @@ Thanks for reading! Stay tuned in like 3 months for the next post where I might 
 
 _Published on 05-29-2025_
 
-Future Alex here. As a project, `shell-toy` has undergone some maintenance but overall has remained the same since this post was written. However, as of version 0.7.0 and up, there has been a significant rewrite of the parser to fix a deep-rooted bug related to parsing of comments. I _could_ just release the new version and leave this post to decay, but I felt it was necessary to give a brief explanation of the differences in the new parser. Plus the original post has some fixes with passive voice; That's for the linguist nerds to notice.
+Future Alex here. As a project, `shell-toy` has undergone some maintenance, but overall has remained the same since this post was written. However, as of version 0.7.0 and up, there has been a significant rewrite of the parser to fix a deep-rooted bug related to parsing of comments. I _could_ just release the new version and leave this post to decay, but I felt it was necessary to give a brief explanation of the differences in the new parser. Plus the original post has some fixes with passive voice; That's for the linguist nerds to notice.
 
 To summarize the issue, there exists a parser combinator specifically for Perl comments, which start with a `#` and end with a newline. The way the sub-parser was used meant that in cases where comments should _not_ be parsed like in the actual picture representation, it treated certain sequences erroneously as a comment when semantically it should be something else. This was the most apparent in the cowfile displaying the [Aperture Science logo from Portal (a.k.a. `aperture.cow`)](https://en.m.wikipedia.org/wiki/File:Aperture_Science.svg):
 
 
-import malformedAperture from './malformed_aperture.webp';
 
 <div>
-<Image src={malformedAperture} alt="Portal 2 spoiler?" width={686} height={206} className='mx-auto mb-4'/>
+<img src="./malformedAperture.webp" alt="Portal 2 spoiler?" width="686" height="206" className='mx-auto mb-4'/>
 </div>
 
-One of the difficulties with the `nom` crate is that it is intentionally bare-bones. Aside from some of the gripes I had with the error handling system (such as no easy way to propogate parser errors in `map()` parsers), part of the solution I tried with `nom` just _didn't work_. And I could not figure out why looking at it from a black box. Again, it is a widely downloaded crate for a reason, but I needed something different. So I _rewrote*_ the entire parser.
+One of the difficulties with the `nom` crate is that it is intentionally bare-bones. Aside from some of the gripes I had with the error handling system (such as no easy way to propagate parser errors in `map()` parsers), part of the solution I tried with `nom` just _didn't work_. And I could not figure out why looking at it from a black box. Again, it is a widely downloaded crate for a reason, but I needed something different. So I _rewrote*_ the entire parser.
 
 For the rewrite, I used [`winnow`](https://crates.io/crates/winnow) which is actually a fork of `nom`, but with API differences and built-in debugging features. In fact, `winnow`'s debugging is really cool since all that is needed is passing a Cargo feature flag:
 
 
-import winnowDbg from './winnow-dbg.webp';
 
 <div>
-<Image src={winnowDbg} alt="Example winnow debug output against the default cow" width={1084} height={601} className='mx-auto mb-4'/>
+<img src="./winnow-dbg.webp" alt="Example winnow debug output against the default cow" width="1084" height="601" className='mx-auto mb-4'/>
 </div>
 
-Most of the core parsers remained the same, except for the main "cow string". Instead of trying to parse everything at the same semantic level, a separate parser is used to identify the delimiters of the string (such as `$the_cow =<<EOC;`) and use the respective sub-parsers that are valid within that scope to return a token list. That looks something like this (in psuedo-code since the actual one is a bit long):
+Most of the core parsers remained the same, except for the main "cow string". Instead of trying to parse everything at the same semantic level, a separate parser is used to identify the delimiters of the string (such as `$the_cow =<<EOC;`) and use the respective sub-parsers that are valid within that scope to return a token list. That looks something like this (in pseudocode since the actual one is a bit long):
 
 ```rust
 fn cow_string<'a, E: ParserError<InputStream<'a>> + AddContext<InputStream<'a>, StrContext>>(
@@ -679,7 +671,7 @@ fn cow_string<'a, E: ParserError<InputStream<'a>> + AddContext<InputStream<'a>, 
 }
 ```
 
-This makes the top-level parser much cleaner, with the exception of needing to return in `Vec`s due to the new main string parser:
+This makes the top-level parser much cleaner, except needing to return in `Vec`s due to the new main string parser:
 
 ```rust
 fn cow_parser<'a, E: ParserError<InputStream<'a>> + AddContext<InputStream<'a>, StrContext>>(
@@ -746,7 +738,7 @@ fn main() {
 }
 ```
 
-The core issue here (from my understanding) relates to how closures in Rust are interpreted as types. The Rust Reference actually has a pretty [informative section about how closures actually work and it's interesting](https://doc.rust-lang.org/reference/types/closure.html): they are basically structs that implement one of the `Fn` traits. Based on the reference, here is what the closure used in `filter` above looks like as a "type" (I did this by hand):
+The core issue here (from my understanding) relates to how closures in Rust are interpreted as types. The Rust Reference actually has a pretty [informative section about how closures actually work, and it's interesting](https://doc.rust-lang.org/reference/types/closure.html): they are basically structs that implement one of the `Fn` traits. Based on the reference, here is what the closure used in `filter` above looks like as a "type" (I did this by hand):
 
 ```rust
 let x = |y: &str| y != "1";

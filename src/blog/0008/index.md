@@ -6,8 +6,6 @@ author: Alex Westerman
 slug: '0008'
 ---
 
-import Image from 'next/image';
-
 # "SHUT UP Device" - Part 2
 
 _Now it's time to display things_
@@ -27,22 +25,18 @@ Whenever a peripheral is added to a hardware project, it is important to underst
 
 For this project, I used a [SSD1306 128x64 monochrome OLED display](https://www.adafruit.com/product/326). This is a fairly well established part and has variants depending on the size of the display or other needs. While the full circuit is very complicated due to the amount of data lines the chip uses, the block diagram provided by the [datasheet](https://cdn-shop.adafruit.com/datasheets/SSD1306.pdf) elucidates quite a bit about the design:
 
-import blockDiagram from './block_diagram.webp';
 
 <div className="text-center">
-<Image src={blockDiagram} alt="" width={812} height={707} className='mx-auto mb-4'/>
+<img src="./block_diagram.webp" alt="" width="812" height="707" className='mx-auto mb-4'/>
 <em>Block Diagram of the SSD1306 - Source: [SSD1306 Datasheet](https://cdn-shop.adafruit.com/datasheets/SSD1306.pdf)</em>
 </div>
-
 
 What I gathered from this diagram (based on background knowledge and more of the datasheet) is that this is a _very_ simplified CPU. Sure, there might not be an [ALU](https://en.wikipedia.org/wiki/Arithmetic_logic_unit) or a [register file](https://en.wikipedia.org/wiki/Register_file), but the reason I consider it as such is that it takes inputs that could be interpreted as [machine code](https://en.wikipedia.org/wiki/Machine_code). This acts more like [G-Code](https://en.wikipedia.org/wiki/G-code) from the machinist and CAM world but instead of moving motors or extruders "commands" manipulate the physical pixels, which are stored in the Graphics RAM.
 
 Continuing the comparison to machine code, the datasheet has an entire section about what signals and bits need to be set for different actions such as changing oscillator speeds or setting pixels. One of the most important signals is the "Data/Command (D/C)" bit which controls the interpretation of whatever is being sent over the _data bus_ (indicated with pins D0-D7); if the signal is high, data from the bus is written to RAM, otherwise (when low) it is pushed to the command decoder and changes internal display state wizardry. When paired with the "Read/Write (R/W)" signal, it allows for controlling the direction of data on the bus and what the source of the data is (see Table 9-3 in the datasheet). This project only writes to the display, so the R/W signal is always set to have the bus write to the display controller.
 
-import commandTables from './command_tables.webp';
-
 <div className="text-center">
-<Image src={commandTables} alt="" width={812} height={534} className='mx-auto mb-4'/>
+<img src="./command_tables.webp" alt="" width="812" height="534" className='mx-auto mb-4'/>
 <em>Some Example Tables Documenting Commands- Source: [SSD1306 Datasheet](https://cdn-shop.adafruit.com/datasheets/SSD1306.pdf)</em>
 </div>
 
@@ -75,28 +69,25 @@ With the information to initialize the display, it is now time to change some pi
 When looking at the data bus, it is only 8 bits wide. Yet there are 8192 pixels on the display that can be switched on and off. Obviously, it is not efficient to try and connect all 8192 pixels directly to a microcontroller, that is why the display controller exists. But how does the display controller know where to turn on the pixels? Short answer, it's based on whatever is in the Graphics RAM (from the block diagram). But a more correct (and necessary) answer is required to even consider displaying anything meaningful.
 Section 8-7 of the SSD1306 datasheet is very revealing about how the graphics RAM represents the pixels on the screen. While in reality the RAM is effectively a contiguous block, the block is abstracted into 8 "pages", each representing a 128x8 portion of the display. There are no specific details how these pages are implemented, but it could be a very simple implementation involving a [multiplexer (mux)](https://en.wikipedia.org/wiki/Multiplexer) that selects a RAM block to manipulate (_this is speculation_).
 
-import segBlock from './seg_block.webp';
 
 <div className="text-center">
-<Image src={segBlock} alt="" width={708} height={265} className='mx-auto mb-4'/>
+<img src="./seg_block.webp" alt="" width="708" height="265" className='mx-auto mb-4'/>
 <em>What the Graphics RAM looks like - Source: [SSD1306 Datasheet](https://cdn-shop.adafruit.com/datasheets/SSD1306.pdf)</em>
 </div>
 
 Even when working in the smaller [address space](https://en.wikipedia.org/wiki/Address_space) under the pages, that is still 1024 pixels that need to be managed and can't really be connected en-masse to the microcontroller. Plus, a page in this case is a smaller contiguous block of RAM which can be mapped to the physical pixels in different ways. It's not dissimilar to how a multidimensional array can be represented in different ways while maintaining a flat-array footprint in C:
 
-import flatArray from './flat_array.webp';
 
 <div className="text-center">
-<Image src={flatArray} alt="" width={531} height={251} className='mx-auto mb-4'/>
+<img src="./flat_array.webp" alt="" width="531" height="251" className='mx-auto mb-4'/>
 <em>Explanation between multi-dimensional array vs flat array structures. Notice how the flat array saves space.</em>
 </div>
 
 Again, all of this functionality is abstracted by the display controller, what matters is what possible address mappings are available. In this case the three modes are page addressing, horizontal addressing, and vertical addressing. Depending on what is being drawn, a different addressing mode would allow for more _efficient_ interaction by requiring less data commands sent to the display peripheral. For example, Drawing a horizontal line is effectively more efficient using horizontal addressing than vertical addressing; Under vertical addressing, the same byte sequence would need to be drawn 8 times instead of a single sequence horizontally. However, drawing complicated shapes like letters make more sense when using vertical addressing since it would be more "information dense" (i.e. it uses fewer bytes to represent the same information). Given that vertical addressing sticks within the boundaries of a page, it means that each byte written represents a vertical "slice" of a character and there is no need to send any "cursor change" commands.
 
-import verticalRepr from './vertical_repr.webp';
 
 <div className="text-center">
-<Image src={verticalRepr} alt="" width={439} height={128} className='mx-auto mb-4'/>
+<img src="./vertical_repr.webp" alt="" width="439" height="128" className='mx-auto mb-4'/>
 <em>Representation of a capital 'G'. Note the endianess of the diagram is reversed.</em>
 </div>
 
@@ -126,7 +117,7 @@ pub struct SSD1306Display {
 }
 ```
 
-The cool thing about a custom driver is not all features of the client device _have to be used_. While modern compilers often optimize and remove unused code, not having to worry about such code in the first place allows for projects to be less complex and easier to work on. When writing the driver, I used the [SSD1306 ASCII library for Arduino](https://github.com/greiman/SSD1306Ascii) as a solid reference, but it had features related to the scrolling functionality of the display, using other font types, and broader display interoperability (remember the addressing discussion?). Cutting down the fluff and only implementing what was needed means the driver was actually written faster than if I chose to do a full library port. It might be a fun exercise but it isn't the focus of the project at all.
+The cool thing about a custom driver is not all features of the client device _have to be used_. While modern compilers often optimize and remove unused code, not having to worry about such code in the first place allows for projects to be less complex and easier to work on. When writing the driver, I used the [SSD1306 ASCII library for Arduino](https://github.com/greiman/SSD1306Ascii) as a solid reference, but it had features related to the scrolling functionality of the display, using other font types, and broader display interoperability (remember the addressing discussion?). Cutting down the fluff and only implementing what was needed means the driver was actually written faster than if I chose to do a full library port. It might be a fun exercise, but it isn't the focus of the project at all.
 
 With all the information about how the display (controller) works, it is now time to actually have the microcontroller "talk" with the controller. While the display peripheral comes in different protocol variants, I chose the I²C variant for simple wiring. But that simple wiring comes at the cost of protocol complexity.
 
@@ -142,28 +133,25 @@ Given it has been a while since I touched I²C communications (because I haven't
 
 The I²C protocol is based on "transactions" initiated from a controller to an addressed target (in older documentation, the terms "master"/"slave" are used instead, but due to obvious connotations the new naming is preferred in modern day). The _addressing_ is important as multiple devices could be connected to the bus, so designating which target peripheral should activate within a transaction is crucial to ensuring the right action is performed. For those who do modern backend programming, I find it similar in concept to a "targeted" [UDP](https://www.cloudflare.com/learning/ddos/glossary/user-datagram-protocol-udp/) for lack of a better description given the notion of sending data to multiple clients, the core difference is that a single client usually responds to a message (if such an addressed client exists). Each transaction begins when the controller sends a _start condition_ and (ends) successfully when the controller sends the _stop condition_, which is based off of the specific state of SDA and SCL over a certain period of time.
 
-import startStop from './start_stop.webp';
 
 <div className="text-center">
-<Image src={startStop} alt="" width={541} height={164} className='mx-auto mb-4'/>
+<img src="./start_stop.webp" alt="" width="541" height="164" className='mx-auto mb-4'/>
 <em>Start and Stop Signal Diagrams - Source: [I²C Specification](https://www.nxp.com/docs/en/user-guide/UM10204.pdf)</em>
 </div>
 
 Within each transaction, messages are sent in 1 byte (8 bits) "packets", with each packet being followed by an _acknowledge bit_ before the next byte is sent. This acknowledge works similarly to how a start/stop condition is detected, making it clear when a target (or the controller if it is reading from a target) is ready for the next byte.
 
-import ackBits from './ack_bits.webp';
 
 <div className="text-center">
-<Image src={ackBits} alt="" width={680} height={196} className='mx-auto mb-4'/>
+<img src="./ack_bits.webp" alt="" width="680" height="196" className='mx-auto mb-4'/>
 <em>An Example Message with Acknowledge Bit - Source: [I²C Specification](https://www.nxp.com/docs/en/user-guide/UM10204.pdf)</em>
 </div>
 
 At the beginning of each transaction, the first byte sent over the bus is the 7-bit address of the target peripheral to communicate with plus a _read-write (R/W) bit_ indicating the direction information is sent on the bus (read means target to controller, write is the opposite). While reading from a device is the only way to interact with certain peripherals, the plan is to only write to the display controller, so all future examples will assume a controller-target communication scheme and thus the R/W bit will be `0` due to it being active low. Given the I²C address of the controller being `0x3C`, the first byte of each transaction would actually be `0x78` since the 7-bit address uses the _most significant bits (MSB)_ of said byte.
 
-import addressStruct from './address_struct.webp';
 
 <div className="text-center">
-<Image src={addressStruct} alt="" width={356} height={119} className='mx-auto mb-4'/>
+<img src="./address_struct.webp" alt="" width="356" height="119" className='mx-auto mb-4'/>
 <em>Structure of the I²C address message</em>
 </div>
 
@@ -175,7 +163,7 @@ Putting it all together, these are the example transactions to display a capital
 import transactions from './transactions.webp';
 
 <div className="text-center">
-<Image src={transactions} alt="" width={574} height={296} className='mx-auto mb-4'/>
+<img src={transactions} alt="" width="574" height="296" className='mx-auto mb-4'/>
 <em>I²C Transactions to display a captial 'A' on the second line. ACK bits are indicated separately since they come from the display controller.</em>
 </div>
 

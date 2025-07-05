@@ -6,8 +6,6 @@ author: Alex Westerman
 slug: '0005'
 ---
 
-import Image from 'next/image';
-
 # From the Archives: Why I revised this Website 4 Times
 
 _A history of this website and anecdotes of the pains of modern web development_
@@ -25,10 +23,8 @@ So sit back and get your snack of choice, time for another trip back in time.
 
 This website first started as most websites did back in the early days of the web: pure HTML, CSS, and a sprinkle of JS.
 
-import humbleBeginnings from './humble_beginnings.png';
-
 <div className="text-center">
-<Image src={humbleBeginnings} alt="" width={1107} height={582} className='mx-auto mb-4'/>
+<img src="./humble_beginnings.png" alt="" width="1107" height="582" className='mx-auto mb-4'/>
 <em>The first ever version of the website - a humble beginning</em>
 </div>
 
@@ -36,14 +32,12 @@ This site is actually not that bad from the looks of it. Aside from the raw HTML
 
 This version of the site used [Bootstrap (4?)](https://getbootstrap.com/) with a dark theme from [Bootswatch](https://bootswatch.com/), which I like and dislike (compared to [Tailwind](https://tailwindcss.com/)). Bootstrap is great with things like simple layouts and defining things like the cards for projects. For the most part, it's also fairly quick to set up, just include the Bootstrap CSS bundle as a `link` tag, and you are basically off to the races. The only major thing is that when you need to deviate from the standard `container` and other elements you have to start writing more of your own CSS, which increases some confusion on what is from Bootstrap and what I wrote (Tailwind does solve this problem somewhat with its configuration system but not a perfect solution).
 
-At this time, I started taking on more projects, courses at college, and internships. Plus, HTML is the kind of language where you always feel like you want to write _less of it_. I mean, use inspect element on a modern webpage and you'll see an absurd number of `div`s and nesting. I'd rather not spend time maintaining that if I could.
+At this time, I started taking on more projects, courses at college, and internships. Plus, HTML is the kind of language where you always feel like you want to write _less of it_. I mean, use inspect element on a modern webpage, and you'll see an absurd number of `div`s and nesting. I'd rather not spend time maintaining that if I could.
 
 Luckily, this was around the time I started to learn my first web framework.
 
-import homeV2 from './home_v2.png';
-
 <div className="text-center">
-<Image src={homeV2} alt="" width={1110} height={583} className='mx-auto mb-4'/>
+<img src="./home_v2.png" alt="" width="1110" height="583" className='mx-auto mb-4'/>
 <em>The Angular Revision - A Big New Step</em>
 </div>
 
@@ -51,10 +45,8 @@ The first web framework I learned was [Angular](https://angular.dev) (not the an
 
 Overall, this isn't a terrible website. Some of the elements are not well formatted, but I see that as more of my lack of thinking about "aesthetics" and more "it works". I even added a system with JSON and [JSON Schema](https://json-schema.org/) (for IDE validation) to serve as a static data for my projects list and resume. For my first foray into Angular (for a project outside the primary use cases), it's not a bad site. _But hindsight is 20/20 and there were some glaring issues_.
 
-import homeV3 from './home_v3.png';
-
 <div className="text-center">
-<Image src={homeV3} alt="" width={1110} height={583} className='mx-auto mb-4'/>
+<img src="./home_v3.png" alt="" width="1110" height="583" className='mx-auto mb-4'/>
 <em>The React Revision - More of the Same</em>
 </div>
 
@@ -69,7 +61,7 @@ I was skeptical about migrating to [Next.js](https://nextjs.org) initially as I 
 
 A quick overview of what SSR/SSG is for those who don't want to click the reference links, it's a different paradigm for web applications on how the server and client interact. Here is a rough flow diagram made by yours truly explaining the difference:
 
-```
+```text
    Client-Side Rendering Model
                                                                   ┌─────────────────┐
                                                                   │                 │
@@ -132,10 +124,8 @@ There are a couple of key differences (that are subtle in this representation to
 Because Next.js uses SSR as the basis for its framework, it meant having to worry about [React Server Components](https://react.dev/reference/rsc/server-components). These are really cool because depending on how you choose to bundle/deploy your project the result of compilation differs; static data can be "pre-rendered" into the resulting bundle (which requires only minimum client-side JS for interactivity) while dynamic data can be rendered after fetching on the server and just give the client the rendering work. Given that all the resources of this site are available by compile-time, this means _significantly slimmer bundles and faster rendering_ while still preserving the design and feel of the site. I am actually glad that I made this transition despite all the hair-pulling.
 
 
-import commitHistory from './commit-history.png';
-
 <div className="text-center">
-<Image src={commitHistory} alt="" width={650} height={434} className='mx-auto mb-4'/>
+<img src="./commit-history.png" alt="" width="650" height="434" className='mx-auto mb-4'/>
 <em>I'm usually better at commit messages trust me</em>
 </div>
 
@@ -246,10 +236,9 @@ Route (app)                              Size     First Load JS
 
 The first load JS is reduced by around 60% for _all pages_. If a page has specific JS that it needs for components like the collapsible sections in the resume or the carousels on the main page, it's added to that page's specific JS, sometimes even as part of the HTML. Not only that, the use of SSG means that each blog page being pre-rendered removes 230KB of extra JS _and_ inlines the generated HTML so it's immediately rendered by the browser. This can be verified by looking at the generated HTML for a blog page.
 
-import generatedHtml from './generated-html.png';
 
 <div className="text-center">
-<Image src={generatedHtml} alt="" width={1419} height={673} className='mx-auto mb-4'/>
+<img src="./generated-html.png" alt="" width="1419" height="673" className='mx-auto mb-4'/>
 <em>Look at all of that minified HTML</em>
 </div>
 
@@ -262,10 +251,8 @@ Now, just because there is less JavaScript being processed on page load does not
 
 Using the performance tab in the Chromium browser DevTools (I use Microsoft Edge despite not using any AI features, but this applies to most Chrome-based browsers) and loaded each page using a 4G network throttling setting to make the impact of resource size more apparent given the localized hosting used for testing. Here are the metrics for the pure React site:
 
-import reactProfile from './react-profile.png';
-
 <div className="text-center">
-<Image src={reactProfile} alt="" width={1173} height={590} className='mx-auto mb-4'/>
+<img src="./react-profile.png" alt="" width="1173" height="590" className='mx-auto mb-4'/>
 <em>Pure React Profile Results</em>
 </div>
 
@@ -273,20 +260,16 @@ Given the knowledge about how the pure React page loads, it's no surprise that t
 
 Time for the Next.js metrics, which look much better:
 
-import nextJsProfile from './nextjs-profile.png';
-
 <div className="text-center">
-<Image src={nextJsProfile} alt="" width={773} height={636} className='mx-auto mb-4'/>
+<img src="./nextjs-profile.png" alt="" width="773" height="636" className='mx-auto mb-4'/>
 <em>Next.JS Profile Results</em>
 </div>
 
 The final metric mark (L) is around 500ms faster (than LCP in the older version) and is actually the last thing that occurs; given the shift to using HTML over JS for page content. Also, DCL happens much earlier, and is then proceeded by FCP and LCP within 250ms (FP indicates first paint but in this case it's relatively empty). Here is a zoom-in on that section specifically:
 
 
-import nextJsDclL from './nextjs-dcl-l.png';
-
 <div className="text-center">
-<Image src={nextJsDclL} alt="" width={1461} height={533} className='mx-auto mb-4'/>
+<img src="./nextjs-dcl-l.png" alt="" width="1461" height="533" className='mx-auto mb-4'/>
 <em>DCL point to L point - Look at that timespan difference!</em>
 </div>
 
@@ -308,10 +291,8 @@ I'm starting to rant, and many other people have talked about [the enshittificat
 Thanks for reading! Next in line are potential rants about Python, AI, or maybe I'll take 6 months to learn OpenGL from scratch (not through an engine). I don't know, I'm going to get back to playing the [Indiana Jones game](https://store.steampowered.com/app/2677660/Indiana_Jones_and_the_Great_Circle/).
 
 
-import indianaJones from './indiana_jones_game.jpg';
-
 <div className="text-center">
-<Image src={indianaJones} alt="" width={1280} height={720} className='mx-auto mb-4'/>
+<img src="./indiana_jones_game.jpg" alt="" width="1280" height="720" className='mx-auto mb-4'/>
 <em>He said the thing!</em>
 </div>
 <br/>
