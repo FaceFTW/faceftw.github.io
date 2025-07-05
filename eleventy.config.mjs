@@ -4,7 +4,20 @@ import pluginNavigation from '@11ty/eleventy-navigation';
 import { eleventyImageTransformPlugin } from '@11ty/eleventy-img';
 import mdItClass from './src/libs/mdItClass.mjs';
 import { fromHighlighter } from '@shikijs/markdown-it';
-import { createHighlighterCoreSync, createOnigurumaEngine } from 'shiki';
+import { createHighlighterCoreSync, createJavaScriptRegexEngine } from 'shiki';
+import rust from '@shikijs/langs/rust';
+import java from '@shikijs/langs/java';
+import perl from '@shikijs/langs/perl';
+import html from '@shikijs/langs/html';
+import tsx from '@shikijs/langs/tsx';
+import javascript from '@shikijs/langs/javascript';
+import typescript from '@shikijs/langs/typescript';
+import c from '@shikijs/langs/c';
+import css from '@shikijs/langs/css';
+import csharp from '@shikijs/langs/csharp';
+import shell from '@shikijs/langs/shell';
+import vitesse_light from '@shikijs/themes/vitesse-light';
+import vitesse_dark from '@shikijs/themes/vitesse-dark';
 
 /** @param {import("@11ty/eleventy").UserConfig} eleventyConfig */
 export default async function (eleventyConfig) {
@@ -44,12 +57,6 @@ export default async function (eleventyConfig) {
     eleventyConfig.addPlugin(pluginNavigation);
     eleventyConfig.addPlugin(HtmlBasePlugin);
     eleventyConfig.addPlugin(InputPathToUrlTransformPlugin);
-    // eleventyConfig.addPlugin(ShikiPlugin, {
-    //     themes: {
-    //         light: 'vitesse-light',
-    //         dark: 'vitesse-dark',
-    //     },
-    // });
 
     // eleventyConfig.addPlugin(feedPlugin, {
     // 	type: "atom", // or "rss", "json"
@@ -77,26 +84,6 @@ export default async function (eleventyConfig) {
     // });
 
     eleventyConfig.amendLibrary('md', (mdLib) => {
-        //Initialize the Shiki Highliher
-        const highligher = createHighlighterCoreSync({
-            themes: [import('@shikijs/themes/vitesse-light'), import('@shikijs/themes/vitesse-dark')],
-            langs: [
-                import('@shikijs/langs/rust'),
-                import('@shikijs/langs/java'),
-                import('@shikijs/langs/perl'),
-                import('@shikijs/langs/asciidoc'),
-                import('@shikijs/langs/html'),
-                import('@shikijs/langs/tsx'),
-                import('@shikijs/langs/javascript'),
-                import('@shikijs/langs/typescript'),
-                import('@shikijs/langs/c'),
-                import('@shikijs/langs/css'),
-                import('@shikijs/langs/csharp'),
-                import('@shikijs/langs/shell'),
-            ],
-            engine: createOnigurumaEngine(() => import('shiki/wasm')),
-        });
-
         mdLib.use(mdItClass, {
             h1: ['text-3xl', 'xl:text-6xl', 'mb-4'],
             h2: ['text-2xl', 'xl:text-5xl', 'mb-4'],
@@ -121,9 +108,18 @@ export default async function (eleventyConfig) {
             hr: ['mb-4'],
             table: ['table-auto', 'mx-auto', 'mb-4'],
         });
+    });
+
+    eleventyConfig.amendLibrary('md', (mdLib) => {
+        //Initialize the Shiki Highliher
+        const highlighter = createHighlighterCoreSync({
+            themes: [vitesse_light, vitesse_dark],
+            langs: [rust, java, perl, html, tsx, typescript, javascript, c, csharp, shell, css],
+            engine: createJavaScriptRegexEngine(),
+        });
 
         mdLib.use(
-            fromHighlighter(highligher, {
+            fromHighlighter(highlighter, {
                 themes: {
                     light: 'vitesse-light',
                     dark: 'vitesse-dark',
@@ -181,10 +177,10 @@ export const config = {
     templateFormats: ['md', 'njk', 'html', 'liquid', '11ty.js'],
 
     // Pre-process *.md files with: (default: `liquid`)
-    markdownTemplateEngine: 'nunjucks',
+    markdownTemplateEngine: 'njk',
 
     // Pre-process *.html files with: (default: `liquid`)
-    htmlTemplateEngine: 'nunjucks',
+    htmlTemplateEngine: 'njk',
 
     // These are all optional:
     dir: {
