@@ -1,0 +1,41 @@
+---
+layout: 'layouts/base.njk'
+---
+
+<div class="container mx-auto px-5">
+    <h1 class="mt-4 text-4xl">
+        <pre>ref_cycle</pre>
+    </h1>
+    <h2 class="mt-2 mb-4 text-2xl text-neutral-600 dark:text-neutral-400">AKA: Core Dumping my Brain on the Internet</h2>
+    <p
+        class="prose prose-green dark:prose-invert inline-flex lg:flex"
+        xmlns:cc="http://creativecommons.org/ns#"
+        xmlns:dct="http://purl.org/dc/terms/">
+        <span property="dct:title" class="mr-1">ref_cycle&nbsp;</span>
+        is licensed under&nbsp;
+        <a
+            href="https://creativecommons.org/licenses/by-nc-sa/4.0"
+            target="_blank"
+            rel="license noopener noreferrer"
+            class="ml-1 inline">CC BY-NC-SA 4.0</a>
+    </p>
+
+	{%for post in collections.posts %}
+    <a href="/blog/{{post.slug}}">
+        <div data-slot="card" class="bg-card text-card-foreground flex flex-col gap-6 rounded-xl border py-6 shadow-sm my-4">
+            <div
+                data-slot="card-header"
+                class="@container/card-header grid auto-rows-min grid-rows-[auto_auto] items-start gap-1.5 px-6
+                    has-data-[slot=card-action]:grid-cols-[1fr_auto] [.border-b]:pb-6">
+                <div data-slot="card-title" class="leading-none font-semibold">"SHUT UP Device" - Part 2</div>
+                <div data-slot="card-description" class="text-muted-foreground text-sm">
+                    <time datetime="2025-05-10">May	10, 2025</time>
+                </div>
+            </div>
+            <div data-slot="card-content" class="px-6">
+                <p>{{post.excerpt}}</p>
+            </div>
+        </div>
+    </a>
+	{%endfor%}
+</div>

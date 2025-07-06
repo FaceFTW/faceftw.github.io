@@ -1,4 +1,4 @@
-import { IdAttributePlugin, InputPathToUrlTransformPlugin, HtmlBasePlugin } from '@11ty/eleventy';
+import { HtmlBasePlugin, IdAttributePlugin, InputPathToUrlTransformPlugin } from '@11ty/eleventy';
 // import { feedPlugin } from "@11ty/eleventy-plugin-rss";
 import pluginNavigation from '@11ty/eleventy-navigation';
 import { eleventyImageTransformPlugin } from '@11ty/eleventy-img';
@@ -50,10 +50,6 @@ export default async function (eleventyConfig) {
         bundleHtmlContentFromSelector: 'style',
     });
 
-    // Official plugins
-    // eleventyConfig.addPlugin(pluginSyntaxHighlight, {
-    // 	preAttributes: { tabindex: 0 }
-    // });
     eleventyConfig.addPlugin(pluginNavigation);
     eleventyConfig.addPlugin(HtmlBasePlugin);
     eleventyConfig.addPlugin(InputPathToUrlTransformPlugin);
@@ -82,6 +78,7 @@ export default async function (eleventyConfig) {
     // 		}
     // 	}
     // });
+	eleventyConfig.
 
     eleventyConfig.amendLibrary('md', (mdLib) => {
         mdLib.use(mdItClass, {
@@ -91,7 +88,7 @@ export default async function (eleventyConfig) {
             h4: ['text-lg', 'xl:text-3xl', 'mb-4'],
             h5: ['text-md', 'xl:text-2xl', 'font-bold', 'mb-4'],
             h6: ['text-md', 'xl:text-xl', 'mb-4'],
-            a: ['hover:underline', 'mb-4', 'leading-relaxed'],
+            a: ['hover:underline', 'mb-4', 'leading-relaxed', 'text-primary'],
             ul: ['list-outside', 'indent-4', 'ml-8', 'mb-4', 'leading-relaxed'],
             li: ['indent-4', 'leading-relaxed'],
             p: ['mb-4', 'leading-relaxed'],
@@ -107,6 +104,8 @@ export default async function (eleventyConfig) {
             ],
             hr: ['mb-4'],
             table: ['table-auto', 'mx-auto', 'mb-4'],
+            code: ['rounded-lg', 'px-1', 'py-0.5', 'mb-4'],
+            pre: ['mb-4', 'rounded-lg'],
         });
     });
 
@@ -132,9 +131,6 @@ export default async function (eleventyConfig) {
     eleventyConfig.addPlugin(eleventyImageTransformPlugin, {
         // Output formats for each image.
         formats: ['avif', 'webp', 'auto'],
-
-        // widths: ["auto"],
-
         failOnError: false,
         htmlOptions: {
             imgAttributes: {
@@ -143,14 +139,10 @@ export default async function (eleventyConfig) {
                 decoding: 'async',
             },
         },
-
         sharpOptions: {
             animated: true,
         },
     });
-
-    // Filters
-    // eleventyConfig.addPlugin(pluginFilters);
 
     eleventyConfig.addPlugin(IdAttributePlugin, {
         // by default we use Eleventy’s built-in `slugify` filter:
@@ -161,46 +153,16 @@ export default async function (eleventyConfig) {
     eleventyConfig.addShortcode('currentBuildDate', () => {
         return new Date().toISOString();
     });
-
-    // Features to make your build faster (when you need them)
-
-    // If your passthrough copy gets heavy and cumbersome, add this line
-    // to emulate the file copy on the dev server. Learn more:
-    // https://www.11ty.dev/docs/copy/#emulate-passthrough-copy-during-serve
-
-    // eleventyConfig.setServerPassthroughCopyBehavior("passthrough");
 }
 
 export const config = {
-    // Control which files Eleventy will process
-    // e.g.: *.md, *.njk, *.html, *.liquid
-    templateFormats: ['md', 'njk', 'html', 'liquid', '11ty.js'],
-
-    // Pre-process *.md files with: (default: `liquid`)
+    templateFormats: ['md', 'njk', '11ty.js'],
     markdownTemplateEngine: 'njk',
-
-    // Pre-process *.html files with: (default: `liquid`)
     htmlTemplateEngine: 'njk',
-
-    // These are all optional:
     dir: {
         input: 'src', // default: "."
         includes: '_includes', // default: "_includes" (`input` relative)
         data: '_data', // default: "_data" (`input` relative)
-
         output: 'dist',
     },
-
-    // -----------------------------------------------------------------
-    // Optional items:
-    // -----------------------------------------------------------------
-
-    // If your site deploys to a subdirectory, change `pathPrefix`.
-    // Read more: https://www.11ty.dev/docs/config/#deploy-to-a-subdirectory-with-a-path-prefix
-
-    // When paired with the HTML <base> plugin https://www.11ty.dev/docs/plugins/html-base/
-    // it will transform any absolute URLs in your HTML to include this
-    // folder name and does **not** affect where things go in the output folder.
-
-    // pathPrefix: "/",
 };

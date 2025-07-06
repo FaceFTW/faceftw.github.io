@@ -626,7 +626,7 @@ To summarize the issue, there exists a parser combinator specifically for Perl c
 
 
 <div>
-<img src="./malformedAperture.webp" alt="Portal 2 spoiler?" width="686" height="206" className='mx-auto mb-4'/>
+<img src="./malformed_aperture.webp" alt="Portal 2 spoiler?" width="686" height="206" className='mx-auto mb-4'/>
 </div>
 
 One of the difficulties with the `nom` crate is that it is intentionally bare-bones. Aside from some of the gripes I had with the error handling system (such as no easy way to propagate parser errors in `map()` parsers), part of the solution I tried with `nom` just _didn't work_. And I could not figure out why looking at it from a black box. Again, it is a widely downloaded crate for a reason, but I needed something different. So I _rewrote*_ the entire parser.
