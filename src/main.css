@@ -113,7 +113,7 @@
   --color-sidebar-ring: var(--sidebar-ring);
   --animate-accordion-down: accordion-down 1s ease-out;
   --animate-accordion-up: accordion-up 1s ease-out;
-	--font-rubik: Rubik, sans-serif;
+  --font-rubik: Rubik, sans-serif;
 
   @keyframes accordion-down {
     0% {
@@ -189,6 +189,21 @@
     font-style: var(--shiki-dark-font-style) !important;
     font-weight: var(--shiki-dark-font-weight) !important;
     text-decoration: var(--shiki-dark-text-decoration) !important;
+  }
+  /* For providing a scroll + padding for all code blocks*/
+  pre {
+    overflow-x: auto;
+    @apply rounded-lg;
+    @apply px-2;
+    @apply py-2;
+    @apply mb-4;
+    @apply border-l-8;
+    @apply border-l-;
+    @apply dark:border-l-[#121212];
+    @apply border-spacing-16;
+    @apply text-neutral-600;
+    @apply dark:text-neutral-400;
+    @apply leading-relaxed;
   }
   /* Removes Backticks from code blocks */
   code::before,

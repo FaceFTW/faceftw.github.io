@@ -18,6 +18,9 @@ import csharp from '@shikijs/langs/csharp';
 import shell from '@shikijs/langs/shell';
 import vitesse_light from '@shikijs/themes/vitesse-light';
 import vitesse_dark from '@shikijs/themes/vitesse-dark';
+import { DateTime } from 'luxon';
+import MarkdownIt from 'markdown-it';
+import markdownItContainer from 'markdown-it-container';
 
 /** @param {import("@11ty/eleventy").UserConfig} eleventyConfig */
 export default async function (eleventyConfig) {
@@ -43,12 +46,12 @@ export default async function (eleventyConfig) {
 
     // Per-page bundles, see https://github.com/11ty/eleventy-plugin-bundle
     // Bundle <style> content and adds a {% css %} paired shortcode
-    eleventyConfig.addBundle('css', {
-        toFileDirectory: 'dist',
-        // Add all <style> content to `css` bundle (use <style eleventy:ignore> to opt-out)
-        // Supported selectors: https://www.npmjs.com/package/posthtml-match-helper
-        bundleHtmlContentFromSelector: 'style',
-    });
+    // eleventyConfig.addBundle('css', {
+    //     toFileDirectory: 'dist',
+    //     // Add all <style> content to `css` bundle (use <style eleventy:ignore> to opt-out)
+    //     // Supported selectors: https://www.npmjs.com/package/posthtml-match-helper
+    //     bundleHtmlContentFromSelector: 'style',
+    // });
 
     eleventyConfig.addPlugin(pluginNavigation);
     eleventyConfig.addPlugin(HtmlBasePlugin);
@@ -78,37 +81,14 @@ export default async function (eleventyConfig) {
     // 		}
     // 	}
     // });
-	eleventyConfig.
-
-    eleventyConfig.amendLibrary('md', (mdLib) => {
-        mdLib.use(mdItClass, {
-            h1: ['text-3xl', 'xl:text-6xl', 'mb-4'],
-            h2: ['text-2xl', 'xl:text-5xl', 'mb-4'],
-            h3: ['text-xl', 'xl:text-4xl', 'mb-4'],
-            h4: ['text-lg', 'xl:text-3xl', 'mb-4'],
-            h5: ['text-md', 'xl:text-2xl', 'font-bold', 'mb-4'],
-            h6: ['text-md', 'xl:text-xl', 'mb-4'],
-            a: ['hover:underline', 'mb-4', 'leading-relaxed', 'text-primary'],
-            ul: ['list-outside', 'indent-4', 'ml-8', 'mb-4', 'leading-relaxed'],
-            li: ['indent-4', 'leading-relaxed'],
-            p: ['mb-4', 'leading-relaxed'],
-            blockquote: [
-                'border-l-8',
-                'border-l-neutral-400',
-                'dark:border-l-neutral-600',
-                'border-spacing-16',
-                'pl-4',
-                'text-neutral-600',
-                'dark:text-neutral-400',
-                'leading-relaxed',
-            ],
-            hr: ['mb-4'],
-            table: ['table-auto', 'mx-auto', 'mb-4'],
-            code: ['rounded-lg', 'px-1', 'py-0.5', 'mb-4'],
-            pre: ['mb-4', 'rounded-lg'],
-        });
-    });
-
+    eleventyConfig.setLibrary(
+        'md',
+        MarkdownIt({
+            html: true,
+            linkify: true,
+            typographer: true,
+        })
+    );
     eleventyConfig.amendLibrary('md', (mdLib) => {
         //Initialize the Shiki Highliher
         const highlighter = createHighlighterCoreSync({
@@ -125,6 +105,63 @@ export default async function (eleventyConfig) {
                 },
             })
         );
+    });
+    eleventyConfig.amendLibrary('md', (mdLib) => {
+        mdLib.use(mdItClass, {
+            h1: ['text-3xl', 'xl:text-6xl', 'mb-4'],
+            h2: ['text-2xl', 'xl:text-5xl', 'mb-4'],
+            h3: ['text-xl', 'xl:text-4xl', 'mb-4'],
+            h4: ['text-lg', 'xl:text-3xl', 'mb-4'],
+            h5: ['text-md', 'xl:text-2xl', 'font-bold', 'mb-4'],
+            h6: ['text-md', 'xl:text-xl', 'mb-4'],
+            a: ['hover:underline', 'mb-4', 'leading-relaxed', 'text-primary'],
+            ul: ['list-disc', 'list-outside', 'indent-4', 'ml-8', 'mb-4', 'leading-relaxed'],
+            ol: ['list-decimal', 'list-outside', 'indent-4', 'ml-8', 'mb-4', 'leading-relaxed'],
+            li: ['indent-4', 'leading-relaxed'],
+            p: ['mb-4', 'leading-relaxed'],
+            blockquote: [
+                'border-l-8',
+                'border-l-neutral-400',
+                'dark:border-l-neutral-600',
+                'border-spacing-16',
+                'pl-4',
+                'text-neutral-600',
+                'dark:text-neutral-400',
+                'leading-relaxed',
+            ],
+            hr: ['mb-4'],
+            table: ['table-auto', 'mx-auto', 'mb-4'],
+            code: ['rounded-lg', 'px-1', 'py-0.5', 'mb-4'],
+            pre: [
+                'mb-4',
+                'rounded-lg',
+                'border-l-8',
+                'border-l-neutral-400',
+                'dark:border-l-neutral-600',
+                'border-spacing-16',
+                'pl-4',
+                'text-neutral-600',
+                'dark:text-neutral-400',
+                'leading-relaxed',
+            ],
+            figcaption: ['mb-4', 'italic'],
+        });
+    });
+    eleventyConfig.amendLibrary('md', (/** @type {MarkdownIt}*/ mdLib) => {
+        mdLib.use(markdownItContainer, 'image', {
+			render: (/** @type {import('markdown-it').Token[]}*/ tokens, idx) => {
+				//Using the <figure> tags, so we can easily add opening/closing tags as needed
+				if (tokens[idx].nesting === 1){
+					return "<figure class=\"flex items-center text-center mb-4\">"
+				}
+				if (tokens[idx].nesting===-1){
+					return "</figure>"
+				}
+
+				//really stupid system using regexes. But shaddup it work :p
+				// let imgMatch = tokens[idx].
+			},
+        });
     });
 
     // Image optimization: https://www.11ty.dev/docs/plugins/image/#eleventy-transform
@@ -152,6 +189,11 @@ export default async function (eleventyConfig) {
 
     eleventyConfig.addShortcode('currentBuildDate', () => {
         return new Date().toISOString();
+    });
+
+    eleventyConfig.addFilter('prettyDate', (value) => {
+        const date = DateTime.fromISO(value);
+        return date.toFormat('MMMM d, yyyy');
     });
 }
 

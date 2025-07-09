@@ -32,9 +32,9 @@ When trying to describe a programming language syntax, it is often done in [Back
 Since Cowsay is written in Perl and cow files are just Perl scripts, I could start by writing a parser for Perl scripts, use that output as an "intermediate representation" (IR), then convert the IR to a string that the terminal will use. So let's do a quick google search...
 
 
-<div>
+::: image
 <img src="./goggle-search.webp" alt="google is your friend?" width="1005" height="773" className='mx-auto mb-4'/>
-</div>
+:::
 
 Uh-oh.
 
