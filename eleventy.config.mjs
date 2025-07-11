@@ -19,7 +19,6 @@ import shell from '@shikijs/langs/shell';
 import vitesse_light from '@shikijs/themes/vitesse-light';
 import vitesse_dark from '@shikijs/themes/vitesse-dark';
 import { DateTime } from 'luxon';
-import MarkdownIt from 'markdown-it';
 import markdownItContainer from 'markdown-it-container';
 
 /** @param {import("@11ty/eleventy").UserConfig} eleventyConfig */
@@ -81,14 +80,7 @@ export default async function (eleventyConfig) {
     // 		}
     // 	}
     // });
-    eleventyConfig.setLibrary(
-        'md',
-        MarkdownIt({
-            html: true,
-            linkify: true,
-            typographer: true,
-        })
-    );
+
     eleventyConfig.amendLibrary('md', (mdLib) => {
         //Initialize the Shiki Highliher
         const highlighter = createHighlighterCoreSync({
@@ -149,18 +141,17 @@ export default async function (eleventyConfig) {
     });
     eleventyConfig.amendLibrary('md', (/** @type {MarkdownIt}*/ mdLib) => {
         mdLib.use(markdownItContainer, 'image', {
-			render: (/** @type {import('markdown-it').Token[]}*/ tokens, idx) => {
-				//Using the <figure> tags, so we can easily add opening/closing tags as needed
-				if (tokens[idx].nesting === 1){
-					return "<figure class=\"flex items-center text-center mb-4\">"
-				}
-				if (tokens[idx].nesting===-1){
-					return "</figure>"
-				}
+            render: (/** @type {import('markdown-it').Token[]}*/ tokens, idx) => {
+                //Using the <figure> tags, so we can easily add opening/closing tags as needed
+                if (tokens[idx].nesting === 1) {
+                    return '<figure class="flex flex-col items-center text-center mb-4">';
+                }
+                if (tokens[idx].nesting === -1) {
+                    return '</figure>';
+                }
 
-				//really stupid system using regexes. But shaddup it work :p
-				// let imgMatch = tokens[idx].
-			},
+				console.log(`${tokens[idx]}`)
+            },
         });
     });
 

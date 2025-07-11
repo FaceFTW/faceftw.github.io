@@ -12,10 +12,10 @@ _Why I decided to deprecate my ThinkPad_
 
 If you've checked out the [About](/about) section of my website, you'll see a couple of pictures of my setups, one in the basement of my childhood home during COVID and the other in my dorm at the senior year of college. Aside from the different locations, display configurations, and other knick-knacks, one thing remained constant: the ThinkPad.
 
-<div className="text-center">
+:::image
 <img src="./thinkpad_mentioned.webp" alt="THINKPAD MENTIONED!!!!!" width="1200" height="800" className='mx-auto mb-4'/>
-<em>THINKPAD MENTIONED!!!!!</em>
-</div>
+<figcaption>THINKPAD MENTIONED!!!!!</figcaption>
+:::
 
 When I started college, my institution ([Rose-Hulman](https://www.rose-hulman.edu/index.html)) has you pay a fee freshman year for a laptop that comes with all the school software but is otherwise yours to keep. Their choice for that year (and the next couple of years from what I could gather), was the **ThinkPad P1 (Gen 1)**. At the time, this was when the [Nvidia GeForce RTX 2000 series refresh](https://en.wikipedia.org/wiki/GeForce_20_series) was happening, Intel released [10th Gen Comet Lake processors](https://en.wikipedia.org/wiki/Comet_Lake) but was losing ground to AMD with the improvements in [2nd Generation Ryzen processors on Zen 2](https://en.wikipedia.org/wiki/Zen_2); Apple was still developing their [Apple Silicon](https://en.wikipedia.org/wiki/Apple_M1) which would be announced the next year and change the computing landscape with its shift to [ARM](https://en.wikipedia.org/wiki/AArch64#ARMv8.4-A)/[RISC-based](https://en.wikipedia.org/wiki/Reduced_instruction_set_computer) computing. Also, this was before Windows 11 and mainstream "AI/ML" products and the surge in minimum computer requirements. I could continue framing the history and landscape of this time, but this gives a fairly broad picture.
 
@@ -28,17 +28,17 @@ The nice thing about [ThinkPads](https://en.wikipedia.org/wiki/ThinkPad) is that
 - Windows 10 Enterprise (This is important)
 
 
-<div className='text-center'>
+:::image
 <img src="./thinkpad_lid.webp" alt="The lid of my Thinkpad" width="1200" height="900" className='mx-auto mb-4'/>
-<em>_The lid of the Thinkpad. With all the stickers it accumulated_</em>
-</div>
+<figcaption>The lid of the Thinkpad. With all the stickers it accumulated</figcaption>
+:::
 
 For what it's worth, it is a pretty good computer for the time and what is expected for engineering students to need: Above-average processing power and discrete graphics with an increase compute focus (the Quadro/RTX are known for this). Some pain points like the RAM and SSD were there, but that was more of a "me" thing; I ended up adding a [Seagate FireCuda 510 2TB SSD](https://www.seagate.com/support/internal-hard-drives/ssd/firecuda-ssd/) and making that my main boot drive, otherwise I basically relied on the [Windows page file](https://learn.microsoft.com/en-us/troubleshoot/windows-client/performance/introduction-to-the-page-file) if I ever ran out of memory (which is often). Aside from the school software, SDKs, toolchains, and VMs I had running on this, I also played (so many) video games on it. I mean have you seen my Steam library?
 
-<div className='text-center'>
+:::image
 <img src="./game_count.png" alt="this is a cry for help" width="540" height="359" className='mx-auto mb-4'/>
-<em>This is a cry for help</em>
-</div>
+<figcaption>This is a cry for help</figcaption>
+:::
 
 Fun fact, I played [Cyberpunk 2077](https://www.cyberpunk.net/us/en/) on this computer at launch at the lowest settings with an average 20 FPS and got the worst possible ending. Not a joke. In fact, one of the first AAA games I played - [Watch Dogs 2](https://store.steampowered.com/app/447040/Watch_Dogs_2/) (phenomenal game) - I played on an also underspec'd IdeaPad at the lowest settings and beat the game. I still enjoyed it because I'm "quirky" like that, but it's not the only thing I've tried throwing at this computer with an unexpected level of success:
 
@@ -68,10 +68,10 @@ So I set a budget of $2000 USD and started making lists on [PCPartPicker](https:
 
 Here is a copy of the build on PCPartPicker for more details about the parts I used: https://pcpartpicker.com/user/FaceFTW/saved/#view=Dnmgzy
 
-<div className='text-center'>
+:::image
 <img src="./my_son.webp" alt="my son :)" width="1200" height="1600" className='mx-auto mb-4'/>
-<em>my son :)</em>
-</div>
+<figcaption>my son :)</figcaption>
+:::
 
 Couple of interesting factors about this build
 - I wanted something small and quiet.
@@ -84,17 +84,17 @@ Couple of interesting factors about this build
 
 Here are pictures of the final build! I'm excluding a formal setup picture since I'm still adjusting things around, plus it's temporary while I save for an apartment.
 
-<div className='text-center'>
+:::image
 <img src="./build_inside.webp" alt="Inside of the computer" width="1200" height="900" className='mx-auto'/>
 <img src="./build_front.webp" alt="Front of the computer" width="1200" height="1600" className='mx-auto'/>
-<em>Please ignore the rat's nest. Also I can't believe they just give metal emblems with some of these things.</em>
-</div>
+<figcaption>Please ignore the rat's nest. Also I can't believe they just give metal emblems with some of these things.</figcaption>
+:::
 
 And the benchmarks? Well I ran a bunch of [3DMark](https://www.3dmark.com) tests, and I'm very happy with the higher numbers. Plus, I only heard the CPU fan spin up when under a reasonable load.
 
-<div className='text-center'>
+:::image
 <img src="./3dmark.webp" alt="3DMark Scores" width="607" height="916" className='mx-auto mb-4'/>
-<em>The numbers Mason. They actually mean something.</em>
-</div>
+<figcaption>The numbers Mason. They actually mean something.</figcaption>
+:::
 
 Thanks for reading! I've got another post in the works about the history of this website's design that was in the works, but then this happened, and I wanted to nerd out about it. Stay tuned!

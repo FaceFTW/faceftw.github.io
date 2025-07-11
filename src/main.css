@@ -198,7 +198,7 @@
     @apply py-2;
     @apply mb-4;
     @apply border-l-8;
-    @apply border-l-;
+    /* @apply border-l-; */
     @apply dark:border-l-[#121212];
     @apply border-spacing-16;
     @apply text-neutral-600;
@@ -209,6 +209,13 @@
   code::before,
   code::after {
     display: none;
+  }
+  /* Some formatting for image captions*/
+  figcaption {
+    @apply italic;
+    @apply text-muted-foreground;
+    @apply mt-4;
+
   }
 
 }
