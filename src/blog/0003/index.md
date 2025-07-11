@@ -33,7 +33,7 @@ Since Cowsay is written in Perl and cow files are just Perl scripts, I could sta
 
 
 ::: image
-<img src="./goggle-search.webp" alt="google is your friend?" width="1005" height="773" className='mx-auto mb-4'/>
+<img src="./goggle-search.webp" alt="google is your friend?" width="1005" height="773" class='mx-auto mb-4'/>
 :::
 
 Uh-oh.
@@ -51,7 +51,7 @@ There was a reference to the [yacc (or GNU Bison)](https://www.gnu.org/software/
 
 
 :::image
-<img src="./perly.webp" alt="flashbanged by words" width="406" height="213" className='mx-auto mb-4'/>
+<img src="./perly.webp" alt="flashbanged by words" width="406" height="213" class='mx-auto mb-4'/>
 :::
 
 Yeah, I'm not reading all of that.
@@ -184,7 +184,7 @@ Like before, let's find a good reference for all the commands. And sure enough s
 
 
 :::image
-<img src="./charmap.webp" alt="char map" width="477" height="508" className='mx-auto mb-4'/>
+<img src="./charmap.webp" alt="char map" width="477" height="508" class='mx-auto mb-4'/>
 :::
 
 There is now enough analysis of how a cow file is defined to move on to the next steps, [_**lexing**_](https://en.wikipedia.org/wiki/Lexical_analysis) and _**interpreting**_.
@@ -608,7 +608,7 @@ All this interpreter does is create the string that should be printed to `stdout
 ## The Final Result (Batteries Required)
 
 :::image
-<img src="./demo.gif" alt="yaay" width="1028" height="804" className='mx-auto mb-4'/>
+<img src="./demo.gif" alt="yaay" width="1028" height="804" class='mx-auto mb-4'/>
 :::
 
 _Pardon the glitchy drawing, I can confirm this is an issue with the terminal recorder I used and not what it looks like._
@@ -626,7 +626,7 @@ To summarize the issue, there exists a parser combinator specifically for Perl c
 
 
 :::image
-<img src="./malformed_aperture.webp" alt="Portal 2 spoiler?" width="686" height="206" className='mx-auto mb-4'/>
+<img src="./malformed_aperture.webp" alt="Portal 2 spoiler?" width="686" height="206" class='mx-auto mb-4'/>
 :::
 
 One of the difficulties with the `nom` crate is that it is intentionally bare-bones. Aside from some of the gripes I had with the error handling system (such as no easy way to propagate parser errors in `map()` parsers), part of the solution I tried with `nom` just _didn't work_. And I could not figure out why looking at it from a black box. Again, it is a widely downloaded crate for a reason, but I needed something different. So I _rewrote*_ the entire parser.
@@ -636,7 +636,7 @@ For the rewrite, I used [`winnow`](https://crates.io/crates/winnow) which is act
 
 
 :::image
-<img src="./winnow-dbg.webp" alt="Example winnow debug output against the default cow" width="1084" height="601" className='mx-auto mb-4'/>
+<img src="./winnow-dbg.webp" alt="Example winnow debug output against the default cow" width="1084" height="601" class='mx-auto mb-4'/>
 :::
 
 Most of the core parsers remained the same, except for the main "cow string". Instead of trying to parse everything at the same semantic level, a separate parser is used to identify the delimiters of the string (such as `$the_cow =<<EOC;`) and use the respective sub-parsers that are valid within that scope to return a token list. That looks something like this (in pseudocode since the actual one is a bit long):

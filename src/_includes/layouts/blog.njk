@@ -2,30 +2,30 @@
 layout: 'layouts/base.njk'
 ---
 
-<div className='flex flex-col justify-center'>
-    <div className='mb-4 flex flex-row'>
+<div class='flex flex-col justify-center'>
+    <div class='mb-4 flex flex-row'>
         <a href='/blog'>
-            <div className='flex flex-row space-x-2'>
+            <div class='flex flex-row space-x-2'>
                 {% include 'icons/arrow_left.njk' %}
-                <p className='text-neutral-600 dark:text-neutral-500'>Back to the Main Page</p>
+                <p class='text-neutral-600 dark:text-neutral-500'>Back to the Main Page</p>
             </div>
         </a>
     </div>
-    <article className='prose prose-green dark:prose-invert grow lg:max-w-[125ch]'>{{ content | safe }}</article>
+    <article class='prose prose-green dark:prose-invert grow lg:max-w-[125ch]'>{{ content | safe }}</article>
     <br/>
     <em
-        className='prose prose-green dark:prose-invert mb-8 inline-flex self-center lg:flex'
+        class='prose prose-green dark:prose-invert mb-8 inline-flex self-center lg:flex'
         xmlns:cc='http://creativecommons.org/ns#'
         xmlns:dct='http://purl.org/dc/terms/'>
-        <span property='dct:title' className='mr-1'>
-            This post of ref_cycle&nbsp;
+        <span property='dct:title' class='mr-1'>
+            This post of <code>ref_cycle</code>&nbsp;
         </span>
-        is licensed under&nbsp;
+        is licensed under
         <a
             href='https://creativecommons.org/licenses/by-nc-sa/4.0'
             target='_blank'
             rel='license noopener noreferrer'
-            className='ml-1 inline'>
+            class='ml-1 inline text-'>
             CC BY-NC-SA 4.0
         </a>
     </em>

@@ -40,6 +40,6 @@ There are many things I want to try in 2025. I want to do more ~~stupid~~ niche 
 
 
 
-<div className="mb-8 p-0 overflow-hidden text-center">
+<div class="mb-8 p-0 overflow-hidden text-center">
 <strong><em>Happy New Year and cheers to a great 2025!</em></strong>
 </div>

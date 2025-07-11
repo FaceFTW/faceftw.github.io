@@ -27,7 +27,7 @@ For this project, I used a [SSD1306 128x64 monochrome OLED display](https://www.
 
 
 :::image
-<img src="./block_diagram.webp" alt="" width="812" height="707" className='mx-auto mb-4'/>
+<img src="./block_diagram.webp" alt="" width="812" height="707" class='mx-auto mb-4'/>
 <em>Block Diagram of the SSD1306 - Source: [SSD1306 Datasheet](https://cdn-shop.adafruit.com/datasheets/SSD1306.pdf)</em>
 :::
 
@@ -36,7 +36,7 @@ What I gathered from this diagram (based on background knowledge and more of the
 Continuing the comparison to machine code, the datasheet has an entire section about what signals and bits need to be set for different actions such as changing oscillator speeds or setting pixels. One of the most important signals is the "Data/Command (D/C)" bit which controls the interpretation of whatever is being sent over the _data bus_ (indicated with pins D0-D7); if the signal is high, data from the bus is written to RAM, otherwise (when low) it is pushed to the command decoder and changes internal display state wizardry. When paired with the "Read/Write (R/W)" signal, it allows for controlling the direction of data on the bus and what the source of the data is (see Table 9-3 in the datasheet). This project only writes to the display, so the R/W signal is always set to have the bus write to the display controller.
 
 :::image
-<img src="./command_tables.webp" alt="" width="812" height="534" className='mx-auto mb-4'/>
+<img src="./command_tables.webp" alt="" width="812" height="534" class='mx-auto mb-4'/>
 <em>Some Example Tables Documenting Commands- Source: [SSD1306 Datasheet](https://cdn-shop.adafruit.com/datasheets/SSD1306.pdf)</em>
 :::
 
@@ -71,7 +71,7 @@ Section 8-7 of the SSD1306 datasheet is very revealing about how the graphics RA
 
 
 :::image
-<img src="./seg_block.webp" alt="" width="708" height="265" className='mx-auto mb-4'/>
+<img src="./seg_block.webp" alt="" width="708" height="265" class='mx-auto mb-4'/>
 <em>What the Graphics RAM looks like - Source: [SSD1306 Datasheet](https://cdn-shop.adafruit.com/datasheets/SSD1306.pdf)</em>
 :::
 
@@ -79,7 +79,7 @@ Even when working in the smaller [address space](https://en.wikipedia.org/wiki/A
 
 
 :::image
-<img src="./flat_array.webp" alt="" width="531" height="251" className='mx-auto mb-4'/>
+<img src="./flat_array.webp" alt="" width="531" height="251" class='mx-auto mb-4'/>
 <em>Explanation between multi-dimensional array vs flat array structures. Notice how the flat array saves space.</em>
 :::
 
@@ -87,7 +87,7 @@ Again, all of this functionality is abstracted by the display controller, what m
 
 
 :::image
-<img src="./vertical_repr.webp" alt="" width="439" height="128" className='mx-auto mb-4'/>
+<img src="./vertical_repr.webp" alt="" width="439" height="128" class='mx-auto mb-4'/>
 <em>Representation of a capital 'G'. Note the endianess of the diagram is reversed.</em>
 :::
 
@@ -135,7 +135,7 @@ The I²C protocol is based on "transactions" initiated from a controller to an a
 
 
 :::image
-<img src="./start_stop.webp" alt="" width="541" height="164" className='mx-auto mb-4'/>
+<img src="./start_stop.webp" alt="" width="541" height="164" class='mx-auto mb-4'/>
 <em>Start and Stop Signal Diagrams - Source: [I²C Specification](https://www.nxp.com/docs/en/user-guide/UM10204.pdf)</em>
 :::
 
@@ -143,7 +143,7 @@ Within each transaction, messages are sent in 1 byte (8 bits) "packets", with ea
 
 
 :::image
-<img src="./ack_bits.webp" alt="" width="680" height="196" className='mx-auto mb-4'/>
+<img src="./ack_bits.webp" alt="" width="680" height="196" class='mx-auto mb-4'/>
 <em>An Example Message with Acknowledge Bit - Source: [I²C Specification](https://www.nxp.com/docs/en/user-guide/UM10204.pdf)</em>
 :::
 
@@ -151,7 +151,7 @@ At the beginning of each transaction, the first byte sent over the bus is the 7-
 
 
 :::image
-<img src="./address_struct.webp" alt="" width="356" height="119" className='mx-auto mb-4'/>
+<img src="./address_struct.webp" alt="" width="356" height="119" class='mx-auto mb-4'/>
 <em>Structure of the I²C address message</em>
 :::
 
@@ -163,8 +163,8 @@ Putting it all together, these are the example transactions to display a capital
 import transactions from './transactions.webp';
 
 :::image
-<img src={transactions} alt="" width="574" height="296" className='mx-auto mb-4'/>
-<em>I²C Transactions to display a captial 'A' on the second line. ACK bits are indicated separately since they come from the display controller.</em>
+<img src={transactions} alt="" width="574" height="296" class='mx-auto mb-4'/>
+<em>I²C Transactions to display a capital 'A' on the second line. ACK bits are indicated separately since they come from the display controller.</em>
 :::
 
 ## Writing it in code

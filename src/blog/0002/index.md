@@ -209,7 +209,7 @@ This is great! ASM already does the work needed to separate throws declarations 
 While the analyzer is going to be implemented as a `DomainAnalyzer` in the context of the architecture, there needs to be a way to test the singular unit of exception analysis against various cases. Moreover, I've generated the following cases that should either be compliant or non-compliant with the linter's rules:
 
 <div>
-<img src='./exceptionstyleexamples.png' alt="A bunch of examples" width="738" height="831" className='mx-auto mb-4'/>
+<img src='./exceptionstyleexamples.png' alt="A bunch of examples" width="738" height="831" class='mx-auto mb-4'/>
 </div>
 
 In practice, these method names are really excessive, but they effectively describe what each example is supposed to represent. Overall, there are 7 types of specific violations that this linter will support, which are defined in an enum of`ExceptionThrownAnalyzer.java`:
@@ -250,7 +250,7 @@ Another thing to consider is what type of unique classes to include in the coupl
 
 
 <div>
-<img src='./seeminglyhighcouplingexample.png' alt="Is this high coupling??" width="806" height="520" className='mx-auto mb-4'/>
+<img src='./seeminglyhighcouplingexample.png' alt="Is this high coupling??" width="806" height="520" class='mx-auto mb-4'/>
 </div>
 
 
@@ -377,7 +377,7 @@ Below is an updated class diagram focused mainly on the presentation layer and t
 
 
 <div>
-<img src='./PresentationLayer.png' alt="Presentation Layer UML" width="910" height="1044" className='mx-auto mb-4'/>
+<img src='./PresentationLayer.png' alt="Presentation Layer UML" width="910" height="1044" class='mx-auto mb-4'/>
 </div>
 
 
@@ -400,7 +400,7 @@ This entry discusses the ideas on how I plan to implement the final feature I ha
 The primary purpose of the strategy is to allow for a class to select algorithms dynamically at runtime based on some concrete strategy object implementing a strategy interface.
 
 <div>
-<img src='./BasicStrategy.png' alt="Basic Strategy Pattern UML" width="380" height="381" className='mx-auto mb-4'/>
+<img src='./BasicStrategy.png' alt="Basic Strategy Pattern UML" width="380" height="381" class='mx-auto mb-4'/>
 </div>
 
 
@@ -408,9 +408,9 @@ The above UML class diagram depicts a very simple strategy pattern with two poss
 
 However, strategy pattern can be used multiple times, whether it be the same or different types of strategies. Consider the following class diagrams:
 
-<div className='lg:flex lg:mx-auto mb-4'>
-<img src="./MultiStrategyType.png" alt="Wait what?" width="830" height="436" className='mx-auto mb-4 lg:mb-0'/>
-<img src="./MultiSameStrategyType.png" alt="This too?" width="380" height="408" className='mx-auto'/>
+<div class='lg:flex lg:mx-auto mb-4'>
+<img src="./MultiStrategyType.png" alt="Wait what?" width="830" height="436" class='mx-auto mb-4 lg:mb-0'/>
+<img src="./MultiSameStrategyType.png" alt="This too?" width="380" height="408" class='mx-auto'/>
 </div>
 
 
@@ -430,7 +430,7 @@ This seems pretty robust for determining what is a strategy pattern, except ther
 Suppose we have the following UML Class diagram:
 
 <div>
-<img src="./StrategyMethodCallsOnly.png" alt="Surely this isn't a strategy pattern" width="380" height="381" className='mx-auto mb-4'/>
+<img src="./StrategyMethodCallsOnly.png" alt="Surely this isn't a strategy pattern" width="380" height="381" class='mx-auto mb-4'/>
 </div>
 
 Given that this is a `final` class, there are a couple of interesting attributes that it will exhibit. The private constructor and static instantiation by the VM means that it is not good practice to let such an object have fields, thus this practice is done for utility classes that have methods that should not be overridden. In order for any method in this class to run, they are `static`ly declared and therefore must operate based on the parameter inputs it receives. But the question now becomes if the method _uses a `StrategyType` object_ as one of its parameters (among others), is that still implementing the strategy pattern?
@@ -445,14 +445,14 @@ Enums are very interesting in Java given they can effectively operate as classes
 
 
 <div>
-<img src="./ExampleEnum.png" alt='Example Enum Definition' width="402" height="314" className='mx-auto mb-4'/>
+<img src="./ExampleEnum.png" alt='Example Enum Definition' width="402" height="314" class='mx-auto mb-4'/>
 </div>
 
 If you notice the abstract override of `toString()` in `ExampleEnumWithAbstractMethod`, this is actually allowed, but required every value in the enum to implement its own version. But now the question becomes how does Java compiles this? Well, it does it similar to this:
 
 
 <div>
-<img src="./ExampleEnumAsStrategy.png" alt='An Example Enum Implementing the Strategy Pattern' width="1053" height="422" className='mx-auto mb-4'/>
+<img src="./ExampleEnumAsStrategy.png" alt='An Example Enum Implementing the Strategy Pattern' width="1053" height="422" class='mx-auto mb-4'/>
 </div>
 
 Java won't use the exact naming scheme, but it definitely complies it this way. In fact, it seems all enums are compiled this way. In the `ExceptionThownAnalyzer`, I created the following enum within the `ExceptionThrownAnalyzer` class:
@@ -518,7 +518,7 @@ Java won't use the exact naming scheme, but it definitely complies it this way. 
 I ran it through ASM and analyzed the debug results, leaving me with pretty good confirmation of how I suspect it works:
 
 <div>
-<img src="enum_decomp.png" alt="Confirming the results" width="735" height="290" className='mx-auto mb-4'/>
+<img src="enum_decomp.png" alt="Confirming the results" width="735" height="290" class='mx-auto mb-4'/>
 </div>
 
 While not explicitly clear just from the list unless you analyze the `ClassNode` objects, the only base class (i.e. the only class without `$#` append) does have both the `ACC_ENUM` (`0x4000`) and `ACC_INTERFACE` (`0x0400`) access flags, while the others have only the `ACC_ENUM` flag, therefore indicating this is all related to the enum. Even the declared methods in the interface class have the `ACC_ABSTRACT` access flag, therefore recreating the exact pattern structure.

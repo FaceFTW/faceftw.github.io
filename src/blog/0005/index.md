@@ -24,7 +24,7 @@ So sit back and get your snack of choice, time for another trip back in time.
 This website first started as most websites did back in the early days of the web: pure HTML, CSS, and a sprinkle of JS.
 
 :::image
-<img src="./humble_beginnings.png" alt="" width="1107" height="582" className='mx-auto mb-4'/>
+<img src="./humble_beginnings.png" alt="" width="1107" height="582" class='mx-auto mb-4'/>
 <figcaption>The first ever version of the website - a humble beginning</figcaption>
 :::
 
@@ -37,7 +37,7 @@ At this time, I started taking on more projects, courses at college, and interns
 Luckily, this was around the time I started to learn my first web framework.
 
 :::image
-<img src="./home_v2.png" alt="" width="1110" height="583" className='mx-auto mb-4'/>
+<img src="./home_v2.png" alt="" width="1110" height="583" class='mx-auto mb-4'/>
 <figcaption>The Angular Revision - A Big New Step</figcaption>
 :::
 
@@ -46,7 +46,7 @@ The first web framework I learned was [Angular](https://angular.dev) (not the an
 Overall, this isn't a terrible website. Some of the elements are not well formatted, but I see that as more of my lack of thinking about "aesthetics" and more "it works". I even added a system with JSON and [JSON Schema](https://json-schema.org/) (for IDE validation) to serve as a static data for my projects list and resume. For my first foray into Angular (for a project outside the primary use cases), it's not a bad site. _But hindsight is 20/20 and there were some glaring issues_.
 
 :::image
-<img src="./home_v3.png" alt="" width="1110" height="583" className='mx-auto mb-4'/>
+<img src="./home_v3.png" alt="" width="1110" height="583" class='mx-auto mb-4'/>
 <figcaption>The React Revision - More of the Same</figcaption>
 :::
 
@@ -125,7 +125,7 @@ Because Next.js uses SSR as the basis for its framework, it meant having to worr
 
 
 :::image
-<img src="./commit-history.png" alt="" width="650" height="434" className='mx-auto mb-4'/>
+<img src="./commit-history.png" alt="" width="650" height="434" class='mx-auto mb-4'/>
 <figcaption>I'm usually better at commit messages trust me</figcaption>
 :::
 
@@ -238,7 +238,7 @@ The first load JS is reduced by around 60% for _all pages_. If a page has specif
 
 
 :::image
-<img src="./generated-html.png" alt="" width="1419" height="673" className='mx-auto mb-4'/>
+<img src="./generated-html.png" alt="" width="1419" height="673" class='mx-auto mb-4'/>
 <figcaption>Look at all of that minified HTML</figcaption>
 :::
 
@@ -252,7 +252,7 @@ Now, just because there is less JavaScript being processed on page load does not
 Using the performance tab in the Chromium browser DevTools (I use Microsoft Edge despite not using any AI features, but this applies to most Chrome-based browsers) and loaded each page using a 4G network throttling setting to make the impact of resource size more apparent given the localized hosting used for testing. Here are the metrics for the pure React site:
 
 :::image
-<img src="./react-profile.png" alt="" width="1173" height="590" className='mx-auto mb-4'/>
+<img src="./react-profile.png" alt="" width="1173" height="590" class='mx-auto mb-4'/>
 <figcaption>Pure React Profile Results</figcaption>
 :::
 
@@ -261,15 +261,15 @@ Given the knowledge about how the pure React page loads, it's no surprise that t
 Time for the Next.js metrics, which look much better:
 
 :::image
-<img src="./nextjs-profile.png" alt="" width="773" height="636" className='mx-auto mb-4'/>
+<img src="./nextjs-profile.png" alt="" width="773" height="636" class='mx-auto mb-4'/>
 <figcaption>Next.JS Profile Results</figcaption>
 :::
 
 The final metric mark (L) is around 500ms faster (than LCP in the older version) and is actually the last thing that occurs; given the shift to using HTML over JS for page content. Also, DCL happens much earlier, and is then proceeded by FCP and LCP within 250ms (FP indicates first paint but in this case it's relatively empty). Here is a zoom-in on that section specifically:
 
 
-<figure className="text-center flex">
-<img src="./nextjs-dcl-l.png" alt="" width="1461" height="533" className='mx-auto mb-4'/>
+<figure class="text-center flex">
+<img src="./nextjs-dcl-l.png" alt="" width="1461" height="533" class='mx-auto mb-4'/>
 <figcaption>DCL point to L point - Look at that timespan difference!</figcaption>
 :::
 
@@ -292,7 +292,7 @@ Thanks for reading! Next in line are potential rants about Python, AI, or maybe 
 
 
 :::image
-<img src="./indiana_jones_game.jpg" alt="" width="1280" height="720" className='mx-auto mb-4'/>
+<img src="./indiana_jones_game.jpg" alt="" width="1280" height="720" class='mx-auto mb-4'/>
 <figcaption>He said the thing!</figcaption>
 :::
 <br/>

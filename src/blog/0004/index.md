@@ -13,7 +13,7 @@ _Why I decided to deprecate my ThinkPad_
 If you've checked out the [About](/about) section of my website, you'll see a couple of pictures of my setups, one in the basement of my childhood home during COVID and the other in my dorm at the senior year of college. Aside from the different locations, display configurations, and other knick-knacks, one thing remained constant: the ThinkPad.
 
 :::image
-<img src="./thinkpad_mentioned.webp" alt="THINKPAD MENTIONED!!!!!" width="1200" height="800" className='mx-auto mb-4'/>
+<img src="./thinkpad_mentioned.webp" alt="THINKPAD MENTIONED!!!!!" width="1200" height="800" class='mx-auto mb-4'/>
 <figcaption>THINKPAD MENTIONED!!!!!</figcaption>
 :::
 
@@ -29,14 +29,14 @@ The nice thing about [ThinkPads](https://en.wikipedia.org/wiki/ThinkPad) is that
 
 
 :::image
-<img src="./thinkpad_lid.webp" alt="The lid of my Thinkpad" width="1200" height="900" className='mx-auto mb-4'/>
+<img src="./thinkpad_lid.webp" alt="The lid of my Thinkpad" width="1200" height="900" class='mx-auto mb-4'/>
 <figcaption>The lid of the Thinkpad. With all the stickers it accumulated</figcaption>
 :::
 
 For what it's worth, it is a pretty good computer for the time and what is expected for engineering students to need: Above-average processing power and discrete graphics with an increase compute focus (the Quadro/RTX are known for this). Some pain points like the RAM and SSD were there, but that was more of a "me" thing; I ended up adding a [Seagate FireCuda 510 2TB SSD](https://www.seagate.com/support/internal-hard-drives/ssd/firecuda-ssd/) and making that my main boot drive, otherwise I basically relied on the [Windows page file](https://learn.microsoft.com/en-us/troubleshoot/windows-client/performance/introduction-to-the-page-file) if I ever ran out of memory (which is often). Aside from the school software, SDKs, toolchains, and VMs I had running on this, I also played (so many) video games on it. I mean have you seen my Steam library?
 
 :::image
-<img src="./game_count.png" alt="this is a cry for help" width="540" height="359" className='mx-auto mb-4'/>
+<img src="./game_count.png" alt="this is a cry for help" width="540" height="359" class='mx-auto mb-4'/>
 <figcaption>This is a cry for help</figcaption>
 :::
 
@@ -69,7 +69,7 @@ So I set a budget of $2000 USD and started making lists on [PCPartPicker](https:
 Here is a copy of the build on PCPartPicker for more details about the parts I used: https://pcpartpicker.com/user/FaceFTW/saved/#view=Dnmgzy
 
 :::image
-<img src="./my_son.webp" alt="my son :)" width="1200" height="1600" className='mx-auto mb-4'/>
+<img src="./my_son.webp" alt="my son :)" width="1200" height="1600" class='mx-auto mb-4'/>
 <figcaption>my son :)</figcaption>
 :::
 
@@ -85,15 +85,15 @@ Couple of interesting factors about this build
 Here are pictures of the final build! I'm excluding a formal setup picture since I'm still adjusting things around, plus it's temporary while I save for an apartment.
 
 :::image
-<img src="./build_inside.webp" alt="Inside of the computer" width="1200" height="900" className='mx-auto'/>
-<img src="./build_front.webp" alt="Front of the computer" width="1200" height="1600" className='mx-auto'/>
+<img src="./build_inside.webp" alt="Inside of the computer" width="1200" height="900" class='mx-auto'/>
+<img src="./build_front.webp" alt="Front of the computer" width="1200" height="1600" class='mx-auto'/>
 <figcaption>Please ignore the rat's nest. Also I can't believe they just give metal emblems with some of these things.</figcaption>
 :::
 
 And the benchmarks? Well I ran a bunch of [3DMark](https://www.3dmark.com) tests, and I'm very happy with the higher numbers. Plus, I only heard the CPU fan spin up when under a reasonable load.
 
 :::image
-<img src="./3dmark.webp" alt="3DMark Scores" width="607" height="916" className='mx-auto mb-4'/>
+<img src="./3dmark.webp" alt="3DMark Scores" width="607" height="916" class='mx-auto mb-4'/>
 <figcaption>The numbers Mason. They actually mean something.</figcaption>
 :::
 

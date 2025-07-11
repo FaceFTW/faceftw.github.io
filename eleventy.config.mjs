@@ -6,6 +6,7 @@ import { eleventyImageTransformPlugin } from '@11ty/eleventy-img';
 import pluginNavigation from '@11ty/eleventy-navigation';
 import { fromHighlighter } from '@shikijs/markdown-it';
 import tailwindcss from '@tailwindcss/postcss';
+import htmlmin from 'html-minifier-terser';
 import { DateTime } from 'luxon';
 import markdownItContainer from 'markdown-it-container';
 import postcss from 'postcss/lib/postcss';
@@ -47,7 +48,7 @@ export default async function (eleventyConfig) {
         writeFileSync(tailwindOutputPath, result.css);
     });
 
-	/************************
+    /************************
      * Build Configuration
      ************************/
     eleventyConfig
@@ -60,8 +61,18 @@ export default async function (eleventyConfig) {
     eleventyConfig.addWatchTarget('**/*.css');
     eleventyConfig.addWatchTarget('**/*.{svg,webp,png,jpg,jpeg,gif}');
 
-	eleventyConfig.addTransform()
-
+    eleventyConfig.addTransform('minify', function (content) {
+        if ((this.page.outputPath || '').endsWith('.html')) {
+            return htmlmin.minify(content, {
+                useShortDoctype: true,
+                removeComments: true,
+                collapseWhitespace: true,
+                minifyJS: true,
+                minifiyCSS: true,
+            });
+        }
+        return content;
+    });
     /*************************
      * Markdown Configuration
      *************************/
@@ -83,8 +94,7 @@ export default async function (eleventyConfig) {
     });
     eleventyConfig.amendLibrary('md', (mdLib) => {
         /**
-         * Original Source is from:
-         * https://github.com/kamranahmedse/markdown-it-class/
+         * Based on https://github.com/kamranahmedse/markdown-it-class/
          * Using MIT License (Less packages the better)
          */
         function setTokenClasses(tokens, mapping = {}) {
@@ -93,7 +103,6 @@ export default async function (eleventyConfig) {
                 if (isOpeningTag && mapping[token.tag]) {
                     const existingClasses = (token.attrGet('class') || '').split(' ');
                     const givenClasses = mapping[token.tag] || '';
-
                     const newClasses = [...existingClasses, ...givenClasses];
 
                     token.attrSet('class', newClasses.join(' ').trim());
@@ -112,7 +121,7 @@ export default async function (eleventyConfig) {
             h4: ['text-lg', 'xl:text-3xl', 'mb-4'],
             h5: ['text-md', 'xl:text-2xl', 'font-bold', 'mb-4'],
             h6: ['text-md', 'xl:text-xl', 'mb-4'],
-            a: ['hover:underline', 'mb-4', 'leading-relaxed', 'text-primary'],
+            a: [12'hover:underline', 'mb-4', 'leading-relaxed', 'text-primary'],
             ul: ['list-disc', 'list-outside', 'indent-4', 'ml-8', 'mb-4', 'leading-relaxed'],
             ol: ['list-decimal', 'list-outside', 'indent-4', 'ml-8', 'mb-4', 'leading-relaxed'],
             li: ['indent-4', 'leading-relaxed'],
