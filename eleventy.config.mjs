@@ -1,24 +1,24 @@
 import { HtmlBasePlugin, IdAttributePlugin, InputPathToUrlTransformPlugin } from '@11ty/eleventy';
 // import { feedPlugin } from "@11ty/eleventy-plugin-rss";
-import pluginNavigation from '@11ty/eleventy-navigation';
 import { eleventyImageTransformPlugin } from '@11ty/eleventy-img';
+import pluginNavigation from '@11ty/eleventy-navigation';
 import { fromHighlighter } from '@shikijs/markdown-it';
-import { createHighlighterCoreSync, createJavaScriptRegexEngine } from 'shiki';
-import rust from '@shikijs/langs/rust';
-import java from '@shikijs/langs/java';
-import perl from '@shikijs/langs/perl';
-import html from '@shikijs/langs/html';
-import tsx from '@shikijs/langs/tsx';
-import javascript from '@shikijs/langs/javascript';
-import typescript from '@shikijs/langs/typescript';
-import c from '@shikijs/langs/c';
-import css from '@shikijs/langs/css';
-import csharp from '@shikijs/langs/csharp';
-import shell from '@shikijs/langs/shell';
-import vitesse_light from '@shikijs/themes/vitesse-light';
-import vitesse_dark from '@shikijs/themes/vitesse-dark';
 import { DateTime } from 'luxon';
 import markdownItContainer from 'markdown-it-container';
+import { createHighlighterCoreSync, createJavaScriptRegexEngine } from 'shiki';
+import c from 'shiki/langs/c.mjs';
+import csharp from 'shiki/langs/csharp.mjs';
+import css from 'shiki/langs/css.mjs';
+import html from 'shiki/langs/html.mjs';
+import java from 'shiki/langs/java.mjs';
+import javascript from 'shiki/langs/javascript.mjs';
+import perl from 'shiki/langs/perl.mjs';
+import rust from 'shiki/langs/rust.mjs';
+import shell from 'shiki/langs/shell.mjs';
+import tsx from 'shiki/langs/tsx.mjs';
+import typescript from 'shiki/langs/typescript.mjs';
+import vitesse_dark from 'shiki/themes/vitesse-dark.mjs';
+import vitesse_light from 'shiki/themes/vitesse-light.mjs';
 
 /** @param {import("@11ty/eleventy").UserConfig} eleventyConfig */
 export default async function (eleventyConfig) {
