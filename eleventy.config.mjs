@@ -2,7 +2,6 @@ import { HtmlBasePlugin, IdAttributePlugin, InputPathToUrlTransformPlugin } from
 // import { feedPlugin } from "@11ty/eleventy-plugin-rss";
 import pluginNavigation from '@11ty/eleventy-navigation';
 import { eleventyImageTransformPlugin } from '@11ty/eleventy-img';
-import mdItClass from './src/libs/mdItClass.mjs';
 import { fromHighlighter } from '@shikijs/markdown-it';
 import { createHighlighterCoreSync, createJavaScriptRegexEngine } from 'shiki';
 import rust from '@shikijs/langs/rust';
@@ -23,13 +22,9 @@ import markdownItContainer from 'markdown-it-container';
 
 /** @param {import("@11ty/eleventy").UserConfig} eleventyConfig */
 export default async function (eleventyConfig) {
-    // Drafts, see also _data/eleventyDataSchema.js
-    // eleventyConfig.addPreprocessor('drafts', '*', (data, content) => {
-    //     if (data.draft && process.env.ELEVENTY_RUN_MODE === 'build') {
-    //         return false;
-    //     }
-    // });
-
+    /************************
+     * Build Configuration
+     ************************/
     eleventyConfig
         .addPassthroughCopy({
             './public/': '/',
@@ -37,24 +32,121 @@ export default async function (eleventyConfig) {
         })
         .addPassthroughCopy('./content/feed/pretty-atom-feed.xsl');
 
-    // Run Eleventy when these files change:
-    // https://www.11ty.dev/docs/watch-serve/#add-your-own-watch-targets
-
     eleventyConfig.addWatchTarget('**/*.css');
     eleventyConfig.addWatchTarget('**/*.{svg,webp,png,jpg,jpeg,gif}');
 
-    // Per-page bundles, see https://github.com/11ty/eleventy-plugin-bundle
-    // Bundle <style> content and adds a {% css %} paired shortcode
-    // eleventyConfig.addBundle('css', {
-    //     toFileDirectory: 'dist',
-    //     // Add all <style> content to `css` bundle (use <style eleventy:ignore> to opt-out)
-    //     // Supported selectors: https://www.npmjs.com/package/posthtml-match-helper
-    //     bundleHtmlContentFromSelector: 'style',
-    // });
+    /*************************
+     * Markdown Configuration
+     *************************/
+    eleventyConfig.amendLibrary('md', (mdLib) => {
+        const highlighter = createHighlighterCoreSync({
+            themes: [vitesse_light, vitesse_dark],
+            langs: [rust, java, perl, html, tsx, typescript, javascript, c, csharp, shell, css],
+            engine: createJavaScriptRegexEngine(),
+        });
 
+        mdLib.use(
+            fromHighlighter(highlighter, {
+                themes: {
+                    light: 'vitesse-light',
+                    dark: 'vitesse-dark',
+                },
+            })
+        );
+    });
+    eleventyConfig.amendLibrary('md', (mdLib) => {
+        /**
+         * Original Source is from:
+         * https://github.com/kamranahmedse/markdown-it-class/
+         * Using MIT License (Less packages the better)
+         */
+        function setTokenClasses(tokens, mapping = {}) {
+            tokens.forEach((token) => {
+                const isOpeningTag = token.nesting !== -1;
+                if (isOpeningTag && mapping[token.tag]) {
+                    const existingClasses = (token.attrGet('class') || '').split(' ');
+                    const givenClasses = mapping[token.tag] || '';
+
+                    const newClasses = [...existingClasses, ...givenClasses];
+
+                    token.attrSet('class', newClasses.join(' ').trim());
+                }
+
+                if (token.children) {
+                    setTokenClasses(token.children, mapping);
+                }
+            });
+        }
+
+        const mapping = {
+            h1: ['text-3xl', 'xl:text-6xl', 'mb-4'],
+            h2: ['text-2xl', 'xl:text-5xl', 'mb-4'],
+            h3: ['text-xl', 'xl:text-4xl', 'mb-4'],
+            h4: ['text-lg', 'xl:text-3xl', 'mb-4'],
+            h5: ['text-md', 'xl:text-2xl', 'font-bold', 'mb-4'],
+            h6: ['text-md', 'xl:text-xl', 'mb-4'],
+            a: ['hover:underline', 'mb-4', 'leading-relaxed', 'text-primary'],
+            ul: ['list-disc', 'list-outside', 'indent-4', 'ml-8', 'mb-4', 'leading-relaxed'],
+            ol: ['list-decimal', 'list-outside', 'indent-4', 'ml-8', 'mb-4', 'leading-relaxed'],
+            li: ['indent-4', 'leading-relaxed'],
+            p: ['mb-4', 'leading-relaxed'],
+            blockquote: [
+                'border-l-8',
+                'border-l-neutral-400',
+                'dark:border-l-neutral-600',
+                'border-spacing-16',
+                'pl-4',
+                'text-neutral-600',
+                'dark:text-neutral-400',
+                'leading-relaxed',
+            ],
+            hr: ['mb-4'],
+            table: ['table-auto', 'mx-auto', 'mb-4'],
+            figcaption: ['mb-4', 'italic'],
+        };
+
+        mdLib.use((md) => {
+            md.core.ruler.push('markdownit-tag-class', (state) => {
+                setTokenClasses(state.tokens, mapping);
+            });
+        });
+    });
+    eleventyConfig.amendLibrary('md', (/** @type {MarkdownIt}*/ mdLib) => {
+        mdLib.use(markdownItContainer, 'image', {
+            render: (/** @type {import('markdown-it').Token[]}*/ tokens, idx) => {
+                //Using the <figure> tags, so we can easily add opening/closing tags as needed
+                if (tokens[idx].nesting === 1) {
+                    return '<figure class="flex flex-col items-center text-center mb-4">';
+                }
+                if (tokens[idx].nesting === -1) {
+                    return '</figure>';
+                }
+
+                console.log(`${tokens[idx]}`);
+            },
+        });
+    });
+
+    /************************
+     * Plugin Setup
+     ************************/
     eleventyConfig.addPlugin(pluginNavigation);
     eleventyConfig.addPlugin(HtmlBasePlugin);
     eleventyConfig.addPlugin(InputPathToUrlTransformPlugin);
+    eleventyConfig.addPlugin(IdAttributePlugin);
+    eleventyConfig.addPlugin(eleventyImageTransformPlugin, {
+        formats: ['avif', 'webp', 'auto'],
+        failOnError: false,
+        htmlOptions: {
+            imgAttributes: {
+                loading: 'lazy',
+                decoding: 'async',
+            },
+        },
+        sharpOptions: {
+            animated: true,
+        },
+    });
 
     // eleventyConfig.addPlugin(feedPlugin, {
     // 	type: "atom", // or "rss", "json"
@@ -81,107 +173,9 @@ export default async function (eleventyConfig) {
     // 	}
     // });
 
-    eleventyConfig.amendLibrary('md', (mdLib) => {
-        //Initialize the Shiki Highliher
-        const highlighter = createHighlighterCoreSync({
-            themes: [vitesse_light, vitesse_dark],
-            langs: [rust, java, perl, html, tsx, typescript, javascript, c, csharp, shell, css],
-            engine: createJavaScriptRegexEngine(),
-        });
-
-        mdLib.use(
-            fromHighlighter(highlighter, {
-                themes: {
-                    light: 'vitesse-light',
-                    dark: 'vitesse-dark',
-                },
-            })
-        );
-    });
-    eleventyConfig.amendLibrary('md', (mdLib) => {
-        mdLib.use(mdItClass, {
-            h1: ['text-3xl', 'xl:text-6xl', 'mb-4'],
-            h2: ['text-2xl', 'xl:text-5xl', 'mb-4'],
-            h3: ['text-xl', 'xl:text-4xl', 'mb-4'],
-            h4: ['text-lg', 'xl:text-3xl', 'mb-4'],
-            h5: ['text-md', 'xl:text-2xl', 'font-bold', 'mb-4'],
-            h6: ['text-md', 'xl:text-xl', 'mb-4'],
-            a: ['hover:underline', 'mb-4', 'leading-relaxed', 'text-primary'],
-            ul: ['list-disc', 'list-outside', 'indent-4', 'ml-8', 'mb-4', 'leading-relaxed'],
-            ol: ['list-decimal', 'list-outside', 'indent-4', 'ml-8', 'mb-4', 'leading-relaxed'],
-            li: ['indent-4', 'leading-relaxed'],
-            p: ['mb-4', 'leading-relaxed'],
-            blockquote: [
-                'border-l-8',
-                'border-l-neutral-400',
-                'dark:border-l-neutral-600',
-                'border-spacing-16',
-                'pl-4',
-                'text-neutral-600',
-                'dark:text-neutral-400',
-                'leading-relaxed',
-            ],
-            hr: ['mb-4'],
-            table: ['table-auto', 'mx-auto', 'mb-4'],
-            code: ['rounded-lg', 'px-1', 'py-0.5', 'mb-4'],
-            pre: [
-                'mb-4',
-                'rounded-lg',
-                'border-l-8',
-                'border-l-neutral-400',
-                'dark:border-l-neutral-600',
-                'border-spacing-16',
-                'pl-4',
-                'text-neutral-600',
-                'dark:text-neutral-400',
-                'leading-relaxed',
-            ],
-            figcaption: ['mb-4', 'italic'],
-        });
-    });
-    eleventyConfig.amendLibrary('md', (/** @type {MarkdownIt}*/ mdLib) => {
-        mdLib.use(markdownItContainer, 'image', {
-            render: (/** @type {import('markdown-it').Token[]}*/ tokens, idx) => {
-                //Using the <figure> tags, so we can easily add opening/closing tags as needed
-                if (tokens[idx].nesting === 1) {
-                    return '<figure class="flex flex-col items-center text-center mb-4">';
-                }
-                if (tokens[idx].nesting === -1) {
-                    return '</figure>';
-                }
-
-				console.log(`${tokens[idx]}`)
-            },
-        });
-    });
-
-    // Image optimization: https://www.11ty.dev/docs/plugins/image/#eleventy-transform
-    eleventyConfig.addPlugin(eleventyImageTransformPlugin, {
-        // Output formats for each image.
-        formats: ['avif', 'webp', 'auto'],
-        failOnError: false,
-        htmlOptions: {
-            imgAttributes: {
-                // e.g. <img loading decoding> assigned on the HTML tag will override these values.
-                loading: 'lazy',
-                decoding: 'async',
-            },
-        },
-        sharpOptions: {
-            animated: true,
-        },
-    });
-
-    eleventyConfig.addPlugin(IdAttributePlugin, {
-        // by default we use Eleventy’s built-in `slugify` filter:
-        // slugify: eleventyConfig.getFilter("slugify"),
-        // selector: "h1,h2,h3,h4,h5,h6", // default
-    });
-
-    eleventyConfig.addShortcode('currentBuildDate', () => {
-        return new Date().toISOString();
-    });
-
+    /************************
+     * Custom Filters
+     ************************/
     eleventyConfig.addFilter('prettyDate', (value) => {
         const date = DateTime.fromISO(value);
         return date.toFormat('MMMM d, yyyy');
