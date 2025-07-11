@@ -1,10 +1,14 @@
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { dirname, resolve as resolveFile } from 'node:path';
 import { HtmlBasePlugin, IdAttributePlugin, InputPathToUrlTransformPlugin } from '@11ty/eleventy';
 // import { feedPlugin } from "@11ty/eleventy-plugin-rss";
 import { eleventyImageTransformPlugin } from '@11ty/eleventy-img';
 import pluginNavigation from '@11ty/eleventy-navigation';
 import { fromHighlighter } from '@shikijs/markdown-it';
+import tailwindcss from '@tailwindcss/postcss';
 import { DateTime } from 'luxon';
 import markdownItContainer from 'markdown-it-container';
+import postcss from 'postcss/lib/postcss';
 import { createHighlighterCoreSync, createJavaScriptRegexEngine } from 'shiki';
 import c from 'shiki/langs/c.mjs';
 import csharp from 'shiki/langs/csharp.mjs';
@@ -23,6 +27,27 @@ import vitesse_light from 'shiki/themes/vitesse-light.mjs';
 /** @param {import("@11ty/eleventy").UserConfig} eleventyConfig */
 export default async function (eleventyConfig) {
     /************************
+     * Tailwind on Build
+     ************************/
+    eleventyConfig.on('eleventy.before', async () => {
+        const tailwindInputPath = resolveFile('./src/main.css');
+        const tailwindOutputPath = './dist/assets/main.css';
+        const cssContent = readFileSync(tailwindInputPath, 'utf8');
+        const outputDir = dirname(tailwindOutputPath);
+
+        if (!existsSync(outputDir)) {
+            mkdirSync(outputDir, { recursive: true });
+        }
+
+        const result = await postcss([tailwindcss()]).process(cssContent, {
+            from: tailwindInputPath,
+            to: tailwindOutputPath,
+        });
+
+        writeFileSync(tailwindOutputPath, result.css);
+    });
+
+	/************************
      * Build Configuration
      ************************/
     eleventyConfig
@@ -34,6 +59,8 @@ export default async function (eleventyConfig) {
 
     eleventyConfig.addWatchTarget('**/*.css');
     eleventyConfig.addWatchTarget('**/*.{svg,webp,png,jpg,jpeg,gif}');
+
+	eleventyConfig.addTransform()
 
     /*************************
      * Markdown Configuration

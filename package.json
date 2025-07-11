@@ -4,7 +4,6 @@
 	"private": true,
 	"scripts": {
 		"serve": "eleventy --serve",
-		"css-dev": "tailwindcss -i src/main.css -o dist/assets/main.css --watch",
 		"build": "eleventy"
 	},
 	"dependencies": {
@@ -17,10 +16,10 @@
 		"@11ty/eleventy-plugin-rss": "^2",
 		"@biomejs/biome": "^2",
 		"@shikijs/markdown-it": "^3.7.0",
-		"@tailwindcss/cli": "4.1.11",
 		"@tailwindcss/postcss": "4.1.11",
 		"@tailwindcss/typography": "0.5.16",
 		"@types/node": "24",
+		"html-minifier-terser": "7.2.0",
 		"luxon": "3.7.1",
 		"markdown-it": "14.1.0",
 		"markdown-it-container": "4",
