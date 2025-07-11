@@ -1,14 +1,10 @@
 ---
-title: "I built a new computer :)"
+postTitle: "I built a new computer :)"
 excerpt: "Why I decided to deprecate my Thinkpad"
 date: "2024-11-30"
 author: Alex Westerman
 slug: '0004'
 ---
-
-# I built a new computer :)
-
-_Why I decided to deprecate my ThinkPad_
 
 If you've checked out the [About](/about) section of my website, you'll see a couple of pictures of my setups, one in the basement of my childhood home during COVID and the other in my dorm at the senior year of college. Aside from the different locations, display configurations, and other knick-knacks, one thing remained constant: the ThinkPad.
 

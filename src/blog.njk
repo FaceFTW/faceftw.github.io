@@ -26,7 +26,7 @@ layout: 'layouts/base.njk'
                     data-slot="card-header"
                     class="@container/card-header grid auto-rows-min grid-rows-[auto_auto] items-start gap-1.5 px-6
                         has-data-[slot=card-action]:grid-cols-[1fr_auto] [.border-b]:pb-6">
-                    <div data-slot="card-title" class="leading-none font-semibold">{{ post.data.title }}</div>
+                    <div data-slot="card-title" class="leading-none font-semibold">{{ post.data.postTitle }}</div>
                     <div data-slot="card-description" class="text-muted-foreground text-sm">
                         <time datetime="{{ post.data.date }}">{{ post.data.date | prettyDate }}</time>
                     </div>

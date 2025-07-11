@@ -1,13 +1,10 @@
 ---
-title: "Talking Cows, Perls, and Terminals"
+postTitle: "Talking Cows, Perls, and Terminals"
 excerpt: "A really obscure set of rabbit holes to recreate an old piece of software"
 date: "2024-09-16"
 author: Alex Westerman
 slug: '0003'
 ---
-
-# Talking Cows, Perls, and Terminals
-_A really obscure set of rabbit holes to recreate an old piece of software_
 
 [***Jump to the Errata***](#errata)
 

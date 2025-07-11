@@ -1,14 +1,10 @@
 ---
-title: "From the Archives - Why I revised this Website 4 Times"
+postTitle: "From the Archives - Why I revised this Website 4 Times"
 excerpt: "A history of this website and anecdotes of the pains of modern web development"
 date: "2024-12-28"
 author: Alex Westerman
 slug: '0005'
 ---
-
-# From the Archives: Why I revised this Website 4 Times
-
-_A history of this website and anecdotes of the pains of modern web development_
 
 Recently, I upgraded this entire website with yet another fresh coat of paint. Originally started as a project for an introductory web development course during college, I kept adding to it and improving it to do something new: code-less additions of new projects, refining visuals for mobile, supporting _this very blog_. But each time I had to make a "radical change" like the ones I mentioned it always involved migrating to the next big thing. It's been over 3 years of this site being upgrade and with the creation of this blog (`ref_cycle`) I thought it would be an interesting retrospective in terms of what was great about certain revisions, and what could be better (both design and my experience with the tools I used).
 

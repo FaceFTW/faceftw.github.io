@@ -1,14 +1,10 @@
 ---
-title: "\"SHUT UP Device\" - Part 2"
+postTitle: "\"SHUT UP Device\" - Part 2"
 excerpt: "Now it's time to display things"
 date: "2025-05-10"
 author: Alex Westerman
 slug: '0008'
 ---
-
-# "SHUT UP Device" - Part 2
-
-_Now it's time to display things_
 
 Welcome back! In the second part of this series, I'm adding something extra to the project and adding a small monochrome OLED display to the project. While the display content is going to be simple, it gets complicated because I have to implement a [driver](https://en.wikipedia.org/wiki/Device_driver) for this from scratch in Rust (with some existing C reference code).
 
@@ -160,10 +156,8 @@ After the transaction is established and the first message is acknowledged by th
 Putting it all together, these are the example transactions to display a capital 'A' on the second line:
 
 
-import transactions from './transactions.webp';
-
 :::image
-<img src={transactions} alt="" width="574" height="296" class='mx-auto mb-4'/>
+<img src="transactions.webp" alt="" width="574" height="296" class='mx-auto mb-4'/>
 <em>I²C Transactions to display a capital 'A' on the second line. ACK bits are indicated separately since they come from the display controller.</em>
 :::
 

@@ -1,14 +1,10 @@
 ---
-title: "Making a \"SHUT UP Device\""
+postTitle: "Making a \"SHUT UP Device\""
 excerpt: "Solving a niche problem with embedded Rust + Arduino"
 date: "2025-03-29"
 author: Alex Westerman
 slug: '0007'
 ---
-
-# Making a "SHUT UP Device"
-
-_Solving a niche problem with embedded Rust + Arduino. First, the core hardware_
 
 I have a problem. My brother is a night owl who plays League of Legends with his friends, at hours that I need to sleep. In the house, his computer is situated in a very open area of the house where sound easily travels, and there is no place else for him to use for such activities. Even if the internet is shut off, he is smart enough to use a mobile hotspot. And his busy schedule already makes it difficult to schedule time for him to "unwind" with friends.
 

@@ -1,14 +1,10 @@
 ---
-title: "Looking Forward - 2024 Edition"
+postTitle: "Looking Forward - 2024 Edition"
 excerpt: "A reflection on the past year and what's next"
 date: "2024-12-29"
 author: Alex Westerman
 slug: '0006'
 ---
-
-# Looking Forward - 2024 Edition
-
-_A reflection on the past year and what's next_
 
 Happy Holidays/New Year! At least for when I'm writing this. 2024 has been a crazy year for everyone (not just for me). From the _X_ number of major political events that have been happening to the various changes that have occurred in my life I wanted to take a step back while I'm relaxing for the last week of the year and reflect on what I've done and what I want to do. Nowhere close to a New Year's resolution but more like a Retro used in Agile.
 

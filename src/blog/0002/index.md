@@ -1,19 +1,16 @@
 ---
-title: "From the Archives - Reasoning about Linter Design"
+postTitle: "From the Archives - Reasoning about Linter Design"
 excerpt: "A preview of my thought process with implementing program analysis tools circa 2022"
 date: "2024-09-02"
 author: Alex Westerman
 slug: '0002'
 ---
 
-
-# From the Archives - Reasoning about Linter Design
-
 This is a blogified form of the design journals I wrote for [DesignLint](https://github.com/FaceFTW/DesignLint), a Java Linter project I worked on with others for the Software Design and Software Construction and Evolution (aka. Software Refactoring) courses at Rose-Hulman as a student. The content here mainly talks about designing specific lints and some other design decisions made related to designing the actual framework and linter application. Compared to my teammates, I chose to structure my journal by features I worked on rather than what I did each day since it was easier to understand what I'm doing over the span of a few days rather than singular days.
 
 This can be viewed on the project wiki along with the other design journals of my group members on the project repository [here](https://github.com/FaceFTW/DesignLint/wiki/%5BARCHIVE%5D-Old-Journal-Entries). I've also taken the liberty to indicate places where link rot or other missing resources occur.
 
-__Additional NOTE: While I strive to be accurate with these blog posts, I have chosed to not correct any specific errors in content in this post. This is a preservation decision and also a laziness decision.__
+__Additional NOTE: While I strive to be accurate with these blog posts, I have chosen to not correct any specific errors in content in this post. This is a preservation decision and also a laziness decision.__
 
 __*NOTE: Use of information in this post or the associated project code should be cited properly. Failure to do so would be considered plagiarism in (primarily) academic contexts. I do not condone cheating or academic dishonesty.*__
 
