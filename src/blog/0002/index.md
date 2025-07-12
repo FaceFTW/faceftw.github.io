@@ -205,9 +205,10 @@ This is great! ASM already does the work needed to separate throws declarations 
 
 While the analyzer is going to be implemented as a `DomainAnalyzer` in the context of the architecture, there needs to be a way to test the singular unit of exception analysis against various cases. Moreover, I've generated the following cases that should either be compliant or non-compliant with the linter's rules:
 
-<div>
-<img src='./exceptionstyleexamples.png' alt="A bunch of examples" width="738" height="831" class='mx-auto mb-4'/>
-</div>
+```image
+src="./exceptionstyleexamples.png", 738x831
+A bunch of examples
+```
 
 In practice, these method names are really excessive, but they effectively describe what each example is supposed to represent. Overall, there are 7 types of specific violations that this linter will support, which are defined in an enum of`ExceptionThrownAnalyzer.java`:
 
@@ -246,9 +247,10 @@ Class coupling by definition is pretty straightforward: the more dependent a cla
 Another thing to consider is what type of unique classes to include in the coupling count. A good reason for this consideration is because the use of fundamental classes (such as those defining primitive classes) could inflate those numbers to indicate that the class or module is less maintainable than it actually is. [Visual Studio's Code Metrics](https://docs.microsoft.com/en-us/visualstudio/code-quality/code-metrics-class-coupling?view=vs-2022) doesn't include C# primitive types such as `string`, `int`, `boolean`, however it does count those provided by the .NET framework.
 
 
-<div>
-<img src='./seeminglyhighcouplingexample.png' alt="Is this high coupling??" width="806" height="520" class='mx-auto mb-4'/>
-</div>
+```image
+src="./seeminglyhighcouplingexample.png", 806x520
+Is this high coupling??
+```
 
 
 Here is an example of some code metrics against my (admittedly overkill) implementation of the original Shopping Cart homework assignment (which was written as a microservice API in C#). Visual Studio 2022 evaluates the entire project to have a class coupling of 75, with the `StoreController` being the class with the highest coupling of 43. Initially, seeing these numbers and knowing the base definition of class coupling, it was pretty shocking, and I even documented this in that assignment's engineering notebook, but I investigated to ensure that I was actually writing good software. In fact the answer was pretty transparent when looking at the class coupling count for the fields in `StoreController`: you can see that `HttpClient` and `_dbContext` each have a class coupling of one. While I expect the `ApiDbContext` object `_dbContext` to increase the class coupling inherently by being in the design, `HttpClient` is part of the ASP.NET framework yet is still counted by the code metrics. Furthermore, you can notice that the `_badDiscountCounter` which is of type `Dictionary<string,int>` only has a class coupling of one, given that the generic type parameters are both primitive.
@@ -373,9 +375,10 @@ There are many ways to remedy this, such as adding the `-cp` argument to the Jav
 Below is an updated class diagram focused mainly on the presentation layer and the prominent parts of the domain layer. The data source layer is noted but not fully elaborated as it is not entirely relevant to how the presentation layer functions.
 
 
-<div>
-<img src='./PresentationLayer.png' alt="Presentation Layer UML" width="910" height="1044" class='mx-auto mb-4'/>
-</div>
+```image
+src="./PresentationLayer.png", 910x1044
+Presentation Layer UML
+```
 
 
 Overall it is a very light facade-like design that follows many of the principles of the Three Layers architecture. However, I chose a separation between the presentation layer and a bootstrap class because of the following reasons:
@@ -396,9 +399,10 @@ This entry discusses the ideas on how I plan to implement the final feature I ha
 
 The primary purpose of the strategy is to allow for a class to select algorithms dynamically at runtime based on some concrete strategy object implementing a strategy interface.
 
-<div>
-<img src='./BasicStrategy.png' alt="Basic Strategy Pattern UML" width="380" height="381" class='mx-auto mb-4'/>
-</div>
+```image
+src="./BasicStrategy.png", 380x381
+Basic Strategy Pattern UML
+```
 
 
 The above UML class diagram depicts a very simple strategy pattern with two possible concrete versions of the abstract `strategyMethod()` that is called in `SomeObject`'s `doSomethingUsingStrategy()`. The strategy for `SomeObject` is determined upon construction and composes the strategy as a field that is typed by `StrategyType`. Therefore by polymorphism, because all concrete methods implement `StrategyType`, `SomeObject` will always be able to execute `strategy.strategyMethod()` due to this constraint required for implementing an interface.
@@ -426,9 +430,10 @@ This seems pretty robust for determining what is a strategy pattern, except ther
 
 Suppose we have the following UML Class diagram:
 
-<div>
-<img src="./StrategyMethodCallsOnly.png" alt="Surely this isn't a strategy pattern" width="380" height="381" class='mx-auto mb-4'/>
-</div>
+```image
+src="./StrategyMethodCallsOnly.png", 380x381
+Surely this isn't a strategy pattern
+```image
 
 Given that this is a `final` class, there are a couple of interesting attributes that it will exhibit. The private constructor and static instantiation by the VM means that it is not good practice to let such an object have fields, thus this practice is done for utility classes that have methods that should not be overridden. In order for any method in this class to run, they are `static`ly declared and therefore must operate based on the parameter inputs it receives. But the question now becomes if the method _uses a `StrategyType` object_ as one of its parameters (among others), is that still implementing the strategy pattern?
 
@@ -441,16 +446,18 @@ I assert that while not always used (and alternative implementations achieving t
 Enums are very interesting in Java given they can effectively operate as classes. Consider the following enum:
 
 
-<div>
-<img src="./ExampleEnum.png" alt='Example Enum Definition' width="402" height="314" class='mx-auto mb-4'/>
-</div>
+```image
+src="./ExampleEnum.png", 402x314
+Example Enum Definition
+```
 
 If you notice the abstract override of `toString()` in `ExampleEnumWithAbstractMethod`, this is actually allowed, but required every value in the enum to implement its own version. But now the question becomes how does Java compiles this? Well, it does it similar to this:
 
 
-<div>
-<img src="./ExampleEnumAsStrategy.png" alt='An Example Enum Implementing the Strategy Pattern' width="1053" height="422" class='mx-auto mb-4'/>
-</div>
+```image
+src="./ExampleEnumAsStrategy.png", 1053x422
+An Example Enum Implementing the Strategy Pattern
+```
 
 Java won't use the exact naming scheme, but it definitely complies it this way. In fact, it seems all enums are compiled this way. In the `ExceptionThownAnalyzer`, I created the following enum within the `ExceptionThrownAnalyzer` class:
 
@@ -514,9 +521,10 @@ Java won't use the exact naming scheme, but it definitely complies it this way. 
 
 I ran it through ASM and analyzed the debug results, leaving me with pretty good confirmation of how I suspect it works:
 
-<div>
-<img src="enum_decomp.png" alt="Confirming the results" width="735" height="290" class='mx-auto mb-4'/>
-</div>
+```image
+src="enum_decomp.png", 735x290
+Confirming the results
+```
 
 While not explicitly clear just from the list unless you analyze the `ClassNode` objects, the only base class (i.e. the only class without `$#` append) does have both the `ACC_ENUM` (`0x4000`) and `ACC_INTERFACE` (`0x0400`) access flags, while the others have only the `ACC_ENUM` flag, therefore indicating this is all related to the enum. Even the declared methods in the interface class have the `ACC_ABSTRACT` access flag, therefore recreating the exact pattern structure.
 

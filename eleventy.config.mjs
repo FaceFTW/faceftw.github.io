@@ -4,11 +4,9 @@ import { HtmlBasePlugin, IdAttributePlugin, InputPathToUrlTransformPlugin } from
 // import { feedPlugin } from "@11ty/eleventy-plugin-rss";
 import { eleventyImageTransformPlugin } from '@11ty/eleventy-img';
 import pluginNavigation from '@11ty/eleventy-navigation';
-import { fromHighlighter } from '@shikijs/markdown-it';
 import tailwindcss from '@tailwindcss/postcss';
 import htmlmin from 'html-minifier-terser';
 import { DateTime } from 'luxon';
-import markdownItContainer from 'markdown-it-container';
 import postcss from 'postcss/lib/postcss';
 import { createHighlighterCoreSync, createJavaScriptRegexEngine } from 'shiki';
 import c from 'shiki/langs/c.mjs';
@@ -76,21 +74,75 @@ export default async function (eleventyConfig) {
     /*************************
      * Markdown Configuration
      *************************/
-    eleventyConfig.amendLibrary('md', (mdLib) => {
+
+    eleventyConfig.amendLibrary('md', (/** @type {MarkdownIt}*/ mdLib) => {
+        //Modified codeblock renderer to "shortcut" if the "info" is image
+        //Otherwise identical to original markdown-it
         const highlighter = createHighlighterCoreSync({
             themes: [vitesse_light, vitesse_dark],
             langs: [rust, java, perl, html, tsx, typescript, javascript, c, csharp, shell, css],
             engine: createJavaScriptRegexEngine(),
         });
+        const langs = highlighter.getLoadedLanguages();
+        // biome-ignore lint/style/useDefaultParameterLast: Based on Shiki Official Package Code
+        const highlight = (code, lang = 'text', attrs) => {
+            if (lang === '' || !langs.includes(lang)) {
+                lang = 'text';
+            }
+            const codeOptions = { lang, meta: { __raw: attrs } };
 
-        mdLib.use(
-            fromHighlighter(highlighter, {
+            const builtInTransformer = [
+                {
+                    name: '@shikijs/markdown-it:block-class',
+                    code(node) {
+                        node.properties.class = `language-${lang}`;
+                    },
+                },
+            ];
+
+            if (code.endsWith('\n')) code = code.slice(0, -1);
+
+            return highlighter.codeToHtml(code, {
                 themes: {
                     light: 'vitesse-light',
                     dark: 'vitesse-dark',
                 },
-            })
-        );
+                ...codeOptions,
+                transformers: [...builtInTransformer, ...(codeOptions.transformers || [])],
+            });
+        };
+
+        //Override the default render rule (irrevocably)
+        mdLib.renderer.rules.fence = function (tokens, idx, options, env, slf) {
+            const token = tokens[idx];
+            const info = token.info ? mdLib.utils.unescapeAll(token.info).trim() : '';
+            let fenceName = '';
+            let fenceAttrs = '';
+
+            if (info) {
+                const arr = info.split(/(\s+)/g);
+                fenceName = arr[0];
+                fenceAttrs = arr.slice(2).join('');
+            }
+
+            if (fenceName === 'image') {
+                const imgDetails = /src="(.*)",\s*([0-9]+)x([0-9]+)\n(.*)\n/.exec(token.content);
+                const imgSrc = imgDetails[1];
+                const imgWidth = imgDetails[2];
+                const imgHeight = imgDetails[3];
+                const imgCaption = imgDetails[4];
+
+                return `
+        		<figure class="flex flex-col items-center text-center mb-4"><img src="${imgSrc}" ${slf.renderAttrs(token)} alt="${imgCaption}" width="${imgWidth}" height="${imgHeight}"><figcaption>${imgCaption}</figcaption></figure>`;
+            }
+
+            const highlighted = highlight(token.content, fenceName, fenceAttrs);
+            if (highlighted.indexOf('<pre') === 0) {
+                return `${highlighted}\n`;
+            }
+
+            return `<pre><code${slf.renderAttrs(token)}>${highlighted}</code></pre>\n`;
+        };
     });
     eleventyConfig.amendLibrary('md', (mdLib) => {
         /**
@@ -124,8 +176,7 @@ export default async function (eleventyConfig) {
             a: ['hover:underline', 'mb-4', 'leading-relaxed', 'text-primary'],
             ul: ['list-outside', 'leading-relaxed'],
             ol: ['list-outside', 'mb-4', 'leading-relaxed'],
-            li: ['group'],
-            p: ["group-[li]:mb-0", 'mb-4', 'leading-relaxed'],
+            p: ['mb-4', 'leading-relaxed'],
             blockquote: [
                 'border-l-8',
                 'border-l-neutral-400',
@@ -138,28 +189,12 @@ export default async function (eleventyConfig) {
             ],
             hr: ['mb-4'],
             table: ['table-auto', 'mx-auto', 'mb-4'],
-            figcaption: ['mb-4', 'italic'],
         };
 
         mdLib.use((md) => {
             md.core.ruler.push('markdownit-tag-class', (state) => {
                 setTokenClasses(state.tokens, mapping);
             });
-        });
-    });
-    eleventyConfig.amendLibrary('md', (/** @type {MarkdownIt}*/ mdLib) => {
-        mdLib.use(markdownItContainer, 'image', {
-            render: (/** @type {import('markdown-it').Token[]}*/ tokens, idx) => {
-                //Using the <figure> tags, so we can easily add opening/closing tags as needed
-                if (tokens[idx].nesting === 1) {
-                    return '<figure class="flex flex-col items-center text-center mb-4">';
-                }
-                if (tokens[idx].nesting === -1) {
-                    return '</figure>';
-                }
-
-                console.log(`${tokens[idx]}`);
-            },
         });
     });
 

@@ -19,10 +19,10 @@ So sit back and get your snack of choice, time for another trip back in time.
 
 This website first started as most websites did back in the early days of the web: pure HTML, CSS, and a sprinkle of JS.
 
-:::image
-<img src="./humble_beginnings.png" alt="" width="1107" height="582" class='mx-auto mb-4'/>
-<figcaption>The first ever version of the website - a humble beginning</figcaption>
-:::
+```image
+src="./humble_beginnings.png", 1107x582
+The first ever version of the website - a humble beginning
+```
 
 This site is actually not that bad from the looks of it. Aside from the raw HTML that makes the code look scary, there is a lot to like visually. At this stage of the site, there was not much stuff I wanted to show; I didn't have many projects to show and also thought writing for fun was cringe (the irony). The main purpose was to effectively serve as a "second" resume for people to look at, especially as a demonstration of skill.
 
@@ -32,19 +32,19 @@ At this time, I started taking on more projects, courses at college, and interns
 
 Luckily, this was around the time I started to learn my first web framework.
 
-:::image
-<img src="./home_v2.png" alt="" width="1110" height="583" class='mx-auto mb-4'/>
-<figcaption>The Angular Revision - A Big New Step</figcaption>
-:::
+```image
+src="./home_v2.png", 1110x583
+The Angular Revision - A Big New Step
+```
 
 The first web framework I learned was [Angular](https://angular.dev) (not the ancient AngularJS), the web framework from Google. Compared to the raw HTML/CSS/JS combination that this website started with, Angular is what I consider to be an "augmentation" of the paradigm. With the [component model](https://angular.dev/essentials/components), first-class support for [Material Design](https://m3.material.io/), and easier reactive programming via [RxJS and observer patterns](https://rxjs.dev), it became the first choice for some of the projects I did in the same web design course.
 
 Overall, this isn't a terrible website. Some of the elements are not well formatted, but I see that as more of my lack of thinking about "aesthetics" and more "it works". I even added a system with JSON and [JSON Schema](https://json-schema.org/) (for IDE validation) to serve as a static data for my projects list and resume. For my first foray into Angular (for a project outside the primary use cases), it's not a bad site. _But hindsight is 20/20 and there were some glaring issues_.
 
-:::image
-<img src="./home_v3.png" alt="" width="1110" height="583" class='mx-auto mb-4'/>
-<figcaption>The React Revision - More of the Same</figcaption>
-:::
+```image
+src="./home_v3.png", 1110x583
+The React Revision - More of the Same
+```
 
 
 After learning [React](https://react.dev) from an internship and liking it a lot, I made the decision to rewrite the entire site (again). I _**love**_ React (after hating it initially). It's a much nicer framework that strips out many of the things that I wasn't using in Angular and focuses purely on the concept of components from a functional perspective; It changes perspective with thinking more about "how does this piece work with respect to the whole design" rather than "I have these templates that change with user interaction". Sure, you need to add packages for more common features like static routing, but I personally prefer having a small "core of functionality" to build and compose with. This philosophy is also why I migrated from [MUI](https://mui.com/) (the Material Design framework for React) to [shadcn/ui](https://ui.shadcn.com/), [react-router](https://reactrouter.com/) to [wouter](https://github.com/molefrog/wouter), and cut NPM packages where possible over the year-or-so of developing the website. I thought this would be the last "migration"
@@ -120,10 +120,10 @@ There are a couple of key differences (that are subtle in this representation to
 Because Next.js uses SSR as the basis for its framework, it meant having to worry about [React Server Components](https://react.dev/reference/rsc/server-components). These are really cool because depending on how you choose to bundle/deploy your project the result of compilation differs; static data can be "pre-rendered" into the resulting bundle (which requires only minimum client-side JS for interactivity) while dynamic data can be rendered after fetching on the server and just give the client the rendering work. Given that all the resources of this site are available by compile-time, this means _significantly slimmer bundles and faster rendering_ while still preserving the design and feel of the site. I am actually glad that I made this transition despite all the hair-pulling.
 
 
-:::image
-<img src="./commit-history.png" alt="" width="650" height="434" class='mx-auto mb-4'/>
-<figcaption>I'm usually better at commit messages trust me</figcaption>
-:::
+```image
+src="./commit-history.png", 650x434
+I'm usually better at commit messages trust me
+```
 
 ## The Improvements?
 
@@ -233,10 +233,10 @@ Route (app)                              Size     First Load JS
 The first load JS is reduced by around 60% for _all pages_. If a page has specific JS that it needs for components like the collapsible sections in the resume or the carousels on the main page, it's added to that page's specific JS, sometimes even as part of the HTML. Not only that, the use of SSG means that each blog page being pre-rendered removes 230KB of extra JS _and_ inlines the generated HTML so it's immediately rendered by the browser. This can be verified by looking at the generated HTML for a blog page.
 
 
-:::image
-<img src="./generated-html.png" alt="" width="1419" height="673" class='mx-auto mb-4'/>
-<figcaption>Look at all of that minified HTML</figcaption>
-:::
+```image
+src="./generated-html.png", 1419x673
+Look at all of that minified HTML
+```
 
 Now, just because there is less JavaScript being processed on page load does not mean that the page loads faster; poorly optimized code is still poorly optimized even if it is smaller. This is where time metrics can be used for certain points of the web page being loaded. I won't go into significant detail in this post, but I recommend reading the [Chrome Developer docs](https://developer.chrome.com/docs/lighthouse/overview), the [web.dev section](https://web.dev/explore/learn-core-web-vitals) on Core Web Vitals, and the [web-vitals NPM package README](https://github.com/GoogleChrome/web-vitals) for more detailed information (in fact they helped me write this article). This [Cloudflare article](https://www.cloudflare.com/learning/performance/how-dcl-and-fcp-affect-seo/) also adds a metric not covered by the other docs and provides some motivation for it. Here are the metrics I want to focus on and why I care:
 
@@ -247,27 +247,27 @@ Now, just because there is less JavaScript being processed on page load does not
 
 Using the performance tab in the Chromium browser DevTools (I use Microsoft Edge despite not using any AI features, but this applies to most Chrome-based browsers) and loaded each page using a 4G network throttling setting to make the impact of resource size more apparent given the localized hosting used for testing. Here are the metrics for the pure React site:
 
-:::image
-<img src="./react-profile.png" alt="" width="1173" height="590" class='mx-auto mb-4'/>
-<figcaption>Pure React Profile Results</figcaption>
-:::
+```image
+src="./react-profile.png", 1173x590
+Pure React Profile Results
+```
 
 Given the knowledge about how the pure React page loads, it's no surprise that the DCL and L metrics occur with nearly any delay. FCP occurring almost immediately after L is likely due to some usage of [React Suspense](https://18.react.dev/reference/react/Suspense) and the "fallback" UI being shown while the actual page is loading. What really sticks out is LCP occurring around 800ms after FCP, with the actual metric being 1.6 seconds. While [this is within the recommended metric for the value in general](https://web.dev/articles/lcp), there is a major problem demonstrated in this: the heavy reliance on JavaScript to actually render the markup. Consider an imaginary browser which is great at parsing and rendering HTML but terrible at running JavaScript; Under this kind of browser the website would render much slower because of this "critical path" requiring the JavaScript to be processed. Plus, with JavaScript and CSS usually fetched asynchronously as HTML is parsed means that there is time blocking the start of rendering; the HTML might be finished parsing and ready to render but the JS/CSS hasn't been fully received.
 
 Time for the Next.js metrics, which look much better:
 
-:::image
-<img src="./nextjs-profile.png" alt="" width="773" height="636" class='mx-auto mb-4'/>
-<figcaption>Next.JS Profile Results</figcaption>
-:::
+```image
+src="./nextjs-profile.png", 773x636
+Next.JS Profile Results
+```
 
 The final metric mark (L) is around 500ms faster (than LCP in the older version) and is actually the last thing that occurs; given the shift to using HTML over JS for page content. Also, DCL happens much earlier, and is then proceeded by FCP and LCP within 250ms (FP indicates first paint but in this case it's relatively empty). Here is a zoom-in on that section specifically:
 
 
-<figure class="text-center flex">
-<img src="./nextjs-dcl-l.png" alt="" width="1461" height="533" class='mx-auto mb-4'/>
-<figcaption>DCL point to L point - Look at that timespan difference!</figcaption>
-:::
+```image
+src="./nextjs-dcl-l.png", 1461x533
+DCL point to L point - Look at that timespan difference!
+```
 
 Already, looking at the different rendering frames it is clear that as the page is loading there is much more content already rendered compared to the pure React version. Plus, the time between the FCP and LCP is 100ms compared to the ~600ms originally, which is a massive improvement despite the L point being further down the line.
 
@@ -287,8 +287,8 @@ I'm starting to rant, and many other people have talked about [the enshittificat
 Thanks for reading! Next in line are potential rants about Python, AI, or maybe I'll take 6 months to learn OpenGL from scratch (not through an engine). I don't know, I'm going to get back to playing the [Indiana Jones game](https://store.steampowered.com/app/2677660/Indiana_Jones_and_the_Great_Circle/).
 
 
-:::image
-<img src="./indiana_jones_game.jpg" alt="" width="1280" height="720" class='mx-auto mb-4'/>
-<figcaption>He said the thing!</figcaption>
-:::
+```image
+src="./indiana_jones_game.jpg", 1280x720
+He said the thing!
+```
 <br/>
