@@ -74,10 +74,10 @@ export default async function (eleventyConfig) {
     /*************************
      * Markdown Configuration
      *************************/
-
+    //Modified fence renderer to "shortcut" if the "info" is image
+    //Also skips a bunch of unnecessary checks to match my highlighting needs
+    //Otherwise identical to original markdown-it
     eleventyConfig.amendLibrary('md', (/** @type {MarkdownIt}*/ mdLib) => {
-        //Modified codeblock renderer to "shortcut" if the "info" is image
-        //Otherwise identical to original markdown-it
         const highlighter = createHighlighterCoreSync({
             themes: [vitesse_light, vitesse_dark],
             langs: [rust, java, perl, html, tsx, typescript, javascript, c, csharp, shell, css],
@@ -86,34 +86,30 @@ export default async function (eleventyConfig) {
         const langs = highlighter.getLoadedLanguages();
         // biome-ignore lint/style/useDefaultParameterLast: Based on Shiki Official Package Code
         const highlight = (code, lang = 'text', attrs) => {
-            if (lang === '' || !langs.includes(lang)) {
-                lang = 'text';
-            }
-            const codeOptions = { lang, meta: { __raw: attrs } };
+            const blockLang = lang === '' || !langs.includes(lang) ? 'text' : lang;
+            const codeOptions = { lang: blockLang, meta: { __raw: attrs } };
+            const codeToHighlight = code.endsWith('\n') ? code.slice(0, -1) : code;
 
-            const builtInTransformer = [
-                {
-                    name: '@shikijs/markdown-it:block-class',
-                    code(node) {
-                        node.properties.class = `language-${lang}`;
-                    },
-                },
-            ];
-
-            if (code.endsWith('\n')) code = code.slice(0, -1);
-
-            return highlighter.codeToHtml(code, {
+            return highlighter.codeToHtml(codeToHighlight, {
                 themes: {
                     light: 'vitesse-light',
                     dark: 'vitesse-dark',
                 },
                 ...codeOptions,
-                transformers: [...builtInTransformer, ...(codeOptions.transformers || [])],
+                transformers: [
+                    {
+                        name: '@shikijs/markdown-it:block-class',
+                        code(node) {
+                            node.properties.class = `language-${lang}`;
+                        },
+                    },
+                    ...(codeOptions.transformers || []),
+                ],
             });
         };
 
         //Override the default render rule (irrevocably)
-        mdLib.renderer.rules.fence = function (tokens, idx, options, env, slf) {
+        mdLib.renderer.rules.fence = function (tokens, idx, _options, _env, slf) {
             const token = tokens[idx];
             const info = token.info ? mdLib.utils.unescapeAll(token.info).trim() : '';
             let fenceName = '';
@@ -132,8 +128,10 @@ export default async function (eleventyConfig) {
                 const imgHeight = imgDetails[3];
                 const imgCaption = imgDetails[4];
 
-                return `
-        		<figure class="flex flex-col items-center text-center mb-4"><img src="${imgSrc}" ${slf.renderAttrs(token)} alt="${imgCaption}" width="${imgWidth}" height="${imgHeight}"><figcaption>${imgCaption}</figcaption></figure>`;
+                return `<figure class="flex flex-col items-center text-center mb-4">
+                    <img src="${imgSrc}" ${slf.renderAttrs(token)} alt="${imgCaption}" width="${imgWidth}" height="${imgHeight}">
+                    <figcaption>${imgCaption}</figcaption>
+                </figure>`;
             }
 
             const highlighted = highlight(token.content, fenceName, fenceAttrs);

@@ -80,11 +80,11 @@ Couple of interesting factors about this build
 
 Here are pictures of the final build! I'm excluding a formal setup picture since I'm still adjusting things around, plus it's temporary while I save for an apartment.
 
-```image
+<figure class="flex flex-col items-center text-center mb-4">
 <img src="./build_inside.webp" alt="Inside of the computer" width="1200" height="900" class='mx-auto'/>
 <img src="./build_front.webp" alt="Front of the computer" width="1200" height="1600" class='mx-auto'/>
 <figcaption>Please ignore the rat's nest. Also I can't believe they just give metal emblems with some of these things.</figcaption>
-```
+</figure>
 
 And the benchmarks? Well I ran a bunch of [3DMark](https://www.3dmark.com) tests, and I'm very happy with the higher numbers. Plus, I only heard the CPU fan spin up when under a reasonable load.
 
