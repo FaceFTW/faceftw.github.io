@@ -12,10 +12,8 @@ layout: layouts/base.njk
                         <div class="mx-auto my-8 flex min-w-fit xl:mx-8">
                             <img
                                 alt="me :)"
-                                loading="lazy"
                                 width="472"
                                 height="472"
-                                decoding="async"
                                 class="h-48 w-48 rounded-full border-8 transition-all hover:border-primary"
                                 style="color:transparent"
                                 src="assets/pfp.webp"/>
@@ -29,36 +27,22 @@ layout: layouts/base.njk
                 </div>
                 <div class="flex flex-row items-center gap-8">
                     <div class="mx-auto"></div>
-                    <button title="Twitter" id="twitterBtn" class="p-1">
-                        {% include 'icons/twitter.njk'%}
-                    </button>
-                    <script>
-                        document.getElementById('twitterBtn').onclick = () => window.open("https://twitter.com/_FaceFTW")
-                    </script>
-                    <button title="Bluesky" id="bskyBtn" class="p-1">
-                        {% include 'icons/bluesky.njk'%}
-                    </button>
-                    <script>
-                        document.getElementById('bskyBtn').onclick = () => window.open("https://bsky.app/profile/faceftw.dev")
-                    </script>
-                    <button title="GitHub" id="ghBtn" class="p-1">
-                        {% include 'icons/github.njk'%}
-                    </button>
-                    <script>
-                        document.getElementById('ghBtn').onclick = () => window.open("https://github.com/FaceFTW")
-                    </script>
-                    <button title="Email" id="mailBtn" class="p-1">
-                        {% include 'icons/mail.njk'%}
-                    </button>
-                    <script>
-                        document.getElementById('mailBtn').onclick = () => window.open("mailto:alex@faceftw.dev")
-                    </script>
-                    <button title="LinkedIn" id="linkedInBtn" class="p-1">
-                        {% include 'icons/linkedin.njk'%}
-                    </button>
-                    <script>
-                        document.getElementById('linkedInBtn').onclick = () => window.open("https://linkedin.com/in/faceftw")
-                    </script>
+
+                    <button title="Twitter" id="twitterBtn" class="p-1">{% include 'icons/twitter.njk'%}</button>
+                    <script>document.getElementById('twitterBtn').onclick = () => window.open("https://twitter.com/_FaceFTW")</script>
+
+                    <button title="Bluesky" id="bskyBtn" class="p-1">{% include 'icons/bluesky.njk'%}</button>
+                    <script>document.getElementById('bskyBtn').onclick = () => window.open("https://bsky.app/profile/faceftw.dev")</script>
+
+                    <button title="GitHub" id="ghBtn" class="p-1">{% include 'icons/github.njk'%}</button>
+                    <script>document.getElementById('ghBtn').onclick = () => window.open("https://github.com/FaceFTW")</script>
+
+                    <button title="Email" id="mailBtn" class="p-1">{% include 'icons/mail.njk'%}</button>
+                    <script>document.getElementById('mailBtn').onclick = () => window.open("mailto:alex@faceftw.dev")</script>
+
+                    <button title="LinkedIn" id="linkedInBtn" class="p-1">{% include 'icons/linkedin.njk'%}</button>
+                    <script>document.getElementById('linkedInBtn').onclick = () => window.open("https://linkedin.com/in/faceftw")</script>
+
                     <div class="mx-auto"></div>
                 </div>
             </section>

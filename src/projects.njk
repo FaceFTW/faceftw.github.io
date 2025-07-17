@@ -1,8 +1,6 @@
 ---
 title: Alex's Projects
 layout: 'layouts/base.njk'
-eleventyNavigation:
-    key: projects
 ---
 
 {% set badge_style = "inline-flex items-center justify-center font-medium rounded-md border px-2 py-0.5 text-xs w-fit whitespace-nowrap shrink-0 gap-1 focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] transition-[color,box-shadow] overflow-hidden border-transparent bg-primary text-primary-foreground" %}
@@ -24,8 +22,7 @@ eleventyNavigation:
                 <div data-slot="card-content" class="px-6">
                     <div class="mb-4 space-x-1">
                         {% for projectTag in project.projectTags %}
-                            <span class="{{ badge_style }}">
-                                {{ projectTag }}</span>
+                            <span class="{{ badge_style }}">{{ projectTag }}</span>
                         {% endfor %}
                     </div>
                     <img alt="{{ project.projectName }}" loading="lazy" width="{{ project.assetWidth }}" height="{{ project.assetHeight }}" decoding="async" data-nimg="1" class="h-[250px] w-[400px] object-contain" src="assets/projects/{{ project.projectAsset }}" style="color: transparent;"></div>
@@ -33,29 +30,26 @@ eleventyNavigation:
                     <div data-slot="card-footer" class="items-center px-6 [.border-t]:pt-6 flex gap-4">
                         {% for link in project.projectLinks %}
                             {% if link.linkType ==="github" %}
+
                                 <button id="{{ link.linkType }}{{ project.projectId }}" class="{{ button_style }}" aria-label="GitHub Repository">
-                                    {% include 'icons/code_xml.njk' %}
-                                    <span>Source Code</span>
+                                    {% include 'icons/code_xml.njk' %}<span>Source Code</span>
                                 </button>
-                                <script>
-                                    document.getElementById("{{ link.linkType }}{{ project.projectId }}").onclick = () => window.open("{{ link.linkURL }}")
-                                </script>
+                                <script>document.getElementById("{{ link.linkType }}{{ project.projectId }}").onclick = () => window.open("{{ link.linkURL }}")</script>
+
                             {% elif link.linkType==="demo" %}
+
                                 <button id="{{ link.linkType }}{{ project.projectId }}" class="{{ button_style }}" aria-label="Online Demo">
-                                    {% include 'icons/app_window.njk' %}
-                                    <span>Demo</span>
-                                    <script>
-                                        document.getElementById("{{ link.linkType }}{{ project.projectId }}").onclick = () => window.open("{{ link.linkURL }}")
-                                    </script>
+                                    {% include 'icons/app_window.njk' %}<span>Demo</span>
                                 </button>
-                            {% elif link.linkType==="misc" %}
+                                <script>document.getElementById("{{ link.linkType }}{{ project.projectId }}").onclick = () => window.open("{{ link.linkURL }}")</script>
+
+		                    {% elif link.linkType==="misc" %}
+
                                 <button id="{{ link.linkType }}{{ project.projectId }}" class="{{ button_style }}" aria-label="{{ link.linkDesc }}">
-                                    {% include 'icons/link.njk' %}
-                                    <span>{{ link.linkDesc }}</span>
+                                    {% include 'icons/link.njk' %}<span>{{ link.linkDesc }}</span>
                                 </button>
-                                <script>
-                                    document.getElementById("{{ link.linkType }}{{ project.projectId }}").onclick = () => window.open("{{ link.linkURL }}")
-                                </script>
+                                <script>document.getElementById("{{ link.linkType }}{{ project.projectId }}").onclick = () => window.open("{{ link.linkURL }}")</script>
+
                             {% endif %}
                         {% endfor %}
                         <span class="w-full"></span>

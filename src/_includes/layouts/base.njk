@@ -6,78 +6,56 @@
         {%- set d = excerpt if excerpt else description %}
         {# {%- set i = (thumbnail or settings.meta.opengraphDefaultImage) | htmlBaseUrl("https://faceftw.dev") %} #}
         {# {%- set ia = thumbnailDescription or ('meta.opengraphDefaultAlt') %} #}
-            <title>
-        {{ t }}
-        </title>
+
+        <title>{{ t }}</title>
+
         <link rel="stylesheet" type="text/css" href="/assets/main.css"/> <script>{% include "layout_preinit.js" %}</script>
+        <link rel="canonical" href="{{ u }}">
+
         <meta name="title" content="Alex's Website">
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="{{ d }}">
-        <link
-        rel="canonical" href="{{ u }}"> <!-- open graph -->
+        <meta name="keywords" content="Alex Westerman,programming,software development,engineering,github,open source{{ keywords }}">
+        <meta name="robots" content="index, follow">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="language" content="English">
+        <meta name="author" content="Alex &quot;FaceFTW&quot; Westerman">
+        <meta name="generator" content="{{ eleventy.generator }}">
+        <!-- open graph -->
         <meta property="og:site_name" content="ref_cycling">
         <meta property="og:title" content="{{ t }}">
         <meta property="og:description" content="{{ d }}">
         <meta property="og:type" content="website">
         <meta property="og:url" content="{{ u }}">
         <meta property="og:logo" content="{{ "/assets/img/icon-192.png" | htmlBaseUrl(settings.url) }}"> {# <meta property="og:image" content="{{ i }}"> #}
-        {# <meta property="og:image:alt" content="{{ ia }}"> #} <meta property="og:locale" content="en_US">
-        <meta
-            name="keywords"
-            content="Alex Westerman,programming,software development,engineering,github,open source{{ keywords }}">
-        <meta name="robots" content="index, follow">
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-        <meta name="language" content="English">
-        <meta name="author" content="Alex &quot;FaceFTW&quot; Westerman">
-        <meta name="generator" content="{{ eleventy.generator }}">
+        {# <meta property="og:image:alt" content="{{ ia }}"> #}
+        <meta property="og:locale" content="en_US">
     </head>
     <body class="antialiased font-rubik">
         <div class="flex min-h-screen flex-col">
-            <header class="z-40 bg-background py-2 md:px-40 md:py-6">
+            <header class="z-40 bg-background py-4 md:px-40 md:py-6">
                 <div class="flex h-10 flex-row justify-between ">
                     <div class="flex gap-16 md:gap-10">
-                        <a class="hidden items-center space-x-2 sm:flex sm:flex-col" href="/">
+                        <a class="hidden items-center space-x-2 md:flex md:flex-col" href="/">
                             <span class="font-bold text-lg">ref_cycling</span>
-							<span class="xs text-muted-foreground">Alex Westerman</span>
-						</a>
-                        <nav
-                            aria-label="Main"
-                            data-orientation="horizontal"
-                            dir="ltr"
-                            data-slot="navigation-menu"
-                            data-viewport="true"
-                            class="group/navigation-menu relative max-w-max flex-1 items-center justify-center hidden md:flex">
+                            <span class="xs text-muted-foreground">Alex Westerman</span>
+                        </a>
+                        <nav aria-label="Main" dir="ltr" class="group/navigation-menu relative max-w-max flex-1 items-center justify-center hidden md:flex">
                             <div style="position:relative">
-                                <ul
-                                    data-orientation="horizontal"
-                                    data-slot="navigation-menu-list"
-                                    class="group flex flex-1 list-none items-center justify-center gap-6 md:gap-10"
-                                    dir="ltr">
-                                    <li data-slot="navigation-menu-item" class="relative md:hidden">
-                                        <a class="flex font-medium text-lg transition-colors hover:text-foreground/80 sm:text-sm" href="/">
-                                            <span>Home</span>
-                                        </a>
+                                <ul class="group flex flex-1 list-none items-center justify-center gap-6 md:gap-10" dir="ltr">
+                                    {%- set navBarItemClass = "flex font-medium text-lg transition-colors hover:text-foreground/80 sm:text-sm" %}
+                                    <li data-slot="navigation-menu-item" class="relative">
+                                        <a class="{{navBarItemClass}}" href="/projects"><span>Projects</span></a>
                                     </li>
                                     <li data-slot="navigation-menu-item" class="relative">
-                                        <a class="flex font-medium text-lg transition-colors hover:text-foreground/80 sm:text-sm" href="/projects">
-                                            <span>Projects</span>
-                                        </a>
+                                        <a class="{{navBarItemClass}}" href="/resume"><span>Resume</span></a>
                                     </li>
                                     <li data-slot="navigation-menu-item" class="relative">
-                                        <a class="flex font-medium text-lg transition-colors hover:text-foreground/80 sm:text-sm" href="/resume">
-                                            <span>Resume</span>
-                                        </a>
+                                        <a class="{{navBarItemClass}}" href="/blog"><span>Blog</span></a>
                                     </li>
                                     <li data-slot="navigation-menu-item" class="relative">
-                                        <a class="flex font-medium text-lg transition-colors hover:text-foreground/80 sm:text-sm" href="/blog">
-                                            <span>Blog</span>
-                                        </a>
-                                    </li>
-                                    <li data-slot="navigation-menu-item" class="relative">
-                                        <a class="flex font-medium text-lg transition-colors hover:text-foreground/80 sm:text-sm" href="/about">
-                                            <span>About</span>
-                                        </a>
+                                        <a class="{{navBarItemClass}}" href="/about"><span>About</span></a>
                                     </li>
                                 </ul>
                             </div>
@@ -85,15 +63,17 @@
                         </nav>
                         <button
                             id="mobileNavButton"
-                            data-slot="button"
                             class="justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none
                                 disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg:not([class*='size-'])]:size-4 shrink-0
                                 [&amp;_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]
                                 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive hover:bg-accent
-                                hover:text-accent-foreground dark:hover:bg-accent/50 h-9 px-4 py-2 has-[>svg]:px-3 ml-4 flex items-center space-x-2
+                                hover:text-accent-foreground dark:hover:bg-accent/50 h-9 px-4 py-4 has-[>svg]:px-3 ml-4 flex items-center space-x-2
                                 md:hidden">
                             {% include 'icons/menu.njk' %}
-                            <span class="font-bold">ref_cycling</span>
+                            <div class="flex flex-col my-2">
+                                <span class="font-bold text-lg">ref_cycling</span>
+                                <span class="xs text-muted-foreground">Alex Westerman</span>
+                            </div>
                         </button>
                         <div
                             id="mobileNavMenu"
@@ -101,25 +81,21 @@
                                 auto-rows-max overflow-auto p-6 pb-32 shadow-md md:hidden">
                             <div class="relative z-20 grid gap-6 rounded-md bg-popover p-4 text-popover-foreground shadow-lg">
                                 <nav class="grid grid-flow-row auto-rows-max text-sm">
-                                    <a class="flex w-full items-center gap-2 rounded-md p-2 font-medium text-sm hover:underline" href="/">
-                                        {% include 'icons/house.njk' %}
-                                        <span>Home</span>
+                                    {%- set mobileNavMenuBtnClass = "flex w-full items-center gap-2 rounded-md p-2 font-medium text-sm hover:underline" %}
+                                    <a class="{{ mobileNavMenuBtnClass }}" href="/">
+                                        {% include 'icons/house.njk' %}<span>Home</span>
                                     </a>
-                                    <a class="flex w-full items-center gap-2 rounded-md p-2 font-medium text-sm hover:underline" href="/projects.njk">
-                                        {% include 'icons/square_dashed_bottom_code.njk' %}
-                                        <span>Projects</span>
+                                    <a class="{{mobileNavMenuBtnClass}}" href="/projects.njk">
+                                        {% include 'icons/square_dashed_bottom_code.njk' %}<span>Projects</span>
                                     </a>
-                                    <a class="flex w-full items-center gap-2 rounded-md p-2 font-medium text-sm hover:underline" href="/resume">
-                                        {% include 'icons/scroll_text.njk' %}
-                                        <span>Resume</span>
+                                    <a class="{{mobileNavMenuBtnClass}}" href="/resume">
+                                        {% include 'icons/scroll_text.njk' %}<span>Resume</span>
                                     </a>
-                                    <a class="flex w-full items-center gap-2 rounded-md p-2 font-medium text-sm hover:underline" href="/blog">
-                                        {% include 'icons/rss.njk' %}
-                                        <span>Blog</span>
+                                    <a class="{{mobileNavMenuBtnClass}}" href="/blog">
+                                        {% include 'icons/rss.njk' %}<span>Blog</span>
                                     </a>
-                                    <a class="flex w-full items-center gap-2 rounded-md p-2 font-medium text-sm hover:underline" href="/about">
-                                        {% include 'icons/circle_user.njk' %}
-                                        <span>About</span>
+                                    <a class="{{mobileNavMenuBtnClass}}" href="/about">
+                                        {% include 'icons/circle_user.njk' %}<span>About</span>
                                     </a>
                                 </nav>
                             </div>
