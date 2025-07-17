@@ -1,20 +1,46 @@
 <!doctype html>
 <html lang="en">
     <head>
-        <title>{{ title }}</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" type="text/css" href="/assets/main.css"/>
-        <script>
-            {% include "layout_preinit.js" %}</script>
+        {%- set t = ((postTitle if postTitle else title) + ' - ref_cycling') %}
+        {%- set u = page.url | htmlBaseUrl("https://faceftw.dev") %}
+        {%- set d = excerpt if excerpt else description %}
+        {# {%- set i = (thumbnail or settings.meta.opengraphDefaultImage) | htmlBaseUrl("https://faceftw.dev") %} #}
+        {# {%- set ia = thumbnailDescription or ('meta.opengraphDefaultAlt') %} #}
+            <title>
+        {{ t }}
+        </title>
+        <link rel="stylesheet" type="text/css" href="/assets/main.css"/> <script>{% include "layout_preinit.js" %}</script>
+        <meta name="title" content="Alex's Website">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="{{ d }}">
+        <link
+        rel="canonical" href="{{ u }}"> <!-- open graph -->
+        <meta property="og:site_name" content="ref_cycling">
+        <meta property="og:title" content="{{ t }}">
+        <meta property="og:description" content="{{ d }}">
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="{{ u }}">
+        <meta property="og:logo" content="{{ "/assets/img/icon-192.png" | htmlBaseUrl(settings.url) }}"> {# <meta property="og:image" content="{{ i }}"> #}
+        {# <meta property="og:image:alt" content="{{ ia }}"> #} <meta property="og:locale" content="en_US">
+        <meta
+            name="keywords"
+            content="Alex Westerman,programming,software development,engineering,github,open source{{ keywords }}">
+        <meta name="robots" content="index, follow">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="language" content="English">
+        <meta name="author" content="Alex &quot;FaceFTW&quot; Westerman">
+        <meta name="generator" content="{{ eleventy.generator }}">
     </head>
     <body class="antialiased font-rubik">
         <div class="flex min-h-screen flex-col">
             <header class="z-40 bg-background py-2 md:px-40 md:py-6">
                 <div class="flex h-10 flex-row justify-between ">
                     <div class="flex gap-16 md:gap-10">
-                        <a class="hidden items-center space-x-2 md:flex" href="/">
-                            <span class="hidden font-bold sm:inline-block">Alex Westerman</span>
-                        </a>
+                        <a class="hidden items-center space-x-2 sm:flex sm:flex-col" href="/">
+                            <span class="font-bold text-lg">ref_cycling</span>
+							<span class="xs text-muted-foreground">Alex Westerman</span>
+						</a>
                         <nav
                             aria-label="Main"
                             data-orientation="horizontal"
@@ -28,7 +54,7 @@
                                     data-slot="navigation-menu-list"
                                     class="group flex flex-1 list-none items-center justify-center gap-6 md:gap-10"
                                     dir="ltr">
-                                    <li data-slot="navigation-menu-item" class="relative">
+                                    <li data-slot="navigation-menu-item" class="relative md:hidden">
                                         <a class="flex font-medium text-lg transition-colors hover:text-foreground/80 sm:text-sm" href="/">
                                             <span>Home</span>
                                         </a>
@@ -67,7 +93,7 @@
                                 hover:text-accent-foreground dark:hover:bg-accent/50 h-9 px-4 py-2 has-[>svg]:px-3 ml-4 flex items-center space-x-2
                                 md:hidden">
                             {% include 'icons/menu.njk' %}
-                            <span class="font-bold">Alex Westerman</span>
+                            <span class="font-bold">ref_cycling</span>
                         </button>
                         <div
                             id="mobileNavMenu"
@@ -123,7 +149,7 @@
                 <footer class="mx-auto my-4 block">
                     <div data-slot="card" class="bg-card text-card-foreground flex-col gap-6 rounded-xl border shadow-sm flex">
                         <div data-slot="card-content" class="px-6 mx-auto mt-4 flex text-wrap">
-                            <pre class="text-wrap text-center border-l-card">Made by Alex "FaceFTW" Westerman © 2021-2025 All Rights Reserved.<br>Source code for this website is licensed under the MIT License<br><p class="prose prose-green dark:prose-invert inline text-wrap text-muted-foreground" xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/"><span property="dct:title" class="">The content of the "ref_cycle" blog</span>&nbsp;is licensed under&nbsp;<a href="https://creativecommons.org/licenses/by-nc-sa/4.0" target="_blank" rel="license noopener noreferrer" class="inline-flex justify-center">CC BY-NC-SA 4.0</a></p><br>External projects mentioned are subject to their own licenses and copyrights<br><br><a class="text-gray-500 text-sm decoration-muted" href="/funny">super secret link</a></pre>
+                            <pre class="text-wrap text-center border-l-card">Made by Alex "FaceFTW" Westerman © 2021-2025 All Rights Reserved.<br>Source code for this website is licensed under the MIT License<br><p class="prose prose-green dark:prose-invert inline text-wrap text-muted-foreground" xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/"><span property="dct:title" class="">The content of the <code>ref_cycling</code> blog</span>&nbsp;is licensed under&nbsp;<a href="https://creativecommons.org/licenses/by-nc-sa/4.0" target="_blank" rel="license noopener noreferrer" class="inline-flex justify-center">CC BY-NC-SA 4.0</a></p><br>External projects mentioned are subject to their own licenses and copyrights<br><br><a class="text-gray-500 text-sm decoration-muted" href="/funny">super secret link</a></pre>
                         </div>
                     </div>
                 </footer>
