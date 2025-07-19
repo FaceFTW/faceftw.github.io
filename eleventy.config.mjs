@@ -258,6 +258,15 @@ export default async function (eleventyConfig) {
             return b.date - a.date;
         });
     });
+
+    eleventyConfig.addCollection('recentPosts', (collectionsApi) => {
+        return collectionsApi
+            .getFilteredByTag('posts')
+            .sort((a, b) => {
+                return b.date - a.date;
+            })
+            .slice(0, 3);
+    });
 }
 
 export const config = {
