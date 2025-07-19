@@ -7,7 +7,9 @@ layout: 'layouts/base.njk'
     <h4 class="text-4xl underline">Skills</h4>
     <div class="mb-4 space-x-1 space-y-2 ">
         {% for skill in resume.skills %}
-            <span class="{{badge_style}}{% if skill.years < 2 %} text-md {% elif skill.years < 3 %} text-lg {%elif skill.years < 4 %} text-xl {% elif skill.years < 5 %} text-2xl {% elif skill.years < 6 %} text-3xl {% else %} text-4xl {% endif %}">{{ skill.name }}</span>
+            <span class="{{badge_style}}{% if skill.years < 2 %} text-md {% elif skill.years < 3 %} text-lg {%elif skill.years < 4 %} text-xl {% elif skill.years < 5 %} text-2xl {% elif skill.years < 6 %} text-3xl {% else %} text-4xl {% endif %}">
+                {{ skill.name }}
+            </span>
         {% endfor %}
     </div>
 </div>
@@ -21,8 +23,12 @@ layout: 'layouts/base.njk'
                 data-slot="card-header"
                 class="@container/card-header grid auto-rows-min grid-rows-[auto_auto] items-start gap-1.5 px-6
                     has-data-[slot=card-action]:grid-cols-[1fr_auto] [.border-b]:pb-6">
-                <div data-slot="card-title" class="leading-none font-semibold text-xl">{{ experience.position }} @ {{experience.name}}</div>
-                <div data-slot="card-description" class="text-muted-foreground text-md">{{ experience.timeEmployed }} in {{experience.location}}</div>
+                <div data-slot="card-title" class="leading-none font-semibold text-xl">
+                    {{ experience.position }} @ {{experience.name}}
+                </div>
+                <div data-slot="card-description" class="text-muted-foreground text-md">
+                    {{ experience.timeEmployed }} in {{experience.location}}
+                </div>
             </div>
             <div data-slot="card-content" class="px-6">
                 <ul class="list-disc px-6">
@@ -44,8 +50,12 @@ layout: 'layouts/base.njk'
                 data-slot="card-header"
                 class="@container/card-header grid auto-rows-min grid-rows-[auto_auto] items-start gap-1.5 px-6
                     has-data-[slot=card-action]:grid-cols-[1fr_auto] [.border-b]:pb-6">
-                <div data-slot="card-title" class="leading-none font-semibold text-xl">{{ education.name }} </div>
-                <div data-slot="card-description" class="text-muted-foreground text-md">{{ education.degree }} - {{education.graduationDate}}</div>
+                <div data-slot="card-title" class="leading-none font-semibold text-xl">
+                    {{ education.name }}
+                </div>
+                <div data-slot="card-description" class="text-muted-foreground text-md">
+                    {{ education.degree }} - {{education.graduationDate}}
+                </div>
             </div>
             <div data-slot="card-content" class="px-6">
                 <em>Notes: {{education.degreeAddendum}}</em>

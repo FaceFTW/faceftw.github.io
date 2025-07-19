@@ -168,16 +168,10 @@ export default async function (eleventyConfig) {
         }
 
         const mapping = {
-            h1: ['text-3xl', 'xl:text-6xl', 'mb-4'],
-            h2: ['text-2xl', 'xl:text-5xl', 'mb-4'],
-            h3: ['text-xl', 'xl:text-4xl', 'mb-4'],
-            h4: ['text-lg', 'xl:text-3xl', 'mb-4'],
-            h5: ['text-md', 'xl:text-2xl', 'font-bold', 'mb-4'],
-            h6: ['text-md', 'xl:text-xl', 'mb-4'],
-            a: ['hover:underline', 'mb-4', 'leading-relaxed', 'text-primary'],
+            a: ['hover:underline', 'leading-relaxed', 'text-primary'],
             ul: ['list-outside', 'leading-relaxed'],
-            ol: ['list-outside', 'mb-4', 'leading-relaxed'],
-            p: ['mb-4', 'leading-relaxed'],
+            ol: ['list-outside', 'leading-relaxed'],
+            p: ['leading-relaxed'],
             blockquote: [
                 'border-l-8',
                 'border-l-neutral-400',

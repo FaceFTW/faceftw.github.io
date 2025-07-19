@@ -177,9 +177,6 @@
   body {
     @apply bg-background text-foreground;
   }
-  h1 {
-    @apply text-2xl md:text-4xl lg:text-6xl;
-  }
   /* For using Shiki Styles */
   html.dark .shiki,
   html.dark .shiki span {
