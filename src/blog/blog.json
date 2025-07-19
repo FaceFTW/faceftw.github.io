@@ -2,7 +2,7 @@
 	"tags": [
 		"posts"
 	],
-	"layout": "layouts/blog.njk",
+	"layout": "layouts/post.njk",
 	"blog": {
 		"blogName": "ref_cycle"
 	}

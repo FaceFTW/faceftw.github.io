@@ -1,6 +1,11 @@
 ---
 title: Blog
 layout: 'layouts/base.njk'
+#pagination:
+#	data: blogSorted
+#	size: 5
+#	alias: post
+#permalink: "1"
 ---
 <h1 class="mt-4 text-4xl"><code>ref_cycling - the blog</code></h1>
 <h2 class="mt-2 mb-4 text-2xl text-neutral-600 dark:text-neutral-400">AKA: Core Dumping my Brain on the Internet</h2>
@@ -16,7 +21,7 @@ layout: 'layouts/base.njk'
 		rel="license noopener noreferrer"
 		class="ml-1 inline">CC BY-NC-SA 4.0</a>
 </p>
-{% for post in collections.posts %}
+{% for post in collections.blogSorted %}
 	<a href="/blog/{{ post.data.slug }}">
 		<div data-slot="card" class="bg-card text-card-foreground flex flex-col gap-6 rounded-xl border py-6 shadow-sm my-4">
 			<div

@@ -67,6 +67,7 @@ export default async function (eleventyConfig) {
                 collapseWhitespace: true,
                 minifyJS: true,
                 minifiyCSS: true,
+                sortClassName: true,
             });
         }
         return content;
@@ -74,16 +75,18 @@ export default async function (eleventyConfig) {
     /*************************
      * Markdown Configuration
      *************************/
+    //Make a singleton Shiki Highlighter
+    const highlighter = createHighlighterCoreSync({
+        themes: [vitesse_light, vitesse_dark],
+        langs: [rust, java, perl, html, tsx, typescript, javascript, c, csharp, shell, css],
+        engine: createJavaScriptRegexEngine(),
+    });
+    const langs = highlighter.getLoadedLanguages();
+
     //Modified fence renderer to "shortcut" if the "info" is image
     //Also skips a bunch of unnecessary checks to match my highlighting needs
     //Otherwise identical to original markdown-it
     eleventyConfig.amendLibrary('md', (/** @type {MarkdownIt}*/ mdLib) => {
-        const highlighter = createHighlighterCoreSync({
-            themes: [vitesse_light, vitesse_dark],
-            langs: [rust, java, perl, html, tsx, typescript, javascript, c, csharp, shell, css],
-            engine: createJavaScriptRegexEngine(),
-        });
-        const langs = highlighter.getLoadedLanguages();
         // biome-ignore lint/style/useDefaultParameterLast: Based on Shiki Official Package Code
         const highlight = (code, lang = 'text', attrs) => {
             const blockLang = lang === '' || !langs.includes(lang) ? 'text' : lang;
@@ -243,11 +246,17 @@ export default async function (eleventyConfig) {
     // });
 
     /************************
-     * Custom Filters
+     * Custom Filters + Collections
      ************************/
     eleventyConfig.addFilter('prettyDate', (value) => {
         const date = DateTime.fromISO(value);
         return date.toFormat('MMMM d, yyyy');
+    });
+
+    eleventyConfig.addCollection('blogSorted', (collectionsApi) => {
+        return collectionsApi.getFilteredByTag('posts').sort((a, b) => {
+            return b.date - a.date;
+        });
     });
 }
 
