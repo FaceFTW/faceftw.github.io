@@ -202,7 +202,7 @@ export default async function (eleventyConfig) {
     eleventyConfig.addPlugin(InputPathToUrlTransformPlugin);
     eleventyConfig.addPlugin(IdAttributePlugin);
     eleventyConfig.addPlugin(eleventyImageTransformPlugin, {
-        formats: ['avif', 'webp', 'auto'],
+        formats: ['webp', 'jpeg'],
         failOnError: false,
         htmlOptions: {
             imgAttributes: {
