@@ -1,0 +1,68 @@
+---
+title: Alex's Projects
+layout: 'layouts/base.njk'
+description: "List of projects created by Alex Westerman. Some are open source! Click the link and check them out!"
+---
+
+{% set badge_style = "inline-flex items-center justify-center font-medium rounded-md border px-2 py-0.5 text-xs w-fit whitespace-nowrap shrink-0 gap-1 focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] transition-[color,box-shadow] overflow-hidden border-transparent bg-primary text-primary-foreground" %}
+{% set button_style = "inline-flex items-center justify-center font-medium gap-2 whitespace-nowrap rounded-md text-sm transition-all disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg:not([class*='size-'])]:size-4 shrink-0 [&amp;_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50 h-9 px-4 py-2 has-[>svg]:px-3" %}
+<h1 class="text-2xl">Projects</h1>
+<div class="justify-content m-4 flex items-center">
+    <div class="grid grow grid-cols-1 gap-4 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3">
+        {% for project in projects.projectList %}
+            <div
+                data-slot="card"
+                class="bg-card text-card-foreground gap-6 rounded-xl border py-6 shadow-sm flex min-w-[325px] max-w-[450px] flex-col">
+                <div
+                    data-slot="card-header"
+                    class="@container/card-header grid auto-rows-min grid-rows-[auto_auto] items-start gap-1.5 px-6
+                        has-data-[slot=card-action]:grid-cols-[1fr_auto] [.border-b]:pb-6">
+                    <div data-slot="card-title" class="leading-none font-semibold">{{ project.projectName }}</div>
+                    <div data-slot="card-description" class="text-muted-foreground text-sm">{{ project.projectDescription }}</div>
+                </div>
+                <div data-slot="card-content" class="px-6">
+                    <div class="mb-4 space-x-1">
+                        {% for projectTag in project.projectTags %}
+                            <span class="{{ badge_style }}">{{ projectTag }}</span>
+                        {% endfor %}
+                    </div>
+                    <img
+                        alt="{{ project.projectName }}"
+                        width="{{ project.assetWidth }}"
+                        height="{{ project.assetHeight }}"
+                        class="h-[250px] w-[400px] object-contain"
+                        src="assets/projects/{{ project.projectAsset }}"
+                        style="color: transparent;">
+                </div>
+                <div class="my-auto"></div>
+                <div data-slot="card-footer" class="items-center px-6 [.border-t]:pt-6 flex gap-4">
+                    {% for link in project.projectLinks %}
+                        {% if link.linkType ==="github" %}
+
+                            <button id="{{ link.linkType }}{{ project.projectId }}" class="{{ button_style }}" aria-label="GitHub Repository">
+                                {% include 'icons/code_xml.njk' %}<span>Source Code</span>
+                            </button>
+                            <script>document.getElementById("{{ link.linkType }}{{ project.projectId }}").onclick = () => window.open("{{ link.linkURL }}")</script>
+
+                        {% elif link.linkType==="demo" %}
+
+                            <button id="{{ link.linkType }}{{ project.projectId }}" class="{{ button_style }}" aria-label="Online Demo">
+                                {% include 'icons/app_window.njk' %}<span>Demo</span>
+                            </button>
+                            <script>document.getElementById("{{ link.linkType }}{{ project.projectId }}").onclick = () => window.open("{{ link.linkURL }}")</script>
+
+                        {% elif link.linkType==="misc" %}
+
+                            <button id="{{ link.linkType }}{{ project.projectId }}" class="{{ button_style }}" aria-label="{{ link.linkDesc }}">
+                                {% include 'icons/link.njk' %}<span>{{ link.linkDesc }}</span>
+                            </button>
+                            <script>document.getElementById("{{ link.linkType }}{{ project.projectId }}").onclick = () => window.open("{{ link.linkURL }}")</script>
+
+                        {% endif %}
+                    {% endfor %}
+                    <span class="w-full"></span>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>

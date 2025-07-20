@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        {%- set t = ((postTitle if postTitle else title) + ' - ref_cycling') %}
+        {%- set u = page.url | htmlBaseUrl("https://faceftw.dev") %}
+        {%- set d = excerpt if excerpt else description %}
+        {# {%- set i = (thumbnail or settings.meta.opengraphDefaultImage) | htmlBaseUrl("https://faceftw.dev") %} #}
+        {# {%- set ia = thumbnailDescription or ('meta.opengraphDefaultAlt') %} #}
+
+        <title>{{ t }}</title>
+
+        <link rel="stylesheet" type="text/css" href="/assets/main.css"/> <script>{% include "layout_preinit.js" %}</script>
+        <link rel="canonical" href="{{ u }}">
+
+        <meta name="title" content="ref_cycling - the website of Alex Westerman">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="{{ d }}">
+        <meta name="keywords" content="Alex Westerman,programming,software development,engineering,github,open source{{ keywords }}">
+        <meta name="robots" content="index, follow">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="language" content="English">
+        <meta name="author" content="Alex &quot;FaceFTW&quot; Westerman">
+        <meta name="generator" content="{{ eleventy.generator }}">
+        <!-- open graph -->
+        <meta property="og:site_name" content="ref_cycling">
+        <meta property="og:title" content="{{ t }}">
+        <meta property="og:description" content="{{ d }}">
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="{{ u }}">
+        <meta property="og:logo" content="{{ "/assets/pfp.webp" | htmlBaseUrl("https://faceftw.dev") }}">
+        {# <meta property="og:image" content="{{ i }}"> #}
+        {# <meta property="og:image:alt" content="{{ ia }}"> #}
+        <meta property="og:locale" content="en_US">
+    </head>
+    <body class="antialiased font-rubik">
+        <div class="flex min-h-screen flex-col">
+            <header class="z-40 bg-background py-4 md:px-40 md:py-6">
+                <div class="flex h-10 flex-row justify-between ">
+                    <div class="flex gap-16 md:gap-10">
+                        <a class="hidden items-center space-x-2 md:flex md:flex-col" href="/">
+                            <span class="font-bold text-lg">ref_cycling</span>
+                            <span class="xs text-muted-foreground">Alex Westerman</span>
+                        </a>
+                        <nav aria-label="Main" dir="ltr" class="group/navigation-menu relative max-w-max flex-1 items-center justify-center hidden md:flex">
+                            <div style="position:relative">
+                                <ul class="group flex flex-1 list-none items-center justify-center gap-6 md:gap-10" dir="ltr">
+                                    {%- set navBarItemClass = "flex font-medium text-lg transition-colors hover:text-foreground/80 sm:text-sm" %}
+                                    <li data-slot="navigation-menu-item" class="relative">
+                                        <a class="{{navBarItemClass}}" href="/projects"><span>Projects</span></a>
+                                    </li>
+                                    <li data-slot="navigation-menu-item" class="relative">
+                                        <a class="{{navBarItemClass}}" href="/resume"><span>Resume</span></a>
+                                    </li>
+                                    <li data-slot="navigation-menu-item" class="relative">
+                                        <a class="{{navBarItemClass}}" href="/blog"><span>Blog</span></a>
+                                    </li>
+                                    <li data-slot="navigation-menu-item" class="relative">
+                                        <a class="{{navBarItemClass}}" href="/about"><span>About</span></a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="absolute top-full left-0 isolate z-50 flex justify-center"></div>
+                        </nav>
+                        <button
+                            id="mobileNavButton"
+                            class="justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none
+                                disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg:not([class*='size-'])]:size-4 shrink-0
+                                [&amp;_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]
+                                aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive hover:bg-accent
+                                hover:text-accent-foreground dark:hover:bg-accent/50 h-9 px-4 py-4 has-[>svg]:px-3 ml-4 flex items-center space-x-2
+                                md:hidden">
+                            {% include 'icons/menu.njk' %}
+                            <div class="flex flex-col my-2">
+                                <span class="font-bold text-lg">ref_cycling</span>
+                                <span class="xs text-muted-foreground">Alex Westerman</span>
+                            </div>
+                        </button>
+                        <div
+                            id="mobileNavMenu"
+                            class="hidden slide-in-from-bottom-80 fixed inset-0 top-10 z-50 grid h-[calc(100vh-4rem)] animate-in grid-flow-row
+                                auto-rows-max overflow-auto p-6 pb-32 shadow-md md:hidden">
+                            <div class="relative z-20 grid gap-6 rounded-md bg-popover p-4 text-popover-foreground shadow-lg">
+                                <nav class="grid grid-flow-row auto-rows-max text-sm">
+                                    {%- set mobileNavMenuBtnClass = "flex w-full items-center gap-2 rounded-md p-2 font-medium text-sm hover:underline" %}
+                                    <a class="{{ mobileNavMenuBtnClass }}" href="/">
+                                        {% include 'icons/house.njk' %}<span>Home</span>
+                                    </a>
+                                    <a class="{{mobileNavMenuBtnClass}}" href="/projects.njk">
+                                        {% include 'icons/square_dashed_bottom_code.njk' %}<span>Projects</span>
+                                    </a>
+                                    <a class="{{mobileNavMenuBtnClass}}" href="/resume">
+                                        {% include 'icons/scroll_text.njk' %}<span>Resume</span>
+                                    </a>
+                                    <a class="{{mobileNavMenuBtnClass}}" href="/blog">
+                                        {% include 'icons/rss.njk' %}<span>Blog</span>
+                                    </a>
+                                    <a class="{{mobileNavMenuBtnClass}}" href="/about">
+                                        {% include 'icons/circle_user.njk' %}<span>About</span>
+                                    </a>
+                                </nav>
+                            </div>
+                        </div>
+                        <button
+                            id="darkModeToggle"
+                            data-slot="button"
+                            class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all
+                                disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg:not([class*='size-'])]:size-4
+                                shrink-0 [&amp;_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]
+                                aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive text-primary
+                                underline-offset-4 hover:underline h-9 px-4 py-2 has-[>svg]:px-3"
+                            aria-label="Change Light/Dark Mode">
+                            {% include 'icons/moon_star.njk' %}
+                        </button>
+                    </div>
+                    <span class="w-max-10"></span>
+                </div>
+            </header>
+            <main class="container mx-auto flex flex-col md:w-[80%]">
+                {{ content | safe }}
+            </main>
+            <div class="flex items-center mx-auto md:w-[80%]">
+                <footer class="mx-auto my-4 block">
+                    <div data-slot="card" class="bg-card text-card-foreground flex-col gap-6 rounded-xl border shadow-sm flex">
+                        <div data-slot="card-content" class="px-6 mx-auto mt-4 flex text-wrap">
+                            <pre class="text-wrap text-center border-l-card">Made by Alex "FaceFTW" Westerman © 2021-2025 All Rights Reserved.<br>Source code for this website is licensed under the MIT License<br><p class="prose prose-green dark:prose-invert inline text-wrap text-muted-foreground" xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/"><span property="dct:title" class="">The content of the <code>ref_cycling</code> blog</span>&nbsp;is licensed under&nbsp;<a href="https://creativecommons.org/licenses/by-nc-sa/4.0" target="_blank" rel="license noopener noreferrer" class="inline-flex justify-center">CC BY-NC-SA 4.0</a></p><br>External projects mentioned are subject to their own licenses and copyrights<br><br><a class="text-gray-500 text-sm decoration-muted" href="/funny">super secret link</a></pre>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+        <script>{% include 'layout_postinit.js' %}</script>
+    </body>
+</html>

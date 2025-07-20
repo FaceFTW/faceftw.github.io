@@ -1,0 +1,9 @@
+{
+	"tags": [
+		"posts"
+	],
+	"layout": "layouts/post.njk",
+	"blog": {
+		"blogName": "ref_cycle"
+	}
+}

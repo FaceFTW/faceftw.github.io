@@ -1,0 +1,248 @@
+{
+	"$schema": "./resume.schema.json",
+	"highlights": [
+		{
+			"icon": "fa-book",
+			"stat": "11+ years",
+			"statDescription": "Learning & Experience in Tech"
+		},
+		{
+			"icon": "fa-github",
+			"stat": "10+ Repos",
+			"statDescription": "Available on Github"
+		},
+		{
+			"icon": "fa-heart",
+			"stat": "1000+ hours",
+			"statDescription": "Effort, Dedication, and Learning"
+		}
+	],
+	"skills": [
+		{
+			"name": "Rust",
+			"years": 3
+		},
+		{
+			"name": "Java",
+			"years": 5
+		},
+		{
+			"name": "SQL",
+			"years": 2
+		},
+		{
+			"name": "Git",
+			"years": 6
+		},
+		{
+			"name": "C#",
+			"years": 3
+		},
+		{
+			"name": "Full Stack Development",
+			"years": 2
+		},
+		{
+			"name": "ASP.NET",
+			"years": 2
+		},
+		{
+			"name": "Entity Framework",
+			"years": 2
+		},
+		{
+			"name": "PowerShell",
+			"years": 2,
+			"description": "Specifically PowerShell v7"
+		},
+		{
+			"name": "Computer Architecture",
+			"years": 2
+		},
+		{
+			"name": "UNIX Scripting (Bash/ZSH/etc.)",
+			"years": 2
+		},
+		{
+			"name": "GitHub Actions",
+			"years": 2
+		},
+		{
+			"name": "Software Design",
+			"years": 3
+		},
+		{
+			"name": "Software Architecture",
+			"years": 2
+		},
+		{
+			"name": "HTML5",
+			"years": 6
+		},
+		{
+			"name": "CSS3",
+			"years": 6
+		},
+		{
+			"name": "Javascript",
+			"years": 5
+		},
+		{
+			"name": "Typescript",
+			"years": 3
+		},
+		{
+			"name": "NodeJS",
+			"years": 2
+		},
+		{
+			"name": "React",
+			"years": 3
+		},
+		{
+			"name": "Angular",
+			"years": 2
+		},
+		{
+			"name": "C/C++",
+			"years": 3
+		},
+		{
+			"name": "Arduino",
+			"years": 3
+		},
+		{
+			"name": "Raspberry Pi",
+			"years": 2
+		},
+		{
+			"name": "Operating System Kernels/Internals",
+			"years": 1
+		},
+		{
+			"name": ".NET Core",
+			"years": 3
+		},
+		{
+			"name": "Test Automation",
+			"years": 3
+		},
+		{
+			"name": "Unit Testing",
+			"years": 3
+		},
+		{
+			"name": "Computer Internals/Hardware",
+			"years": 2
+		}
+	],
+	"education": [
+		{
+			"name": "Rose-Hulman Institute of Technology",
+			"graduationDate": "Class of 2023 (Summer)",
+			"degree":
+				"Bachelors of Science - Software Engineering"
+			,
+			"degreeAddendum": "Originally Studied Computer Engineering until Spring 2021",
+			"relCoursework": [
+				"Intro to Computer Systems (CSSE132)",
+				"Intro to Embedded Systems (ECE230)",
+				"Intro to Object Oriented Programming (CSSE220)",
+				"Data Structures and Algorithms (CSSE230)",
+				"Computer Architecture I (CSSE232)",
+				"Intro to Database Systems (CSSE333)",
+				"Software Project Management (CSSE372)",
+				"Formal Methods (CSSE373)",
+				"Software Design (CSSE374)",
+				"Software Construction and Evolution (CSSE375)",
+				"Operating Systems (CSSE332)",
+				"CSSE Senior Capstone Project (CSSE497-499)"
+			]
+		},
+		{
+			"name": "Walt Whitman High School",
+			"degree":
+				"High School Diploma"
+			,
+			"degreeAddendum": "Maryland Seal of Bi-Literacy (Chinese)",
+			"graduationDate": "Class of 2019",
+			"gpa": {
+				"unweighted": 3.31,
+				"weighted": 4.0
+			},
+			"relCoursework": [
+				"AP Computer Science",
+				"AP Calclus AB",
+				"PLTW Digital Electronics",
+				"PLTW Engineering Design and Development Capstone Course"
+			]
+		}
+	],
+	"experience": [
+		{
+			"name": "Comcast",
+			"position": "Software Engineer II",
+			"timeEmployed": "August 2023 - Present",
+			"location": "Washington, DC",
+			"responsibilities": [
+				"Designed and Implemented novel automation tools in Rust for monitoring changes in end-user behavior",
+				"Created focused test cases for component testing in a voice-recognition software stack",
+				"Improved existing external-facing documentation and other automations to be more detail-oriented and concise",
+				"Communicated with stakeholders and teams owning dependency services to perform integration testing and clarify desired functionality",
+				"Helped identify/fix bugs and implement best practices in testing tools written with Java Spring"
+			]
+		},
+		{
+			"name": "Rose Hulman CSSE Department",
+			"position": "Teaching Assistant/Grader (CSSE374 - Software Design)",
+			"timeEmployed": "November 2022 - June 2023",
+			"location": "Terre Haute, IN",
+			"responsibilities": [
+				"Graded and provided feedback on student's code in assignments ",
+				"Answered students questions related to software design and the course material",
+				"Provided insights into proper design and coding practices",
+				"Assisted professor in facilitating in-class activities"
+			]
+		},
+		{
+			"name": "Direct Supply",
+			"position": "Software Engineer Intern",
+			"timeEmployed": "June 2022-August 2022",
+			"location": "Milwaukee, WI",
+			"responsibilities": [
+				"Acted as a working member of a devlopment team to accomplish sprint goals",
+				"Implemented and performed end-to-end testing of new features",
+				"Coordinated and verified releases of new features/system changes",
+				"Helped refine and plan user stories for future sprints",
+				"Performed changes that served as maintenance tasks for system reliability",
+				"Communicated changes with stakeholders and product owners"
+			]
+		},
+		{
+			"name": "Rizkly Inc.",
+			"position": "Software Development Intern",
+			"timeEmployed": "June 2020 - June 2022",
+			"location": "Bethesda, MD",
+			"responsibilities": [
+				"Helped plan and suggest new algorithms to deploy for client use",
+				"Wrote and optimized new algorithm code for database backends to implement new features",
+				"Communicated with database/server administrators about integration of new feature-sets",
+				"Documented work for company transparency to clients",
+				"Implemented a CRUD-like web service that communicates with a PostgreSQL database",
+				"Created Algorithm Visualizations powered by Angular"
+			]
+		},
+		{
+			"name": "Holton Arms Creative Summer",
+			"position": "Web Desgin Counselor",
+			"timeEmployed": "June 2019 - August 2019",
+			"location": "Bethesda, MD",
+			"responsibilities": [
+				"Taught children ages 8-15 various principles of basic web design including HTML5 and CSS3",
+				"Supervised and engaged children throughout camp day",
+				"Communicated with parents about child's experiences at camp",
+				"Aided with camp-related activities and duties"
+			]
+		}
+	]
+}
