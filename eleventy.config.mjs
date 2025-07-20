@@ -53,6 +53,7 @@ export default async function (eleventyConfig) {
         .addPassthroughCopy({
             './public/': '/',
             './src/assets/fonts': 'assets/fonts',
+            './src/assets/pfp.webp': 'assets/pfp.webp',
         })
         .addPassthroughCopy('./content/feed/pretty-atom-feed.xsl');
 
