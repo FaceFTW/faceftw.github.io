@@ -39,17 +39,21 @@ Watch out, Ferris has a gun!!!
 
 The point of `unsafe` from my perspective is not just to allow these specific operations but to serve as a universal signal to _pay attention and check the operations yourself_. _**The compiler can still guarantee the same level of safety under the assumption that the programmer checked these few operations**_. In principle, it is similar to defining a system of axioms or "trivially true assertions" like in certain fields of mathematics (such as the classic [Axiom of choice](https://en.wikipedia.org/wiki/Axiom_of_choice) in set theory) and performing proofs assuming the axioms hold true. Each `unsafe` block is like defining a new axiom that allows the Rust compiler to perform those checks based on those assertions. Admittedly, this is a double-edged sword: while it allows for proving most of the code is safe and doesn't cause [undefined behavior](https://doc.rust-lang.org/reference/behavior-considered-undefined.html), it relies on _assertions_ that may fail. There are some checks at runtime (like bounds checking) that can be or are implemented at runtime to catch when some of these assertions fail, but the fundamental issue is similar with [reasoning that relies on axiomatic though](https://philosophy.stackexchange.com/a/106865).
 
-In my opinion, the `unsafe` system is a fairly reasonable compromise that Rust makes to allow for the greatest flexibility while maintaining strong behavioral guarantees. While it would be awesome if every operation could be guaranteed to be ["sound"](https://rust-lang.github.io/unsafe-code-guidelines/glossary.html#soundness-of-code--of-a-library), providing such a comprehensive program check would fall in similar territory to [solving the Halting Problem](wiki): instead of being an algorithm that only determines if _any_ program stops, it would need to also be able to validate the entire state of each step in _any_ program. This analysis would need to also extend into black-box modules that may not be deterministic in behavior, but operate on explicit [behavioral "contracts"](https://en.wikipedia.org/wiki/Design_by_contract) that provide guidelines on behavior; I/O operations such as disk reads/writes and networking are very good examples of black boxes with a behavioral contract (usually provided by an OS, but even that would likely rely on its own set of contracts!). In cases like those where [control flow](https://en.wikipedia.org/wiki/Control_flow) isn't obvious to Rust for some reason (external or [Foreign Function Interface](https://en.wikipedia.org/wiki/Foreign_function_interface) (FFI) code, OS abstraction, etc.) but has a governing contract that a programmer can validate, `unsafe` shines as a useful tool to all parties.
+In my opinion, the `unsafe` system is a fairly reasonable compromise that Rust makes to allow for the greatest flexibility while maintaining strong behavioral guarantees. While it would be awesome if every operation could be guaranteed to be ["sound"](https://rust-lang.github.io/unsafe-code-guidelines/glossary.html#soundness-of-code--of-a-library). But to be useful, this analysis would need to also extend into black-box modules that may not be deterministic in behavior, but operate on explicit [behavioral "contracts"](https://en.wikipedia.org/wiki/Design_by_contract) that provide guidelines on behavior; I/O operations such as disk reads/writes and networking are very good examples of black boxes with a behavioral contract (usually provided by an OS, but even that would likely rely on its own set of contracts!). In cases like those where [control flow](https://en.wikipedia.org/wiki/Control_flow) isn't obvious to Rust for some reason (external or [Foreign Function Interface](https://en.wikipedia.org/wiki/Foreign_function_interface) (FFI) code, OS abstraction, etc.) but has a governing contract that a programmer can validate, `unsafe` shines as a useful tool to all parties.
 
 > Editor's Note (can you tell I took some philosophy courses in college?)
 
 > ### Are There Other Alternatives To This Approach?
 >
-> This is not the full point of the article, but it is worth acknowledging since there are a couple of other ideas around memory safety, one of the more recent ones that caught my attention was [Fil-C](link)
+> This is not the full point of the article, but it is worth acknowledging since there are a couple of other ideas around memory safety, one of the more recent ones that caught my attention was [Fil-C](https://github.com/pizlonator/llvm-project-deluge)
 >
-> TODO describe Fil-C and how it differs from the Rust approach of a completely different language/stdlib
+> As a solution, Fil-C flips the problem of memory safety in C/C++ as one that could be solved by providing extra metadata to pointers and a runtime. It is similar to what Rust does with [_raw_ pointer provenance](https://doc.rust-lang.org/std/ptr/index.html#provenance) that indicate memory access and an underlying runtime to validate those accesses. But (from my reading of the documentation), unlike Rust, Fil-C instead enforces these checks at _runtime_ whereas Rust does a mix of both (i.e. borrow checker is compile-time, bounds checking is coded for runtime). As a solution for complex and existing codebases to achieve memory safety, this is a reasonable step to take, but currently it is fairly limited.
+>
+> According to the Fil-C README (as of writing), the additional runtime checks make compiled programs "1.5x slower than normal C in good cases, and about 4x slower in the worst cases" ([source](https://github.com/pizlonator/llvm-project-deluge/blob/c2a43556484cd10d746d1be826f8ea02ff67b928/Manifesto.md?plain=1#L97)). It is also currently limited to x86-64 Linux only, which is a smaller area of support compared to writing it in Rust (or other languages like Java where it runs wherever the JVM does). I also have concerns with register usage since "pointers in flight [...] utilize two registers" ([source](https://github.com/pizlonator/llvm-project-deluge/blob/c2a43556484cd10d746d1be826f8ea02ff67b928/Manifesto.md?plain=1#L18-L20)), which for smaller microcontrollers is a constrained resource that is not as abundant as a modern processor.
+>
+> Regardless of the current criticisms I have with the project, these are areas that are being researched and improved on actively. While I am more Rust-pilled now as someone who came from a C background, I still appreciate projects like Fil-C because it gives a novel approach to memory safety that doesn't involve rewriting full projects. Another important mention in that category is [Valgrind](https://valgrind.org/), which I've used multiple times in college and projects to catch leaks and bad allocations. The more options to make safe and maintainable software, the better.
 
-So how does `unsafe` help with embedded? Global Variables and Interrupts. [Throwback to the first post](link) talking about how the buzzer worked touched on the concept of [interrupts](wiki) which require jumping into a completely different place in code and (in some cases) modifying global state. There are several involved steps with saving registers and return pointers that if not followed can easily cause the program to produce undefined behavior. In addition, the potential issues with manipulating global memory in _any_ context is far worse overall. Consider the following example:
+So how does `unsafe` help with embedded? Global Variables and Interrupts. [Throwback to the first post](https://faceftw.dev/blog/0007) talking about how the buzzer worked touched on the concept of [interrupts](https://en.wikipedia.org/wiki/Interrupt) which require jumping into a completely different place in code and (in some cases) modifying global state. There are several involved steps with saving registers and return pointers that if not followed can easily cause the program to produce undefined behavior. In addition, the potential issues with manipulating global memory in _any_ context is far worse overall. Consider the following example:
 
 ```c
 #include <stdio.h>
@@ -119,24 +123,109 @@ The way the `heapless` crate is able to provide a common and "safe" abstraction 
 
 ## A Better System to Think about Error Handling
 
-To start this discussion, I want to tangent on [Golang (or Go)](link) since they claimed to solve the error handling problem, plus it is used in quite a bit of important software like Docker. I considered learning Go instead of Rust when trying to branch out from C#, but among the other issues I had with the language design ultimately I was off-put with this specific design choice that made no sense to me.
+To start this discussion, I want to tangent on [Golang (or Go)](https://go.dev) since they claimed to solve the error handling problem, plus it is used in quite a bit of important software like Docker. I considered learning Go instead of Rust when trying to branch out from C#, but among the other issues I had with the language design ultimately I was off-put with this specific design choice that made no sense to me.
 
 Go's design philosophy for error handing is peculiar and seems shortsighted. My understanding is that errors are a core _interface_ (not a concrete type), and are added to function returns in the form of tuples for error-handling by definition. However, there seem to be some aspects of this system that to me (from an outside view) seem like footguns: [Go interfaces being type/value combinations means `nil` errors _by value_ are not equivalent to `nil`](https://go.dev/doc/faq#nil_error), [Specific error implementations aren't statically identified and are checked via runtime type assertions](https://go.dev/doc/effective_go#errors), and the prevalent use of a "null check" for error handling code is something that I'm not as comfortable throwing around. Plus, [the Go maintainers will no longer accept recommendations to improve the boiler-plating that can cause deep `if err != nil` nesting](https://go.dev/blog/error-syntax), indicating they think it is a "solved" issue. I don't disagree that the exception system in Java/C# is not robust for error handling, but I don't think Go presents the best solution in this regard.
 
-Rust has a very good high-level system for representing different kinds of "error conditions": `Option<T>` provides a system for indicating the potential for values to not exist without using "nulls", `Result<T,E>` and the `std::error::Error` trait are the workhorses for representing fallible operations, and the panic system via the `panic!()` macro acts as an escape hatch that will call defined `Drop` implementations (i.e. destructors) to clean up resources before aborting the program or recovering to a specific point in the stack[*](section). All of these are powered by the Rust version of enums, which allow for having associated data for each variant. [Rust represents each variant of an enum via discriminant value](https://doc.rust-lang.org/reference/items/enumerations.html#discriminants), which most likely acts as a tag for a [union](https://en.wikipedia.org/wiki/Union_type) sized to the largest associated data structure. From a type system perspective, this provides "safe polymorphism" at compile-time that OOP interfaces struggle with at runtime: there is a very easy check on if something is `Some` or `None` under the hood _and_ it's checked and optimized by the Rust compiler; For lack of a better description these are "strong" type definitions of value existence and operation success respectively, which removes significant footguns compared with having to null-check everything.
+Rust has a very good high-level system for representing different kinds of "error conditions": `Option<T>` provides a system for indicating the potential for values to not exist without using "nulls", `Result<T,E>` and the `std::error::Error` trait are the workhorses for representing fallible operations, and the panic system via the `panic!()` macro acts as an escape hatch that will call defined `Drop` implementations (i.e. destructors) to clean up resources before aborting the program or recovering to a specific point in the stack[*](#editors-note-about-the-asterisks-related-to-unwinding). All of these are powered by the Rust version of enums, which allow for having associated data for each variant. [Rust represents each variant of an enum via discriminant value](https://doc.rust-lang.org/reference/items/enumerations.html#discriminants), which most likely acts as a tag for a [union](https://en.wikipedia.org/wiki/Union_type) sized to the largest associated data structure. From a type system perspective, this provides "safe polymorphism" at compile-time that OOP interfaces struggle with at runtime: there is a very easy check on if something is `Some` or `None` under the hood _and_ it's checked and optimized by the Rust compiler; For lack of a better description these are "strong" type definitions of value existence and operation success respectively, which removes significant footguns compared with having to null-check everything.
 
 However, just having good types representing errors is not enough, APIs interacting with those types need to be good as well. This is another instance where the Rust standard library still knocks it out of the park with thoughtful API considerations. There are so many ways to interact with `Option` and `Result<T,E>` in code to perform different types of error handling that are useful in different contexts. Here are just a few examples:
 
-```TODO WRITE CODE HERE
+```rust
+//Some definitions for the examples
+struct CustomError(String)
+impl std::error::Error for CustomError{/*impl*/}
+
+fn fallible_op_a() -> Result<u32, CustomError> {/*impl*/}
+fn fallible_op_b() -> Result<u32, CustomError> {/*impl*/}
+fn fallible_op_c() -> Result<bool, CustomError> {/*impl*/}
+
+
+// match statements make error handling look more like
+// branches instead of null checking
+fn match_example(){
+	match fallible_op_a(){
+		Ok(val) => /* do something with val*/,
+		Err(err) => println!("{err:#?}")
+	}
+}
+
+// If you have multiple points an error can occur but want the caller
+// to handle it, just use the ? syntax, which is just sugar that expands to
+// a match or if-let statement where the Err branch returns the error
+fn propogation_example() -> Result<u32, CustomError>{
+	let val_1 = falliable_op_a()?; //Unwraps to a u32, or returns contained Error
+	let val_2 = falliable_op_b()?; //ditto
+
+	val_1 + val_2
+}
+
+// The Result/Option APIs include several functions that act as boolean operators
+// transforming the returned value/error based on the variant returned.
+//
+// This case wants to always return the result of Op_B, but
+// there may be cases where Op_A should be tried and fallback to Op_B on failure.
+fn result_api_example() -> Result<u32, CustomError>{
+	falliable_op_c().and_then(|val| match val {			//Op_C is required to know if we run Op_A at all
+		true => falliable_op_a().or(falliable_op_b()),	//Try A, return A if Ok(), else return B regardless
+		false => failliable_op_b(),
+	})
+}
+
+
+// Rust by Example has a bunch of good examples with how Result<T,E>
+// can be used with iterators to do error handling in loops:
+// https://doc.rust-lang.org/rust-by-example/error/iter_result.html
+// This example is taken from there
+//
+// For reference: <String>::parse<T> returns Result<T,E>
+fn iter_example(){
+    let strings = vec!["tofu", "93", "18"];
+    let numbers: Vec<_> = strings
+        .into_iter()
+        .filter_map(|s| s.parse::<i32>().ok())
+        .collect();
+    println!("Results: {:?}", numbers);
+}
+
 ```
 
-Aside from the "internal error handling tools" that Rust provides, the other interesting one is through the ability to [panic]. In general, the philosophy of "panicking" in a program is to indicate an unrecoverable state that requires user intervention. At the OS level, this is equivalent to the Blue Screen of Death on Windows or a Kernel Panic on all the Unixes. Rust provides a `panic!` macro in the standard library that (depending on project configuration) either aborts the program or [unwinds the stack](wiki) to a recoverable state*. As the lowest tier of the "Rust error handling model", it is practically the "eject button" of program execution and should be used _sparingly_ ([as per general recommendations]). While there is an ability to implement a custom panic handler (which is important for contexts like `no_std` which require batteries), the default panic handler is implemented such that it provides the point in code that panicked and a message about the panic. Instead of trying to figure out which line in a lambda expression caused the `NullPointerException` in your Java/Kotlin, you can jump straight to debugging more often.
+Aside from the "internal error handling tools" that Rust provides, the other interesting one is through the ability to [panic]. In general, the philosophy of "panicking" in a program is to indicate an unrecoverable state that requires user intervention. At the OS level, this is equivalent to the Blue Screen of Death on Windows or a Kernel Panic on all the Unixes. Rust provides a `panic!` macro in the standard library that (depending on project configuration) either aborts the program or [unwinds the stack](https://learn.microsoft.com/en-us/cpp/cpp/exceptions-and-stack-unwinding-in-cpp?view=msvc-170) to a recoverable state[*](#editors-note-about-the-asterisks-related-to-unwinding). As the lowest tier of the "Rust error handling model", it is practically the "eject button" of program execution and should be used _sparingly_ ([as per general recommendations]). While there is an ability to implement a custom panic handler (which is important for contexts like `no_std` which require batteries), the default panic handler is implemented such that it provides the point in code that panicked and a message about the panic. Instead of trying to figure out which line in a lambda expression caused the `NullPointerException` in your Java/Kotlin, you can jump straight to debugging more often.
 
-```rust playground panic example
+```rust
+//You can run this example on Rust Playground!:
+//https://play.rust-lang.org/?version=stable&mode=debug&edition=2024&gist=d69ae9caa1f8957725a74f36b61f50c0
 
+//Applies a function to a value
+fn consume_lambda<T>(func: T, val: u32) -> u32
+where
+    T: Fn(u32) -> u32,
+{
+    func(val)
+}
+
+fn main() {
+    let arr: [u32; 4] = [1, 2, 3, 4];
+
+    arr.into_iter().reduce(|_, val| {
+        consume_lambda(
+            |x| match x == 3 {
+                true => panic!("I can't count to three!"),
+                false => x,
+            },
+            val,
+        )
+    });
+}
+
+// This is the output of this program
+//
+// thread 'main' panicked at src/main.rs:15:25:
+// I can't count to three!
+// note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
 ```
 
-> Editor's Note about the Asterisks related to unwinding
+> ### Editor's Note about the Asterisks related to unwinding
 >
 > When doing research on panic handling in Rust, I found this section in the Rustnomicon (the spooky advanced Rust documentation) that discusses [how Rust actually handles unwinding](https://doc.rust-lang.org/nomicon/unwinding.html). Without diving too much into nuances, the short story is that Rust optimizes `panic!()`s under the assumption that the result of the unwind is to abort the program, making a partial unwind a [cold path](https://stackoverflow.com/questions/68947219/what-is-fast-path-slow-path-hot-path). It is possible to catch an unwind, but it is more expensive than just crashing the program. While it is not suitable to use panic unwinding for error handling in Rust, panicking overall is still important because of that "eject-button" like capability for catastrophic failures.
 
@@ -145,25 +234,110 @@ So yes, the Rust way of error-handling is excellent and not stupid like Go (Java
 ### Handling Panics is Expensive
 When trying to do some debugging of the microcontroller and figuring out why the display code was not working, I intentionally inserted some panics in states I knew were bad. Since I didn't want to spend an exorbitant amount of money for an AVR debugger, this was the best solution I could do, since adding serial printing in that code was more trouble than it was worth. So I wrote the following custom panic handler (originally it was just set to a handler that directly aborts the program).:
 
-TODO INSERT PANIC HANDLER
+```rust
+#[panic_handler]
+fn panic(info: &core::panic::PanicInfo) -> ! {
+    // disable interrupts - firmware has panicked so no ISRs should continue running
+    avr_device::interrupt::disable();
+
+	// get the peripherals so we can access serial and the LED.
+	//
+	// SAFETY: Because main() already has references to the peripherals this is an unsafe
+	// operation - but because no other code can run after the panic handler was called,
+	// we know it is okay.
+	let dp = unsafe { arduino_hal::Peripherals::steal() };
+	let pins = arduino_hal::pins!(dp);
+    let mut serial = arduino_hal::default_serial!(dp, pins, 57600);
+
+	// Print out panic location
+	ufmt::uwriteln!(&mut serial, "Firmware panic!\r").unwrap_infallible();
+	if let Some(loc) = info.location() {
+	    ufmt::uwriteln!(
+	        &mut serial,
+	        "{}:{}\r",
+	        loc.file(),
+	        loc.line(),
+	    )
+	    .unwrap_infallible();
+	}
+
+	if let Some(loc) = info.location() {
+	    if loc.file() == "firmware.rs" && loc.line() > 110 {
+	        let mut led = pins.d4.into_output();
+	        led.set_high();
+	    }
+	}
+	loop {} //So it's infallible type ret.
+}
+```
 
 So I hit compile, and a bizzare error popped up.
 
-TERMINAL OUTPUT HERE
+```ansi
+error: linking with `avr-gcc` failed: exit code: 1
+  |
+  = note: "avr-gcc" "-mmcu=atmega328p" "-Os" "-Wl,--as-needed,--print-memory-usage" "C:\\Users\\awest\\AppData\\Local\\Temp\\rustcArzVuG\\symbols.o" "<1 object files omitted>" "-Wl,--as-needed" "-Wl,-Bstatic" "C:\\Users\\awest\\Workspaces\\shut-up-device\\target\\avr-atmega328p\\debug\\deps/{libcompiler_builtins-bbac28051da27262.rlib}" "-Wl,-Bdynamic" "-lgcc" "-Wl,-z,noexecstack" "-o" "C:\\Users\\awest\\Workspaces\\shut-up-device\\target\\avr-atmega328p\\debug\\deps\\shut_up_device-9b97dde4f982cf88.elf" "-Wl,--gc-sections" "-no-pie" "-Wl,-O1" "-Wl,--strip-debug"
+  = note: some arguments are omitted. use `--verbose` to show all linker arguments
+  = note: C:/Users/awest/AppData/Local/Microsoft/WinGet/Packages/ZakKemble.avr-gcc_Microsoft.Winget.Source_8wekyb3d8bbwe/avr-gcc-14.1.0-x64-windows/bin/../lib/gcc/avr/14.1.0/../../../../avr/bin/ld.exe: address 0x800d08 of C:\Users\awest\Workspaces\shut-up-device\target\avr-atmega328p\debug\deps\shut_up_device-9b97dde4f982cf88.elf section `.data' is not within region `data'␍
+          C:/Users/awest/AppData/Local/Microsoft/WinGet/Packages/ZakKemble.avr-gcc_Microsoft.Winget.Source_8wekyb3d8bbwe/avr-gcc-14.1.0-x64-windows/bin/../lib/gcc/avr/14.1.0/../../../../avr/bin/ld.exe: address 0x800d09 of C:\Users\awest\Workspaces\shut-up-device\target\avr-atmega328p\debug\deps\shut_up_device-9b97dde4f982cf88.elf section `.bss' is not within region `data'␍
+          C:/Users/awest/AppData/Local/Microsoft/WinGet/Packages/ZakKemble.avr-gcc_Microsoft.Winget.Source_8wekyb3d8bbwe/avr-gcc-14.1.0-x64-windows/bin/../lib/gcc/avr/14.1.0/../../../../avr/bin/ld.exe: address 0x800d08 of C:\Users\awest\Workspaces\shut-up-device\target\avr-atmega328p\debug\deps\shut_up_device-9b97dde4f982cf88.elf section `.data' is not within region `data'␍
+          C:/Users/awest/AppData/Local/Microsoft/WinGet/Packages/ZakKemble.avr-gcc_Microsoft.Winget.Source_8wekyb3d8bbwe/avr-gcc-14.1.0-x64-windows/bin/../lib/gcc/avr/14.1.0/../../../../avr/bin/ld.exe: address 0x800d09 of C:\Users\awest\Workspaces\shut-up-device\target\avr-atmega328p\debug\deps\shut_up_device-9b97dde4f982cf88.elf section `.bss' is not within region `data'␍
+          collect2.exe: error: ld returned 1 exit status
+          Memory region         Used Size  Region Size  %age Used␍
+                      text:       18956 B        32 KB     57.85%␍
+                      data:        3081 B         2 KB    150.44%␍
+                    eeprom:           0 B         1 KB      0.00%␍
+                      fuse:           0 B          3 B      0.00%␍
+                      lock:           0 B         1 KB      0.00%␍
+                 signature:           0 B         1 KB      0.00%␍
+           user_signatures:           0 B         1 KB      0.00%␍
+
+
+error: could not compile `shut-up-device` (bin "shut-up-device") due to 1 previous error
+```
 
 That seemed a bit weird that the RAM section was considered full. So I ran `objdump` on the original code to check how much RAM the program was actually using:
 
-OUTPUT HERE
+```ansi
+zsh - face❯ avr-objdump -h target/avr-atmega328p/debug/shut-up-device.elf
 
-That... means that the panic handler is using like 50% of the RAM? Sure it's 1KB but on a microcontroller like this which only has 2KB that is quite literally a luxury. After figuring out a different debugging method that involved flipping different LEDs on depending on the issue, I still was curious why the panic handler used so much RAM. My gut said it might have to do with the fact that the panic stores information about where in the code it panicked, which could be a sizable amount of metadata based on what is in the `TODOSTRUCTNAME` struct passed with each panic
+target/avr-atmega328p/debug/shut-up-device.elf:     file format elf32-avr
 
-STRUCT DEF  HERE
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         00000348  00800100  00003576  0000362a  2**0
+                  CONTENTS, ALLOC, LOAD, READONLY, DATA
+  1 .text         00003576  00000000  00000000  000000b4  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .bss          00000001  00800448  00800448  00003972  2**0
+                  ALLOC
+  3 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  00003974  2**2
+                  CONTENTS, READONLY
+```
+
+_NOTE: Sizes displayed above are in Hexadecimal, so `.data` is actually 840 bytes using and `.text` is actually using 13686 bytes_
+
+That... means that the panic handler is using like 120% of the ram? On a microcontroller that with only 2KB of RAM, it is quite literally a luxury. After figuring out a different debugging method that involved flipping different LEDs on depending on the issue, I still was curious why the panic handler used so much RAM. My gut said it might have to do with the fact that the panic stores information about where in the code it panicked, which could be a sizable amount of metadata based on what is in the [`core::panic::PanicInfo`](https://doc.rust-lang.org/beta/core/panic/struct.PanicInfo.html) struct passed with each panic
+
+STRUCT
+
+```rust
+#[lang = "panic_info"]
+#[stable(feature = "panic_hooks", since = "1.10.0")]
+#[derive(Debug)]
+pub struct PanicInfo<'a> {
+    message: &'a fmt::Arguments<'a>,
+    location: &'a Location<'a>,
+    can_unwind: bool,
+    force_no_backtrace: bool,
+}
+```
 
 
 This was an interesting hiccup that wouldn't deter me from using Rust with Arduino-like microcontrollers that are resource constrained. Rather I'll just be a bit more mindful with what I'm using with the memory I get.
 
 ## Why Yes I Like Rust How Can You Tell
-Learning Rust has been a real treat and made me enjoy programming so much more, not just in hobby projects like this but also at work. Whenever I read or write Rust code, I think so much more about _what I want the program_ to do and not as much about trying to fix a memory leak or about how the JVM does certain native allocations. There are so many other things like [Rust compiler errors](meme), the functional programming aspect, the [`Iterator` trait and those APIs](), [Cargo as a first-class project building tool](), and the [extensive documentation]() that I could gush about, but these three topics were the ones I thought were the most useful for embedded development, even for a hobby project. I will continue to advocate for Rust adoption in new projects personal and professional unless something better comes out.
+Learning Rust has been a real treat and made me enjoy programming so much more, not just in hobby projects like this but also at work. Whenever I read or write Rust code, I think so much more about _what I want the program_ to do and not as much about trying to fix a memory leak or about how the JVM does certain native allocations. There are so many other things like [Rust compiler errors](https://doc.rust-lang.org/error_codes/error-index.html), the functional programming aspect, the [`Iterator` trait and those APIs](https://doc.rust-lang.org/std/iter/index.html), [Cargo as a first-class project building tool](https://doc.rust-lang.org/cargo/), and the [extensive documentation](https://doc.rust-lang.org/stable/) that I could gush about, but these three topics were the ones I thought were the most useful for embedded development, even for a hobby project. I will continue to advocate for Rust adoption in new projects personal and professional unless something better comes out.
 
 ## But wait, what about the whole point of this series
 To summarize the success of the SHUT UP device, that's a different story: it kinda made the problem worse. See, I lacked the foresight that League of Legends is a game that easily produces rage moments. Each time would trigger the device, which only made my brother vent his frustrations louder (to both mine and my parent's dismay), making the problem worse. He definitely _heard_ the device, but clearly Riot Games has made virtual crack cocaine that makes external stimuli gasoline in the fires of gamer rage.
