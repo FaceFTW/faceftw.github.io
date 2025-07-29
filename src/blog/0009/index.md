@@ -271,21 +271,21 @@ fn panic(info: &core::panic::PanicInfo) -> ! {
 }
 ```
 
-So I hit compile, and a bizzare error popped up.
+So I hit compile, and a bizarre error popped up.
 
 ```ansi
 error: linking with `avr-gcc` failed: exit code: 1
   |
-  = note: "avr-gcc" "-mmcu=atmega328p" "-Os" "-Wl,--as-needed,--print-memory-usage" "C:\\Users\\awest\\AppData\\Local\\Temp\\rustcArzVuG\\symbols.o" "<1 object files omitted>" "-Wl,--as-needed" "-Wl,-Bstatic" "C:\\Users\\awest\\Workspaces\\shut-up-device\\target\\avr-atmega328p\\debug\\deps/{libcompiler_builtins-bbac28051da27262.rlib}" "-Wl,-Bdynamic" "-lgcc" "-Wl,-z,noexecstack" "-o" "C:\\Users\\awest\\Workspaces\\shut-up-device\\target\\avr-atmega328p\\debug\\deps\\shut_up_device-9b97dde4f982cf88.elf" "-Wl,--gc-sections" "-no-pie" "-Wl,-O1" "-Wl,--strip-debug"
+  = note: "avr-gcc" "-mmcu=atmega328p" "-Os" "-Wl,--as-needed,--print-memory-usage" "C:\\Users\\awest\\AppData\\Local\\Temp\\rustcmNsBO9\\symbols.o" "<1 object files omitted>" "-Wl,--as-needed" "-Wl,-Bstatic" "C:\\Users\\awest\\Workspaces\\shut-up-device\\target\\avr-atmega328p\\debug\\deps/{libcompiler_builtins-8e516eea7ff4d24f.rlib}" "-Wl,-Bdynamic" "-lgcc" "-Wl,-z,noexecstack" "-o" "C:\\Users\\awest\\Workspaces\\shut-up-device\\target\\avr-atmega328p\\debug\\deps\\shut_up_device-08979d028ea0b1d2.elf" "-Wl,--gc-sections" "-no-pie" "-Wl,--strip-debug"
   = note: some arguments are omitted. use `--verbose` to show all linker arguments
-  = note: C:/Users/awest/AppData/Local/Microsoft/WinGet/Packages/ZakKemble.avr-gcc_Microsoft.Winget.Source_8wekyb3d8bbwe/avr-gcc-14.1.0-x64-windows/bin/../lib/gcc/avr/14.1.0/../../../../avr/bin/ld.exe: address 0x800d08 of C:\Users\awest\Workspaces\shut-up-device\target\avr-atmega328p\debug\deps\shut_up_device-9b97dde4f982cf88.elf section `.data' is not within region `data'␍
-          C:/Users/awest/AppData/Local/Microsoft/WinGet/Packages/ZakKemble.avr-gcc_Microsoft.Winget.Source_8wekyb3d8bbwe/avr-gcc-14.1.0-x64-windows/bin/../lib/gcc/avr/14.1.0/../../../../avr/bin/ld.exe: address 0x800d09 of C:\Users\awest\Workspaces\shut-up-device\target\avr-atmega328p\debug\deps\shut_up_device-9b97dde4f982cf88.elf section `.bss' is not within region `data'␍
-          C:/Users/awest/AppData/Local/Microsoft/WinGet/Packages/ZakKemble.avr-gcc_Microsoft.Winget.Source_8wekyb3d8bbwe/avr-gcc-14.1.0-x64-windows/bin/../lib/gcc/avr/14.1.0/../../../../avr/bin/ld.exe: address 0x800d08 of C:\Users\awest\Workspaces\shut-up-device\target\avr-atmega328p\debug\deps\shut_up_device-9b97dde4f982cf88.elf section `.data' is not within region `data'␍
-          C:/Users/awest/AppData/Local/Microsoft/WinGet/Packages/ZakKemble.avr-gcc_Microsoft.Winget.Source_8wekyb3d8bbwe/avr-gcc-14.1.0-x64-windows/bin/../lib/gcc/avr/14.1.0/../../../../avr/bin/ld.exe: address 0x800d09 of C:\Users\awest\Workspaces\shut-up-device\target\avr-atmega328p\debug\deps\shut_up_device-9b97dde4f982cf88.elf section `.bss' is not within region `data'␍
+  = note: C:/Users/awest/AppData/Local/Microsoft/WinGet/Packages/ZakKemble.avr-gcc_Microsoft.Winget.Source_8wekyb3d8bbwe/avr-gcc-14.1.0-x64-windows/bin/../lib/gcc/avr/14.1.0/../../../../avr/bin/ld.exe: address 0x8009ca of C:\Users\awest\Workspaces\shut-up-device\target\avr-atmega328p\debug\deps\shut_up_device-08979d028ea0b1d2.elf section `.data' is not within region `data'␍
+          C:/Users/awest/AppData/Local/Microsoft/WinGet/Packages/ZakKemble.avr-gcc_Microsoft.Winget.Source_8wekyb3d8bbwe/avr-gcc-14.1.0-x64-windows/bin/../lib/gcc/avr/14.1.0/../../../../avr/bin/ld.exe: address 0x8009cb of C:\Users\awest\Workspaces\shut-up-device\target\avr-atmega328p\debug\deps\shut_up_device-08979d028ea0b1d2.elf section `.bss' is not within region `data'␍
+          C:/Users/awest/AppData/Local/Microsoft/WinGet/Packages/ZakKemble.avr-gcc_Microsoft.Winget.Source_8wekyb3d8bbwe/avr-gcc-14.1.0-x64-windows/bin/../lib/gcc/avr/14.1.0/../../../../avr/bin/ld.exe: address 0x8009ca of C:\Users\awest\Workspaces\shut-up-device\target\avr-atmega328p\debug\deps\shut_up_device-08979d028ea0b1d2.elf section `.data' is not within region `data'␍
+          C:/Users/awest/AppData/Local/Microsoft/WinGet/Packages/ZakKemble.avr-gcc_Microsoft.Winget.Source_8wekyb3d8bbwe/avr-gcc-14.1.0-x64-windows/bin/../lib/gcc/avr/14.1.0/../../../../avr/bin/ld.exe: address 0x8009cb of C:\Users\awest\Workspaces\shut-up-device\target\avr-atmega328p\debug\deps\shut_up_device-08979d028ea0b1d2.elf section `.bss' is not within region `data'␍
           collect2.exe: error: ld returned 1 exit status
           Memory region         Used Size  Region Size  %age Used␍
-                      text:       18956 B        32 KB     57.85%␍
-                      data:        3081 B         2 KB    150.44%␍
+                      text:       12652 B        32 KB     38.61%␍
+                      data:        2251 B         2 KB    109.91%␍
                     eeprom:           0 B         1 KB      0.00%␍
                       fuse:           0 B          3 B      0.00%␍
                       lock:           0 B         1 KB      0.00%␍
@@ -296,7 +296,7 @@ error: linking with `avr-gcc` failed: exit code: 1
 error: could not compile `shut-up-device` (bin "shut-up-device") due to 1 previous error
 ```
 
-That seemed a bit weird that the RAM section was considered full. So I ran `objdump` on the original code to check how much RAM the program was actually using:
+That seemed a bit weird that the "static" RAM section was considered full. At least that is generally what the [`.data` section](https://en.wikipedia.org/wiki/Data_segment) represents from my understanding. For reference, I disabled [debug assertions](https://doc.rust-lang.org/std/macro.debug_assert.html) in the `Cargo.toml` for dev builds to conserve size. So I ran `objdump` on the original code to check how much RAM the program was actually using:
 
 ```ansi
 zsh - face❯ avr-objdump -h target/avr-atmega328p/debug/shut-up-device.elf
@@ -317,9 +317,7 @@ Idx Name          Size      VMA       LMA       File off  Algn
 
 _NOTE: Sizes displayed above are in Hexadecimal, so `.data` is actually 840 bytes using and `.text` is actually using 13686 bytes_
 
-That... means that the panic handler is using like 120% of the ram? On a microcontroller that with only 2KB of RAM, it is quite literally a luxury. After figuring out a different debugging method that involved flipping different LEDs on depending on the issue, I still was curious why the panic handler used so much RAM. My gut said it might have to do with the fact that the panic stores information about where in the code it panicked, which could be a sizable amount of metadata based on what is in the [`core::panic::PanicInfo`](https://doc.rust-lang.org/beta/core/panic/struct.PanicInfo.html) struct passed with each panic
-
-STRUCT
+That... means that the panic handler is using like 60% of the ram? On a microcontroller that with only 2KB of RAM, it is quite literally a luxury. After figuring out a different debugging method that involved flipping different LEDs on depending on the issue, I still was curious why the panic handler used so much RAM. My gut said it might have to do with the fact that the panic stores information about where in the code it panicked, which could be a sizable amount of metadata based on what is in the [`core::panic::PanicInfo`](https://doc.rust-lang.org/beta/core/panic/struct.PanicInfo.html) struct passed with each panic:
 
 ```rust
 #[lang = "panic_info"]
@@ -332,6 +330,58 @@ pub struct PanicInfo<'a> {
     force_no_backtrace: bool,
 }
 ```
+
+In order to investigate this peculiar occurrence, I removed a small sliver of code to meet the 2KB limit, then compiled two binaries, one with the `abort` panic handler (the "control") and one with the custom panic handler. Both binaries used the following build profile in Cargo:
+
+```toml
+[profile.dev]
+panic = "abort"
+lto = true
+opt-level = 2 # Interestingly, using 's' is larger, prob. some weird optimization issue
+debug = false
+codegen-units = 1
+debug-assertions = false # Removes certain runtime panics that trigger in debug modes. Saves RAM
+# strip = "none"	# Preserve Debug Symbols. This should not affect RAM usage
+
+```
+
+And for reference, here are the sizes as produced by `avr-objdump`. Each image is suffixed with what type of panic handler they are using.
+
+```ansi
+ zsh - face❯ avr-objdump -h target/avr-atmega328p/debug/shut-up-device-abort.elf
+
+target/avr-atmega328p/debug/shut-up-device-abort.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         000002c2  00800100  00002c02  00002cb6  2**0
+                  CONTENTS, ALLOC, LOAD, READONLY, DATA
+  1 .text         00002c02  00000000  00000000  000000b4  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .bss          00000001  008003c2  008003c2  00002f78  2**0
+                  ALLOC
+  3 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  00002f78  2**2
+                  CONTENTS, READONLY
+```
+
+```ansi
+ zsh - face❯ avr-objdump -h target/avr-atmega328p/debug/shut-up-device-custom-panic.elf
+
+target/avr-atmega328p/debug/shut-up-device-custom-panic.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         0000079c  00800100  00003324  000033d8  2**0
+                  CONTENTS, ALLOC, LOAD, READONLY, DATA
+  1 .text         00003324  00000000  00000000  000000b4  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .bss          00000001  0080089c  0080089c  00003b74  2**0
+                  ALLOC
+  3 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  00003b74  2**2
+                  CONTENTS, READONLY
+```
+
+For the people who don't want to do the math in their head, The binary with the abort panic handler uses 706 bytes of RAM, whereas the other binary with the custom panic handler uses a whopping 1948 bytes. For analysis, this is good since it means the extra panic-handler code should be captured.
 
 
 This was an interesting hiccup that wouldn't deter me from using Rust with Arduino-like microcontrollers that are resource constrained. Rather I'll just be a bit more mindful with what I'm using with the memory I get.
