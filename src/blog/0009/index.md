@@ -410,7 +410,12 @@ Learning Rust has been a real treat and made me enjoy programming so much more, 
 ## But wait, what about the whole point of this series
 To summarize the success of the SHUT UP device, that's a different story: it kinda made the problem worse. See, I lacked the foresight that League of Legends is a game that easily produces rage moments. Each time would trigger the device, which only made my brother vent his frustrations louder (to both mine and my parent's dismay), making the problem worse. He definitely _heard_ the device, but clearly Riot Games has made virtual crack cocaine that makes external stimuli gasoline in the fires of gamer rage.
 
-So the breadboard currently sits on the shelf with all the other microcontrollers and gizmos in the basement. I've considered soldering everything into a protoboard (with a microcontoller header mount so it's reusable) to "commemorate" this silly little project, but that is not as high of a priority in life right now. The [code is available](link), so if you have the components you can remake the project and lose even more sleep as a result.
+So the breadboard currently sits on the shelf with all the other microcontrollers and gizmos in the basement. I've considered soldering everything into a protoboard (with a microcontoller header mount so it's reusable) to "commemorate" this silly little project, but that is not as high of a priority in life right now. The [code is available](https://github.com/FaceFTW/shut-up-device), so if you have the components you can remake the project and lose even more sleep as a result.
+
+```image
+src="./wiring_view.webp", 1280x960
+Top-down view of the project (power indicator of the nano can't be turned off). Pin A0 is used for microphone input, Pin A4/A5 are used for the I2C Display SDA/SCL connections, and Pin 9 is used for the buzzer, which is connected by wires to move it further away from the microphone. Resistor for the buzzer is pick your poison, increased resistance means quieter buzzer.
+```
 
 The next post will be about a completely different field in the world of computers: Web Design. In the middle of finishing this post, I had the brilliant idea to remove 99.9% of the JavaScript used by migrating to [Eleventy](https://11ty.dev) and true static site generation. It was an interesting enough experience and also a worthy discussion to have in a time where "bloat" in software is considered acceptable when it really shouldn't. Hopefully it doesn't take as long to write as this series did. I can't believe it's already the end of July.
 
