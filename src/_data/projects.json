@@ -440,6 +440,44 @@
 				"Personal Project",
 				"Open Source"
 			]
+		},
+		{
+			"projectId": 19,
+			"projectName": "SHUT UP device",
+			"projectDescription": "A working embedded Rust project that fails to make my brother quieter when playing League of Legends",
+			"projectAsset": "shut_up.webp",
+			"assetHeight": 480,
+			"assetWidth": 640,
+			"projectLinks": [
+				{
+					"linkType": "github",
+					"linkURL": "https://github.com/FaceFTW/shut-up-device"
+				},
+				{
+					"linkType": "misc",
+					"linkURL": "https://faceftw.dev/blog/0007",
+					"linkDesc": "Devlog Part 1"
+				},
+				{
+					"linkType": "misc",
+					"linkURL": "https://faceftw.dev/blog/0008",
+					"linkDesc": "Devlog Part 2"
+				},
+				{
+					"linkType": "misc",
+					"linkURL": "https://faceftw.dev/blog/0009",
+					"linkDesc": "Devlog Part 3"
+				}
+			],
+			"projectTags": [
+				"Rust",
+				"Embedded",
+				"Arduino",
+				"C",
+				"Systems Programming",
+				"Personal Project",
+				"Open Source"
+			]
 		}
 	]
 }

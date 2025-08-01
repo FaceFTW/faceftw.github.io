@@ -4,128 +4,128 @@ layout: layouts/base.njk
 description: "The website of Alex Westerman. Checkout the blog for very cool (rants) posts about software development or other interesting topics."
 ---
 <div class="flex flex-col items-center">
-	<section class="flex w-full flex-col">
-		<div class="flex w-full">
-			<div class="mx-auto flex min-w-[60%] flex-col lg:flex-row">
-				<div class="mx-auto my-8 flex min-w-fit xl:mx-8">
-					<img
-						alt="me :)"
-						width="472"
-						height="472"
-						class="h-48 w-48 rounded-full border-8 transition-all hover:border-primary mx-8"
-						style="color:transparent"
-						src="assets/pfp.webp"/>
-				</div>
-				<div class="mb-8 self-center">
-					<h1 class="text-6xl animated-gradient mx-auto bg-gradient-one delay-500 lg:mx-0 dark:bg-gradient-one-dark">Software Engineer;</h1>
-					<h1 class="text-6xl animated-gradient mx-auto bg-gradient-two delay-1000 lg:mx-0 dark:bg-gradient-two-dark">Power User;</h1>
-					<h1 class="text-6xl animated-gradient mx-auto bg-gradient-three lg:mx-0 dark:bg-gradient-three-dark">Problem Solver;</h1>
-				</div>
-			</div>
-		</div>
-		<div class="flex flex-row items-center gap-8">
-			<div class="mx-auto"></div>
+    <section class="flex w-full flex-col">
+        <div class="flex w-full">
+            <div class="mx-auto flex min-w-[60%] flex-col lg:flex-row">
+                <div class="mx-auto my-8 flex min-w-fit xl:mx-8">
+                    <img
+                        alt="me :)"
+                        width="472"
+                        height="472"
+                        class="h-48 w-48 rounded-full border-8 transition-all hover:border-primary mx-8"
+                        style="color:transparent"
+                        src="assets/pfp.webp"/>
+                </div>
+                <div class="mb-8 self-center">
+                    <h1 class="text-6xl animated-gradient mx-auto bg-gradient-one delay-500 lg:mx-0 dark:bg-gradient-one-dark">Software Engineer;</h1>
+                    <h1 class="text-6xl animated-gradient mx-auto bg-gradient-two delay-1000 lg:mx-0 dark:bg-gradient-two-dark">Power User;</h1>
+                    <h1 class="text-6xl animated-gradient mx-auto bg-gradient-three lg:mx-0 dark:bg-gradient-three-dark">Problem Solver;</h1>
+                </div>
+            </div>
+        </div>
+        <div class="flex flex-row items-center gap-8">
+            <div class="mx-auto"></div>
 
-			<button title="Twitter" id="twitterBtn" class="p-1">{% include 'icons/twitter.njk'%}</button>
-			<script>document.getElementById('twitterBtn').onclick = () => window.open("https://twitter.com/_FaceFTW")</script>
+            <button title="Twitter" id="twitterBtn" class="p-1">{% include 'icons/twitter.njk'%}</button>
+            <script>document.getElementById('twitterBtn').onclick = () => window.open("https://twitter.com/_FaceFTW")</script>
 
-			<button title="Bluesky" id="bskyBtn" class="p-1">{% include 'icons/bluesky.njk'%}</button>
-			<script>document.getElementById('bskyBtn').onclick = () => window.open("https://bsky.app/profile/faceftw.dev")</script>
+            <button title="Bluesky" id="bskyBtn" class="p-1">{% include 'icons/bluesky.njk'%}</button>
+            <script>document.getElementById('bskyBtn').onclick = () => window.open("https://bsky.app/profile/faceftw.dev")</script>
 
-			<button title="GitHub" id="ghBtn" class="p-1">{% include 'icons/github.njk'%}</button>
-			<script>document.getElementById('ghBtn').onclick = () => window.open("https://github.com/FaceFTW")</script>
+            <button title="GitHub" id="ghBtn" class="p-1">{% include 'icons/github.njk'%}</button>
+            <script>document.getElementById('ghBtn').onclick = () => window.open("https://github.com/FaceFTW")</script>
 
-			<button title="Email" id="mailBtn" class="p-1">{% include 'icons/mail.njk'%}</button>
-			<script>document.getElementById('mailBtn').onclick = () => window.open("mailto:alex@faceftw.dev")</script>
+            <button title="Email" id="mailBtn" class="p-1">{% include 'icons/mail.njk'%}</button>
+            <script>document.getElementById('mailBtn').onclick = () => window.open("mailto:alex@faceftw.dev")</script>
 
-			<button title="LinkedIn" id="linkedInBtn" class="p-1">{% include 'icons/linkedin.njk'%}</button>
-			<script>document.getElementById('linkedInBtn').onclick = () => window.open("https://linkedin.com/in/faceftw")</script>
+            <button title="LinkedIn" id="linkedInBtn" class="p-1">{% include 'icons/linkedin.njk'%}</button>
+            <script>document.getElementById('linkedInBtn').onclick = () => window.open("https://linkedin.com/in/faceftw")</script>
 
-			<div class="mx-auto"></div>
-		</div>
-	</section>
-	<div data-orientation="horizontal" role="separator" class="my-4 w-[80%] border-2"></div>
-	<div class="flex flex-col xl:flex-row gap-4 xl:gap-16">
-		<section class="flex flex-col items-center grow object-contain mb-8">
-			<h1 class="mx-4 mb-4 text-5xl">Recent Blog Posts</h1>
-			<div class="block">
-			{% for post in collections.recentPosts %}
-				<a href="/blog/{{ post.data.slug }}" class="object-cover">
-					<div data-slot="card" class="bg-card text-card-foreground flex flex-col gap-3 rounded-xl border py-6 shadow-sm mb-4 grow ">
-						<div
-							data-slot="card-header"
-							class="@container/card-header grid auto-rows-min grid-rows-[auto_auto] items-start gap-1.5 px-6
-								has-data-[slot=card-action]:grid-cols-[1fr_auto] [.border-b]:pb-6">
-							<div data-slot="card-title" class="leading-none font-semibold">{{ post.data.postTitle }}</div>
-							<div data-slot="card-description" class="text-muted-foreground text-sm">
-								<time datetime="{{ post.data.date }}">{{ post.data.date | prettyDate }}</time>
-							</div>
-						</div>
-						<div data-slot="card-content" class="px-6">
-							<em>{{ post.data.excerpt }}</em>
-						</div>
-					</div>
-				</a>
-			{% endfor %}
-			</div>
-			<a href="/blog" class="inline-flex text-primary items-center">
-					{% include 'icons/rss.njk' %}<span class="pl-4 text-xl">More Blog Posts</span>
-			</a>
-		</section>
-		<section class="flex flex-col items-center">
-			<h1 class="mx-4 mb-4 text-5xl">Featured Projects</h1>
+            <div class="mx-auto"></div>
+        </div>
+    </section>
+    <div data-orientation="horizontal" role="separator" class="my-4 w-[80%] border-2"></div>
+    <div class="flex flex-col xl:flex-row gap-4 xl:gap-16">
+        <section class="flex flex-col items-center grow object-contain mb-8">
+            <h1 class="mx-4 mb-4 text-5xl">Recent Blog Posts</h1>
+            <div class="block">
+            {% for post in collections.recentPosts %}
+                <a href="/blog/{{ post.data.slug }}" class="object-cover">
+                    <div data-slot="card" class="bg-card text-card-foreground flex flex-col gap-3 rounded-xl border py-6 shadow-sm mb-4 grow ">
+                        <div
+                            data-slot="card-header"
+                            class="@container/card-header grid auto-rows-min grid-rows-[auto_auto] items-start gap-1.5 px-6
+                                has-data-[slot=card-action]:grid-cols-[1fr_auto] [.border-b]:pb-6">
+                            <div data-slot="card-title" class="leading-none font-semibold">{{ post.data.postTitle }}</div>
+                            <div data-slot="card-description" class="text-muted-foreground text-sm">
+                                <time datetime="{{ post.data.date }}">{{ post.data.date | prettyDate }}</time>
+                            </div>
+                        </div>
+                        <div data-slot="card-content" class="px-6">
+                            <em>{{ post.data.excerpt }}</em>
+                        </div>
+                    </div>
+                </a>
+            {% endfor %}
+            </div>
+            <a href="/blog" class="inline-flex text-primary items-center">
+                    {% include 'icons/rss.njk' %}<span class="pl-4 text-xl">More Blog Posts</span>
+            </a>
+        </section>
+        <section class="flex flex-col items-center">
+            <h1 class="mx-4 mb-4 text-5xl">Featured Projects</h1>
 
-			{% set badge_style = "inline-flex items-center justify-center font-medium rounded-md border px-2 py-0.5 text-xs w-fit whitespace-nowrap shrink-0 gap-1 focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] transition-[color,box-shadow] overflow-hidden border-transparent bg-primary text-primary-foreground" %}
-			{% set button_style = "inline-flex items-center justify-center font-medium gap-2 whitespace-nowrap rounded-md text-sm transition-all disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg:not([class*='size-'])]:size-4 shrink-0 [&amp;_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50 h-9 px-4 py-2 has-[>svg]:px-3" %}
-			{% for project in featuredProjects %}
-				<div
-					data-slot="card"
-					class="bg-card text-card-foreground gap-4 rounded-xl border py-6 shadow-sm flex min-w-[325px] max-w-[450px] flex-col mb-4">
-					<div
-						data-slot="card-header"
-						class="@container/card-header grid auto-rows-min grid-rows-[auto_auto] items-start gap-1.5 px-6
-							has-data-[slot=card-action]:grid-cols-[1fr_auto] [.border-b]:pb-6">
-						<div data-slot="card-title" class="leading-none font-semibold">{{ project.projectName }}</div>
-						<div data-slot="card-description" class="text-muted-foreground text-sm">{{ project.projectDescription }}</div>
-					</div>
-					<div data-slot="card-content" class="px-6">
-						<div class="space-x-1">
-							{% for projectTag in project.projectTags %}
-								<span class="{{ badge_style }}">{{ projectTag }}</span>
-							{% endfor %}
-						</div>
-					</div>
-					<div data-slot="card-footer" class="items-center px-6 [.border-t]:pt-4 flex gap-4 mb-8">
-						{% for link in project.projectLinks %}
-							{% if link.linkType ==="github" %}
+            {% set badge_style = "inline-flex items-center justify-center font-medium rounded-md border px-2 py-0.5 text-xs w-fit whitespace-nowrap shrink-0 gap-1 focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] transition-[color,box-shadow] overflow-hidden border-transparent bg-primary text-primary-foreground" %}
+            {% set button_style = "inline-flex items-center justify-center font-medium gap-2 whitespace-nowrap rounded-md text-sm transition-all disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg:not([class*='size-'])]:size-4 shrink-0 [&amp;_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50 h-9 px-4 py-2 has-[>svg]:px-3" %}
+            {% for project in featuredProjects %}
+                <div
+                    data-slot="card"
+                    class="bg-card text-card-foreground gap-4 rounded-xl border py-6 shadow-sm flex min-w-[325px] max-w-[450px] flex-col mb-4">
+                    <div
+                        data-slot="card-header"
+                        class="@container/card-header grid auto-rows-min grid-rows-[auto_auto] items-start gap-1.5 px-6
+                            has-data-[slot=card-action]:grid-cols-[1fr_auto] [.border-b]:pb-6">
+                        <div data-slot="card-title" class="leading-none font-semibold">{{ project.projectName }}</div>
+                        <div data-slot="card-description" class="text-muted-foreground text-sm">{{ project.projectDescription }}</div>
+                    </div>
+                    <div data-slot="card-content" class="px-6">
+                        <div class="space-x-1">
+                            {% for projectTag in project.projectTags %}
+                                <span class="{{ badge_style }}">{{ projectTag }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div data-slot="card-footer" class="flex-wrap items-center px-6 [.border-t]:pt-4 flex gap-4 mb-8">
+                        {% for link in project.projectLinks %}
+                            {% if link.linkType ==="github" %}
 
-								<button id="{{ link.linkType }}{{ project.projectId }}" class="{{ button_style }}" aria-label="GitHub Repository">
-									{% include 'icons/code_xml.njk' %}<span>Source Code</span>
-								</button>
-								<script>document.getElementById("{{ link.linkType }}{{ project.projectId }}").onclick = () => window.open("{{ link.linkURL }}")</script>
+                                <button id="{{ link.linkType }}{{ project.projectId }}" class="{{ button_style }}" aria-label="GitHub Repository">
+                                    {% include 'icons/code_xml.njk' %}<span>Source Code</span>
+                                </button>
+                                <script>document.getElementById("{{ link.linkType }}{{ project.projectId }}").onclick = () => window.open("{{ link.linkURL }}")</script>
 
-							{% elif link.linkType==="demo" %}
+                            {% elif link.linkType==="demo" %}
 
-								<button id="{{ link.linkType }}{{ project.projectId }}" class="{{ button_style }}" aria-label="Online Demo">
-									{% include 'icons/app_window.njk' %}<span>Demo</span>
-								</button>
-								<script>document.getElementById("{{ link.linkType }}{{ project.projectId }}").onclick = () => window.open("{{ link.linkURL }}")</script>
+                                <button id="{{ link.linkType }}{{ project.projectId }}" class="{{ button_style }}" aria-label="Online Demo">
+                                    {% include 'icons/app_window.njk' %}<span>Demo</span>
+                                </button>
+                                <script>document.getElementById("{{ link.linkType }}{{ project.projectId }}").onclick = () => window.open("{{ link.linkURL }}")</script>
 
-							{% elif link.linkType==="misc" %}
+                            {% elif link.linkType==="misc" %}
 
-								<button id="{{ link.linkType }}{{ project.projectId }}" class="{{ button_style }}" aria-label="{{ link.linkDesc }}">
-									{% include 'icons/link.njk' %}<span>{{ link.linkDesc }}</span>
-								</button>
-								<script>document.getElementById("{{ link.linkType }}{{ project.projectId }}").onclick = () => window.open("{{ link.linkURL }}")</script>
+                            <button id="{{ link.linkType }}{{ project.projectId }}-{{ link.linkDesc | slugify }}" class="{{ button_style }}" aria-label="{{ link.linkDesc }}">
+                                {% include 'icons/link.njk' %}<span>{{ link.linkDesc }}</span>
+                            </button>
+                            <script>document.getElementById("{{ link.linkType }}{{ project.projectId }}-{{ link.linkDesc|slugify }}").onclick = () => window.open("{{ link.linkURL }}")</script>
 
-							{% endif %}
-						{% endfor %}
-						<span class="w-full"></span>
-					</div>
-				</div>
-			{% endfor %}
-			<a href="/projects/" class="inline-flex text-primary items-center">
-					{% include 'icons/code_xml.njk' %}<span class="pl-4 text-xl">More Projects</span>
-			</a>
-		</section>
-	</div>
+                            {% endif %}
+                        {% endfor %}
+                        <span class="w-full"></span>
+                    </div>
+                </div>
+            {% endfor %}
+            <a href="/projects/" class="inline-flex text-primary items-center">
+                    {% include 'icons/code_xml.njk' %}<span class="pl-4 text-xl">More Projects</span>
+            </a>
+        </section>
+    </div>

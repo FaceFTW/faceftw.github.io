@@ -16,7 +16,7 @@ description: "List of projects created by Alex Westerman. Some are open source! 
                 <div
                     data-slot="card-header"
                     class="@container/card-header grid auto-rows-min grid-rows-[auto_auto] items-start gap-1.5 px-6
-                        has-data-[slot=card-action]:grid-cols-[1fr_auto] [.border-b]:pb-6">
+                        has-data-[slot=card-action]:grid-cols-[2fr_auto] [.border-b]:pb-6">
                     <div data-slot="card-title" class="leading-none font-semibold">{{ project.projectName }}</div>
                     <div data-slot="card-description" class="text-muted-foreground text-sm">{{ project.projectDescription }}</div>
                 </div>
@@ -35,7 +35,7 @@ description: "List of projects created by Alex Westerman. Some are open source! 
                         style="color: transparent;">
                 </div>
                 <div class="my-auto"></div>
-                <div data-slot="card-footer" class="items-center px-6 [.border-t]:pt-6 flex gap-4">
+                <div data-slot="card-footer" class="flex flex-wrap content-center-safe items-center px-6 [.border-t]:pt-6 gap-4">
                     {% for link in project.projectLinks %}
                         {% if link.linkType ==="github" %}
 
@@ -53,10 +53,10 @@ description: "List of projects created by Alex Westerman. Some are open source! 
 
                         {% elif link.linkType==="misc" %}
 
-                            <button id="{{ link.linkType }}{{ project.projectId }}" class="{{ button_style }}" aria-label="{{ link.linkDesc }}">
+                            <button id="{{ link.linkType }}{{ project.projectId }}-{{ link.linkDesc | slugify }}" class="{{ button_style }}" aria-label="{{ link.linkDesc }}">
                                 {% include 'icons/link.njk' %}<span>{{ link.linkDesc }}</span>
                             </button>
-                            <script>document.getElementById("{{ link.linkType }}{{ project.projectId }}").onclick = () => window.open("{{ link.linkURL }}")</script>
+                            <script>document.getElementById("{{ link.linkType }}{{ project.projectId }}-{{ link.linkDesc|slugify }}").onclick = () => window.open("{{ link.linkURL }}")</script>
 
                         {% endif %}
                     {% endfor %}
