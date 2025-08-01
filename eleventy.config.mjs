@@ -49,11 +49,12 @@ export default async function (eleventyConfig) {
     /************************
      * Build Configuration
      ************************/
-    eleventyConfig
+	eleventyConfig
         .addPassthroughCopy({
             './public/': '/',
             './src/assets/fonts': 'assets/fonts',
             './src/assets/pfp.webp': 'assets/pfp.webp',
+			'./src/assets/thumbs': 'assets/thumbs'
         })
         .addPassthroughCopy('./content/feed/pretty-atom-feed.xsl');
 

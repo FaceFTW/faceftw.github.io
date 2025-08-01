@@ -4,8 +4,6 @@
         {%- set t = ((postTitle if postTitle else title) + ' - ref_cycling') %}
         {%- set u = page.url | htmlBaseUrl("https://faceftw.dev") %}
         {%- set d = excerpt if excerpt else description %}
-        {# {%- set i = (thumbnail or settings.meta.opengraphDefaultImage) | htmlBaseUrl("https://faceftw.dev") %} #}
-        {# {%- set ia = thumbnailDescription or ('meta.opengraphDefaultAlt') %} #}
 
         <title>{{ t }}</title>
 
@@ -29,9 +27,13 @@
         <meta property="og:type" content="website">
         <meta property="og:url" content="{{ u }}">
         <meta property="og:logo" content="{{ "/assets/pfp.webp" | htmlBaseUrl("https://faceftw.dev") }}">
-        {# <meta property="og:image" content="{{ i }}"> #}
-        {# <meta property="og:image:alt" content="{{ ia }}"> #}
-        <meta property="og:locale" content="en_US">
+        {% if postThumbnail %}
+        {# {%- set i = (thumbnail or settings.meta.opengraphDefaultImage) | htmlBaseUrl("https://faceftw.dev") %} #}
+        {# {%- set ia = thumbnailDescription or ('meta.opengraphDefaultAlt') %} #}
+		<meta property="og:image" content="https://faceftw.dev/assets/thumbs/{{ postThumbnail }}">
+  	    <meta property="og:image:alt" content="{{ postThumbnailAlt }}">
+		{% endif%}
+		<meta property="og:locale" content="en_US">
     </head>
     <body class="antialiased font-rubik">
         <div class="flex min-h-screen flex-col">
