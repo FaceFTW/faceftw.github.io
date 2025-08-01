@@ -1,7 +1,7 @@
 ---
 postTitle: "SHUT UP Device, Part 3"
 excerpt: "Oxidizing the project with embedded Rust"
-date: "2025-07-27"
+date: "2025-07-31"
 author: Alex Westerman
 slug: '0009'
 postThumbnail: "blog_thumb_009.webp"
