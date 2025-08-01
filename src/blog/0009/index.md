@@ -427,4 +427,4 @@ Top-down view of the project (power indicator of the nano can't be turned off). 
 
 The next post will be about a completely different field in the world of computers: Web Design. In the middle of finishing this post, I had the brilliant idea to remove 99.9% of the JavaScript used by migrating to [Eleventy](https://11ty.dev) and true static site generation. It was an interesting enough experience and also a worthy discussion to have in a time where "bloat" in software is considered acceptable when it really shouldn't. Hopefully it doesn't take as long to write as this series did. I can't believe it's already the end of July.
 
-Until next time. Stay Based
+Until next time.
