@@ -8,6 +8,7 @@ import tailwindcss from '@tailwindcss/postcss';
 import htmlmin from 'html-minifier-terser';
 import { DateTime } from 'luxon';
 import postcss from 'postcss/lib/postcss';
+import CleanCSS from 'clean-css';
 import { createHighlighterCoreSync, createJavaScriptRegexEngine } from 'shiki';
 import c from 'shiki/langs/c.mjs';
 import csharp from 'shiki/langs/csharp.mjs';
@@ -30,7 +31,7 @@ export default async function (eleventyConfig) {
      ************************/
     eleventyConfig.on('eleventy.before', async () => {
         const tailwindInputPath = resolveFile('./src/main.css');
-        const tailwindOutputPath = './dist/assets/main.css';
+        const tailwindOutputPath = './src/_includes/compiled.css';
         const cssContent = readFileSync(tailwindInputPath, 'utf8');
         const outputDir = dirname(tailwindOutputPath);
 
@@ -38,12 +39,18 @@ export default async function (eleventyConfig) {
             mkdirSync(outputDir, { recursive: true });
         }
 
-        const result = await postcss([tailwindcss()]).process(cssContent, {
-            from: tailwindInputPath,
-            to: tailwindOutputPath,
-        });
+        const result = await postcss([tailwindcss()])
+            .process(cssContent, {
+                from: tailwindInputPath,
+                to: tailwindOutputPath,
+            })
+            .then((val) => {
+                return new CleanCSS().minify(val.css).styles;
+            });
 
-        writeFileSync(tailwindOutputPath, result.css);
+		//HACK, Inlining via Global Data seems to truncate results
+		//So use Nunjucks include with the file instead
+        writeFileSync(tailwindOutputPath, result);
     });
 
     /************************

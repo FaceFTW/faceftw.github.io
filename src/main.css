@@ -41,14 +41,10 @@
   --input: hsl(240 5.9% 90%);
   --ring: hsl(142.1 76.2% 36.3%);
   --radius: 0.5rem;
-  --chart-1: hsl(12 76% 61%);
-  --chart-2: hsl(173 58% 39%);
-  --chart-3: hsl(197 37% 24%);
-  --chart-4: hsl(43 74% 66%);
-  --chart-5: hsl(27 87% 67%);
+
 }
 
-.dark {
+/* .dark {
   --background: hsl(20 14.3% 4.1%);
   --foreground: hsl(0 0% 95%);
   --card: hsl(24 9.8% 10%);
@@ -68,12 +64,8 @@
   --border: hsl(240 3.7% 15.9%);
   --input: hsl(240 3.7% 15.9%);
   --ring: hsl(142.4 71.8% 29.2%);
-  --chart-1: hsl(220 70% 50%);
-  --chart-2: hsl(160 60% 45%);
-  --chart-3: hsl(30 80% 55%);
-  --chart-4: hsl(280 65% 60%);
-  --chart-5: hsl(340 75% 55%);
-}
+
+} */
 
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
@@ -98,12 +90,6 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-  --color-chart-1: var(--chart-1);
-  --color-chart-2: var(--chart-2);
-  --color-chart-3: var(--chart-3);
-  --color-chart-4: var(--chart-4);
-  --color-chart-5: var(--chart-5);
-  --color-sidebar: var(--sidebar);
   --color-sidebar-foreground: var(--sidebar-foreground);
   --color-sidebar-primary: var(--sidebar-primary);
   --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
@@ -190,8 +176,10 @@
     @apply bg-background text-foreground;
   }
   /* For using Shiki Styles */
-  html.dark .shiki,
-  html.dark .shiki span {
+  /* html.dark .shiki, */
+  /* html.dark .shiki span { */
+	.shiki,
+	.shiki span{
     color: var(--shiki-dark) !important;
     background-color: var(--shiki-dark-bg) !important;
     /* Optional, if you also want font styles */

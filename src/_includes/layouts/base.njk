@@ -7,7 +7,14 @@
 
         <title>{{ t }}</title>
 
-        <link rel="stylesheet" type="text/css" href="/assets/main.css"/> <script>{% include "layout_preinit.js" %}</script>
+        {# <link rel="stylesheet" type="text/css" href="/assets/main.css"/> #}
+		<style>
+			{%include "compiled.css"%}
+			{# {% for tailwindPortion in tailwindExternal %} #}
+				{# {{tailwindExternal}} #}
+			{# {% endfor %} #}
+		</style>
+		<script>{% include "layout_preinit.js" %}</script>
         <link rel="canonical" href="{{ u }}">
 
         <meta name="title" content="ref_cycling - the website of Alex Westerman">

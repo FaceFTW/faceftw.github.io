@@ -30,3 +30,7 @@ yarn-error.log*
 out
 public/sitemap*
 *.log
+
+# HACK This is compiled and updated on Eleventy Server Init to get around
+# a weird string truncation bug with Inlining the CSS
+src/_includes/compiled.css
