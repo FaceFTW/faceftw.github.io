@@ -5,13 +5,13 @@ date: "2025-07-31"
 author: Alex Westerman
 slug: '0009'
 postThumbnail: "blog_thumb_009.webp"
-postThumbnailAlt: "I put Rust in What?????? Includes art from Barnaby Walters (waterpigs.co.uk)"
+postThumbnailAlt: "I put Rust in What?????? Includes art from Barnaby Walters (https://waterpigs.co.uk)"
 keywords: ",Rust, embedded systems, arduino, project, github, c, zig, go"
 ---
 
 ```image
 src="./blog_thumb_009.webp", 1071x794
-I put Rust in what??????? Includes art from Barnaby Walters (waterpigs.co.uk)
+I put Rust in what??????? Includes art from Barnaby Walters (https://waterpigs.co.uk)
 ```
 
 In the final post of this miniseries, it is now time to talk about [Rust](https://rust-lang.org) and its use in embedded projects like this one. If you don't already use it, you might know someone who won't shut up about how good it is; I'd like to think I'm not as annoying but here I am writing an entire blog post about embedded Rust usage. Overall, the focus of this post is centered around thinking about embedded programming and how Rust fixes or changes common footguns that usually exist in C/C++. There will be some tangents related to AVR and the Arduino platform since there are interesting "gotchas" that have to be accounted for when working on architectures like those. Some parts of this piece will be a bit opinionated, but I will try my best to make clear when I try to make subjective claims.
