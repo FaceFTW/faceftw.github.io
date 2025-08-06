@@ -5,10 +5,10 @@ import { HtmlBasePlugin, IdAttributePlugin, InputPathToUrlTransformPlugin } from
 import { eleventyImageTransformPlugin } from '@11ty/eleventy-img';
 import pluginNavigation from '@11ty/eleventy-navigation';
 import tailwindcss from '@tailwindcss/postcss';
+import CleanCSS from 'clean-css';
 import htmlmin from 'html-minifier-terser';
 import { DateTime } from 'luxon';
 import postcss from 'postcss/lib/postcss';
-import CleanCSS from 'clean-css';
 import { createHighlighterCoreSync, createJavaScriptRegexEngine } from 'shiki';
 import c from 'shiki/langs/c.mjs';
 import csharp from 'shiki/langs/csharp.mjs';

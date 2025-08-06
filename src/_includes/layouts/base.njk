@@ -7,14 +7,7 @@
 
         <title>{{ t }}</title>
 
-        {# <link rel="stylesheet" type="text/css" href="/assets/main.css"/> #}
-		<style>
-			{%include "compiled.css"%}
-			{# {% for tailwindPortion in tailwindExternal %} #}
-				{# {{tailwindExternal}} #}
-			{# {% endfor %} #}
-		</style>
-		<script>{% include "layout_preinit.js" %}</script>
+        <style>{%include "compiled.css"%}</style>
         <link rel="canonical" href="{{ u }}">
 
         <meta name="title" content="ref_cycling - the website of Alex Westerman">
@@ -37,10 +30,10 @@
         {% if postThumbnail %}
         {# {%- set i = (thumbnail or settings.meta.opengraphDefaultImage) | htmlBaseUrl("https://faceftw.dev") %} #}
         {# {%- set ia = thumbnailDescription or ('meta.opengraphDefaultAlt') %} #}
-		<meta property="og:image" content="https://faceftw.dev/assets/thumbs/{{ postThumbnail }}">
-  	    <meta property="og:image:alt" content="{{ postThumbnailAlt }}">
-		{% endif%}
-		<meta property="og:locale" content="en_US">
+        <meta property="og:image" content="https://faceftw.dev/assets/thumbs/{{ postThumbnail }}">
+        <meta property="og:image:alt" content="{{ postThumbnailAlt }}">
+        {% endif%}
+        <meta property="og:locale" content="en_US">
     </head>
     <body class="antialiased font-rubik">
         <div class="flex min-h-screen flex-col">
@@ -76,8 +69,7 @@
                             class="justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none
                                 disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg:not([class*='size-'])]:size-4 shrink-0
                                 [&amp;_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]
-                                aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive hover:bg-accent
-                                hover:text-accent-foreground dark:hover:bg-accent/50 h-9 px-4 py-4 has-[>svg]:px-3 ml-4 flex items-center space-x-2
+                               aria-invalid:ring-destructive/40 aria-invalid:border-destructive hover:text-accent-foreground hover:bg-accent/50 h-9 px-4 py-4 has-[>svg]:px-3 ml-4 flex items-center space-x-2
                                 md:hidden">
                             {% include 'icons/menu.njk' %}
                             <div class="flex flex-col my-2">
@@ -110,17 +102,6 @@
                                 </nav>
                             </div>
                         </div>
-                        <button
-                            id="darkModeToggle"
-                            data-slot="button"
-                            class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all
-                                disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg:not([class*='size-'])]:size-4
-                                shrink-0 [&amp;_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]
-                                aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive text-primary
-                                underline-offset-4 hover:underline h-9 px-4 py-2 has-[>svg]:px-3"
-                            aria-label="Change Light/Dark Mode">
-                            {% include 'icons/moon_star.njk' %}
-                        </button>
                     </div>
                     <span class="w-max-10"></span>
                 </div>
@@ -138,6 +119,5 @@
                 </footer>
             </div>
         </div>
-        <script>{% include 'layout_postinit.js' %}</script>
     </body>
 </html>
