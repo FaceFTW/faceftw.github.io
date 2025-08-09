@@ -31,7 +31,7 @@ export default async function (eleventyConfig) {
      ************************/
     eleventyConfig.on('eleventy.before', async () => {
         const tailwindInputPath = resolveFile('./src/main.css');
-        const tailwindOutputPath = './src/_includes/compiled.css';
+        const tailwindOutputPath = './src/assets/compiled.css';
         const cssContent = readFileSync(tailwindInputPath, 'utf8');
         const outputDir = dirname(tailwindOutputPath);
 
@@ -45,11 +45,16 @@ export default async function (eleventyConfig) {
                 to: tailwindOutputPath,
             })
             .then((val) => {
-                return new CleanCSS().minify(val.css).styles;
+				// return val.css;
+                return new CleanCSS({
+
+					compatibility:{
+
+					}
+				}
+				).minify(val.css).styles;
             });
 
-		//HACK, Inlining via Global Data seems to truncate results
-		//So use Nunjucks include with the file instead
         writeFileSync(tailwindOutputPath, result);
     });
 
@@ -62,6 +67,7 @@ export default async function (eleventyConfig) {
             './src/assets/fonts': 'assets/fonts',
             './src/assets/pfp.webp': 'assets/pfp.webp',
             './src/assets/thumbs': 'assets/thumbs',
+			'./src/assets/compiled.css': 'assets/styles.css'
         })
         .addPassthroughCopy('./content/feed/pretty-atom-feed.xsl');
 
@@ -180,7 +186,14 @@ export default async function (eleventyConfig) {
             a: ['hover:underline', 'leading-relaxed', 'text-primary'],
             ul: ['list-outside', 'leading-relaxed'],
             ol: ['list-outside', 'leading-relaxed'],
+            li: [],
             p: ['leading-relaxed'],
+            h1: [],
+            h2: [],
+            h3: [],
+            h4: [],
+            h5: [],
+            h6: [],
             blockquote: [
                 'border-l-8',
                 'border-l-neutral-400',
@@ -193,6 +206,12 @@ export default async function (eleventyConfig) {
             ],
             hr: ['mb-4'],
             table: ['table-auto', 'mx-auto', 'mb-4'],
+            thead: [],
+            th: [],
+            tbody: [],
+            tr: [],
+            td: [],
+            strong: [],
         };
 
         mdLib.use((md) => {
