@@ -21,7 +21,7 @@
 }
 
 :root {
-  --background: hsl(20 14.3% 4.1%);
+  --background: hsl(0 0% 21%);
   --foreground: hsl(0 0% 95%);
   --card: hsl(24 9.8% 10%);
   --card-foreground: hsl(0 0% 95%);
@@ -32,16 +32,11 @@
   --secondary: hsl(240 3.7% 15.9%);
   --secondary-foreground: hsl(0 0% 98%);
   --muted: hsl(0 0% 15%);
-  --muted-foreground: hsl(240 5% 64.9%);
-  --accent: hsl(12 6.5% 15.1%);
-  --accent-foreground: hsl(0 0% 98%);
-  --destructive: hsl(0 62.8% 30.6%);
-  --destructive-foreground: hsl(0 85.7% 97.3%);
+  --muted-foreground: hsl(240 25% 80.9%);
   --border: hsl(240 3.7% 15.9%);
   --input: hsl(240 3.7% 15.9%);
   --ring: hsl(142.4 71.8% 29.2%);
 	--radius: 0.5rem;
-  --tw-prose-body: oklch(87.2% 0.01 258.338);
   --tw-prose-headings: #fff;
   --tw-prose-lead: oklch(70.7% 0.022 261.325);
   --tw-prose-links: oklch(72.3% 0.219 149.579);
@@ -52,10 +47,10 @@
   --tw-prose-quotes: oklch(96.7% 0.003 264.542);
   --tw-prose-quote-borders: oklch(37.3% 0.034 259.733);
   --tw-prose-captions: oklch(70.7% 0.022 261.325);
-  --tw-prose-kbd: #fff;
+  /* --tw-prose-kbd: #fff;
   --tw-prose-kbd-shadows: 255 255 255;
   --tw-prose-code: #fff;
-  --tw-prose-pre-code: oklch(87.2% 0.01 258.338);
+  --tw-prose-pre-code: oklch(87.2% 0.01 258.338); */
   --tw-prose-pre-bg: rgb(0 0 0 / 50%);
   --tw-prose-th-borders: oklch(44.6% 0.03 256.802);
   --tw-prose-td-borders: oklch(37.3% 0.034 259.733);
@@ -79,62 +74,23 @@
   --color-secondary-foreground: var(--secondary-foreground);
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-destructive: var(--destructive);
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-  --animate-accordion-down: accordion-down 1s ease-out;
-  --animate-accordion-up: accordion-up 1s ease-out;
   --font-rubik: Rubik, sans-serif;
-
-  @keyframes accordion-down {
-    0% {
-      height: 0;
-    }
-    100% {
-      height: var(--radix-accordion-content-height);
-    }
-  }
-  @keyframes accordion-up {
-    0% {
-      height: var(--radix-accordion-content-height);
-    }
-    100% {
-      height: 0;
-    }
-  }
 }
 
 @utility bg-gradient-one {
   background-image:
-    linear-gradient(to right, white 50%, transparent 50%),
-    linear-gradient(to right, transparent 50%, #86efac 50%, #5eead4 75%);
-}
-@utility bg-gradient-one-dark {
-  background-image:
     linear-gradient(to right, #0c0a09 50%, transparent 50%),
     linear-gradient(to right, transparent 50%, #15803d 50%, #0f766e 75%);
 }
-
 @utility bg-gradient-two {
-  background-image:
-    linear-gradient(to right, white 50%, transparent 50%),
-    linear-gradient(to right, transparent 50%, #ef4444 50%, #f97136 75%);
-}
-@utility bg-gradient-two-dark {
   background-image:
     linear-gradient(to right, #0c0a09 50%, transparent 50%),
     linear-gradient(to right, transparent 50%, #ef4444 50%, #f97136 75%);
 }
-
 @utility bg-gradient-three {
-  background-image:
-    linear-gradient(to right, white 50%, transparent 50%),
-    linear-gradient(to right, transparent 50%, #818cf8 50%, #06b6d4 75%);
-}
-@utility bg-gradient-three-dark {
   background-image:
     linear-gradient(to right, #0c0a09 50%, transparent 50%),
     linear-gradient(to right, transparent 50%, #818cf8 50%, #06b6d4 75%);
@@ -163,45 +119,13 @@
   body {
     @apply bg-background text-foreground;
   }
-  /* For using Shiki Styles*/
-  /* html.dark .shiki,
-  html.dark .shiki span {
-    color: var(--shiki-dark) !important;
-    background-color: var(--shiki-dark-bg) !important;
-    /* Optional, if you also want font styles */
-    /*font-style: var(--shiki-dark-font-style) !important;
-    font-weight: var(--shiki-dark-font-weight) !important;
-    text-decoration: var(--shiki-dark-text-decoration) !important;
-  } */
   /* For providing a scroll + padding for all code blocks*/
   pre {
-    overflow-x: auto;
-    @apply rounded-lg;
-    @apply px-2;
-    @apply py-2;
-    @apply mb-4;
-    @apply border-l-8;
-    /* @apply border-l-; */
-    @apply dark:border-l-[#121212];
-    @apply border-spacing-16;
-    @apply text-neutral-600;
-    @apply dark:text-neutral-400;
-    @apply leading-relaxed;
   }
-  /* Removes Backticks from code blocks */
-  code::before,
-  code::after {
-    display: none;
-  }
-  /* Some formatting for image captions*/
-  figcaption {
-    @apply italic;
-    @apply text-muted-foreground;
-    @apply mt-4;
-  }
-	/* Originally, The blog used Tailwind Typography to */
+	/* A Cutout of Tailwind Typography but More for what I want to do */
+	/* Some parts are commented since I don't think I'm using them now but maybe later */
   .prose {
-    color: var(--tw-prose-body);
+    color: var(--foreground);
     max-width: 65ch;
     :where(p) {
       margin-top: 1.25em;
@@ -215,7 +139,7 @@
       margin-bottom: 1.2em;
     }
     :where(a) {
-      color: var(--tw-prose-links);
+      color: var(--primary);
       text-decoration: underline;
       font-weight: 500;
     }
@@ -362,7 +286,7 @@
       margin-top: 2em;
       margin-bottom: 2em;
     }
-    :where(video) {
+    /* :where(video) {
       margin-top: 2em;
       margin-bottom: 2em;
     }
@@ -377,17 +301,11 @@
       padding-inline-end: 0.375em;
       padding-bottom: 0.1875em;
       padding-inline-start: 0.375em;
-    }
+    } */
     :where(code) {
       color: var(--tw-prose-code);
       font-weight: 600;
       font-size: 0.875em;
-    }
-    :where(code)::before {
-      content: "`";
-    }
-    :where(code)::after {
-      content: "`";
     }
     :where(a code) {
       color: inherit;
@@ -426,6 +344,18 @@
       padding-inline-end: 1.1428571em;
       padding-bottom: 0.8571429em;
       padding-inline-start: 1.1428571em;
+
+			overflow-x: auto;
+			@apply rounded-lg;
+			@apply px-2;
+			@apply py-2;
+			@apply mb-4;
+			@apply border-l-8;
+			@apply dark:border-l-[#121212];
+			@apply border-spacing-16;
+			@apply text-neutral-600;
+			@apply dark:text-neutral-400;
+			@apply leading-relaxed;
     }
     :where(pre code) {
       background-color: transparent;
@@ -437,12 +367,6 @@
       font-size: inherit;
       font-family: inherit;
       line-height: inherit;
-    }
-    :where(pre code)::before {
-      content: none;
-    }
-    :where(pre code)::after {
-      content: none;
     }
     :where(table) {
       width: 100%;
@@ -493,6 +417,9 @@
       font-size: 0.875em;
       line-height: 1.4285714;
       margin-top: 0.8571429em;
+    	@apply italic;
+    	@apply text-muted-foreground;
+    	@apply mt-4;
     }
     font-size: 1rem;
     line-height: 1.75;
@@ -530,14 +457,14 @@
       margin-top: 0.75em;
       margin-bottom: 0.75em;
     }
-    :where(dl) {
+    /* :where(dl) {
       margin-top: 1.25em;
       margin-bottom: 1.25em;
     }
     :where(dd) {
       margin-top: 0.5em;
       padding-inline-start: 1.625em;
-    }
+    } */
     :where(hr + *) {
       margin-top: 0;
     }
