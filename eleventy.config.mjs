@@ -48,8 +48,24 @@ export default async function (eleventyConfig) {
                 // do a simple minifier algorithm that removes all the newlines and indents
                 // That's it. That's ALL I NEEDED IT TO DO BUT NO IT HAD TO BE CRINGE AND
                 // NOW I HAVE TO WRITE A REALLY SIMPLE SOLUTION THAT SOMEHOW IT COULDN'T SOLVE
-				const firstPass = val.css.replaceAll(/\r?\n\s+/g, '');
-                return firstPass.replaceAll(/\r?\n/g, '');
+                return (
+                    //Each replaceAll call is a pass to remove padding for different parts of
+                    // CSS syntax. Since I'm not using Regex Match directly, more passes are
+                    // necessary for things like braces/parentheses which work in pairs.
+                    // That's fine though since this is all compile time on the millisecond scale.
+                    // Cry more perf nerds
+                    val.css
+                        .replaceAll(/\r?\n\s+/g, '') //Indents
+                        .replaceAll(/:\s/g, ':') //Spaces after Properties
+                        .replaceAll(/,\s/g, ',') //Spaces after Commas
+                        .replaceAll(/\s?>\s?/g, '>') // Spaces Before/After direct descendant operator
+                        .replaceAll(/\s?=\s?/g, '=') // Spaces Before/After Equals Operator (Covers LT/GT)
+                        .replaceAll(/\s?{\s?/g, '{') //Spaces Before/After Opening Brace
+                        .replaceAll(/\s?}\s?/g, '}') //Spaces Before/After Closing Brace
+                        .replaceAll(/\s?\(\s?/g, '(') //Spaces Before/After Closing Parentheses
+                        .replaceAll(/\s?\)\s?/g, ')') //Spaces Before/After Closing Parentheses
+                        .replaceAll(/\r?\n/g, '') //Remove remaining newlines
+                );
             });
 
         writeFileSync(tailwindOutputPath, result);
@@ -107,10 +123,6 @@ export default async function (eleventyConfig) {
 
             return highlighter.codeToHtml(codeToHighlight, {
                 theme: 'vitesse-dark',
-                // themes: {
-                //     light: 'vitesse-light',
-                //     dark: 'vitesse-dark',
-                // },
                 ...codeOptions,
                 transformers: [
                     {
