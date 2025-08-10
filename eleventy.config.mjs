@@ -5,7 +5,6 @@ import { HtmlBasePlugin, IdAttributePlugin, InputPathToUrlTransformPlugin } from
 import { eleventyImageTransformPlugin } from '@11ty/eleventy-img';
 import pluginNavigation from '@11ty/eleventy-navigation';
 import tailwindcss from '@tailwindcss/postcss';
-import CleanCSS from 'clean-css';
 import htmlmin from 'html-minifier-terser';
 import { DateTime } from 'luxon';
 import postcss from 'postcss/lib/postcss';
@@ -45,26 +44,12 @@ export default async function (eleventyConfig) {
                 to: tailwindOutputPath,
             })
             .then((val) => {
-                return val.css;
-                // return new CleanCSS({
-                //     level: {
-                //         1: {
-                //             removeWhitespace: false,
-                //             selectorsSortingMethod: 'natural',
-                //             specialComments: 1,
-                //             tidyBlockScopes: false,
-                //             tidySelectors: false,
-                //             tidyAtRules: false,
-
-                //         },
-                //         2: {
-                //             all: 'off',
-                //         },
-                //     },
-                // 	format: {
-                // 		breaks: true
-                // 	}
-                // }).minify(val.css).styles;
+                // Because CleanCSS is cringe and breaks the compiled CSS _somehow_
+                // do a simple minifier algorithm that removes all the newlines and indents
+                // That's it. That's ALL I NEEDED IT TO DO BUT NO IT HAD TO BE CRINGE AND
+                // NOW I HAVE TO WRITE A REALLY SIMPLE SOLUTION THAT SOMEHOW IT COULDN'T SOLVE
+				const firstPass = val.css.replaceAll(/\r?\n\s+/g, '');
+                return firstPass.replaceAll(/\r?\n/g, '');
             });
 
         writeFileSync(tailwindOutputPath, result);
