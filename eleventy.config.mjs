@@ -45,14 +45,26 @@ export default async function (eleventyConfig) {
                 to: tailwindOutputPath,
             })
             .then((val) => {
-				// return val.css;
-                return new CleanCSS({
+                return val.css;
+                // return new CleanCSS({
+                //     level: {
+                //         1: {
+                //             removeWhitespace: false,
+                //             selectorsSortingMethod: 'natural',
+                //             specialComments: 1,
+                //             tidyBlockScopes: false,
+                //             tidySelectors: false,
+                //             tidyAtRules: false,
 
-					compatibility:{
-
-					}
-				}
-				).minify(val.css).styles;
+                //         },
+                //         2: {
+                //             all: 'off',
+                //         },
+                //     },
+                // 	format: {
+                // 		breaks: true
+                // 	}
+                // }).minify(val.css).styles;
             });
 
         writeFileSync(tailwindOutputPath, result);
@@ -67,7 +79,7 @@ export default async function (eleventyConfig) {
             './src/assets/fonts': 'assets/fonts',
             './src/assets/pfp.webp': 'assets/pfp.webp',
             './src/assets/thumbs': 'assets/thumbs',
-			'./src/assets/compiled.css': 'assets/styles.css'
+            './src/assets/compiled.css': 'assets/styles.css',
         })
         .addPassthroughCopy('./content/feed/pretty-atom-feed.xsl');
 
@@ -109,10 +121,11 @@ export default async function (eleventyConfig) {
             const codeToHighlight = code.endsWith('\n') ? code.slice(0, -1) : code;
 
             return highlighter.codeToHtml(codeToHighlight, {
-                themes: {
-                    light: 'vitesse-light',
-                    dark: 'vitesse-dark',
-                },
+                theme: 'vitesse-dark',
+                // themes: {
+                //     light: 'vitesse-light',
+                //     dark: 'vitesse-dark',
+                // },
                 ...codeOptions,
                 transformers: [
                     {
