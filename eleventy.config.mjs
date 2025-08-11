@@ -62,8 +62,6 @@ export default async function (eleventyConfig) {
                         .replaceAll(/\s?=\s?/g, '=') // Spaces Before/After Equals Operator (Covers LT/GT)
                         .replaceAll(/\s?{\s?/g, '{') //Spaces Before/After Opening Brace
                         .replaceAll(/\s?}\s?/g, '}') //Spaces Before/After Closing Brace
-                        .replaceAll(/\s?\(\s?/g, '(') //Spaces Before/After Closing Parentheses
-                        .replaceAll(/\s?\)\s?/g, ')') //Spaces Before/After Closing Parentheses
                         .replaceAll(/\r?\n/g, '') //Remove remaining newlines
                 );
             });
