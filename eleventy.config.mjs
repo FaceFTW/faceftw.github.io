@@ -91,7 +91,11 @@ export default async function (eleventyConfig) {
                 useShortDoctype: true,
                 removeComments: true,
                 collapseWhitespace: true,
-                minifyJS: true,
+                minifyJS: {
+					mangle:{
+
+					}
+				},
                 minifiyCSS: true,
                 sortClassName: true,
             });
@@ -167,69 +171,6 @@ export default async function (eleventyConfig) {
 
             return `<pre><code${slf.renderAttrs(token)}>${highlighted}</code></pre>\n`;
         };
-    });
-    eleventyConfig.amendLibrary('md', (mdLib) => {
-        /**
-         * Based on https://github.com/kamranahmedse/markdown-it-class/
-         * Using MIT License (Less packages the better)
-         */
-        function setTokenClasses(tokens, mapping = {}) {
-            tokens.forEach((token) => {
-                const isOpeningTag = token.nesting !== -1;
-                if (isOpeningTag && mapping[token.tag]) {
-                    const existingClasses = (token.attrGet('class') || '').split(' ');
-                    const givenClasses = mapping[token.tag] || '';
-                    const newClasses = [...existingClasses, ...givenClasses];
-
-                    token.attrSet('class', newClasses.join(' ').trim());
-                }
-
-                if (token.children) {
-                    setTokenClasses(token.children, mapping);
-                }
-            });
-        }
-
-        const mapping = {
-            a: ['hover:underline', 'leading-relaxed', 'text-primary'],
-            ul: ['list-outside', 'leading-relaxed'],
-            ol: ['list-outside', 'leading-relaxed'],
-            li: [],
-            p: ['leading-relaxed'],
-            h1: [],
-            h2: [],
-            h3: [],
-            h4: [],
-            h5: [],
-            h6: [],
-            blockquote: [
-                'border-l-8',
-                'border-l-neutral-600',
-                'border-spacing-16',
-                'pl-4',
-                'text-neutral-400',
-                'bg-zinc-800',
-                'leading-relaxed',
-				'm-4',
-				'py-1',
-				'px-4',
-                'rounded-xl',
-            ],
-            hr: ['mb-4'],
-            table: ['table-auto', 'mx-auto', 'mb-4'],
-            thead: [],
-            th: [],
-            tbody: [],
-            tr: [],
-            td: [],
-            strong: [],
-        };
-
-        mdLib.use((md) => {
-            md.core.ruler.push('markdownit-tag-class', (state) => {
-                setTokenClasses(state.tokens, mapping);
-            });
-        });
     });
 
     /************************

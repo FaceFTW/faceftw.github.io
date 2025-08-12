@@ -80,7 +80,7 @@
                         </button>
                         <div
                             id="mobileNavMenu"
-                            class="hidden slide-in-from-bottom-80 fixed inset-0 top-10 z-50 grid h-[calc(100vh-4rem)] animate-in grid-flow-row
+                            class="hidden slide-in-from-bottom-80 fixed inset-0 top-10 z-50 h-[calc(100vh-4rem)] animate-in grid-flow-row
                                 auto-rows-max overflow-auto p-6 pb-32 shadow-md md:hidden">
                             <div class="relative z-20 grid gap-6 rounded-md bg-popover p-4 text-popover-foreground shadow-lg">
                                 <nav class="grid grid-flow-row auto-rows-max text-sm">
@@ -110,7 +110,13 @@
                     const mobileNavMenu = document.getElementById('mobileNavMenu');
                     let isMenuOpen = false;
                     const menuToggle = () => {
-                        isMenuOpen ? mobileNavMenu.classList.add('hidden') : mobileNavMenu.classList.remove('hidden');
+                        if (isMenuOpen) {
+                            mobileNavMenu.classList.add('hidden')
+                            mobileNavMenu.classList.remove('grid');
+                        } else {
+                            mobileNavMenu.classList.add('grid')
+                            mobileNavMenu.classList.remove('hidden');
+                        }
                         isMenuOpen = !isMenuOpen;
                     };
                     document.getElementById('mobileNavButton').onclick = () => menuToggle();
@@ -123,7 +129,7 @@
                 <footer class="mx-auto my-4 block">
                     <div data-slot="card" class="bg-card text-card-foreground flex-col gap-6 rounded-xl border shadow-sm flex">
                         <div data-slot="card-content" class="px-6 mx-auto mt-4 flex text-wrap">
-                            <pre class="text-wrap text-center border-l-card">Made by Alex "FaceFTW" Westerman © 2021-2025 All Rights Reserved.<br>Source code for this website is licensed under the MIT License<br><p class="prose prose-green dark:prose-invert inline text-wrap text-muted-foreground" xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/"><span property="dct:title" class="">The content of the <code>ref_cycling</code> blog</span>&nbsp;is licensed under&nbsp;<a href="https://creativecommons.org/licenses/by-nc-sa/4.0" target="_blank" rel="license noopener noreferrer" class="inline-flex justify-center">CC BY-NC-SA 4.0</a></p><br>External projects mentioned are subject to their own licenses and copyrights<br><br><a class="text-gray-500 text-sm decoration-muted" href="/funny">super secret link</a></pre>
+                            <pre class="text-wrap text-center border-l-card">Made by Alex "FaceFTW" Westerman © 2021-2025 All Rights Reserved.<br>Source code for this website is licensed under the MIT License<br><p class="prose inline text-wrap text-muted-foreground" xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/"><span property="dct:title" class="">The content of the <code>ref_cycling</code> blog</span>&nbsp;is licensed under&nbsp;<a href="https://creativecommons.org/licenses/by-nc-sa/4.0" target="_blank" rel="license noopener noreferrer" class="inline-flex justify-center">CC BY-NC-SA 4.0</a></p><br>External projects mentioned are subject to their own licenses and copyrights<br><br><a class="text-gray-500 text-sm decoration-muted" href="/funny">super secret link</a></pre>
                         </div>
                     </div>
                 </footer>

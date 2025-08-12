@@ -1,8 +1,5 @@
 @import "tailwindcss";
 @import "tw-animate-css";
-/* @plugin "@tailwindcss/typography"; */
-
-/* @custom-variant dark (&:is(.dark *)); */
 
 @font-face {
   font-family: "Rubik";
@@ -38,7 +35,7 @@
   --border: hsl(240 3.7% 15.9%);
   --input: hsl(240 3.7% 15.9%);
   --ring: hsl(142.4 71.8% 29.2%);
-	--radius: 0.5rem;
+  --radius: 0.5rem;
   --tw-prose-headings: #fff;
   --tw-prose-lead: oklch(70.7% 0.022 261.325);
   --tw-prose-links: oklch(72.3% 0.219 149.579);
@@ -92,7 +89,7 @@
 @utility bg-gradient-two {
   background-image:
     linear-gradient(to right, #0c0a09 50%, transparent 50%),
-    linear-gradient(to right, transparent 50%, #ef4444 50%, #f97136 75%);
+    linear-gradient(to right, var(--background) 50%, #ef4444 50%, #f97136 75%);
 }
 @utility bg-gradient-three {
   background-image:
@@ -123,14 +120,14 @@
   body {
     @apply bg-background text-foreground;
   }
-  /* For providing a scroll + padding for all code blocks*/
-  pre {
-  }
-	/* A Cutout of Tailwind Typography but More for what I want to do */
-	/* Some parts are commented since I don't think I'm using them now but maybe later */
+
+  /* A Cutout of Tailwind Typography but More for what I want to do */
+  /* Some parts are commented since I don't think I'm using them now but maybe later */
   .prose {
     color: var(--foreground);
     max-width: 65ch;
+    font-size: 1rem;
+    line-height: 1.75;
     :where(p) {
       margin-top: 1.25em;
       margin-bottom: 1.25em;
@@ -227,6 +224,14 @@
       margin-top: 1.6em;
       margin-bottom: 1.6em;
       padding-inline-start: 1em;
+      @apply border-l-8;
+      @apply border-l-neutral-600;
+      @apply border-spacing-16;
+      @apply text-neutral-400;
+      @apply bg-zinc-800;
+      @apply px-4;
+      @apply py-0.5;
+      @apply rounded-xl;
     }
     :where(blockquote p:first-of-type)::before {
       content: open-quote;
@@ -349,17 +354,14 @@
       padding-bottom: 0.8571429em;
       padding-inline-start: 1.1428571em;
 
-			overflow-x: auto;
-			@apply rounded-lg;
-			@apply px-2;
-			@apply py-2;
-			@apply mb-4;
-			@apply border-l-8;
-			@apply dark:border-l-[#121212];
-			@apply border-spacing-16;
-			@apply text-neutral-600;
-			@apply dark:text-neutral-400;
-			@apply leading-relaxed;
+      @apply rounded-lg;
+      @apply px-2;
+      @apply py-2;
+      @apply mb-4;
+      @apply border-l-8;
+      @apply border-spacing-16;
+      @apply text-neutral-600;
+      @apply leading-relaxed;
     }
     :where(pre code) {
       background-color: transparent;
@@ -421,12 +423,10 @@
       font-size: 0.875em;
       line-height: 1.4285714;
       margin-top: 0.8571429em;
-    	@apply italic;
-    	@apply text-muted-foreground;
-    	@apply mt-4;
+      @apply italic;
+      @apply text-muted-foreground;
+      @apply mt-4;
     }
-    font-size: 1rem;
-    line-height: 1.75;
     :where(picture > img) {
       margin-top: 0;
       margin-bottom: 0;
