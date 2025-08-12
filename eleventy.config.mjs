@@ -3,7 +3,6 @@ import { dirname, resolve as resolveFile } from 'node:path';
 import { HtmlBasePlugin, IdAttributePlugin, InputPathToUrlTransformPlugin } from '@11ty/eleventy';
 // import { feedPlugin } from "@11ty/eleventy-plugin-rss";
 import { eleventyImageTransformPlugin } from '@11ty/eleventy-img';
-import pluginNavigation from '@11ty/eleventy-navigation';
 import tailwindcss from '@tailwindcss/postcss';
 import htmlmin from 'html-minifier-terser';
 import { DateTime } from 'luxon';
@@ -92,10 +91,8 @@ export default async function (eleventyConfig) {
                 removeComments: true,
                 collapseWhitespace: true,
                 minifyJS: {
-					mangle:{
-
-					}
-				},
+                    mangle: {},
+                },
                 minifiyCSS: true,
                 sortClassName: true,
             });
@@ -176,7 +173,6 @@ export default async function (eleventyConfig) {
     /************************
      * Plugin Setup
      ************************/
-    eleventyConfig.addPlugin(pluginNavigation);
     eleventyConfig.addPlugin(HtmlBasePlugin);
     eleventyConfig.addPlugin(InputPathToUrlTransformPlugin);
     eleventyConfig.addPlugin(IdAttributePlugin);

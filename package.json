@@ -7,12 +7,10 @@
 		"build": "eleventy"
 	},
 	"dependencies": {
-		"@11ty/eleventy": "3.1.2",
-		"tw-animate-css": "1.3.6"
+		"@11ty/eleventy": "3.1.2"
 	},
 	"devDependencies": {
 		"@11ty/eleventy-img": "^6",
-		"@11ty/eleventy-navigation": "^1",
 		"@11ty/eleventy-plugin-rss": "^2",
 		"@biomejs/biome": "^2",
 		"@tailwindcss/postcss": "4.1.11",

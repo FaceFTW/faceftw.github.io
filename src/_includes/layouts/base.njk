@@ -68,10 +68,10 @@
                         <button
                             id="mobileNavButton"
                             class="justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none
-                                disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg:not([class*='size-'])]:size-4 shrink-0
+                                disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 shrink-0
                                 [&amp;_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]
-                               aria-invalid:ring-destructive/40 aria-invalid:border-destructive hover:text-accent-foreground hover:bg-accent/50 h-9 px-4 py-4 has-[>svg]:px-3 ml-4 flex items-center space-x-2
-                                md:hidden">
+                               aria-invalid:ring-destructive/40 aria-invalid:border-destructive hover:text-accent-foreground hover:bg-accent/50 h-9 py-4 px-3 ml-4 flex items-center space-x-2
+                                md:hidden animate-fade-in">
                             {% include 'icons/menu.njk' %}
                             <div class="flex flex-col my-2">
                                 <span class="font-bold text-lg">ref_cycling</span>
@@ -112,7 +112,9 @@
                     const menuToggle = () => {
                         if (isMenuOpen) {
                             mobileNavMenu.classList.add('hidden')
-                            mobileNavMenu.classList.remove('grid');
+							{# mobileNavMenu.classList.add() #}
+		                    mobileNavMenu.classList.remove('grid');
+
                         } else {
                             mobileNavMenu.classList.add('grid')
                             mobileNavMenu.classList.remove('hidden');

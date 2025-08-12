@@ -1,5 +1,4 @@
 @import "tailwindcss";
-@import "tw-animate-css";
 
 @font-face {
   font-family: "Rubik";
@@ -110,6 +109,19 @@
   animation: gradient-trans 1.5s ease-in-out forwards;
   @apply [background-size:200%];
   @apply w-fit;
+}
+
+@keyframes fade{
+  0% {
+    opacity:0%
+  },
+  100% {
+    opacity: 100%
+  }
+}
+
+@utility animate-fade-in {
+  animation: fade 1s ease-in-out forwards;
 }
 
 @layer base {
