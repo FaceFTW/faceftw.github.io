@@ -3,7 +3,6 @@ import { dirname, resolve as resolveFile } from 'node:path';
 import { HtmlBasePlugin, IdAttributePlugin, InputPathToUrlTransformPlugin } from '@11ty/eleventy';
 // import { feedPlugin } from "@11ty/eleventy-plugin-rss";
 import { eleventyImageTransformPlugin } from '@11ty/eleventy-img';
-import pluginNavigation from '@11ty/eleventy-navigation';
 import tailwindcss from '@tailwindcss/postcss';
 import htmlmin from 'html-minifier-terser';
 import { DateTime } from 'luxon';
@@ -30,7 +29,7 @@ export default async function (eleventyConfig) {
      ************************/
     eleventyConfig.on('eleventy.before', async () => {
         const tailwindInputPath = resolveFile('./src/main.css');
-        const tailwindOutputPath = './dist/assets/main.css';
+        const tailwindOutputPath = './src/assets/compiled.css';
         const cssContent = readFileSync(tailwindInputPath, 'utf8');
         const outputDir = dirname(tailwindOutputPath);
 
@@ -38,12 +37,35 @@ export default async function (eleventyConfig) {
             mkdirSync(outputDir, { recursive: true });
         }
 
-        const result = await postcss([tailwindcss()]).process(cssContent, {
-            from: tailwindInputPath,
-            to: tailwindOutputPath,
-        });
+        const result = await postcss([tailwindcss()])
+            .process(cssContent, {
+                from: tailwindInputPath,
+                to: tailwindOutputPath,
+            })
+            .then((val) => {
+                // Because CleanCSS is cringe and breaks the compiled CSS _somehow_
+                // do a simple minifier algorithm that removes all the newlines and indents
+                // That's it. That's ALL I NEEDED IT TO DO BUT NO IT HAD TO BE CRINGE AND
+                // NOW I HAVE TO WRITE A REALLY SIMPLE SOLUTION THAT SOMEHOW IT COULDN'T SOLVE
+                return (
+                    //Each replaceAll call is a pass to remove padding for different parts of
+                    // CSS syntax. Since I'm not using Regex Match directly, more passes are
+                    // necessary for things like braces/parentheses which work in pairs.
+                    // That's fine though since this is all compile time on the millisecond scale.
+                    // Cry more perf nerds
+                    val.css
+                        .replaceAll(/\r?\n\s+/g, '') //Indents
+                        .replaceAll(/:\s/g, ':') //Spaces after Properties
+                        .replaceAll(/,\s/g, ',') //Spaces after Commas
+                        .replaceAll(/\s?>\s?/g, '>') // Spaces Before/After direct descendant operator
+                        .replaceAll(/\s?=\s?/g, '=') // Spaces Before/After Equals Operator (Covers LT/GT)
+                        .replaceAll(/\s?{\s?/g, '{') //Spaces Before/After Opening Brace
+                        .replaceAll(/\s?}\s?/g, '}') //Spaces Before/After Closing Brace
+                        .replaceAll(/\r?\n/g, '') //Remove remaining newlines
+                );
+            });
 
-        writeFileSync(tailwindOutputPath, result.css);
+        writeFileSync(tailwindOutputPath, result);
     });
 
     /************************
@@ -55,6 +77,7 @@ export default async function (eleventyConfig) {
             './src/assets/fonts': 'assets/fonts',
             './src/assets/pfp.webp': 'assets/pfp.webp',
             './src/assets/thumbs': 'assets/thumbs',
+            './src/assets/compiled.css': 'assets/styles.css',
         })
         .addPassthroughCopy('./content/feed/pretty-atom-feed.xsl');
 
@@ -67,7 +90,9 @@ export default async function (eleventyConfig) {
                 useShortDoctype: true,
                 removeComments: true,
                 collapseWhitespace: true,
-                minifyJS: true,
+                minifyJS: {
+                    mangle: {},
+                },
                 minifiyCSS: true,
                 sortClassName: true,
             });
@@ -96,10 +121,7 @@ export default async function (eleventyConfig) {
             const codeToHighlight = code.endsWith('\n') ? code.slice(0, -1) : code;
 
             return highlighter.codeToHtml(codeToHighlight, {
-                themes: {
-                    light: 'vitesse-light',
-                    dark: 'vitesse-dark',
-                },
+                theme: 'vitesse-dark',
                 ...codeOptions,
                 transformers: [
                     {
@@ -147,58 +169,10 @@ export default async function (eleventyConfig) {
             return `<pre><code${slf.renderAttrs(token)}>${highlighted}</code></pre>\n`;
         };
     });
-    eleventyConfig.amendLibrary('md', (mdLib) => {
-        /**
-         * Based on https://github.com/kamranahmedse/markdown-it-class/
-         * Using MIT License (Less packages the better)
-         */
-        function setTokenClasses(tokens, mapping = {}) {
-            tokens.forEach((token) => {
-                const isOpeningTag = token.nesting !== -1;
-                if (isOpeningTag && mapping[token.tag]) {
-                    const existingClasses = (token.attrGet('class') || '').split(' ');
-                    const givenClasses = mapping[token.tag] || '';
-                    const newClasses = [...existingClasses, ...givenClasses];
-
-                    token.attrSet('class', newClasses.join(' ').trim());
-                }
-
-                if (token.children) {
-                    setTokenClasses(token.children, mapping);
-                }
-            });
-        }
-
-        const mapping = {
-            a: ['hover:underline', 'leading-relaxed', 'text-primary'],
-            ul: ['list-outside', 'leading-relaxed'],
-            ol: ['list-outside', 'leading-relaxed'],
-            p: ['leading-relaxed'],
-            blockquote: [
-                'border-l-8',
-                'border-l-neutral-400',
-                'dark:border-l-neutral-600',
-                'border-spacing-16',
-                'pl-4',
-                'text-neutral-600',
-                'dark:text-neutral-400',
-                'leading-relaxed',
-            ],
-            hr: ['mb-4'],
-            table: ['table-auto', 'mx-auto', 'mb-4'],
-        };
-
-        mdLib.use((md) => {
-            md.core.ruler.push('markdownit-tag-class', (state) => {
-                setTokenClasses(state.tokens, mapping);
-            });
-        });
-    });
 
     /************************
      * Plugin Setup
      ************************/
-    eleventyConfig.addPlugin(pluginNavigation);
     eleventyConfig.addPlugin(HtmlBasePlugin);
     eleventyConfig.addPlugin(InputPathToUrlTransformPlugin);
     eleventyConfig.addPlugin(IdAttributePlugin);

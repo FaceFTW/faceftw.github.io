@@ -17,9 +17,9 @@ description: "The website of Alex Westerman. Checkout the blog for very cool (ra
                         src="assets/pfp.webp"/>
                 </div>
                 <div class="mb-8 self-center">
-                    <h1 class="text-6xl animated-gradient mx-auto bg-gradient-one delay-500 lg:mx-0 dark:bg-gradient-one-dark">Software Engineer;</h1>
-                    <h1 class="text-6xl animated-gradient mx-auto bg-gradient-two delay-1000 lg:mx-0 dark:bg-gradient-two-dark">Power User;</h1>
-                    <h1 class="text-6xl animated-gradient mx-auto bg-gradient-three lg:mx-0 dark:bg-gradient-three-dark">Problem Solver;</h1>
+                    <h1 class="text-6xl animated-gradient mx-auto bg-gradient-one delay-500 lg:mx-0">Software Engineer;</h1>
+                    <h1 class="text-6xl animated-gradient mx-auto bg-gradient-two delay-1000 lg:mx-0">Power User;</h1>
+                    <h1 class="text-6xl animated-gradient mx-auto bg-gradient-three lg:mx-0">Problem Solver;</h1>
                 </div>
             </div>
         </div>
@@ -76,7 +76,7 @@ description: "The website of Alex Westerman. Checkout the blog for very cool (ra
             <h1 class="mx-4 mb-4 text-5xl">Featured Projects</h1>
 
             {% set badge_style = "inline-flex items-center justify-center font-medium rounded-md border px-2 py-0.5 text-xs w-fit whitespace-nowrap shrink-0 gap-1 focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] transition-[color,box-shadow] overflow-hidden border-transparent bg-primary text-primary-foreground" %}
-            {% set button_style = "inline-flex items-center justify-center font-medium gap-2 whitespace-nowrap rounded-md text-sm transition-all disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg:not([class*='size-'])]:size-4 shrink-0 [&amp;_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50 h-9 px-4 py-2 has-[>svg]:px-3" %}
+            {% set button_style = "inline-flex items-center justify-center font-medium gap-2 whitespace-nowrap rounded-md text-sm transition-all disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg:not([class*='size-'])]:size-4 shrink-0 [&amp;_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] border shadow-xs hover:bg-accent hover:text-accent-foreground bg-input/30 border-input hover:bg-input/50 h-9 px-4 py-2 has-[>svg]:px-3" %}
             {% for project in featuredProjects %}
                 <div
                     data-slot="card"
