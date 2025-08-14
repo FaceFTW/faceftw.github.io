@@ -67,10 +67,9 @@
                         </nav>
                         <button
                             id="mobileNavButton"
-                            class="justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none
-                                disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 shrink-0
-                                [&amp;_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]
-                               aria-invalid:ring-destructive/40 aria-invalid:border-destructive hover:text-accent-foreground hover:bg-accent/50 h-9 py-4 px-3 ml-4 flex items-center space-x-2
+                            class="justify-center gap-2 whitespace-nowrap rounded-md transition-all [&amp;_svg]:pointer-events-none
+							    [&amp;_svg]:size-4 shrink-0 [&amp;_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]
+                                hover:text-accent-foreground hover:bg-accent h-15 py-4 px-3 ml-4 flex items-center space-x-2
                                 md:hidden animate-fade-in">
                             {% include 'icons/menu.njk' %}
                             <div class="flex flex-col my-2">
@@ -80,7 +79,7 @@
                         </button>
                         <div
                             id="mobileNavMenu"
-                            class="hidden slide-in-from-bottom-80 fixed inset-0 top-10 z-50 h-[calc(100vh-4rem)] animate-in grid-flow-row
+                            class="hidden fixed inset-0 top-13 z-150 h-[calc(100vh-4rem)] animate-in grid-flow-row
                                 auto-rows-max overflow-auto p-6 pb-32 shadow-md md:hidden">
                             <div class="relative z-20 grid gap-6 rounded-md bg-popover p-4 text-popover-foreground shadow-lg">
                                 <nav class="grid grid-flow-row auto-rows-max text-sm">
