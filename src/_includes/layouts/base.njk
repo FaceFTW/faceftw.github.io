@@ -66,7 +66,7 @@
                             <div class="absolute top-full left-0 isolate z-50 flex justify-center"></div>
                         </nav>
                         <button
-                            id="mobileNavButton"
+                            id="mNB"
                             class="justify-center gap-2 whitespace-nowrap rounded-md transition-all [&amp;_svg]:pointer-events-none
 							    [&amp;_svg]:size-4 shrink-0 [&amp;_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]
                                 hover:text-accent-foreground hover:bg-accent h-15 py-4 px-3 ml-4 flex items-center space-x-2
@@ -78,7 +78,7 @@
                             </div>
                         </button>
                         <div
-                            id="mobileNavMenu"
+                            id="mNM"
                             class="hidden fixed inset-0 top-13 z-150 h-[calc(100vh-4rem)] animate-in grid-flow-row
                                 auto-rows-max overflow-auto p-6 pb-32 shadow-md md:hidden">
                             <div class="relative z-20 grid gap-6 rounded-md bg-popover p-4 text-popover-foreground shadow-lg">
@@ -106,13 +106,12 @@
                     <span class="w-max-10"></span>
                 </div>
                 <script>
-                    const mobileNavMenu = document.getElementById('mobileNavMenu');
+                    const mobileNavMenu = document.getElementById('mNM');
                     let isMenuOpen = false;
                     const menuToggle = () => {
                         if (isMenuOpen) {
                             mobileNavMenu.classList.add('hidden')
-							{# mobileNavMenu.classList.add() #}
-		                    mobileNavMenu.classList.remove('grid');
+			                    mobileNavMenu.classList.remove('grid');
 
                         } else {
                             mobileNavMenu.classList.add('grid')
@@ -120,7 +119,7 @@
                         }
                         isMenuOpen = !isMenuOpen;
                     };
-                    document.getElementById('mobileNavButton').onclick = () => menuToggle();
+                    document.getElementById('mNB').onclick = () => menuToggle();
                 </script>
             </header>
             <main class="container mx-auto flex flex-col md:w-[80%]">

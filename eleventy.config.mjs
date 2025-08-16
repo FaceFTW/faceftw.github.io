@@ -91,7 +91,9 @@ export default async function (eleventyConfig) {
                 removeComments: true,
                 collapseWhitespace: true,
                 minifyJS: {
-                    mangle: {},
+                    mangle: {
+                        toplevel: true,
+                    },
                 },
                 minifiyCSS: true,
                 sortClassName: true,
