@@ -216,6 +216,28 @@ export default async function (eleventyConfig) {
     // 		}
     // 	}
     // });
+    /************************
+     * Shared Tailwind Classlists
+     ************************/
+    //Sure, it's still alot, but at least it is in one place and not a bajillion
+    eleventyConfig.addGlobalData(
+        'buttonStyle',
+        'inline-flex items-center justify-center font-medium gap-2 ' +
+            'whitespace-nowrap rounded-md text-sm transition-all [&amp;_svg]:pointer-events-none ' +
+            "[&amp;_svg:not([class*='size-'])]:size-4 shrink-0 [&amp;_svg]:shrink-0 outline-none " +
+            'focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] border ' +
+            'shadow-xs hover:bg-accent hover:text-accent-foreground bg-input/30 border-input ' +
+            'hover:bg-input/50 h-9 px-4 py-2 has-[>svg]:px-3'
+    );
+
+    eleventyConfig.addGlobalData(
+        'badgeStyle',
+        'inline-flex items-center justify-center font-medium rounded-md ' +
+            'border px-2 py-0.5 text-xs w-fit whitespace-nowrap shrink-0 gap-1 ' +
+            'focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] ' +
+            'transition-[color,box-shadow] overflow-hidden border-transparent bg-primary ' +
+            'text-primary-foreground'
+    );
 
     /************************
      * Custom Filters + Collections
