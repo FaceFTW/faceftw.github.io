@@ -25,7 +25,7 @@ description: "The website of Alex Westerman. Checkout the blog for very cool (ra
         </div>
         <div class="flex flex-row items-center gap-8">
             <div class="mx-auto"></div>
-            {%- set socialBtn="justify-center gap-2 whitespace-nowrap rounded-md text-md transition-all shrink-0 [&amp;_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] hover:text-accent-foreground hover:bg-accent space-x-2 animate-fade-in p-1" %}
+            {%- set socialBtn="text-md shrink-0 animate-fade-in justify-center gap-2 space-x-2 rounded-md p-2 transition-all outline-none hover:bg-accent focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50" %}
             <button title="Twitter" id="twitterBtn" class="{{socialBtn}}">{% include 'icons/twitter.njk'%}</button>
             <script>document.getElementById('twitterBtn').onclick = () => window.open("https://twitter.com/_FaceFTW")</script>
 
@@ -68,9 +68,10 @@ description: "The website of Alex Westerman. Checkout the blog for very cool (ra
                 </a>
             {% endfor %}
             </div>
-            <a href="/blog" class="inline-flex text-primary items-center">
-                    {% include 'icons/rss.njk' %}<span class="pl-4 text-xl">More Blog Posts</span>
-            </a>
+			<button id="mbb" class="{{ buttonStyle }} **:text-primary" aria-label="More Blog Posts">
+                {% include 'icons/rss.njk' %}<span class="pl-4 text-xl">More Blog Posts</span>
+			</button>
+			<script>document.getElementById("mbb").onclick = () => window.location.assign("/blog")</script>
         </section>
         <section class="flex flex-col items-center">
             <h1 class="mx-4 mb-4 text-5xl">Featured Projects</h1>
@@ -122,8 +123,9 @@ description: "The website of Alex Westerman. Checkout the blog for very cool (ra
                     </div>
                 </div>
             {% endfor %}
-            <a href="/projects/" class="inline-flex text-primary items-center">
-                    {% include 'icons/code_xml.njk' %}<span class="pl-4 text-xl">More Projects</span>
-            </a>
+			<button id="mpb" class="{{ buttonStyle }} **:text-primary" aria-label="More Projects">
+				{% include 'icons/code_xml.njk' %}<span class="pl-4 text-xl">More Projects</span>
+			</button>
+			<script>document.getElementById("mpb").onclick = () => window.location.assign("/projects")</script>
         </section>
     </div>
