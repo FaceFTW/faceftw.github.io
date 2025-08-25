@@ -91,7 +91,9 @@ export default async function (eleventyConfig) {
                 removeComments: true,
                 collapseWhitespace: true,
                 minifyJS: {
-                    mangle: {},
+                    mangle: {
+                        toplevel: true,
+                    },
                 },
                 minifiyCSS: true,
                 sortClassName: true,
@@ -214,6 +216,24 @@ export default async function (eleventyConfig) {
     // 		}
     // 	}
     // });
+    /************************
+     * Shared Tailwind Classlists
+     ************************/
+    //Sure, it's still alot, but at least it is in one place and not a bajillion
+    eleventyConfig.addGlobalData(
+        'buttonStyle',
+        'has-[&gt;svg]:px-3 inline-flex h-9 shrink-0 items-center justify-center ' +
+            'gap-2 rounded-md border border-input bg-input/30 px-4 py-2 text-sm ' +
+            'font-medium whitespace-nowrap shadow-xs transition-all outline-none ' +
+            'hover:bg-accent hover:text-accent-foreground'
+    );
+
+    eleventyConfig.addGlobalData(
+        'badgeStyle',
+        'inline-flex w-fit shrink-0 items-center justify-center gap-1 rounded-md ' +
+            'border border-transparent bg-primary px-2 py-0.5 text-xs font-medium ' +
+            'whitespace-nowrap text-primary-foreground'
+    );
 
     /************************
      * Custom Filters + Collections
