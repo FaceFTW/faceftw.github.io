@@ -4,8 +4,8 @@ excerpt: "The website sequel I should have expected to happen"
 date: "2025-10-11"
 author: Alex Westerman
 slug: '0010'
-postThumbnail: ""
-postThumbnailAlt: ""
+postThumbnail: "./node_modules.webp"
+postThumbnailAlt: "Are that many node_modules really needed?"
 keywords: ",JS, JavaScript, Next.js, React, SSG, SSR, Node.JS, Web Development, webdev"
 ---
 In the last [From the Archives](https://faceftw.dev/blog/0005) post, I talked about the revisions `ref_cycling` has undergone throughout the several years I maintained and wrote new content for it. I foolishly underestimated my OCD and thought "yea, reducing your JavaScript size by 10x is pretty good and as far as you can go." Surely, there was not a better solution for a portfolio/blog site that doesn't require shared state across pages and was mostly composed of reusable markup.
