@@ -6,7 +6,7 @@ author: Alex Westerman
 slug: '0010'
 postThumbnail: ""
 postThumbnailAlt: ""
-keywords: ","
+keywords: ",JS, JavaScript, Next.js, React, SSG, SSR, Node.JS, Web Development, webdev"
 ---
 In the last [From the Archives](https://faceftw.dev/blog/0005) post, I talked about the revisions `ref_cycling` has undergone throughout the several years I maintained and wrote new content for it. I foolishly underestimated my OCD and thought "yea, reducing your JavaScript size by 10x is pretty good and as far as you can go." Surely, there was not a better solution for a portfolio/blog site that doesn't require shared state across pages and was mostly composed of reusable markup.
 
@@ -64,9 +64,7 @@ When trying to do a bit more research on why Next.js is specifically adding all 
 >
 > -- u/ethansidentifiable in [this Reddit post]( https://www.reddit.com/r/nextjs/comments/159d3tz/nexts_solution_for_partial_hydration_rsc_seems/)
 
-I wasn't crazy. ***Next.js didn't actually do true SSG. It was really just a half-assed system that technically rendered the page twice for my use case.*** The documentation tricked me into thinking it had a solved solution for my problems when in reality it was designed for _larger projects and solutions_.
-
-I want to be clear that Next.js is not the worst framework out there (although I personally think that the backing company Vercel is expensive in their services and cringe). The selling point is that this is suited for significantly larger projects that need to scale fast. And even for that, I now harbor skepticism towards the efficiency at that scale as well. Under an SSR model, the main bottleneck is the server rendering the DOM and sending updates to the client, which seems to be much more suited to how Next.js works. The SSG Next.js seems to be "masking" the work that a server would already have done, which may seem faster to the user, but is significantly less efficient due to how the hydration of the page works.
+I wasn't crazy. ***Next.js didn't actually do true SSG. It was really just a half-assed system that technically rendered the page twice for my use case.*** The documentation tricked me into thinking it had a solved solution for my problems when in reality it was designed for _larger projects and solutions_. The SSG Next.js seems to be "masking" the work that a server would already have done, which may seem faster to the user, but is significantly less efficient due to how the hydration of the page works. In essence, it acts more as "SSR with preloading", which again, _works best with more complex projects involving asynchronous processing_. Would I use Next.js in that case? Probably not anymore, I have a bad taste in my mouth from trying to understand why I needed that much JS for a simple site, and even then I'd rather not have to pay to do server hosting for an SSR project if I don't have to. So goodbye and good riddance!
 
 
 ## Ditching React
@@ -188,7 +186,14 @@ eleventyConfig.amendLibrary('md', (/** @type {MarkdownIt}*/ mdLib) => {
 });
 ```
 
-There is so much more I could gush on about, but I promised this would be shorter, so lets wrap up with some closing thoughts.
+On the topic of plugins and extensibility, Eleventy allows providing extra steps to run before and after different parts of the build process. I use this for compiling my [Tailwind CSS](https://tailwindcss.com) configuration and minifying it. Although I made a really brute-force custom implementation because I could not find a working "professional" CSS minifier that doesn't break the compiled Tailwind file.
+
+<blockquote class="bluesky-embed " data-bluesky-uri="at://did:plc:v2kfxvvmy3pdc4o4yw3buoyh/app.bsky.feed.post/3lvz7wyrckc25" data-bluesky-cid="bafyreiggdxerru7zdmgdvpntxc6irkz6hajhizz4zadpasckeybedojede" data-bluesky-embed-color-mode="system"><p lang="en">15 mins after posting this, I literally made it so close to the expected savings too:
+
+#webdev<br><br><a href="https://bsky.app/profile/did:plc:v2kfxvvmy3pdc4o4yw3buoyh/post/3lvz7wyrckc25?ref_src=embed">[image or embed]</a></p>&mdash; Alex (<a href="https://bsky.app/profile/did:plc:v2kfxvvmy3pdc4o4yw3buoyh?ref_src=embed">@faceftw.dev</a>) <a href="https://bsky.app/profile/did:plc:v2kfxvvmy3pdc4o4yw3buoyh/post/3lvz7wyrckc25?ref_src=embed">August 9, 2025 at 10:22 PM</a></blockquote><script async src="https://embed.bsky.app/static/embed.js" charset="utf-8"></script>
+
+
+There is so much more I could gush on about, but I promised this would be shorter. The source code and Eleventy configuration resides in [this websites' repository](https://github.com/FaceFTW/faceftw.github.io) for anyone curious. So lets wrap up with some closing thoughts.
 
 ## "One Must Imagine Sisyphus Happy"
 
@@ -196,10 +201,17 @@ I have a problem where even if I finish a project, there is a high probability t
 
 This has felt like a "return to form" in some ways considering the original website being pure HTML/CSS. There is a lot of control that handcrafting CSS classes and layout which is lost once React and a UI library come into play; On the other hand time gets lost during design just from debugging raw CSS and layout shifts once it reaches a critical mass of definitions and handwritten markup. Removing React has also meant reconsidering certain design choices that were heavily reliant on client-side JS for ones that are more static: The homepage used to have a rotating carousel but is replaced with (a much nicer) card grid, accordion elements used on the resume and project cards have been removed and replaced with alternative layouts, and even the theme toggle was not consistent during testing and ultimately got nixed for the new gray theme. On the other hand, removing an entire ecosystem of components has drastically reduced the proportion that markup and JS takes with web deploys, with a total size of 2MB for static non-image content and practically no external JS on HTML loads.
 
-Was this an impulsive decision? _Perhaps._ People these days don't seem to care that the things they use are starting to get more elaborate and complicated when in reality stepping back and doing the simpler thing may be the better option. I'm tired of having to cut through the muck of buzzwords and poorly-thought UX when I just want to do something as simple as minify my CSS:
+Was this an impulsive decision? _Perhaps._ People these days don't seem to care that the things they use are starting to get more elaborate and complicated when in reality stepping back and doing the simpler thing may be the better option. Usually when I make something, I design the program to be _clear in intention_ and _respectful of the user's time_, principles often missing in software from some of the biggest companies of today. I'm tired of having to cut through the muck of buzzwords and poorly-thought UX. So as long as I have the power to make good software, I will.
 
-<blockquote class="bluesky-embed " data-bluesky-uri="at://did:plc:v2kfxvvmy3pdc4o4yw3buoyh/app.bsky.feed.post/3lvz7wyrckc25" data-bluesky-cid="bafyreiggdxerru7zdmgdvpntxc6irkz6hajhizz4zadpasckeybedojede" data-bluesky-embed-color-mode="system"><p lang="en">15 mins after posting this, I literally made it so close to the expected savings too:
+---
 
-#webdev<br><br><a href="https://bsky.app/profile/did:plc:v2kfxvvmy3pdc4o4yw3buoyh/post/3lvz7wyrckc25?ref_src=embed">[image or embed]</a></p>&mdash; Alex (<a href="https://bsky.app/profile/did:plc:v2kfxvvmy3pdc4o4yw3buoyh?ref_src=embed">@faceftw.dev</a>) <a href="https://bsky.app/profile/did:plc:v2kfxvvmy3pdc4o4yw3buoyh/post/3lvz7wyrckc25?ref_src=embed">August 9, 2025 at 10:22 PM</a></blockquote><script async src="https://embed.bsky.app/static/embed.js" charset="utf-8"></script>
+Thanks for reading! I plan on taking a bit of a hiatus on `ref_cycling` because I jumped too deep into learning [NixOS](https://nixos.org) as part of some 3D printer modding. I have _no idea_ when that project will be finished in a state that I consider ready to talk about, and there is a lot to discuss about reproducibility and system management by software that I would need to research and make sure I get right.
 
-Whenever I try to make something, most times I do try to design it so that another person could use it if they want to. Sure, manuals are required for more complicated things, but if I can make something have an obvious
+Here is a sneak peek at what that has looked like:
+
+```image
+src="./nix_experiments.webp", 803x1071
+You ever need to add a swap volume on an SD card just to get Linux to compile?
+```
+
+Until next time.
