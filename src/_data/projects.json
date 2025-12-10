@@ -12,6 +12,11 @@
 				{
 					"linkType": "github",
 					"linkURL": "https://github.com/FaceFTW/Armanipulator"
+				},
+				{
+					"linkType": "repo_mirror",
+					"linkURL": "https://codeberg.org/FaceFTW/Armanipulator",
+					"linkDesc": "Codeberg"
 				}
 			],
 			"projectTags": [
@@ -34,6 +39,11 @@
 				{
 					"linkType": "github",
 					"linkURL": "https://github.com/FaceFTW/UberUnit"
+				},
+				{
+					"linkType": "repo_mirror",
+					"linkURL": "https://codeberg.org/FaceFTW/UberUnit",
+					"linkDesc": "Codeberg"
 				}
 			],
 			"projectTags": [
@@ -58,6 +68,11 @@
 				{
 					"linkType": "github",
 					"linkURL": "https://github.com/FaceFTW/cnhasm-noarch"
+				},
+				{
+					"linkType": "repo_mirror",
+					"linkURL": "https://codeberg.org/FaceFTW/cnhasm-noarch",
+					"linkDesc": "Codeberg"
 				}
 			],
 			"projectTags": [
@@ -95,6 +110,11 @@
 				{
 					"linkType": "github",
 					"linkURL": "https://github.com/FaceFTW/strive-stats"
+				},
+				{
+					"linkType": "repo_mirror",
+					"linkURL": "https://codeberg.org/FaceFTW/strive-stats",
+					"linkDesc": "Codeberg"
 				}
 			],
 			"projectTags": [
@@ -115,6 +135,11 @@
 				{
 					"linkType": "github",
 					"linkURL": "https://github.com/FaceFTW/DesignLint"
+				},
+				{
+					"linkType": "repo_mirror",
+					"linkURL": "https://codeberg.org/FaceFTW/DesignLint",
+					"linkDesc": "Codeberg"
 				}
 			],
 			"projectAsset": "designlint.webp",
@@ -141,12 +166,16 @@
 				{
 					"linkType": "github",
 					"linkURL": "https://github.com/FaceFTW/OpenCryptoBench"
+				},
+				{
+					"linkType": "repo_mirror",
+					"linkURL": "https://codeberg.org/FaceFTW/OpenCryptoBench",
+					"linkDesc": "Codeberg"
 				}
 			],
 			"projectTags": [
 				"Java",
 				"Bouncy Castle",
-				"Personal Project",
 				"Open Source"
 			]
 		},
@@ -185,6 +214,11 @@
 				{
 					"linkType": "github",
 					"linkURL": "https://github.com/FaceFTW/scavlanders-gamepad"
+				},
+				{
+					"linkType": "repo_mirror",
+					"linkURL": "https://codeberg.org/FaceFTW/scavlanders-gamepad",
+					"linkDesc": "Codeberg"
 				}
 			],
 			"projectTags": [
@@ -233,13 +267,17 @@
 				{
 					"linkType": "github",
 					"linkURL": "https://github.com/FaceFTW/PSTweetTemplate"
+				},
+				{
+					"linkType": "repo_mirror",
+					"linkURL": "https://codeberg.org/FaceFTW/PSTweetTemplate",
+					"linkDesc": "Codeberg"
 				}
 			],
 			"projectTags": [
 				"PowerShell",
 				"X (Formerly Known as Twitter)",
 				"BluebirdPS",
-				"Personal Project",
 				"Open Source"
 			]
 		},
@@ -253,7 +291,12 @@
 			"projectLinks": [
 				{
 					"linkType": "github",
-					"linkURL": "https://github.com/FaceFTW/gl-pipes"
+					"linkURL": "https://github.com/FaceFTW/rust-pipes"
+				},
+				{
+					"linkType": "repo_mirror",
+					"linkURL": "https://codeberg.org/FaceFTW/rust-pipes",
+					"linkDesc": "Codeberg"
 				},
 				{
 					"linkType": "demo",
@@ -265,14 +308,13 @@
 				"OpenGL",
 				"three-d",
 				"WASM",
-				"Personal Project",
 				"Open Source"
 			]
 		},
 		{
 			"projectId": 12,
 			"projectName": "Dotfiles",
-			"projectDescription": "A collection of scripts/configs I use for development",
+			"projectDescription": "My scripts ,customizations, and configs, including some NixOS appliance definitions",
 			"projectAsset": "dotfiles.webp",
 			"assetHeight": 738,
 			"assetWidth": 955,
@@ -280,14 +322,19 @@
 				{
 					"linkType": "github",
 					"linkURL": "https://github.com/FaceFTW/dotfiles"
+				},
+				{
+					"linkType": "repo_mirror",
+					"linkURL": "https://codeberg.org/FaceFTW/dotfiles",
+					"linkDesc": "Codeberg"
 				}
 			],
 			"projectTags": [
 				"PowerShell",
 				"ZSH",
 				"VimScript",
-				"Chezmoi",
-				"Personal Project",
+				"dotfiles",
+				"NixOS",
 				"Open Source"
 			]
 		},
@@ -318,6 +365,11 @@
 				{
 					"linkType": "github",
 					"linkURL": "https://github.com/RetireSimple/RetireSimple"
+				},
+				{
+					"linkType": "repo_mirror",
+					"linkURL": "https://codeberg.org/FaceFTW/RetireSimple",
+					"linkDesc": "Codeberg"
 				}
 			],
 			"projectAsset": "retiresimple.webp",
@@ -345,6 +397,11 @@
 				{
 					"linkType": "github",
 					"linkURL": "https://github.com/FaceFTW/settlers-of-catan"
+				},
+				{
+					"linkType": "repo_mirror",
+					"linkURL": "https://codeberg.org/FaceFTW/settlers-of-catan",
+					"linkDesc": "Codeberg"
 				}
 			],
 			"projectAsset": "settlers.webp",
@@ -366,6 +423,11 @@
 				{
 					"linkType": "github",
 					"linkURL": "https://github.com/FaceFTW/xv6-signals"
+				},
+				{
+					"linkType": "repo_mirror",
+					"linkURL": "https://codeberg.org/FaceFTW/xv6-signals",
+					"linkDesc": "Codeberg"
 				}
 			],
 			"projectAsset": "xv6.webp",
@@ -391,7 +453,12 @@
 			"projectLinks": [
 				{
 					"linkType": "github",
-					"linkURL": "https://github.com/FaceFTW/FaceFTW.github.io"
+					"linkURL": "https://github.com/FaceFTW/faceftw.github.io"
+				},
+				{
+					"linkType": "repo_mirror",
+					"linkURL": "https://codeberg.org/FaceFTW/faceftw.github.io",
+					"linkDesc": "Codeberg"
 				}
 			],
 			"projectTags": [
@@ -409,8 +476,8 @@
 				"TailwindCSS",
 				"Framer Motion",
 				"Next.JS",
-				"School Project",
-				"Personal Project",
+				"Eleventy",
+				"Nunjucks",
 				"Open Source"
 			]
 		},
@@ -427,6 +494,11 @@
 					"linkURL": "https://github.com/FaceFTW/shell-toy"
 				},
 				{
+					"linkType": "repo_mirror",
+					"linkURL": "https://codeberg.org/FaceFTW/shell-toy",
+					"linkDesc": "Codeberg"
+				},
+				{
 					"linkType": "misc",
 					"linkURL": "https://faceftw.dev/blog/0003",
 					"linkDesc": "Blog Post"
@@ -437,7 +509,6 @@
 				"terminal",
 				"customization",
 				"Perl",
-				"Personal Project",
 				"Open Source"
 			]
 		},
@@ -452,6 +523,11 @@
 				{
 					"linkType": "github",
 					"linkURL": "https://github.com/FaceFTW/shut-up-device"
+				},
+				{
+					"linkType": "repo_mirror",
+					"linkURL": "https://codeberg.org/FaceFTW/shut-up-device",
+					"linkDesc": "Codeberg"
 				},
 				{
 					"linkType": "misc",
@@ -475,7 +551,6 @@
 				"Arduino",
 				"C",
 				"Systems Programming",
-				"Personal Project",
 				"Open Source"
 			]
 		}

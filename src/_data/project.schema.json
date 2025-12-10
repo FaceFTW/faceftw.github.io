@@ -73,6 +73,7 @@
 					"enum": [
 						"text",
 						"github",
+						"repo_mirror",
 						"demo",
 						"misc"
 					]
@@ -98,7 +99,8 @@
 				"properties": {
 					"linkType": {
 						"enum": [
-							"misc"
+							"misc",
+							"repo_mirror"
 						]
 					}
 				}
