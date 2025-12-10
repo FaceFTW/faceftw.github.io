@@ -346,6 +346,11 @@
 				{
 					"linkType": "github",
 					"linkURL": "https://github.com/FaceFTW/jftp-scuffed"
+				},
+				{
+					"linkType": "repo_mirror",
+					"linkURL": "https://codeberg.org/FaceFTW/jftp-scuffed",
+					"linkDesc": "Codeberg"
 				}
 			],
 			"projectAsset": "jftp.webp",

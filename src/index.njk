@@ -35,7 +35,7 @@ description: "The website of Alex Westerman. Checkout the blog for very cool (ra
             <button title="GitHub" id="ghBtn" class="{{socialBtn}}">{% include 'icons/github.njk'%}</button>
             <script>document.getElementById('ghBtn').onclick = () => window.open("https://github.com/FaceFTW")</script>
 
-			<button title="Codeberg (Mirror)" id="cbBtn" class="{{socialBtn}}"><div class="filter-svg-green size-12">{% include 'icons/codeberg.njk'%}</button></button>
+            <button title="Codeberg (Mirror)" id="cbBtn" class="{{socialBtn}}"><div class="filter-svg-green size-10">{% include 'icons/codeberg.njk'%}</button></button>
             <script>document.getElementById('cbBtn').onclick = () => window.open("https://codeberg.org/FaceFTW")</script>
 
             <button title="Email" id="mailBtn" class="{{socialBtn}}">{% include 'icons/mail.njk'%}</button>
@@ -71,10 +71,10 @@ description: "The website of Alex Westerman. Checkout the blog for very cool (ra
                 </a>
             {% endfor %}
             </div>
-			<button id="mbb" class="{{ buttonStyle }} **:text-primary" aria-label="More Blog Posts">
+            <button id="mbb" class="{{ buttonStyle }} **:text-primary" aria-label="More Blog Posts">
                 {% include 'icons/rss.njk' %}<span class="pl-4 text-xl">More Blog Posts</span>
-			</button>
-			<script>document.getElementById("mbb").onclick = () => window.location.assign("/blog")</script>
+            </button>
+            <script>document.getElementById("mbb").onclick = () => window.location.assign("/blog")</script>
         </section>
         <section class="flex flex-col items-center">
             <h1 class="mx-4 mb-4 text-5xl">Featured Projects</h1>
@@ -102,7 +102,14 @@ description: "The website of Alex Westerman. Checkout the blog for very cool (ra
                             {% if link.linkType ==="github" %}
 
                                 <button id="{{ link.linkType }}{{ project.projectId }}" class="{{ buttonStyle }}" aria-label="GitHub Repository">
-                                    {% include 'icons/code_xml.njk' %}<span>Source Code</span>
+                                    {% include 'icons/code.njk' %}<span>GitHub Repository</span>
+                                </button>
+                                <script>document.getElementById("{{ link.linkType }}{{ project.projectId }}").onclick = () => window.open("{{ link.linkURL }}")</script>
+
+                            {% elif link.linkType ==="repo_mirror" %}
+
+                                <button id="{{ link.linkType }}{{ project.projectId }}" class="{{ buttonStyle }}" aria-label="{{ link.linkDesc }} Mirror Repository">
+                                    {% include 'icons/square_code.njk' %}<span>{{ link.linkDesc }} Mirror</span>
                                 </button>
                                 <script>document.getElementById("{{ link.linkType }}{{ project.projectId }}").onclick = () => window.open("{{ link.linkURL }}")</script>
 
@@ -126,9 +133,9 @@ description: "The website of Alex Westerman. Checkout the blog for very cool (ra
                     </div>
                 </div>
             {% endfor %}
-			<button id="mpb" class="{{ buttonStyle }} **:text-primary" aria-label="More Projects">
-				{% include 'icons/code_xml.njk' %}<span class="pl-4 text-xl">More Projects</span>
-			</button>
-			<script>document.getElementById("mpb").onclick = () => window.location.assign("/projects")</script>
+            <button id="mpb" class="{{ buttonStyle }} **:text-primary" aria-label="More Projects">
+                {% include 'icons/code_xml.njk' %}<span class="pl-4 text-xl">More Projects</span>
+            </button>
+            <script>document.getElementById("mpb").onclick = () => window.location.assign("/projects")</script>
         </section>
     </div>
