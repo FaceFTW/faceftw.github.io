@@ -111,6 +111,10 @@
   @apply w-fit;
 }
 
+@utility filter-svg-green{
+  filter: brightness(0) saturate(100%) invert(56%) sepia(99%) saturate(362%) hue-rotate(90deg) brightness(91%) contrast(94%);
+}
+
 @keyframes fade{
   0% {
     opacity:0%
