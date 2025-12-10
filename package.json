@@ -7,20 +7,20 @@
 		"build": "eleventy"
 	},
 	"dependencies": {
-		"@11ty/eleventy": "4.0.0-alpha.4"
+		"@11ty/eleventy": "4.0.0-alpha.5"
 	},
 	"devDependencies": {
 		"@11ty/eleventy-img": "^6",
 		"@11ty/eleventy-plugin-rss": "^2",
-		"@biomejs/biome": "^2",
-		"@tailwindcss/postcss": "4.1.14",
-		"@types/node": "24",
+		"@biomejs/biome": "^2.3.8",
+		"@tailwindcss/postcss": "4.1.17",
+		"@types/node": "24.10.1",
 		"html-minifier-terser": "7.2.0",
 		"luxon": "3.7.2",
 		"markdown-it": "14.1.0",
 		"postcss": "8.5.6",
-		"shiki": "3.13.0",
-		"tailwindcss": "4.1.14",
+		"shiki": "3.19.0",
+		"tailwindcss": "4.1.17",
 		"typescript": "5.9.3"
 	}
 }
