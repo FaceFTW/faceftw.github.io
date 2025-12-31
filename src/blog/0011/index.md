@@ -52,8 +52,8 @@ I want this AI bubble to pop. This is not sustainable and there are more ways to
 
 The worst thing you can do is trust a machine blindly. Because blindly trusting a machine is blindly trusting the humans behind that machine. As one of my favorite quotes go:
 
-“A computer can never be held accountable, therefore a computer should not be responsible for a management decision.”
-    - [IBM Training Manual, 1979](https://www.ibm.com/think/insights/ai-decision-making-where-do-businesses-draw-the-line)
+> “A computer can never be held accountable, therefore a computer should not be responsible for a management decision.”
+> <br/>&nbsp;&nbsp;&nbsp;&nbsp;- [IBM Training Manual, 1979](https://www.ibm.com/think/insights/ai-decision-making-where-do-businesses-draw-the-line)
 
 
 Cheers to a 2026 that isn't worse than this year!

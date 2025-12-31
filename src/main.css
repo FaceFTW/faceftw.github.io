@@ -17,22 +17,22 @@
 }
 
 :root {
-  --background: hsl(0 0% 21%);
+  --background: hsl(0 0% 15%);
   --foreground: hsl(0 0% 95%);
-  --card: hsl(24 9.8% 10%);
+  --card: hsl(24 9.8% 7%);
   --card-foreground: hsl(0 0% 95%);
   --popover: hsl(0 0% 9%);
   --popover-foreground: hsl(0 0% 95%);
   --primary: hsl(142.1 70.6% 45.3%);
-  --primary-foreground: hsl(144.9 80.4% 10%);
+  --primary-foreground: hsl(144.9 80.4% 8%);
   --secondary: hsl(240 3.7% 15.9%);
   --secondary-foreground: hsl(0 0% 98%);
-  --muted: hsl(0 0% 15%);
+  --muted: hsl(0 0% 10%);
   --muted-foreground: hsl(240 25% 80.9%);
-  --accent: hsl(12 6.5% 15.1%);
+  --accent: hsl(12 6.5% 12.1%);
   --accent-foreground: hsl(0 0% 98%);
-  --border: hsl(240 3.7% 15.9%);
-  --input: hsl(240 3.7% 15.9%);
+  --border: hsl(240 3.7% 12.9%);
+  --input: hsl(240 3.7% 12.9%);
   --ring: hsl(142.4 71.8% 29.2%);
   --radius: 0.5rem;
   --tw-prose-headings: #fff;
@@ -162,7 +162,7 @@
     }
     :where(strong) {
       color: var(--tw-prose-bold);
-      font-weight: 600;
+      font-weight: 800;
     }
     :where(a strong) {
       color: inherit;
@@ -243,18 +243,18 @@
       @apply border-l-8;
       @apply border-l-neutral-600;
       @apply border-spacing-16;
-      @apply text-neutral-400;
-      @apply bg-zinc-800;
+      @apply text-neutral-200;
+      @apply bg-zinc-900;
       @apply px-4;
       @apply py-0.5;
       @apply rounded-xl;
     }
-    :where(blockquote p:first-of-type)::before {
+    /* :where(blockquote p:first-of-type)::before {
       content: open-quote;
     }
     :where(blockquote p:last-of-type)::after {
       content: close-quote;
-    }
+    } */
     :where(h1) {
       color: var(--tw-prose-headings);
       font-weight: 800;
@@ -376,7 +376,7 @@
       @apply mb-4;
       @apply border-l-8;
       @apply border-spacing-16;
-      @apply text-neutral-600;
+      @apply text-neutral-500;
       @apply leading-relaxed;
     }
     :where(pre code) {
