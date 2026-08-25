@@ -3,7 +3,7 @@
 	"highlights": [
 		{
 			"icon": "fa-book",
-			"stat": "11+ years",
+			"stat": "12+ years",
 			"statDescription": "Learning & Experience in Tech"
 		},
 		{
@@ -13,18 +13,18 @@
 		},
 		{
 			"icon": "fa-heart",
-			"stat": "1000+ hours",
+			"stat": "2500+ hours",
 			"statDescription": "Effort, Dedication, and Learning"
 		}
 	],
 	"skills": [
 		{
 			"name": "Rust",
-			"years": 3
+			"years": 4
 		},
 		{
 			"name": "Java",
-			"years": 5
+			"years": 8
 		},
 		{
 			"name": "SQL",
@@ -32,7 +32,7 @@
 		},
 		{
 			"name": "Git",
-			"years": 6
+			"years": 8
 		},
 		{
 			"name": "C#",
@@ -40,7 +40,7 @@
 		},
 		{
 			"name": "Full Stack Development",
-			"years": 2
+			"years": 4
 		},
 		{
 			"name": "ASP.NET",
@@ -52,7 +52,7 @@
 		},
 		{
 			"name": "PowerShell",
-			"years": 2,
+			"years": 3,
 			"description": "Specifically PowerShell v7"
 		},
 		{
@@ -61,35 +61,35 @@
 		},
 		{
 			"name": "UNIX Scripting (Bash/ZSH/etc.)",
-			"years": 2
+			"years": 3
 		},
 		{
 			"name": "GitHub Actions",
-			"years": 2
+			"years": 4
 		},
 		{
 			"name": "Software Design",
-			"years": 3
+			"years": 4
 		},
 		{
 			"name": "Software Architecture",
-			"years": 2
+			"years": 3
 		},
 		{
 			"name": "HTML5",
-			"years": 6
+			"years": 8
 		},
 		{
 			"name": "CSS3",
-			"years": 6
+			"years": 8
 		},
 		{
 			"name": "Javascript",
-			"years": 5
+			"years": 7
 		},
 		{
 			"name": "Typescript",
-			"years": 3
+			"years": 4
 		},
 		{
 			"name": "NodeJS",
@@ -117,7 +117,7 @@
 		},
 		{
 			"name": "Operating System Kernels/Internals",
-			"years": 1
+			"years": 2
 		},
 		{
 			"name": ".NET Core",
@@ -125,24 +125,22 @@
 		},
 		{
 			"name": "Test Automation",
-			"years": 3
+			"years": 4
 		},
 		{
 			"name": "Unit Testing",
-			"years": 3
+			"years": 4
 		},
 		{
 			"name": "Computer Internals/Hardware",
-			"years": 2
+			"years": 3
 		}
 	],
 	"education": [
 		{
 			"name": "Rose-Hulman Institute of Technology",
 			"graduationDate": "Class of 2023 (Summer)",
-			"degree":
-				"Bachelors of Science - Software Engineering"
-			,
+			"degree": "Bachelors of Science - Software Engineering",
 			"degreeAddendum": "Originally Studied Computer Engineering until Spring 2021",
 			"relCoursework": [
 				"Intro to Computer Systems (CSSE132)",
@@ -161,9 +159,7 @@
 		},
 		{
 			"name": "Walt Whitman High School",
-			"degree":
-				"High School Diploma"
-			,
+			"degree": "High School Diploma",
 			"degreeAddendum": "Maryland Seal of Bi-Literacy (Chinese)",
 			"graduationDate": "Class of 2019",
 			"gpa": {
@@ -186,6 +182,9 @@
 			"location": "Washington, DC",
 			"responsibilities": [
 				"Designed and Implemented novel automation tools in Rust for monitoring changes in end-user behavior",
+				"Proposed, iterated, implemented, and led project efforts for a novel integration testing framework in Scala with ZIO and ZIO Test",
+				"Designed and implemented full-scale CI with GitHub Actions on several repositories, including automation to deploy ephemeral testing environments",
+				"Evaluated and identified gaps in testing coverage from process and feature viewpoints",
 				"Created focused test cases for component testing in a voice-recognition software stack",
 				"Improved existing external-facing documentation and other automations to be more detail-oriented and concise",
 				"Communicated with stakeholders and teams owning dependency services to perform integration testing and clarify desired functionality",
