@@ -314,7 +314,7 @@
 		{
 			"projectId": 12,
 			"projectName": "Dotfiles",
-			"projectDescription": "My scripts ,customizations, and configs, including some NixOS appliance definitions",
+			"projectDescription": "My scripts, customizations, and configs, including some NixOS appliance definitions and a custom Unix rice for a laptop. ",
 			"projectAsset": "dotfiles.webp",
 			"assetHeight": 738,
 			"assetWidth": 955,
@@ -335,7 +335,10 @@
 				"VimScript",
 				"dotfiles",
 				"NixOS",
-				"Open Source"
+				"Open Source",
+				"Vala",
+				"Home Lab",
+				"Infrastructure"
 			]
 		},
 		{
