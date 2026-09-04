@@ -57,8 +57,11 @@ evaluation of ***Nix expressions***, which is written using the ***Nix programmi
 expression will build the package *from source*** and save the resulting derivation into the ***Nix Store*** along with
 metadata about the hermetic* build environment the derivation contents were compiled under. The contents of the Nix Store
 is _read-only_ even to root users*. Installation of derivations do not copy files to directories like `/bin` or `/share`,
-rather symlinks are instead created to the derivation contents in the Nix Store. To further This paradigm is a bit tricky
-to get the hang of initially (I would know I spent a month trying to nail it down), so this example should help.
+rather symlinks are instead created to the derivation contents in the Nix Store. From an ecosystem view, _**Nixpkgs**_
+is the package repository _and_ source for building _**NixOS**_ as a system derivation, which is imported into a Nix
+expression to provide the ability to _declare available_ (not install) packages and configure installed services.  
+This paradigm is a bit tricky to get the hang of initially (I would know I spent a month trying to nail it down),
+so this example might help.
 
 > Editor's Note
 >
@@ -280,7 +283,7 @@ become relevant. I'm going to cut out a bunch of research and give highlights on
 After writing the partition configuraiton and executing the steps with disko, I now have empty partitions to install Nix
 into. Using disko provides the additional benefit that it becomes part of the system derivation and auto generates
 [systemd mounts](*TODO*) on system rebuilds. But the first install process a bit of "provisioning work" to deal with
-secrets. Why? [Because you don't want to store unencrypted secrets in the Nix store](https://nixos.wiki/wiki/Comparison_of_secret_managing_schemes).
+secrets. Why? [To prevent writing unencrypted secrets in the Nix store](https://nixos.wiki/wiki/Comparison_of_secret_managing_schemes).
 For this, I use [sops-nix](*TODO*), which allows associating a secrets YAML with a set of SSH Host keys to decrypt against.
 But those host keys _only exists after the system is installed and run for the first time_.
 So I have to have a provisional configuration which has the minimum information without encrypted secrets, get the public
@@ -304,8 +307,8 @@ _**TODO INSERT BSKY OR TWITTER POST**_
 That is cursed. And also really annoying. But it works. And that's what matters. Samba having to translate how users are
 defined from Microsoft AD-like user system to some Linux user definition is black magic that I am relieved I do not need
 to get into. I start migrating over my files, I setup the network volumes, and start downloading my _entire_ Steam library.
-As of today, it currently sits at 9.5TB of my storage with level 9 [zstd compression](<>) at the Btrfs layer. All of t
-his backed up in a RAID 0 mirror that is acessible by any device on my network.
+As of today, it currently sits at 9.5TB of my storage with level 9 [zstd compression](*TODO*) at the Btrfs layer. All of
+this backed up in a RAID 0 mirror that is acessible by any device on my network.
 
 > Editor's Note: Technically, [Windows does support NFS v2/v3 as of recently](https://learn.microsoft.com/en-us/windows-server/storage/nfs/nfs-overview)
 > but my intial NFS attempts didn't work and I didn't have as many Linux devices to determine if it was a
@@ -317,9 +320,10 @@ But wait, I forgot to mention something that happened before I could even setup 
 
 _**TODO also this title probably**_
 
-The UGREEN NAS model I purchased only came with 8GB of RAM. While you _could_ use swap space to act as extra RAM, it
-doesn't always scale that way especially if you have many processes with "hot" pages. I learned this by accident by
-trying to run NixOS rebuilds of _**TODO What was it again**_ on a 1GB Raspberry Pi 4 before I learned about Nix remote builders.
+The UGREEN NAS model I purchased only came with 8GB of RAM. While swap space _could_ be used to act as extra RAM, it
+doesn't always scale that way especially when many processes with "hot" pages are running concurrently. I learned this
+by accident by trying to run NixOS rebuilds of _**TODO What was it again**_ on a 1GB Raspberry Pi 4 before I learned
+about Nix remote builders.
 
 _**TODO INSERT BSKY OR TWITTER POST**_
 
@@ -365,13 +369,141 @@ So now, I can surely start adding some things to my NAS beyond file storage. Sur
 
 ## You ever what life was like without Docker?
 
-If you work in tech, you probably know about [Docker](***TODO***) and/or container-based deployments. Extend that with
+When working in tech, one will usually encounter [Docker](***TODO***) and/or container-based deployments. Extend that with
 [Kubernetes](***TODO***), maybe some [GitOps](***TODO***) solution, and voila! Isolated, self-healing web application
 deployments that power most websites and apps. But remember: Docker and containers as a concept is fairly new in the
-history of computers, it was publicly released in _2013_. The original container engine, [Linux Containers](***TODO***)
-that Docker was built on, didn't even exist until 2008. In the grand scheme of web applications,
+history of computers, it was publicly released in _2013_. The original container engine, [Linux Containers (LXC)](https://linuxcontainers.org)
+that Docker was built on, didn't even exist until 2008. Back when the Dot-Com bubble was bursting, companies were (probably)
+"raw-dogging" PHP servers on Linux servers with no isolation*. And that was the direction I was heading, or somewhat.
+
+> Editor's Note: I have no proof of these claims. But any proof supporting or denying my claims is welcome by email or
+> Twitter
+
+Linux supports many mechanisms to isolate processes, users, files, and the like: [kernel namespaces](***TODO***), [cgroups](***TODO***),
+[SELinux](*TODO*), [capabilities](***TODO***), [`chroot`s](*TODO*). In fact, these are the [mechanisms which are used by
+LXC](https://linuxcontainers.org/lxc/introduction/) to provide the isolation of containers but use the same kernel. The
+thing is though, you don't need a container engine to replicate the same isolation effect when [systemd units](*TODO*)
+provide enough of that functionality already. Skimming through the [systemd manpages](***TODO***), there is either a
+direct correlation or some similar setting that can replicate the desired behavior. In some aspects, it is more
+customizable than Docker given that systemd is the effective backbone of systems it is installed on. For example, this is the
+_rendered_ definition of the service to run [Immich's](***TODO***) machine learning module for features like OCR and semantic matching:
+
+```
+[Unit]
+After=network.target postgresql.target
+Description=immich machine learning
+Requires=postgresql.target
+
+[Service]
+Type=simple
+Environment="IMMICH_HOST=localhost"
+Environment="IMMICH_PORT=3003"
+Environment="LOCALE_ARCHIVE=/nix/store/0da8w48lpq7zgyp7slalhlljjrqn7nsx-glibc-locales-2.42-84/lib/locale/locale-archive"
+Environment="MACHINE_LEARNING_CACHE_FOLDER=/var/cache/immich"
+Environment="MACHINE_LEARNING_WORKERS=1"
+Environment="MACHINE_LEARNING_WORKER_TIMEOUT=120"
+Environment="PATH=/nix/store/3qgy8q2j64v2m9jy3a5jmssacbblhd4r-coreutils-9.11/bin:/nix/store/i4kjidyvl8ciwbcwm75g75sriq3knav0-findutils-4.11.0/bin:/nix/store/yhr4ps9rdmb55pgqaq246vlh7xfac1dx-gnugrep-3.12/bin:/nix/store/4nylac9gazdpsid79qyk0jpqm312b2jx-gnused-4.10/bin:/nix/store/sm8d6jpilwdy3bw3yq2lv8rr8jld26pb-systemd-261.2/bin:/nix/store/3qgy8q2j64v2m9jy3a5jmssacbblhd4r-coreutils-9.11/sbin:/nix/store/i4kjidyvl8ciwbcwm75g75sriq3knav0-findutils-4.11.0/sbin:/nix/store/yhr4ps9rdmb55pgqaq246vlh7xfac1dx-gnugrep-3.12/sbin:/nix/store/4nylac9gazdpsid79qyk0jpqm312b2jx-gnused-4.10/sbin:/nix/store/sm8d6jpilwdy3bw3yq2lv8rr8jld26pb-systemd-261.2/sbin"
+Environment="TZDIR=/nix/store/p0ff33dca0fbkskqwrl3spvxcn5974h0-tzdata-2026c/share/zoneinfo"
+Environment="XDG_CACHE_HOME=/var/cache/immich"
+
+CacheDirectory=immich
+ExecStart=/nix/store/gp19vj6siqb8avzjcr7j2zvchi9ry764-immich-machine-learning-3.1.0/bin/machine-learning
+
+Slice=system-immich.slice
+
+User=immich
+Group=immich
+UMask=0077
+
+NoNewPrivileges=true
+CapabilityBoundingSet=
+PrivateDevices=true
+PrivateMounts=true
+PrivateTmp=true
+PrivateUsers=true
+ProtectClock=true
+ProtectControlGroups=true
+ProtectHome=true
+ProtectHostname=true
+ProtectKernelLogs=true
+ProtectKernelModules=true
+ProtectKernelTunables=true
+RestrictAddressFamilies=AF_INET
+RestrictAddressFamilies=AF_INET6
+RestrictAddressFamilies=AF_UNIX
+RestrictNamespaces=true
+RestrictRealtime=true
+RestrictSUIDSGID=true
+
+Restart=on-failure
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target
+```
+
+There is a lot described here in this one file. From the top, the [unit dependencies](***TODO***) of the service is declared,
+meaning that the service will only start after the dependencies are successfully _running_; if for some reason Postgres
+fails to start, then this service will not start. Afterward, the actual service definition is started with a few environment
+variables for application-specific configuration and setting the `PATH` to necessary executables in the Nix Store. Then,
+the cool things you can't do easily in Docker begin. First is registering this service under a [slice](***TODO***),
+ensuring the service process is run under the correct [cgroup node](***TODO***) for management; Docker does automatically
+for each container since this is one of the core mechanisms for isolation. Then the user and group are set for the process,
+adding further isolation through the standard Linux access control mechansisms. Dockerfiles allow specifying the user to
+run as, but by default it uses `root` and often tends to be ignored. Finally, additional restrictions are placed on the
+execution environment of the service. Explicit declarations to enforce limited privileges and sandboxing for filesystem
+access, kernel access, sockets, even ownership properties. The [systemd-exec(5)](https://www.freedesktop.org/software/systemd/man/latest/systemd.exec.html)
+manpage is extremely in depth on the tuning capabilities for the execution environment, compared to Docker which
+[abstracts most of that away](https://docs.docker.com/engine/security/).
+
+Do I recommend running things bare-metal for large services? _Absolutely not_. Containers are a really useful software deployment
+architecture that will work for most use cases. The main reason I didn't use containers to deploy internal services is because
+Nixpkgs already has many modules to generate systemd unit configurations for many services. The one advantage Nix and
+its use of systemd does have compared to Docker (and Kubernetes) is that it is much easier to have stable configurations
+and system state; because all the service deployments are Nix expressions which point to Nix store derivations, it is
+easy to reproduce and rollback as needed through the NixOS management commands. If you use [GitOps](***TODO***) systems
+like [Flux](***TODO***), the concept is very similar with the exception that
 
 ## All My Homies Hate DNS
+
+_**TODO insert the "it was DNS" meme here**_
+
+If you ever had to do anything related to networking, DNS is treated as the boogeyman for most deployment issues, and
+for good reason; At work we have alerts in case an automated DNS update fails for triage purposes. In 2021, [Facebook had
+one of the most infamous outages due to a DNS mistake that broke the resolution to the Facebook servers](https://en.wikipedia.org/wiki/2021_Facebook_outage).
+But what _is_ DNS anyway?
+
+DNS stands for [Domain Name System](***TODO***) and is used to convert human-readable domains to some IP address. [Cloudflare
+has a good explainer on the concept that I will shamelessly adapt](https://www.cloudflare.com/learning/dns/what-is-dns/),
+I recommend their resources for a good introduction to most things networking. At it's core, DNS is really just an elaborate index on how to find information. ntEach part of a domain is really just a specific "locator" for an index that will eventually lead to the desired Host IP address. This rough ASCII drawing illustrates the concept:
+
+```
+                                                                        RESOLVED -> 8.0.0.86
+                                  (mail.google.com) ◄─────────────────────────────────────────────┐
+                                         ▼ ▼ ▼                                                    │
+    ┌──────────────────────────────.com.google.mail                                               │
+    │                                │    └─────────────────────────┐                             │
+    ▼                                ▼                              ▼                             │
+  1.2.3.4                   ┌─►123.45.67.89                   ┌─►8.0.0.85                         │
+ ┌────────────────────────┐ │ ┌────────────────────────────┐  │ ┌──────────────────────────────┐  │
+ │ ROOT DNS INDEX         │ │ │ .COM DNS INDEX             │  │ │ GOOGLE.COM DNS INDEX         │  │
+ ├────────────────────────┤ │ ├────────────────────────────┤  │ ├──────────────────────────────┤  │
+ │ *.com -> 123.45.67.89  ├─┘ │ *.apple.com -> 29.34.56.20 │  │ │ google.com -> 8.0.0.86       │  │
+ ├────────────────────────┤   ├────────────────────────────┤  │ ├──────────────────────────────┤  │
+ │ *.net -> 69.67.21.42   │   │ *.bing.com -> 24.68.38.12  │  │ │ mail.google.com -> 8.0.0.86  ├──┘
+ ├────────────────────────┤   ├────────────────────────────┤  │ ├──────────────────────────────┤
+ │ *.dev -> 86.47.34.84   │   │ *.google.com -> 8.0.0.85   ├──┘ │ plus.google.com -> 127.0.0.1 │
+ ├────────────────────────┤   ├────────────────────────────┤    ├──────────────────────────────┤
+ │ ...                    │   │ ...                        │    │ ...                          │
+ └────────────────────────┘   └────────────────────────────┘    └──────────────────────────────┘
+
+NOTE: IP Addresses and DNS Records here are fake to illustrate the point
+```
+
+This is an incredibly naive and simplified view of DNS, rather the recursive resolver form. There is a lot more like
+[Cache resolvers](***TODO***), [nameserver delegation](***TODO***), and many other things that actually power internet routing.
+The important thing to recognize is that DNS allows giving convenient, namespaced labels to your servers that clients can use to
+get the IP address when they want it. Now the question becomes how can I have DNS records for things just in my home network? This is where self-hosting a DNS server becomes practical. While I do own a public domain, I
 
 ## Thoughts on Nix
 
