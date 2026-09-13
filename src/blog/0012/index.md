@@ -385,8 +385,9 @@ LXC](https://linuxcontainers.org/lxc/introduction/) to provide the isolation of 
 thing is though, you don't need a container engine to replicate the same isolation effect when [systemd units](*TODO*)
 provide enough of that functionality already. Skimming through the [systemd manpages](***TODO***), there is either a
 direct correlation or some similar setting that can replicate the desired behavior. In some aspects, it is more
-customizable than Docker given that systemd is the effective backbone of systems it is installed on. For example, this is the
-_rendered_ definition of the service to run [Immich's](***TODO***) machine learning module for features like OCR and semantic matching:
+customizable than Docker given that systemd is the effective backbone of systems it is installed on. For example, this
+is the _rendered_ definition of the service to run [Immich's](***TODO***) machine learning module for features like OCR
+and semantic matching:
 
 ```
 [Unit]
@@ -460,9 +461,41 @@ Do I recommend running things bare-metal for large services? _Absolutely not_. C
 architecture that will work for most use cases. The main reason I didn't use containers to deploy internal services is because
 Nixpkgs already has many modules to generate systemd unit configurations for many services. The one advantage Nix and
 its use of systemd does have compared to Docker (and Kubernetes) is that it is much easier to have stable configurations
-and system state; because all the service deployments are Nix expressions which point to Nix store derivations, it is
+and system state because all the service deployments are Nix expressions which point to Nix store derivations, it is
 easy to reproduce and rollback as needed through the NixOS management commands. If you use [GitOps](***TODO***) systems
-like [Flux](***TODO***), the concept is very similar with the exception that
+like [Flux](***TODO***), the concept is similar with the core difference being the underlying mechanism of action to
+manage infrastructure.
+
+### So What Does my NAS Do?
+
+With a mechanism for hosting isolated applications, I can run many services for different things I want to be able to do.
+The only constraint is that I will only be able to access the services while connected to my home network. With that in mind,
+these are the following services I chose:
+
+- [Immich](***TODO***) - Photo Library
+    - Great Photo Library management app, includes a ML module to allow for extra metadata like object recognition and OCR
+      like in Apple Photos.
+    - Has an official mobile app which supports automatic backup to corresponding albums on the server.
+- [Navidrome](***TODO***) - Music Library
+    - Music streaming server built on the [OpenSubsonic](***TODO***) protocol. Supports scrobbling to [Last.fm](https://last.fm)
+    - [MusicBrainz Picard](***TODO***) and [MusicBee](***TODO***) are used for management of tags and organising the underlying
+      files
+    - I use [Nautilie](***TODO***) on my iPhone for storing a subset of my library for offline listening
+- [Jellyfin](***TODO***) - Media Library
+    - I use the official Jellyfin App or Swiftfin on my phone for offline watching
+- [Backrest](***TODO***) - Automated off-site [restic](***TODO***) backups
+    - For the remote storage, I use [Backblase B2](***TODO***) buckets for each "set" I want to back up
+- [Linkwarden](***TODO***) - Browser Bookmark Sync
+    - I use Microsoft Edge on my Windows machine and phone, but Firefox on my laptop. Using the [Floccus](***TODO***)
+      extension I can automatically synchronize between the two browsers using this as the source of truth
+- [Syncthing](***TODO***) - File Synchronization
+    - I limit the relays to only go through local network discovery\
+- [Garage](***TODO***) - Local network S3 service
+    - Used for a local Nix binary cache for derivations I build.
+- [Actual](***TODO***) - Budget Tracker
+
+All of these are accessed through an [Nginx](***TODO***) reverse proxy which routes by subdomains. Which is a fun segue to
+the next topic...
 
 ## All My Homies Hate DNS
 
@@ -475,7 +508,9 @@ But what _is_ DNS anyway?
 
 DNS stands for [Domain Name System](***TODO***) and is used to convert human-readable domains to some IP address. [Cloudflare
 has a good explainer on the concept that I will shamelessly adapt](https://www.cloudflare.com/learning/dns/what-is-dns/),
-I recommend their resources for a good introduction to most things networking. At it's core, DNS is really just an elaborate index on how to find information. ntEach part of a domain is really just a specific "locator" for an index that will eventually lead to the desired Host IP address. This rough ASCII drawing illustrates the concept:
+I recommend their resources for a good introduction to most things networking. At it's core, DNS is really just an elaborate
+index on how to find information. ntEach part of a domain is really just a specific "locator" for an index that will
+eventually lead to the desired Host IP address. This rough ASCII drawing illustrates the concept with many simplifications:
 
 ```
                                                                         RESOLVED -> 8.0.0.86
@@ -502,8 +537,58 @@ NOTE: IP Addresses and DNS Records here are fake to illustrate the point
 
 This is an incredibly naive and simplified view of DNS, rather the recursive resolver form. There is a lot more like
 [Cache resolvers](***TODO***), [nameserver delegation](***TODO***), and many other things that actually power internet routing.
-The important thing to recognize is that DNS allows giving convenient, namespaced labels to your servers that clients can use to
-get the IP address when they want it. Now the question becomes how can I have DNS records for things just in my home network? This is where self-hosting a DNS server becomes practical. While I do own a public domain, I
+The important thing to recognize is that DNS allows giving convenient, namespaced labels to your servers that clients can
+use to get the IP address when they want it. Now the question becomes how can I have DNS records for things just in my
+home network? This is where self-hosting a DNS server becomes practical for a [split horizon DNS setup](***TODO***).
+The mechanism behind this is the use of a local intermediate DNS server with a desired subdomain zone that can be resolved
+without recursing the full domain. This allows for certain domains to be accessible on a local network without requiring
+the local machine or network to have a publicly accessible IP address (and go through a bajillion layers of [NAT](***TODO***)).
+
+```
+ ┌───────────────────────────────┐
+ │ Subdomain in "Global" Horizon │
+ └───────────────────────────────┘
+
+  LOCAL NETWORK
+ ┌──────────────────────────────────────────────────────────────────┐                     ┌───────────────────────────┐
+ │                                                                  │                     │                           │
+ │  ┌──────────────┐                         ┌───────────────────┐  │                     │           T H E           │
+ │  │              │    pipes.faceftw.dev?   │                   │  │ pipes.faceftw.dev?  │                           │
+ │  │ manifold     ├────────────────────────►│ durandal          ├──┼────────────────────►│     I N T E R W E B S     │
+ │  │ (DNS client) │    123.45.67.89         │ (DNS Server)      │  │ 123.45.67.89        │                           │
+ │  │              │◄────────────────────────┤                   │◄─┼─────────────────────┤ (Recursive DNS Resolvers) │
+ │  └──────────────┘                         └───────────────────┘  │                     │                           │
+ │                                                                  │                     └───────────────────────────┘
+ └──────────────────────────────────────────────────────────────────┘
+
+
+┌──────────────────────────────┐
+│ Subdomain in "Local" Horizon │
+└──────────────────────────────┘
+
+  LOCAL NETWORK
+ ┌──────────────────────────────────────────────────────────────────┐                     ┌───────────────────────────┐
+ │                                                                  │                     │                           │
+ │  ┌──────────────┐                         ┌───────────────────┐  │                     │           T H E           │
+ │  │              │    immich.faceftw.dev?  │                   │  │                     │                           │
+ │  │ manifold     ├────────────────────────►│ durandal          │  │      *no call*      │     I N T E R W E B S     │
+ │  │ (DNS client) │    192.168.0.172        │ (DNS Server)      │  │   (durandal knows)  │                           │
+ │  │              │◄────────────────────────┤                   │  │                     │ (Recursive DNS Resolvers) │
+ │  └──────────────┘                         └───────────────────┘  │                     │                           │
+ │                                                                  │                     └───────────────────────────┘
+ └──────────────────────────────────────────────────────────────────┘
+```
+
+Most implementations of split horizon DNS have a dedicated internal subdomain _zone_ that is dedicated for the local
+horizon, but Cloudflare does not allow for non-enterprise customers to have subdomains as zones (only as dedicated records
+which is not the same). The reason I use individual zones for each local subdomain is two-fold: to prevent collision
+with the public records (so I can access my website while on my network), and [TLS Certificates](***TODO***).
+
+TLS is the hidden "hero" of the modern internet since it provides the process to both validate the authenticity
+of a server and begin a secure communication session with unique encryption. While the risk of having anyone intercept
+my local network traffic between devices is low given I monitor what is connected, having the benefit of encryption 
+in my communication is always a plus. But the main reason is that many browsers complain when you are
+
 
 ## Thoughts on Nix
 
