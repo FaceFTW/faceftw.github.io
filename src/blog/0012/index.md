@@ -1,7 +1,7 @@
 ---
 postTitle: "One Must Imagine Sisyphus Happy"
 excerpt: "20 minute adventure to fix a camera driver, In-and-Out. Surely..."
-date: "2026-03-16"
+date: "2026-09-20"
 author: Alex Westerman
 slug: "0012"
 keywords: "Nix, NixOS, software development, reproducible builds, devops, CI, CD, home lab, self hosting"
@@ -52,9 +52,9 @@ building system images. Then I started digging into how creating installer image
 bullshit) really started to take place at this point.
 
 At a high-level, the building block of Nix/NixOS is the _**derivation**_, which defines how a package is built and
-installed, as well as how to run the exectuables in a hermetic*sandbox. Each derivation is constructed through the
-evaluation of ***Nix expressions***, which is written using the ***Nix programming language***. Evaluting a Nix
-expression will build the package *from source*** and save the resulting derivation into the ***Nix Store*** along with
+installed, as well as how to run the exectuables with dynamic linkage*. Each derivation is constructed through the
+evaluation of _**Nix expressions**_, which is written using the _**Nix programming language**_. Evaluting a Nix
+expression will build the package _from source_** and save the resulting derivation into the _**Nix Store**_ along with
 metadata about the hermetic* build environment the derivation contents were compiled under. The contents of the Nix Store
 is _read-only_ even to root users*. Installation of derivations do not copy files to directories like `/bin` or `/share`,
 rather symlinks are instead created to the derivation contents in the Nix Store. From an ecosystem view, _**Nixpkgs**_
@@ -67,10 +67,10 @@ so this example might help.
 >
 > You might have noticed some asterisks on items in the previous section. Some clarifying notes before we move on:
 >
-> 1. With respect to hermetic sandboxes, I will elaborate on this in the final "Thoughts on Nix" section
+> 1. This is done through a lot of [`patchelf`](https://github.com/NixOS/patchelf) calls on executables built in derivations
+>    since the dynamic libraries and linker used are in the Nix store and not in standard [FHS](***TODO***) locations.
 > 2. Technically, the derivation could simply download a compiled binary tarball and the compilation step is copying the
->    compiled blobs into the install path, but that defeats the key point of derivations. More on this in the last section
->    as well.
+>    compiled blobs into the install path, but that defeats the key point of derivations.
 > 3. Technically, writing to the Nix store is done through the Nix Daemon _**TODO VERIFY**_
 
 Suppose for some reason I don't have [`sed`](https://www.gnu.org/software/sed/) installed on my NixOS machine. In order
@@ -586,23 +586,76 @@ with the public records (so I can access my website while on my network), and [T
 
 TLS is the hidden "hero" of the modern internet since it provides the process to both validate the authenticity
 of a server and begin a secure communication session with unique encryption. While the risk of having anyone intercept
-my local network traffic between devices is low given I monitor what is connected, having the benefit of encryption 
-in my communication is always a plus. But the main reason is that many browsers complain when you are
+my local network traffic between devices is low given I monitor what is connected, having the benefit of encryption
+in my communication is always a plus. But the main reason is that many browsers complain when you access a site through
+normal unencrypted HTTP (and for obvious reasons). [Cloudflare also has good explainers on TLS and what is needed to secure
+connections on the internet](https://www.cloudflare.com/learning/ssl/transport-layer-security-tls/) that I do not want to
+botch in this already long post. The only thing that post does not talk about is automating the process of getting and
+renewing a strong certificate. Luckily people smarter than me have created the solution: [ACME](https://en.wikipedia.org/wiki/Automatic_Certificate_Management_Environment).
 
+> Editor's Note
+> You should watch the movie [_Coyote VS. ACME_](***TODO***)!
 
-## Thoughts on Nix
+ACME allows people to get certificates for domains they _own_ by performing a security challenge of some kind with an
+issuing certificate authority (CA); in my case, I use [Let's Encrypt](***TODO***),. In my case, I use a [DNS-01 Challenge](***TODO***)
+which creates a specific `TXT` record via the Cloudflare DNS management APIs that the CA will check to prove ownership.
+Afterward, I can use an ACME client to request a new certificate for the domain that is issued by the CA and have it downloaded
+automatically to my local machines. The one important caveat is that since I request a wildcard certificate that will apply to
+all subdomains of a specific level (i.e. `*.faceftw.dev`), I must use a DNS-01 challenge to prove ownership. I also cannot
+request a certificate for any deeper subdomain levels as a wildcard since it requires the subdomain to be a unique, resolvable
+DNS zone, which I cannot setup in Cloudflare. Once the certificate is on the machine, Nix provides some nice machinery to
+automatically allow `Nginx` to utilize these certificates, automatically reloading after certificate renewal.
 
-- Learning Nix
-  -- How do packages work (derivation, store, realization)
-  -- Finagling with System Derivations
-- Getting the printer functional-ish, then distracted
-- Introducing the NAS
-  -- Bootstrapping Nix (Making a "hermetic" install)
-  -- Setting up services
-- Networking Time
-  -- Bootstrapping yet another system
-  -- It's always DNS
-- Nemesis
-  -- Managing kernel patches
-  -- Speeding up builds
-  -- Linux Ricing
+```nix
+***TODO*** Get the snippets
+```
+
+And that's it. There are no more worlds left to conquer. Sisyphus has pushed his rock up a cliff. I surely have everything
+I need and I didn't change _anything_ and won't need to fix _anything_ at all in this little endeavor I went through.
+
+Right...?
+
+Why is there more text below this?
+
+## Is Sisyphus Happy?
+
+Almost a year ago now, I just wanted a stupid camera driver to work on my 3D printer. Arguably, I solved that problem 3-
+4 months after starting, but for some reason I kept pushing the metaphorical rock up the hill. I kept wanting something
+_more_ out of learning all of this. It was never about the camera in the first place, it was about _doing something new_.
+I cut out a good 2 months of learning [Vala](***TODO***), [GTK](***TODO***), and Linux desktop ecosystems for [ricing](***TODO***)
+my on the go laptop, which provides minimal value for a machine that I don't use as often. There is also a good few
+weeks learning about how to build Linux with patches that I also excluded. I didn't need to wipe the stock OS from my NAS,
+hell, I could see the argument I didn't really need buy one in the first place.
+
+Picking up Nix and NixOS is not a normal decision. As cool as the experience is learning it and the problems it solves,
+there are many things that would not let me recommend it for most people:
+
+- The Nix documentation is scattered, inconsistent, or non-existent; the problem extends to an uneven learning curve which
+  puts you in the deep end and expects you to put together all the pieces, instead of a "layered" learning approach by
+  abstracting internals initially (especially for less technical or hobbyist users).
+- [Flakes, the way most people use Nix, are still considered experimental due to how they were introduced and implemented](https://discourse.nixos.org/t/why-are-flakes-still-experimental/29317/12),
+  with only seemingly incremental progress on the upstream project to stabilize it.
+- Certain mechanisms like cross-compiling entire system derivations (i.e. for a Raspberry Pi or IoT devices) have to be
+  done a certain way to prevent compiling _every single derivation with [binfmt emulation](***TODO***)_, which can
+  significantly increase times to rebuild a system; This _excludes_ the fact that depending on how you define the
+  cross-compiled derivations to use, it might miss the [Nixpkgs binary cache](***TODO***) and force an unnecessary rebuild.
+- The strong chain of provenance in Nix derivations means that
+  certain dependency updates need to be done on a per-package basis to prevent excessive derivation rebuilds.
+- Executables not built in a Nix derivation and require dynamic linkage will not function without patching ELF metadata.
+  This is related to the chain of provenance mentioned earlier, but it means that all programs either have to be built from
+  source in Nix derivations or existing binaries need to be patched with Nix store paths to the dyanmic resources. _Always
+  expect the possibility of needing to figure out why something won't run or how to make something run in a NixOS system_.
+
+Despite all of these qualms, I'm overally really happy with the journey that stupid camera driver took me down. There are
+multiple cases I can point at where I was able to rollback a stupid change such as a bad DNS configuration easily with minimal
+to no downtime thanks to NixOS's generation system. It has also never been easier to run a "lean" system and keep track
+of what I'm actually installing and using. Keeping software either up-to-date or on the bleeding edge has been much easier
+compared to other distributions which have a significant lag time in updating packages. And best of all, _I can remember
+what I did to get here_. I know that whenever I make a change that if it works, it will continue to work. No shell scripts
+or niche hooks to forget over time, it has to defined so that it is remembered why a certain tweak was made. Overall, the
+reasons why I chose Nix in the first place continue to be the reason I chose to continue using it, despite the negatives
+and complexity it introduces.
+
+So is Sisyphus happy? Maybe he is. Because despite knowing that the rock will roll back down, there will be a few seconds
+the rock will be at the mountain top because of him and him alone.
+
