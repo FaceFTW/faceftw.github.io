@@ -137,6 +137,19 @@
     @apply bg-background text-foreground;
   }
 
+  .editorial {
+ 	@apply bg-green-100 border-l-8 border-green-600;
+  }
+
+  .editorial h5 {
+ 	@apply text-green-600;
+  }
+
+  .editorial .editorial-icon svg {
+ 	@apply stroke-current fill-current;
+  }
+
+
   /* A Cutout of Tailwind Typography but More for what I want to do */
   /* Some parts are commented since I don't think I'm using them now but maybe later */
   .prose {
