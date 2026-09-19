@@ -164,7 +164,7 @@ export default async function (eleventyConfig) {
                 </figure>`;
             }
             if (fenceName === 'editorial') {
-                const contentRendered = slf.render(token.content, options, env);
+                const contentRendered = mdLib.render(token.content, env).trim();
                 return `<div class="editorial">
              		<h5>Editor's Note</h5>
                		${contentRendered}

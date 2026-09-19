@@ -12,17 +12,11 @@ Some of the solutions to problems in this article could have been solved (faster
 AI services. My [modus operandi](https://en.wikipedia.org/wiki/Modus_operandi) in personal projects avoids AI usage
 unless I'm absolutely stumped. As of writing, this has only happened once and in that case it was not helpful in
 solving the problem. I'll be writing a post about my thoughts on AI usage after this ~~novella~~ post is published
-which will explain this decision later.
+which will explain this decision later. So don't ask **_"wHy NoT aSk ClAuDe?"_** if you see something stupid. Embrace the madness with me and jump into the rabbit hole.
 
-<br/>
-So don't ask "wHy NoT uSe ClAuDe?" if you see something stupid. Embrace the madness with me and jump into the rabbit hole.
-
-
-<br/>
 This is less of an "informative" post about something I learned and more of an insane journey with some commentary at
 the end. This is post is my equivalent of _[The Odyssey]_ with an additional mini YouTube video essay. This means I
 will embellish some points for narrative effect, but the core messages I want to convey remain intact.
-<br/>
 
 Enjoy this story almost 9 months in the making!
 ```
@@ -69,15 +63,15 @@ expression to provide the ability to _declare available_ (not install) packages 
 This paradigm is a bit tricky to get the hang of initially (I would know I spent a month trying to nail it down),
 so this example might help.
 
-> Editor's Note
->
-> You might have noticed some asterisks on items in the previous section. Some clarifying notes before we move on:
->
-> 1. This is done through a lot of [`patchelf`](https://github.com/NixOS/patchelf) calls on executables built in derivations
->    since the dynamic libraries and linker used are in the Nix store and not in standard [FHS](***TODO***) locations.
-> 2. Technically, the derivation could simply download a compiled binary tarball and the compilation step is copying the
->    compiled blobs into the install path, but that defeats the key point of derivations.
-> 3. Technically, writing to the Nix store is done through the Nix Daemon _**TODO VERIFY**_
+```editorial
+You might have noticed some asterisks on items in the previous section. Some clarifying notes before we move on:
+
+1. This is done through a lot of [`patchelf`](https://github.com/NixOS/patchelf) calls on executables built in derivations
+   since the dynamic libraries and linker used are in the Nix store and not in standard [FHS](***TODO***) locations.
+2. Technically, the derivation could simply download a compiled binary tarball and the compilation step is copying the
+    compiled blobs into the install path, but that defeats the key point of derivations.
+3. Technically, writing to the Nix store is done through the Nix Daemon _**TODO VERIFY**_
+```
 
 Suppose for some reason I don't have [`sed`](https://www.gnu.org/software/sed/) installed on my NixOS machine. In order
 to install it, I need to have a Nix expression defining how to make the derivation for `sed`. In [Nixpkgs](https://github.com/nixos/nixpkgs),
@@ -232,10 +226,10 @@ focus more on my descent into homelabbing madness, but Nix solves some interesti
 distribution and packaging that other existing solutions have had trouble with. The big one is [Dependency/DLL Hell](https://en.wikipedia.org/wiki/Dependency_hell)
 which was the most likely culprit behind my camera driver issues; Nix derivations being uniquely keyed in evaluation means
 that I can easily have true control over which depdencies and what version is used when building drivers or systems. Once
-I got the derivation for the camera streaming software working after a good chunk of debugging [Video4Linux configuration](*TODO*)
-and [Device Tree Overlays](*TODO*) (since default NixOS does not come with the Raspberry Pi OS defaults), it was extremely
-cathartic to see it simply _work_ after all that. But by that time, Black Friday just passed and I had a new toy shipped
-in the mail.
+I got the derivation for the camera streaming software working after a good chunk of debugging [Video4Linux configuration](https://www.linuxtv.org/downloads/v4l-dvb-apis-new/userspace-api/index.html)
+and [Device Tree Overlays](https://en.wikipedia.org/wiki/Devicetree) (since default NixOS does not come with the Raspberry
+Pi OS defaults), it was extremely cathartic to see it simply _work_ after all that. But by that time, Black Friday just
+passed and I had a new toy shipped in the mail.
 
 ## Network Attaching Your Mom (because she is fat)
 
@@ -250,29 +244,30 @@ and use NixOS instead of my default UGREEN NAS software. Surely it can't be that
 
 The first problem is to figure out how to get to a boot menu to even install Linux. After mashing <kbd>Ctrl</kbd> + <kbd>F12</kbd>
 or some combination I get into the BIOS and select the USB drive. I boot into the NixOS live image. I start getting some
-disk UUIDs so I can write my partition layout with [disko](*TODO*). But suddenly, after about 3 minutes the NAS reboots.
-Just out of nowhere. Maybe the flash drive I had the installer on was bad. So I burned the live image again on a new
-flash drive. It reboots after 3 minutes again. I boot in but do nothing. Reboots in 3 minutes. I start questioning if
-UGREEN put some bizarre write-protection on their OS. I check the BIOS. It turns out there is a setting which acts as a
-[Watchdog Timer](*TODO*) and will restart the machine if it does not get a specific "message" from the running OS. I
-turn it off. I boot into the live image. I wait 3 minutes. Then I wait another 2 minutes. Then I wait another 5 minutes
-because I'm paraniod. After 3 days of on-off debugging. I have only figured out how to _run the NixOS live image on the
-NAS_, I haven't even installed a base system.
+disk UUIDs so I can write my partition layout with [disko](https://github.com/nix-community/disko). But suddenly, after
+about 3 minutes the NAS reboots. Just out of nowhere. Maybe the flash drive I had the installer on was bad. So I burned
+the live image again on a new flash drive. It reboots after 3 minutes again. I boot in but do nothing. Reboots in 3 minutes.
+I start questioning if UGREEN put some bizarre write-protection on their OS. I check the BIOS. It turns out there is a
+setting which acts as a [Watchdog Timer](https://en.wikipedia.org/wiki/Watchdog_timer) and will restart the machine if
+it does not get a specific "message" from the running OS. I turn it off. I boot into the live image. I wait 3 minutes.
+Then I wait another 2 minutes. Then I wait another 5 minutes because I'm paraniod. After 3 days of on-off debugging.
+I have only figured out how to _run the NixOS live image on the NAS_, I haven't even installed a base system.
 
-This somehow didn't deter me from continuing the madness.
+This somehow didn't deter me from continuing.
 
 Before I can install NixOS, I need to identify a partition scheme given this is a server-like Linux install focused on
 bulk storage. With this NAS, I have a 32GB internal eMMC (which currently holds bootloaders and the UGREEN OS), two HDD
 Bays which are each fileld with 14TB disks, and two M.2 NVMe slots on the inside of the left HDD bay which I inserted
 two 512GB sticks I scraped from old laptops. Just considering data resiliency itself is a fun little adventure into
-learning about [RAID](*TODO*) and filesystems supporting multi-disk arrays. Questions like "how fast do I need to write
-data", "how much data am I willing to lose", "what is the minimum storage I want available as actual storage" start to
-become relevant. I'm going to cut out a bunch of research and give highlights on my decisions for my partition setup:
+learning about [RAID](https://en.wikipedia.org/wiki/RAID) and filesystems supporting multi-disk arrays. Questions like
+"how fast do I need to write data", "how much data am I willing to lose", "what is the minimum storage I want available as
+actual storage" start to become relevant. I'm going to cut out a bunch of research and give highlights on my decisions for
+my partition setup:
 
-- All data/system partitions use [Btrfs](*TODO*). More advanced than [`ext4`](*TODO*) and supports configurable
-  compression and defragmentation: useful for maximizing density of data storage.
+- All data/system partitions use [Btrfs](https://en.wikipedia.org/wiki/Btrfs). More advanced than [`ext4`](https://en.wikipedia.org/wiki/Ext4)
+  and supports configurable compression and defragmentation: useful for maximizing density of data storage.
 - The eMMC uses a fairly simple partition layout (separapte `/boot` and `/`) seen in most simple Linux installs.
-- I use [`mdadm`](*TODO*) for two separate RAID 0 (Mirror) groups
+- I use [`mdadm`](https://en.wikipedia.org/wiki/Mdadm) for two separate RAID 0 (Mirror) groups
     - The two 14TB HDDs are the "archival" RAID pool and intended to be read + slow write with the nature of that data.
     - The two 512GB NVMe sticks are the "fast" RAID pool used for system swap, things that need fast writes (i.e. live
       databases, caches), and more frequently updated data.
@@ -298,9 +293,10 @@ can be declared securely for that machine easily, even across machines if config
 into secrets management because that is a whole additional design discussion that I want to avoid in this already long post.
 
 So I have an empty NAS with NixOS installed and configured to be remoted into for management and remote system derivation
-updates. The next step is to make a [Network File Share](*TODO*). For this I chose [Samba](*TODO*) over NFS because of
-the need for Windows systems to be able to access it*. So I start looking into how to configure Samba. I follow this
-[convenient NixOS wiki page for Samba](*TODO*), declare the bind mounts for the Samba shares I wanted, then wrote the
+updates. The next step is to make a [Network File Share](https://en.wikipedia.org/wiki/Network_File_System). For this I chose
+[SMB via Samba](https://en.wikipedia.org/wiki/Server_Message_Block) over NFS because of the need for Windows systems to be able
+to access it without too much extra hassle*. So I start looking into how to configure Samba. I follow this [convenient NixOS wiki
+page for Samba](https://nixos.wiki/wiki/Samba), declare the bind mounts for the Samba shares I wanted, then wrote the
 Samba configuration. Then I rebuild the NAS system config and try to connect from my Windows machine. It fails immediately.
 And the worst part is that it's a simple "Something went wrong". I start fiddling with the Samba configuration. Maybe I
 messed up some security settings. I get a different error this time. I revert my changes. Still "something went wrong".
@@ -308,17 +304,21 @@ I try to scrounge Event Viewer for more information. Nothing. I even try connect
 supports Samba. That fails with no indication either. Great. It's Christmas day and I am trying to figure out why my Samba
 configuration is broken. Then... I found it:
 
-_**TODO INSERT BSKY OR TWITTER POST**_
+<div class="center">
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Figured out the issue.<br><br>Had to increase samba log level to find out that I put bad &quot;force group&quot; parameter. This took 24 hours to figure out and I&#39;m so happy but also mad.<br><br>Anyways... <a href="https://t.co/5TsH3gqWFt">https://t.co/5TsH3gqWFt</a> <a href="https://t.co/aJcJD5FJig">pic.twitter.com/aJcJD5FJig</a></p>&mdash; shabingus (@_FaceFTW) <a href="https://x.com/_FaceFTW/status/2004339654670127495?ref_src=twsrc%5Etfw">December 25, 2025</a></blockquote> <script async src="https://platform.x.com/widgets.js" charset="utf-8"></script>
+</div>
 
 That is cursed. And also really annoying. But it works. And that's what matters. Samba having to translate how users are
 defined from Microsoft AD-like user system to some Linux user definition is black magic that I am relieved I do not need
 to get into. I start migrating over my files, I setup the network volumes, and start downloading my _entire_ Steam library.
-As of today, it currently sits at 9.5TB of my storage with level 9 [zstd compression](*TODO*) at the Btrfs layer. All of
-this backed up in a RAID 0 mirror that is acessible by any device on my network.
+As of today, it currently sits at 9.5TB of my storage with level 9 [zstd compression](https://en.wikipedia.org/wiki/Zstd)
+at the Btrfs layer. All of this backed up in a RAID 0 mirror that is acessible by any device on my network.
 
-> Editor's Note: Technically, [Windows does support NFS v2/v3 as of recently](https://learn.microsoft.com/en-us/windows-server/storage/nfs/nfs-overview)
-> but my intial NFS attempts didn't work and I didn't have as many Linux devices to determine if it was a
-> Windows issue.
+```editorial
+Technically, [Windows does support NFS v2/v3 as of recently](https://learn.microsoft.com/en-us/windows-server/storage/nfs/nfs-overview)
+but my intial NFS attempts didn't work and I didn't have as many Linux devices to determine if it was a
+Windows issue.
+```
 
 But wait, I forgot to mention something that happened before I could even setup Samba. Yet another fun hiccup.
 
@@ -343,8 +343,10 @@ have another data point to use for troubleshooting. I power cycle yet again, it 
 let the system run idle with the exception of `htop` on the main TTY just to get a visual indicator when it freezes. And
 the freeze is abrupt and silent. No `dmesg`, systemd journal, or magic smoke* is indicative of what could be the issue.
 
-> Editor's Note: "magic smoke" refers to the mystical gas inside your electronic components that allow it to do things
-> with electricity. Letting that smoke escape will destroy the functionality of the device.
+```editorial
+"Magic smoke" refers to the mystical gas inside your electronic components that allow it to do things with electricity.
+Letting that smoke escape will destroy the functionality of the device.
+```
 
 I start to panic internally. Surely it isn't something wrong with my drives right? I spent $300 per NAS drive and
 returning/exchanging them would be a massive hassle. I try running without the hard drives. Still get the freeze.
@@ -368,34 +370,40 @@ Compared to the previous generation, DDR5 has some architectural changes such as
 may be impacting something subtle that I'm just not aware about. I don't have the patience (or budget) to look into this
 further. So 8GB it is.
 
-> Editor's Note: the actual length of time to produce the freezes in this section, while random, are purely made up for
-> narrative effect.
+```editorial
+The actual length of time to produce the freezes in this section, while random, are purely made up for
+narrative effect.
+```
 
 So now, I can surely start adding some things to my NAS beyond file storage. Surely that isn't another significant debate?
 
 ## You ever what life was like without Docker?
 
-When working in tech, one will usually encounter [Docker](***TODO***) and/or container-based deployments. Extend that with
-[Kubernetes](***TODO***), maybe some [GitOps](***TODO***) solution, and voila! Isolated, self-healing web application
-deployments that power most websites and apps. But remember: Docker and containers as a concept is fairly new in the
-history of computers, it was publicly released in _2013_. The original container engine, [Linux Containers (LXC)](https://linuxcontainers.org)
-that Docker was built on, didn't even exist until 2008. Back when the Dot-Com bubble was bursting, companies were (probably)
-"raw-dogging" PHP servers on Linux servers with no isolation*. And that was the direction I was heading, or somewhat.
+When working in tech, one will usually encounter [Docker](https://www.docker.com/) and/or container-based deployments.
+Extend that with [Kubernetes](https://kubernetes.io/), maybe some [GitOps](https://www.redhat.com/en/topics/devops/what-is-gitops)
+solution, and voila! Atomic, isolated, self-healing web application deployments that power most websites and apps.
+But remember: Docker and containers as a concept is fairly new in the history of computers, it was publicly released
+in _2013_. The original container engine, [Linux Containers (LXC)](https://linuxcontainers.org) that Docker was built on,
+didn't even exist until 2008. Back when the Dot-Com bubble was bursting, companies were (probably) "raw-dogging" PHP
+servers on Linux servers with no isolation*. And that was the direction I was heading, or somewhat.
 
-> Editor's Note: I have no proof of these claims. But any proof supporting or denying my claims is welcome by email or
-> Twitter
+```editorial
+I have no proof of these claims. But any proof supporting or denying my claims can be sent by email or Twitter dot com
+```
 
-Linux supports many mechanisms to isolate processes, users, files, and the like: [kernel namespaces](***TODO***), [cgroups](***TODO***),
-[SELinux](*TODO*), [capabilities](***TODO***), [`chroot`s](*TODO*). In fact, these are the [mechanisms which are used by
-LXC](https://linuxcontainers.org/lxc/introduction/) to provide the isolation of containers but use the same kernel. The
-thing is though, you don't need a container engine to replicate the same isolation effect when [systemd units](*TODO*)
-provide enough of that functionality already. Skimming through the [systemd manpages](***TODO***), there is either a
-direct correlation or some similar setting that can replicate the desired behavior. In some aspects, it is more
+Linux supports many mechanisms to isolate processes, users, files, and the like: [kernel namespaces](https://en.wikipedia.org/wiki/Linux_namespaces),
+[cgroups](https://en.wikipedia.org/wiki/Cgroups), [SELinux](https://en.wikipedia.org/wiki/Security-Enhanced_Linux),
+[capabilities](https://man7.org/linux/man-pages/man7/capabilities.7.html), [`chroot`s](https://en.wikipedia.org/wiki/Chroot),
+and more. In fact, these are the [mechanisms which are used by LXC](https://linuxcontainers.org/lxc/introduction/) to
+provide the isolation of containers but use the same kernel. The thing is though, you don't need a container engine to
+replicate the same isolation effect when [systemd units](https://www.freedesktop.org/software/systemd/man/systemd.unit.html)
+provide enough of that functionality already. Skimming through the [systemd manpages](https://www.freedesktop.org/software/systemd/man/latest/index.html),
+there is either a direct correlation or some similar setting that can replicate the desired behavior. In some aspects, it is more
 customizable than Docker given that systemd is the effective backbone of systems it is installed on. For example, this
 is the _rendered_ definition of the service to run [Immich's](***TODO***) machine learning module for features like OCR
 and semantic matching:
 
-```
+```ini
 [Unit]
 After=network.target postgresql.target
 Description=immich machine learning
@@ -468,9 +476,8 @@ architecture that will work for most use cases. The main reason I didn't use con
 Nixpkgs already has many modules to generate systemd unit configurations for many services. The one advantage Nix and
 its use of systemd does have compared to Docker (and Kubernetes) is that it is much easier to have stable configurations
 and system state because all the service deployments are Nix expressions which point to Nix store derivations, it is
-easy to reproduce and rollback as needed through the NixOS management commands. If you use [GitOps](***TODO***) systems
-like [Flux](***TODO***), the concept is similar with the core difference being the underlying mechanism of action to
-manage infrastructure.
+easy to reproduce and rollback as needed through the NixOS management commands. If you use GitOps systems like [Flux](https://fluxcd.io/),
+the concept is similar with the core difference being the underlying mechanism of action to manage infrastructure.
 
 ### So What Does my NAS Do?
 
@@ -486,11 +493,11 @@ these are the following services I chose:
     - Music streaming server built on the [OpenSubsonic](***TODO***) protocol. Supports scrobbling to [Last.fm](https://last.fm)
     - [MusicBrainz Picard](***TODO***) and [MusicBee](***TODO***) are used for management of tags and organising the underlying
       files
-    - I use [Nautilie](***TODO***) on my iPhone for storing a subset of my library for offline listening
+    - I use [Nautiline](***TODO***) on my iPhone for storing a subset of my library for offline listening
 - [Jellyfin](***TODO***) - Media Library
     - I use the official Jellyfin App or Swiftfin on my phone for offline watching
 - [Backrest](***TODO***) - Automated off-site [restic](***TODO***) backups
-    - For the remote storage, I use [Backblase B2](***TODO***) buckets for each "set" I want to back up
+    - For the remote storage, I use [Backblaze B2](***TODO***) buckets for each "set" I want to back up
 - [Linkwarden](***TODO***) - Browser Bookmark Sync
     - I use Microsoft Edge on my Windows machine and phone, but Firefox on my laptop. Using the [Floccus](***TODO***)
       extension I can automatically synchronize between the two browsers using this as the source of truth
@@ -512,10 +519,10 @@ for good reason; At work we have alerts in case an automated DNS update fails fo
 one of the most infamous outages due to a DNS mistake that broke the resolution to the Facebook servers](https://en.wikipedia.org/wiki/2021_Facebook_outage).
 But what _is_ DNS anyway?
 
-DNS stands for [Domain Name System](***TODO***) and is used to convert human-readable domains to some IP address. [Cloudflare
-has a good explainer on the concept that I will shamelessly adapt](https://www.cloudflare.com/learning/dns/what-is-dns/),
+DNS stands for [Domain Name System](https://en.wikipedia.org/wiki/Domain_Name_System) and is used to convert human-readable
+domains to some IP address. [Cloudflare has a good explainer on the concept that I will shamelessly adopt](https://www.cloudflare.com/learning/dns/what-is-dns/),
 I recommend their resources for a good introduction to most things networking. At it's core, DNS is really just an elaborate
-index on how to find information. ntEach part of a domain is really just a specific "locator" for an index that will
+index on how to find information. Each part of a domain is really just a specific "locator" for an index that will
 eventually lead to the desired Host IP address. This rough ASCII drawing illustrates the concept with many simplifications:
 
 ```
@@ -542,13 +549,14 @@ NOTE: IP Addresses and DNS Records here are fake to illustrate the point
 ```
 
 This is an incredibly naive and simplified view of DNS, rather the recursive resolver form. There is a lot more like
-[Cache resolvers](***TODO***), [nameserver delegation](***TODO***), and many other things that actually power internet routing.
-The important thing to recognize is that DNS allows giving convenient, namespaced labels to your servers that clients can
-use to get the IP address when they want it. Now the question becomes how can I have DNS records for things just in my
-home network? This is where self-hosting a DNS server becomes practical for a [split horizon DNS setup](***TODO***).
-The mechanism behind this is the use of a local intermediate DNS server with a desired subdomain zone that can be resolved
-without recursing the full domain. This allows for certain domains to be accessible on a local network without requiring
-the local machine or network to have a publicly accessible IP address (and go through a bajillion layers of [NAT](***TODO***)).
+[autonomous systems](<https://en.wikipedia.org/wiki/Autonomous_system_(Internet)>), [nameserver delegation](***TODO***),
+and many other things that actually power internet routing. The important thing to recognize is that DNS allows giving
+convenient, namespaced labels to your servers that clients can use to get the IP address when they want it. Now the
+question becomes how can I have DNS records for things just in my home network? This is where self-hosting a DNS server
+becomes practical for a [split horizon DNS setup](https://en.wikipedia.org/wiki/Split-horizon_DNS). The mechanism
+behind this is the use of a local intermediate DNS server with a desired subdomain zone that can be resolved without
+recursing the full domain. This allows for certain domains to be accessible on a local network without requiring the
+local machine or network to have a publicly accessible IP address (and go through a bajillion layers of [NAT](<https://en.wikipedia.org/wiki/Network_address_translation)>).
 
 ```
  ┌───────────────────────────────┐
@@ -588,7 +596,7 @@ the local machine or network to have a publicly accessible IP address (and go th
 Most implementations of split horizon DNS have a dedicated internal subdomain _zone_ that is dedicated for the local
 horizon, but Cloudflare does not allow for non-enterprise customers to have subdomains as zones (only as dedicated records
 which is not the same). The reason I use individual zones for each local subdomain is two-fold: to prevent collision
-with the public records (so I can access my website while on my network), and [TLS Certificates](***TODO***).
+with the public records (so I can access my website while on my network), and [TLS Certificates](https://en.wikipedia.org/wiki/Transport_Layer_Security#Digital_certificates).
 
 TLS is the hidden "hero" of the modern internet since it provides the process to both validate the authenticity
 of a server and begin a secure communication session with unique encryption. While the risk of having anyone intercept
@@ -599,18 +607,19 @@ connections on the internet](https://www.cloudflare.com/learning/ssl/transport-l
 botch in this already long post. The only thing that post does not talk about is automating the process of getting and
 renewing a strong certificate. Luckily people smarter than me have created the solution: [ACME](https://en.wikipedia.org/wiki/Automatic_Certificate_Management_Environment).
 
-> Editor's Note
-> You should watch the movie [_Coyote VS. ACME_](***TODO***)!
+```editorial
+This is not talking about the Looney Tunes ACME Corporation. By the way, you should watch the movie [_Coyote VS. ACME_](https://en.wikipedia.org/wiki/Coyote_vs._Acme)!
+```
 
 ACME allows people to get certificates for domains they _own_ by performing a security challenge of some kind with an
-issuing certificate authority (CA); in my case, I use [Let's Encrypt](***TODO***),. In my case, I use a [DNS-01 Challenge](***TODO***)
+issuing certificate authority (CA); in my case, I use [Let's Encrypt](https://letsencrypt.org/). I use a [DNS-01 Challenge](https://letsencrypt.org/docs/challenge-types/#dns-01-challenge)
 which creates a specific `TXT` record via the Cloudflare DNS management APIs that the CA will check to prove ownership.
 Afterward, I can use an ACME client to request a new certificate for the domain that is issued by the CA and have it downloaded
 automatically to my local machines. The one important caveat is that since I request a wildcard certificate that will apply to
 all subdomains of a specific level (i.e. `*.faceftw.dev`), I must use a DNS-01 challenge to prove ownership. I also cannot
 request a certificate for any deeper subdomain levels as a wildcard since it requires the subdomain to be a unique, resolvable
 DNS zone, which I cannot setup in Cloudflare. Once the certificate is on the machine, Nix provides some nice machinery to
-automatically allow `Nginx` to utilize these certificates, automatically reloading after certificate renewal.
+automatically allow Nginx to utilize these certificates, automatically reloading after certificate renewal.
 
 ```nix
 ***TODO*** Get the snippets
@@ -628,10 +637,11 @@ Why is there more text below this?
 Almost a year ago now, I just wanted a stupid camera driver to work on my 3D printer. Arguably, I solved that problem 3-
 4 months after starting, but for some reason I kept pushing the metaphorical rock up the hill. I kept wanting something
 _more_ out of learning all of this. It was never about the camera in the first place, it was about _doing something new_.
-I cut out a good 2 months of learning [Vala](***TODO***), [GTK](***TODO***), and Linux desktop ecosystems for [ricing](***TODO***)
-my on the go laptop, which provides minimal value for a machine that I don't use as often. There is also a good few
-weeks learning about how to build Linux with patches that I also excluded. I didn't need to wipe the stock OS from my NAS,
-hell, I could see the argument I didn't really need buy one in the first place.
+I cut out a good 2 months of learning [Vala](https://vala.dev/), [GTK](https://www.gtk.org/), and Linux desktop ecosystems
+for [ricing](https://www.reddit.com/r/unixporn/) my on the go laptop, which provides minimal value for a machine that I
+don't use as often. There is also a good few weeks learning about how to build Linux with patches that I also excluded.
+I didn't need to wipe the stock OS from my NAS, hell, I could see the argument I didn't really need buy one in the first
+place.
 
 Picking up Nix and NixOS is not a normal decision. As cool as the experience is learning it and the problems it solves,
 there are many things that would not let me recommend it for most people:
@@ -642,9 +652,10 @@ there are many things that would not let me recommend it for most people:
 - [Flakes, the way most people use Nix, are still considered experimental due to how they were introduced and implemented](https://discourse.nixos.org/t/why-are-flakes-still-experimental/29317/12),
   with only seemingly incremental progress on the upstream project to stabilize it.
 - Certain mechanisms like cross-compiling entire system derivations (i.e. for a Raspberry Pi or IoT devices) have to be
-  done a certain way to prevent compiling _every single derivation with [binfmt emulation](***TODO***)_, which can
-  significantly increase times to rebuild a system; This _excludes_ the fact that depending on how you define the
-  cross-compiled derivations to use, it might miss the [Nixpkgs binary cache](***TODO***) and force an unnecessary rebuild.
+  done a certain way to prevent compiling _every single derivation with [binfmt emulation](https://docs.kernel.org/admin-guide/binfmt-misc.html),
+  which can significantly increase times to rebuild a system; This _excludes_ the fact that depending on how you define
+  the cross-compiled derivations to use, it might miss the [Nixpkgs binary cache](https://cache.nixos.org/) and force
+  an unnecessary rebuild.
 - The strong chain of provenance in Nix derivations means that
   certain dependency updates need to be done on a per-package basis to prevent excessive derivation rebuilds.
 - Executables not built in a Nix derivation and require dynamic linkage will not function without patching ELF metadata.
