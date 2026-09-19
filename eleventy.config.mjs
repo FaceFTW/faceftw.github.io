@@ -139,7 +139,7 @@ export default async function (eleventyConfig) {
         };
 
         //Override the default render rule (irrevocably)
-        mdLib.renderer.rules.fence = function (tokens, idx, _options, _env, slf) {
+        mdLib.renderer.rules.fence = function (tokens, idx, options, env, slf) {
             const token = tokens[idx];
             const info = token.info ? mdLib.utils.unescapeAll(token.info).trim() : '';
             let fenceName = '';
@@ -162,6 +162,15 @@ export default async function (eleventyConfig) {
                     <img src="${imgSrc}" ${slf.renderAttrs(token)} alt="${imgCaption}" width="${imgWidth}" height="${imgHeight}">
                     <figcaption>${imgCaption}</figcaption>
                 </figure>`;
+            }
+            if (fenceName === 'editorial') {
+                const contentRendered = slf.render(token.content, options, env);
+                return `<div class="editorial">
+             		<h5>Editor's Note</h5>
+               		${contentRendered}
+             </div>
+
+             `;
             }
 
             const highlighted = highlight(token.content, fenceName, fenceAttrs);

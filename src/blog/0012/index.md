@@ -7,19 +7,25 @@ slug: "0012"
 keywords: "Nix, NixOS, software development, reproducible builds, devops, CI, CD, home lab, self hosting"
 ---
 
-> Editor's Preface
-> Some of the solutions to problems in this article could have been solved (faster) by me asking Chat-Gippity or equivalent
-> AI services. My [modus operandi](https://en.wikipedia.org/wiki/Modus_operandi) in personal projects avoids AI usage
-> unless I'm absolutely stumped. As of writing, this has only happened once and in that case it was not helpful in
-> solving the problem. I'll be writing a post about my thoughts on AI usage after this ~~novella~~ post is published
-> which will explain this decision later.
->
-> So don't ask "wHy NoT uSe ClAuDe?" if you see something stupid. Embrace the madness with me and jump into the rabbit hole.
->
-> This is less of an "informative" post about something I learned and more of an insane journey with some commentary at
-> the end. This is post is my equivalent of _[The Odyssey]_ with an additional mini YouTube video essay. This means I
-> will embellish some points for narrative effect, but the core messages I want to convey remain intact. Enjoy this
-> story almost 9 months in the making!
+```editorial
+Some of the solutions to problems in this article could have been solved (faster) by me asking Chat-Gippity or equivalent
+AI services. My [modus operandi](https://en.wikipedia.org/wiki/Modus_operandi) in personal projects avoids AI usage
+unless I'm absolutely stumped. As of writing, this has only happened once and in that case it was not helpful in
+solving the problem. I'll be writing a post about my thoughts on AI usage after this ~~novella~~ post is published
+which will explain this decision later.
+
+<br/>
+So don't ask "wHy NoT uSe ClAuDe?" if you see something stupid. Embrace the madness with me and jump into the rabbit hole.
+
+
+<br/>
+This is less of an "informative" post about something I learned and more of an insane journey with some commentary at
+the end. This is post is my equivalent of _[The Odyssey]_ with an additional mini YouTube video essay. This means I
+will embellish some points for narrative effect, but the core messages I want to convey remain intact.
+<br/>
+
+Enjoy this story almost 9 months in the making!
+```
 
 Over a year ago, I noticed that the webcam on my 3D printer server suddenly stopped working. I remembered doing a ad-hoc
 package upgrade and thought maybe one of the libraries is broken. Naively, I checked the `apt` log (I was using Raspbian
@@ -271,14 +277,14 @@ become relevant. I'm going to cut out a bunch of research and give highlights on
     - The two 512GB NVMe sticks are the "fast" RAID pool used for system swap, things that need fast writes (i.e. live
       databases, caches), and more frequently updated data.
 
-> Editor's Note
->
-> Some quick things about the partition setup that I think are important to shout out:
->
-> - Btrfs does support being the manager of the RAID pool, I couldn't figure out how to easily do it with disko. Plus
->   `mdadm` is easier to hook up alerts to from my experience.
-> - I could get away with the "fast" drives not being in a RAID 0 pool if there are backup jobs that regularly copy stuff
->   to the archival RAID pool. But what's the fun in having only one RAID pool.
+```editorial
+Some quick things about the partition setup that I think are important to shout out:
+
+- Btrfs does support being the manager of the RAID pool, I couldn't figure out how to easily do it with disko. Plus
+  `mdadm` is easier to hook up alerts to from my experience.
+- I could get away with the "fast" drives not being in a RAID 0 pool if there are backup jobs that regularly copy stuff
+  to the archival RAID pool. But what's the fun in having only one RAID pool.
+```
 
 After writing the partition configuraiton and executing the steps with disko, I now have empty partitions to install Nix
 into. Using disko provides the additional benefit that it becomes part of the system derivation and auto generates
@@ -658,4 +664,3 @@ and complexity it introduces.
 
 So is Sisyphus happy? Maybe he is. Because despite knowing that the rock will roll back down, there will be a few seconds
 the rock will be at the mountain top because of him and him alone.
-

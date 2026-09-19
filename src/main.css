@@ -138,11 +138,11 @@
   }
 
   .editorial {
-    @apply bg-green-100 border-l-8 border-green-600;
+    @apply bg-green-800 border-l-8 border-green-400 px-4 py-2 rounded-xl;
   }
 
   .editorial h5 {
-    @apply text-green-600;
+    @apply font-extrabold;
   }
 
   .editorial .editorial-icon svg {
