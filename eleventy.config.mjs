@@ -1,6 +1,6 @@
+import { HtmlBasePlugin, IdAttributePlugin, InputPathToUrlTransformPlugin } from '@11ty/eleventy';
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname, resolve as resolveFile } from 'node:path';
-import { HtmlBasePlugin, IdAttributePlugin, InputPathToUrlTransformPlugin } from '@11ty/eleventy';
 // import { feedPlugin } from "@11ty/eleventy-plugin-rss";
 import { eleventyImageTransformPlugin } from '@11ty/eleventy-img';
 import tailwindcss from '@tailwindcss/postcss';
@@ -8,18 +8,20 @@ import htmlmin from 'html-minifier-terser';
 import { DateTime } from 'luxon';
 import postcss from 'postcss/lib/postcss';
 import { createHighlighterCoreSync, createJavaScriptRegexEngine } from 'shiki';
+// import ansi from 'shiki/langs/ansi.mjs';
 import c from 'shiki/langs/c.mjs';
 import csharp from 'shiki/langs/csharp.mjs';
 import css from 'shiki/langs/css.mjs';
+import html_derivative from 'shiki/langs/html-derivative.mjs';
 import html from 'shiki/langs/html.mjs';
 import java from 'shiki/langs/java.mjs';
 import javascript from 'shiki/langs/javascript.mjs';
+import nix from 'shiki/langs/nix.mjs';
 import perl from 'shiki/langs/perl.mjs';
 import rust from 'shiki/langs/rust.mjs';
 import shell from 'shiki/langs/shell.mjs';
 import tsx from 'shiki/langs/tsx.mjs';
 import typescript from 'shiki/langs/typescript.mjs';
-import html_derivative from 'shiki/langs/html-derivative.mjs';
 import vitesse_dark from 'shiki/themes/vitesse-dark.mjs';
 import vitesse_light from 'shiki/themes/vitesse-light.mjs';
 
@@ -108,7 +110,7 @@ export default async function (eleventyConfig) {
     //Make a singleton Shiki Highlighter
     const highlighter = createHighlighterCoreSync({
         themes: [vitesse_light, vitesse_dark],
-        langs: [rust, java, perl, html, tsx, typescript, javascript, c, csharp, shell, css, html_derivative],
+        langs: [rust, java, perl, html, tsx, typescript, javascript, c, csharp, shell, css, html_derivative, nix],
         engine: createJavaScriptRegexEngine(),
     });
     const langs = highlighter.getLoadedLanguages();
@@ -138,8 +140,23 @@ export default async function (eleventyConfig) {
             });
         };
 
-        //Override the default render rule (irrevocably)
-        mdLib.renderer.rules.fence = function (tokens, idx, options, env, slf) {
+        //Hijack the link normalizer to process the href for common URLs
+        const normalizeLinkProxy = mdLib.normalizeLink.bind({});
+        mdLib.normalizeLink = function (/** @type {string}*/ url) {
+            const linkMatched = /(wiki|gh):(.*)/.exec(url);
+            if (linkMatched) {
+                switch (linkMatched[1]) {
+                    case 'wiki':
+                        return normalizeLinkProxy(`https://en.wikipedia.com/wiki/${linkMatched[2]}`);
+                    case 'gh':
+                        return normalizeLinkProxy(`https://github.com/${linkMatched[2]}`);
+                }
+            }
+            return normalizeLinkProxy(url);
+        };
+
+        //Override the default fence render rule (irrevocably)
+        mdLib.renderer.rules.fence = function (tokens, idx, _options, env, slf) {
             const token = tokens[idx];
             const info = token.info ? mdLib.utils.unescapeAll(token.info).trim() : '';
             let fenceName = '';
