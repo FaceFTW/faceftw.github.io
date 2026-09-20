@@ -624,7 +624,52 @@ Once the certificate is on the machine, Nix provides some nice machinery to auto
 certificates, automatically reloading after certificate renewal.
 
 ```nix
-***TODO*** Get the snippets
+### acme.nix - sets up the ACME renewal service and makes
+###            it available to nginx
+{
+  config,
+  pkgs,
+  ...
+}:
+{
+  security.acme.acceptTerms = true;
+  security.acme.defaults.email = "alex@faceftw.dev";
+  security.acme.certs."faceftw.dev" = {
+    domain = "*.faceftw.dev";
+    dnsProvider = "cloudflare";
+    environmentFile = "/run/secrets/cloudflare_acme";
+
+    postRun = ''
+      # set permission on dir
+      ${pkgs.acl}/bin/setfacl -m u:nginx:rx \
+      /var/lib/acme/faceftw.dev
+
+      # set permission on key file
+      ${pkgs.acl}/bin/setfacl -m u:nginx:r \
+      /var/lib/acme/faceftw.dev/*.pem
+    '';
+
+    reloadServices = [ "nginx" ];
+    group = config.services.nginx.group;
+  };
+
+}
+
+### some service.nix with nginx configured
+{
+  config,
+  lib,
+  ...
+}: 
+{
+  services.nginx.virtualHosts."example-service.faceftw.dev" = {
+    serverName = "example-service.faceftw.dev";
+    forceSSL = true;
+    useACMEHost = "faceftw.dev";
+
+    # Standard nginx reverse proxy config afterward... 
+  };
+}
 ```
 
 And that's it. There are no more worlds left to conquer. Sisyphus has pushed his rock up a cliff. I surely have
