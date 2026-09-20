@@ -32,7 +32,7 @@ export default async function (eleventyConfig) {
      ************************/
     eleventyConfig.on('eleventy.before', async () => {
         const tailwindInputPath = resolveFile('./src/main.css');
-        const tailwindOutputPath = './src/assets/compiled.css';
+        const tailwindOutputPath = './dist/assets/styles.css';
         const cssContent = readFileSync(tailwindInputPath, 'utf8');
         const outputDir = dirname(tailwindOutputPath);
 
@@ -80,7 +80,7 @@ export default async function (eleventyConfig) {
             './src/assets/fonts': 'assets/fonts',
             './src/assets/pfp.webp': 'assets/pfp.webp',
             './src/assets/thumbs': 'assets/thumbs',
-            './src/assets/compiled.css': 'assets/styles.css',
+            // './src/assets/compiled.css': 'assets/styles.css',
         })
         .addPassthroughCopy('./content/feed/pretty-atom-feed.xsl');
 
