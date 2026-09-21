@@ -14,6 +14,7 @@ import csharp from 'shiki/langs/csharp.mjs';
 import css from 'shiki/langs/css.mjs';
 import html_derivative from 'shiki/langs/html-derivative.mjs';
 import html from 'shiki/langs/html.mjs';
+import ini from 'shiki/langs/ini.mjs';
 import java from 'shiki/langs/java.mjs';
 import javascript from 'shiki/langs/javascript.mjs';
 import nix from 'shiki/langs/nix.mjs';
@@ -110,7 +111,7 @@ export default async function (eleventyConfig) {
     //Make a singleton Shiki Highlighter
     const highlighter = createHighlighterCoreSync({
         themes: [vitesse_light, vitesse_dark],
-        langs: [rust, java, perl, html, tsx, typescript, javascript, c, csharp, shell, css, html_derivative, nix],
+        langs: [rust, java, perl, html, tsx, typescript, javascript, c, csharp, shell, css, html_derivative, nix, ini],
         engine: createJavaScriptRegexEngine(),
     });
     const langs = highlighter.getLoadedLanguages();
