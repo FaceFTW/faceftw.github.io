@@ -54,7 +54,6 @@
   --tw-prose-td-borders: oklch(37.3% 0.034 259.733);
 }
 
-
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
@@ -111,8 +110,9 @@
   @apply w-fit;
 }
 
-@utility filter-svg-green{
-  filter: brightness(0) saturate(100%) invert(56%) sepia(99%) saturate(362%) hue-rotate(90deg) brightness(91%) contrast(94%);
+@utility filter-svg-green {
+  filter: brightness(0) saturate(100%) invert(56%) sepia(99%) saturate(362%) hue-rotate(90deg) brightness(91%)
+    contrast(94%);
 }
 
 @keyframes fade{
@@ -135,6 +135,18 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+
+  .editorial {
+    @apply bg-green-800 border-l-8 border-green-400 px-4 py-2 rounded-xl;
+  }
+
+  .editorial h5 {
+    @apply font-extrabold;
+  }
+
+  .editorial .editorial-icon svg {
+    @apply stroke-current fill-current;
   }
 
   /* A Cutout of Tailwind Typography but More for what I want to do */
@@ -236,7 +248,7 @@
       color: var(--tw-prose-quotes);
       border-inline-start-width: 0.25rem;
       border-inline-start-color: var(--tw-prose-quote-borders);
-      quotes: "\201C""\201D""\2018""\2019";
+      quotes: "\201C" "\201D" "\2018" "\2019";
       margin-top: 1.6em;
       margin-bottom: 1.6em;
       padding-inline-start: 1em;
