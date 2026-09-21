@@ -188,7 +188,8 @@ $ nix eval nixpkgs#gnused
 ```
 
 This store path is then able to be provided in other Nix expressions (both system derivations or other package
-derivations) or in temporary environments. For example, if I want a temporary environment which has `sed` available to use in the shell `PATH`, `nix-shell` can be used like such:
+derivations) or in temporary environments. For example, if I want a temporary environment which has `sed` available
+to use in the shell `PATH`, `nix-shell` can be used like such:
 
 ```
 # Just because sed is available in the local Nix store
@@ -225,7 +226,9 @@ $ env | grep PATH
 PATH=/bin;/usr/bin;<truncated...>;/nix/store/8a41q43mxgkvi3a1pihlp9xiakgqvggx-gnused-4.10/bin
 ```
 
-And that's the fundamentals of Nix (with a lot of abridging). There is a lot I intentionally excluded in this description to focus more on my descent into homelabbing madness, but Nix solves some interesting problems related to software distribution and packaging that other existing solutions have had trouble with. The big one is [Dependency/DLL
+And that's the fundamentals of Nix (with a lot of abridging). There is a lot I intentionally excluded in this description
+to focus more on my descent into homelabbing madness, but Nix solves some interesting problems related to software
+distribution and packaging that other existing solutions have had trouble with. The big one is [Dependency/DLL
 Hell](wiki:Dependency_hell) which was the most likely culprit behind my camera driver issues; Nix derivations being
 uniquely keyed in evaluation means that I can easily have true control over which depdencies and what version is used
 when building drivers or systems. Once I got the derivation for the camera streaming software working after a good chunk
@@ -234,9 +237,7 @@ and [Device Tree Overlays](wiki:Devicetree) (since default NixOS does not come w
 it was extremely cathartic to see it simply _work_ after all that. But by that time, Black Friday just passed and I had
 a new toy shipped in the mail.
 
-## Network Attaching Your Mom (because she is fat)
-
-_TODO_ probably scratch this title
+## The "Gateway" Drug to Home Labs: A NAS 
 
 I don't know what exactly compelled me to buy a NAS. Maybe it was the bajillion consumer hard drives I shucked out of
 portable HDDs/SSDs and questionable runtime stress I put them under. Maybe it was because I was learning so much sysadmin
@@ -314,7 +315,9 @@ Then... I found it:
 
 That is cursed. And also really annoying. But it works. And that's what matters. Samba having to translate how users are
 defined from Microsoft AD-like user system to some Linux user definition is black magic that I am relieved I do not need
-to get into. I start migrating over my files, I setup the network volumes, and start downloading my _entire_ Steam library. As of today, it currently sits at 9.5TB of my storage with level 9 [zstd compression](wiki:Zstd) at the Btrfs layer. All of this backed up in a RAID 0 mirror that is acessible by any device on my network.
+to get into. I start migrating over my files, I setup the network volumes, and start downloading my _entire_ Steam
+library. As of today, it currently sits at 9.5TB of my storage with level 9 [zstd compression](wiki:Zstd) at the Btrfs
+layer. All of this backed up in a RAID 0 mirror that is acessible by any device on my network.
 
 ```image
 src="./look_at_all_those_gaems.webp", 800x434
@@ -329,8 +332,6 @@ but my intial NFS attempts didn't work and I didn't have as many Linux devices t
 But wait, I forgot to mention something that happened before I could even setup Samba. Yet another fun hiccup.
 
 ## Once you've been shopping for PC parts, you'll want to beat Sam Altman to death
-
-_**TODO also this title probably**_
 
 The UGREEN NAS model I purchased only came with 8GB of RAM. While swap space _could_ be used to act as extra RAM, it
 doesn't always scale that way especially when many processes with "hot" pages are running concurrently. I learned this
@@ -666,14 +667,14 @@ certificates, automatically reloading after certificate renewal.
   config,
   lib,
   ...
-}: 
+}:
 {
   services.nginx.virtualHosts."example-service.faceftw.dev" = {
     serverName = "example-service.faceftw.dev";
     forceSSL = true;
     useACMEHost = "faceftw.dev";
 
-    # Standard nginx reverse proxy config afterward... 
+    # Standard nginx reverse proxy config afterward...
   };
 }
 ```
