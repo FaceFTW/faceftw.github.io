@@ -1,19 +1,25 @@
 ---
 postTitle: "One Must Imagine Sisyphus Happy"
-excerpt: "20 minute adventure to fix a camera driver, In-and-Out. Surely..."
+excerpt: "A 20 minute adventure to fix a camera driver turns into an entire infrastructure project"
 date: "2026-09-20"
 author: Alex Westerman
 slug: "0012"
+postThumbnail: "./does_he_know.webp"
+postThumbnailAlt: "He thought running NixOS was for one day only! HE MAD!"
 keywords: "Nix, NixOS, software development, reproducible builds, devops, CI, CD, home lab, self hosting"
 ---
 
+```image
+src="./does_he_know.webp", 585x428
+He thought running NixOS was for one day only! HE MAD!
+```
+
 ```editorial
-Some of the solutions to problems in this article could have been solved (faster) by me asking "Chat-Gippity".
+Some of the solutions to problems in this article could have been solved (faster) by me asking ChatsGippity.
 My [modus operandi](wiki:Modus_operandi) in personal projects avoids AI usage unless I'm absolutely stumped.
-As of writing, this has only happened once and in that case it was not helpful in solving the problem. I'll
-be writing a post about my thoughts on AI usage after this ~~novella~~ post is published which will explain
-this decision later. So don't ask **_"wHy NoT aSk ClAuDe?"_** if you see something stupid. Embrace the madness
-with me and jump into the rabbit hole.
+As of writing, this has only happened once and in that case it was not helpful in solving the problem. I do
+plan on posting about my thoughts on AI usage after this ~~novella~~ post is published to feed the flames of
+discourse on AI. So don't ask **_"wHy NoT aSk ClAuDe?"_** if you see something stupid. Embrace the stupidity.
 
 I will embellish some points for narrative effect, but the core messages I want to convey remain intact. Enjoy
 this story almost 9 months in the making!
