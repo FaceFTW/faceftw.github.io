@@ -4,7 +4,7 @@ excerpt: "A 20 minute adventure to fix a camera driver turns into an entire infr
 date: "2026-09-20"
 author: Alex Westerman
 slug: "0012"
-postThumbnail: "./does_he_know.webp"
+postThumbnail: "blog_thumb_0012.webp"
 postThumbnailAlt: "He thought running NixOS was for one day only! HE MAD!"
 keywords: "Nix, NixOS, software development, reproducible builds, devops, CI, CD, home lab, self hosting"
 ---
