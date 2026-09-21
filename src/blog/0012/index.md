@@ -22,10 +22,10 @@ plan on posting about my thoughts on AI usage after this ~~novella~~ post is pub
 discourse on AI. So don't ask **_"wHy NoT aSk ClAuDe?"_** if you see something stupid. Embrace the stupidity.
 
 I will embellish some points for narrative effect, but the core messages I want to convey remain intact. Enjoy
-this story almost 9 months in the making!
+this story almost a year in the making!
 ```
 
-Over a year ago, I noticed that the webcam on my 3D printer server suddenly stopped working. I remembered doing a ad-hoc
+About a year ago, I noticed that the webcam on my 3D printer server suddenly stopped working. I remembered doing a ad-hoc
 package upgrade and thought maybe one of the libraries is broken. Naively, I checked the `apt` log (I was using Raspbian
 originally) and started to rollback packages I thought were the culprit. `ustreamer`? No change. `libcamera`? Crashes
 somehow, had to rollback further. Maybe it's `haproxy` (starting to grasp at straws)? No beans. Soon, I start rolling
@@ -237,7 +237,7 @@ and [Device Tree Overlays](wiki:Devicetree) (since default NixOS does not come w
 it was extremely cathartic to see it simply _work_ after all that. But by that time, Black Friday just passed and I had
 a new toy shipped in the mail.
 
-## The "Gateway" Drug to Home Labs: A NAS 
+## The "Gateway" Drug to Home Labs: A NAS
 
 I don't know what exactly compelled me to buy a NAS. Maybe it was the bajillion consumer hard drives I shucked out of
 portable HDDs/SSDs and questionable runtime stress I put them under. Maybe it was because I was learning so much sysadmin
@@ -403,7 +403,9 @@ Linux supports many mechanisms to isolate processes, users, files, and the like:
 to provide the isolation of containers but use the same kernel. The thing is though, you don't need a container engine to
 replicate the same isolation effect when [systemd units](https://www.freedesktop.org/software/systemd/man/systemd.unit.html)
 provide enough of that functionality already. Skimming through the [systemd manpages](https://www.freedesktop.org/software/systemd/man/latest/index.html),
-there is either a direct correlation or some similar setting that can replicate the desired behavior. In some aspects, it is more customizable than Docker given that systemd is the effective backbone of systems it is installed on. For example, this is the _rendered_ definition of the service to run [Immich's machine learning module](https://docs.immich.app/features/ml-hardware-acceleration)
+there is either a direct correlation or some similar setting that can replicate the desired behavior. In some aspects,
+it is more customizable than Docker given that systemd is the effective backbone of systems it is installed on. For
+example, this is the _rendered_ definition of the service to run [Immich's machine learning module](https://docs.immich.app/features/ml-hardware-acceleration)
 for features like OCR and semantic matching:
 
 ```ini
@@ -720,11 +722,18 @@ there are many things that would not let me recommend it for most people:
 
 Despite all of these qualms, I'm overally really happy with the journey that stupid camera driver took me down. There are
 multiple cases I can point at where I was able to rollback a stupid change such as a bad DNS configuration easily with
-minimal to no downtime thanks to NixOS's generation system. It has also never been easier to run a "lean" system and keep track of what I'm actually installing and using. Keeping software either up-to-date or on the bleeding edge has
+minimal to no downtime thanks to NixOS's generation system. It has also never been easier to run a "lean" system and
+keep track of what I'm actually installing and using. Keeping software either up-to-date or on the bleeding edge has
 been much easier compared to other distributions which have a significant lag time in updating packages. And best of
 all, _I can remember what I did to get here_. I know that whenever I make a change that if it works, it will continue to
 work. No shell scripts or niche hooks to forget over time, it has to defined so that it is remembered why a certain
-tweak was made. Overall, the reasons why I chose Nix in the first place continue to be the reason I chose to continue using it, despite the negatives and complexity it introduces.
+tweak was made. Overall, the reasons why I chose Nix in the first place continue to be the reason I chose to continue
+using it, despite the negatives and complexity it introduces.
 
 So is Sisyphus happy? Maybe he is. Because despite knowing that the rock will roll back down, there will be a few seconds
 the rock will be at the mountain top because of him and him alone.
+
+```image
+src="./the_setup.webp", 536x714
+
+```
