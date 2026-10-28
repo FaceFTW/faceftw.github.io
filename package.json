@@ -10,17 +10,17 @@
 		"@11ty/eleventy": "4.0.0-alpha.10"
 	},
 	"devDependencies": {
-		"@11ty/eleventy-img": "7.0.0",
-		"@11ty/eleventy-plugin-rss": "2.0.4",
-		"@biomejs/biome": "^2.5.14",
+		"@11ty/eleventy-img": "7.1.1",
+		"@11ty/eleventy-plugin-rss": "3.1.0",
+		"@biomejs/biome": "^2.6.3",
 		"@tailwindcss/postcss": "4.3.3",
-		"@types/node": "26.6.2",
+		"@types/node": "26.6.6",
 		"html-minifier-terser": "7.2.0",
 		"luxon": "3.7.2",
-		"markdown-it": "15.0.2",
-		"postcss": "8.5.28",
-		"shiki": "4.4.3",
+		"markdown-it": "15.0.3",
+		"postcss": "8.5.32",
+		"shiki": "4.5.0",
 		"tailwindcss": "4.3.3",
-		"typescript": "5.9.3"
+		"typescript": "7.0.2"
 	}
 }
